@@ -20,5 +20,14 @@ class cardioworkoutDAO
 
 
     }
+    public function getCardioWorkouts($db, $reqObj){
+        $query = "SELECT * FROM CARDIO_WORKOUTS WHERE user_id= :user_id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':user_id', $reqObj->getUserId());
+        $statement->execute();
+        $cardio_workouts = $statement->fetchAll();
+        $statement->closeCursor();
+        return $cardio_workouts;
+    }
 
 }
