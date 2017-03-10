@@ -10,7 +10,7 @@ class Database
 {
 
 
-    private $dsn = 'mysql:host=localhost;dbname=';
+    private $dsn = 'mysql:host=localhost;dbname=healthhack';
     private $username = "root";
     private $db;
     public function getDb(){
