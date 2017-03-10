@@ -1,6 +1,6 @@
 <?php
-require_once 'Header.php';
-require_once 'sidebar.php';
+require_once '../Common Views/Header.php';
+require_once '../Common Views/sidebar.php';
 $user_id = 1;
 if (isset($_POST['submit_cardio'])){
     //grab inputs from previous form
@@ -15,7 +15,7 @@ if (isset($_POST['submit_cardio'])){
 
 //now let's validate
 
-    require_once 'Models/Validation.php';
+    require_once '../Models/Validation.php';
     $v = new Validation();
 
     if ($v->testName($cardio_name) == false) {
@@ -31,35 +31,39 @@ if (isset($_POST['submit_cardio'])){
         $time_error = "You must enter a goal for your time!";
     }
 
-    if ($v->testName($cardio_name) == true && $v->testName($cardio_type == true && $v->testZero($cardio_distance) == true && ($v->testZero($cardio_hours) == true && $v->testZero($cardio_minutes) == true && $v->testZero($cardio_seconds) == true))){
-
+    if ($v->testName($cardio_name) == true && $v->testName($cardio_type == true && $v->testZero($cardio_distance) == true && ($v->testZero($cardio_hours) == true || $v->testZero($cardio_minutes) == true || $v->testZero($cardio_seconds) == true))){
         //insert a function to change the time format
 
-        require_once 'functions/time_format_function.php';
+        require_once '../functions/time_format_function.php';
 
         $cardio_time = timeFormat($cardio_hours, $cardio_minutes, $cardio_seconds);
         //now we create a new cardioworkout class and set the values equal to our form values
 
-        require_once 'Models/cardioworkout.php';
+        require_once '../Models/cardioworkout.php';
         $c = new cardioworkout();
 
         $c->setName($cardio_name);
         $c->setUserId($user_id);
         $c->setGoalDistance($cardio_distance);
-        $c->getGoalTime($cardio_time);
+        $c->setGoalTime($cardio_time);
+        $c->setUserId($user_id);
 
         //now let's get the database connection and create a new object
 
+        require_once '../Models/Database.php';
+        $db = new Database();
+        $conn = $db->getDb();
 
-        //now we grab our cardioDAO class, create a new object of it, and insert into the database.
+    //now we grab our DAO object, call the insert method, passing in our db connection and our cardio workout object.
 
+    require_once '../Models/cardioworkoutDAO.php';
+    $insert_C = new cardioworkoutDAO();
+    $insert_C->insertCardio($conn, $c);
 
-
-
+        $success_message = "Your workout has been saved to the system!";
 
     }
 
-        $success_message = "Your workout has been saved to the system!";
 
     }
 
@@ -133,5 +137,5 @@ if (isset($_POST['submit_cardio'])){
 
 </div>
 <?php
-require_once 'Footer.php';
+require_once '../Common Views/Footer.php';
 ?>

@@ -8,7 +8,7 @@
  */
 class cardioworkout
 {
-    private $user_id, $name, $goal_distance, $goal_time;
+    private $id, $user_id, $name, $goal_distance, $goal_time;
 
     /**
      * @return mixed
@@ -18,6 +18,22 @@ class cardioworkout
     /**
      * @return mixed
      */
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     public function getUserId()
     {
         return $this->user_id;

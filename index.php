@@ -38,7 +38,7 @@ require_once 'Common Views/sidebar.php';
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="cardio.php" class="feature-btn">
+                    <a href="CardioFeature/cardio.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/cardio-icon.png" alt="" />
                         </div>

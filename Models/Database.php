@@ -18,6 +18,7 @@ class Database
         try {
             $this->db = new PDO($this->dsn, $this->username);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo 'connected';
 
         }
         catch (PDOException $e) {
