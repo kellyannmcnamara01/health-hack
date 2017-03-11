@@ -46,10 +46,10 @@ INDEX
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!--<meta http-equiv="refresh" content="5">-->
     <title>Health Hack</title>
-    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="opt-imgs/favicon.png">
+    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="../opt-imgs/favicon.png">
     <!-- Importing Files -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="../main.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
 </head>
 <body>
@@ -63,7 +63,7 @@ INDEX
         <!-- 01-2. Logo -->
         <div id="top-logo" class="col-md-6 col-sm-6 col-4">
             <div id="logo">
-                <img src="opt-imgs/logo.svg" alt="Health Hack Logo" width="43" />
+                <img src="../opt-imgs/logo.svg" alt="Health Hack Logo" width="43" />
             </div>
         </div>
         <!-- 01-3. Search Bar -->

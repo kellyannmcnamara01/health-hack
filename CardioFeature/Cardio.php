@@ -8,7 +8,7 @@ require_once '../Common Views/sidebar.php';
         <div class="feature col-md-4 col-sm-4 col-4">
                 <a href="create-cardio.php" class="feature-btn">
                     <div class="feature-icon">
-                        <img src="opt-imgs/Create-Cardio-Icon.jpg" alt="" />
+                        <img src="../opt-imgs/Create-Cardio-Icon.jpg" alt="" />
                     </div>
                     <h4>Create Cardio Workout</h4>
                 </a>
@@ -16,7 +16,7 @@ require_once '../Common Views/sidebar.php';
             <div class="feature col-md-4 col-sm-4 col-4">
                 <a href="log-cardio.php" class="feature-btn">
                     <div class="feature-icon">
-                        <img src="opt-imgs/Log-Cardio-Icon.jpg" alt="" />
+                        <img src="../opt-imgs/Log-Cardio-Icon.jpg" alt="" />
                     </div>
                     <h4>Log a Cardio Workout</h4>
                 </a>
@@ -24,7 +24,7 @@ require_once '../Common Views/sidebar.php';
             <div class="feature col-md-4 col-sm-4 col-4">
                 <a href="quick-cardio.php" class="feature-btn">
                     <div class="feature-icon">
-                        <img src="opt-imgs/fitnessprogress-icon.png" alt="" />
+                        <img src="../opt-imgs/fitnessprogress-icon.png" alt="" />
                     </div>
                     <h4>Quick Cardio Workout</h4>
                 </a>
