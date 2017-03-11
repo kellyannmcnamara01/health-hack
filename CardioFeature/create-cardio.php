@@ -62,6 +62,15 @@ if (isset($_POST['submit_cardio'])){
 
         $success_message = "Your workout has been saved to the system!";
 
+        //set all form values back to zero
+        $cardio_name = "";
+        $cardio_type = "";
+        $cardio_distance = "";
+        $cardio_hours =  "";
+        $cardio_minutes = "";
+        $cardio_seconds = "" ;
+
+
     }
 
 

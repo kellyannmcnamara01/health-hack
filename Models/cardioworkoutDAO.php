@@ -29,5 +29,25 @@ class cardioworkoutDAO
         $statement->closeCursor();
         return $cardio_workouts;
     }
+    public function get1CardioWorkout($db, $reqObj){
+        $query = "SELECT * FROM CARDIO_WORKOUTS WHERE user_id = :user_id AND cardio_id = :id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':user_id', $reqObj->getUserId());
+        $statement->bindValue(':id', $reqObj->getId());
+        $statement->execute();
+        $cardio_workout = $statement->fetch();
+        $statement->closeCursor();
+        return $cardio_workout;
+
+    }
+    public function insertCompletedCardio($db, $reqObj){
+        $query = "INSERT INTO COMPLETED_CARDIO_WORKOUTS (cardio_id, distance, cardio_time) VALUES (:cardio_id, :distance, :cardio_time)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':cardio_id', $reqObj->getCardioId());
+        $statement->bindValue(':distance', $reqObj->getDistance());
+        $statement->bindValue(':cardio_time', $reqObj->getTime());
+        $statement->execute();
+        $statement->closeCursor();
+    }
 
 }
