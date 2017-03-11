@@ -4,7 +4,14 @@
     <nav id="nav" class="col-md-3 col-sm-0 col-0">
         <!-- 02-2-1-1. Profile Photo -->
         <div class="profile">
-            <img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />
+            <?php
+            if($homepage == $currentpage || $homepage2 == $currentpage) {
+                ?><img src="opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" /><?php
+            } else {
+                ?><img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" /><?php
+            }
+            ?>
+            <!--<img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />-->
             <!-- 02-2-1-2. User Details -->
             <h2>Aira Summers</h2>
             <h3>A_Summers_01</h3>

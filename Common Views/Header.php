@@ -5,6 +5,9 @@
  * Date: 2017-03-09
  * Time: 9:10 AM
  */
+$homepage = "/health-hack/index.php";
+$homepage2 = "/health-hack/";
+$currentpage = $_SERVER['REQUEST_URI'];
 
 ?>
 
@@ -50,6 +53,7 @@ INDEX
     <!-- Importing Files -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet" href="main.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
 </head>
 <body>
@@ -63,7 +67,14 @@ INDEX
         <!-- 01-2. Logo -->
         <div id="top-logo" class="col-md-6 col-sm-6 col-4">
             <div id="logo">
-                <img src="../opt-imgs/logo.svg" alt="Health Hack Logo" width="43" />
+                <?php
+                if($homepage == $currentpage || $homepage2 == $currentpage) {
+                    ?><img src="opt-imgs/logo.svg" alt="Health Hack Logo" width="43" /><?php
+                } else {
+                    ?><img src="../opt-imgs/logo.svg" alt="Health Hack Logo" width="43" /><?php
+                }
+                ?>
+                <!--<img src="../opt-imgs/logo.svg" alt="Health Hack Logo" width="43" />-->
             </div>
         </div>
         <!-- 01-3. Search Bar -->
