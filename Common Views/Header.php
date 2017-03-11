@@ -80,3 +80,26 @@ INDEX
         </div>
     </div>
     <!-- 02. Site Canvas-->
+    <div id="site-canvas">
+        <!-- 02-1. Mobile Menu -->
+        <div id="mobile-menu" class="col-md-3">
+            <!-- 02-1-1. Profile Photo -->
+            <div class="profile">
+                <img src="opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />
+                <!-- 02-1-2. User Details -->
+                <h2>Aira Summers</h2>
+                <h3>A_Summers_01</h3>
+            </div>
+            <!-- 02-1-3. Links -->
+            <div class="nav-links">
+                <ul>
+                    <li class="link-hover"><a href="#" title="Dashboard Link">Dashboard</a></li>
+                    <li class="link-hover"><a href="#" title="Calendar Link">Calendar</a></li>
+                    <li class="link-hover"><a href="#" title="Fitness Link">Fitness</a></li>
+                    <li class="link-hover"><a href="#" title="Gym Locator Link">Gym Locator</a></li>
+                    <li class="link-hover"><a href="#" title="Nutrition Link">Nutrition</a></li>
+                    <li class="link-hover"><a href="#" title="Log Out Link">Log Out</a></li>
+                </ul>
+            </div>
+            </nav>
+        </div>

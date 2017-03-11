@@ -34,7 +34,7 @@ _________________________________
 /* 01. Attributes */
 
 * {
-    margin 0 auto;
+    margin: 0 auto;
 }
 *, *::before, *::after {
     box-sizing: inherit;
@@ -484,7 +484,7 @@ button.close:focus {
         width: 50%;
     }
     input[type="search"], .search-input {
-        outline: nonel
+        outline: none
     }
     #feature-callouts {
         margin-left: 1px;
