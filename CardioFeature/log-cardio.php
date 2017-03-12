@@ -98,6 +98,9 @@ if (isset($_POST['save_workout'])) {
         $minutes = 0;
         $seconds = 0;
 
+        $success_message = "Your workout has been logged to the system!";
+        header("refresh:5; url=health-hack/CardioFeature/Cardio.php");
+
     }
 }
 
@@ -256,6 +259,7 @@ if (isset($_POST['save_workout'])) {
                 </div>
             <input type="hidden" value="<?php if (isset($cardio_id)) {echo $cardio_id;}?>"
             </form>
+            <p class="text-success"><?php if(isset($success_message)){echo $success_message;}?></p>
 
     </div>
     </main>

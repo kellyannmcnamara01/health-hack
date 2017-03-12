@@ -22,7 +22,7 @@ require_once '../Common Views/sidebar.php';
                 </a>
             </div>
             <div class="feature col-md-4 col-sm-4 col-4">
-                <a href="quick-cardio.php" class="feature-btn">
+                <a href="quick-cardio-workout.php" class="feature-btn">
                     <div class="feature-icon">
                         <img src="../opt-imgs/fitnessprogress-icon.png" alt="" />
                     </div>

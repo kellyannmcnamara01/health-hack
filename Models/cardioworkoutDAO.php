@@ -49,5 +49,15 @@ class cardioworkoutDAO
         $statement->execute();
         $statement->closeCursor();
     }
+    public function insertQuickCardio($db, $reqObj){
+        $query = "INSERT INTO QUICK_CARDIO_WORKOUTS (cardio_type, distance, quick_cardio_time, user_id) VALUES (:cardio_type, :distance, :quick_cardio_time, :user_id)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':cardio_type', $reqObj->getType());
+        $statement->bindValue(':distance', $reqObj->getDistance());
+        $statement->bindValue(':quick_cardio_time', $reqObj->getTime());
+        $statement->bindValue(':user_id', $reqObj->getUserId());
+        $statement->execute();
+        $statement->closeCursor();
+    }
 
 }
