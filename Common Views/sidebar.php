@@ -20,7 +20,7 @@
         <div class="nav-links">
             <ul>
                 <li class="link-hover"><a href="#" title="Dashboard Link">Dashboard</a></li>
-                <li class="link-hover"><a href="#" title="Calendar Link">Calendar</a></li>
+                <li class="link-hover"><a href="/health-hack/Calendar" title="Calendar Link">Calendar</a></li>
                 <li class="link-hover"><a href="" title="Fitness Link">Fitness</a></li>
                 <li class="link-hover"><a href="#" title="Gym Locator Link">Gym Locator</a></li>
                 <li class="link-hover"><a href="#" title="Nutrition Link">Nutrition</a></li>

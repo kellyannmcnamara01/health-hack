@@ -12,7 +12,9 @@ class Database
 
     private $dsn = 'mysql:host=localhost;dbname=healthhack';
     private $username = "root";
+    private $password = "";
     private $db;
+
     public function getDb(){
 
         try {
@@ -20,6 +22,17 @@ class Database
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo 'connected';
 
+        }
+        catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        return $this->db;
+    }
+
+    public function getDbWithPass($password) {
+        try {
+            $this->db = new PDO($this->dsn, $this->username, $password);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
