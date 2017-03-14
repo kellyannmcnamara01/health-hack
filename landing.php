@@ -1,6 +1,20 @@
 
 <?php
+require_once './Models/Signup.php';
 
+    //check if form is set
+    if (isset($_POST['Register'])){
+        // gets value of requested variable
+        $fname = filter_input(INPUT_POST, "fName");
+        $lName = filter_input(INPUT_POST, "lName");
+        $email = filter_input(INPUT_POST, "email");
+        $password = filter_input(INPUT_POST, "password");
+
+        //new instance of Signup()
+        $db = new Signup();
+        //call newUser() method in Signup()
+        $db->newUser($fname, $lName, $email, $password);
+    }
 ?>
 <!--
 
@@ -39,6 +53,7 @@
             <button type="button" id="loging-btn" data-toggle="modal" data-target="#loginModal">Login</button>
             <button type="button" id="signup-btn" data-toggle="modal" data-target="#SignupModal">Sign Up</button>
         </div>
+        <?php if(isset($msg)){ echo $msg; }?>
     </main>
     <div id="loginModal" class="modal fade" role="form">
       <div class="modal-dialog">
@@ -70,6 +85,40 @@
     </div>
     <div>
 
+        <div id="SignupModal" class="modal fade" role="form">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
+                        <h2>Health Hack</h2>
+                        <h3>Create an Account</h3>
+                        <form action="landing.php" method="post">
+                            <div class="form-field">
+                                <label class="formLabel">First Name</label>
+                                <input type="text" class="textInput" name="fName" placeholder="First Name"/>
+                            </div>
+                            <div class="form-field">
+                                <label class="formLabel">Last Name</label>
+                                <input type="text" class="textInput" name="lName" placeholder="Last Name"/>
+                            </div>
+                            <div class="form-field">
+                                <label class="formLabel">Email</label>
+                                <input type="email" class="textInput" name="email" placeholder="Email"/>
+                            </div>
+                            <div class="form-field">
+                                <label class="formLabel">Password</label>
+                                <input type="password" class="textInput" name="password" placeholder="Password" />
+                                <span class="text-info">Passwords must be 8 characters, contain at least 1 number and one capital letter. </span>
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-block" name="Register" value="Register" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
     <!-- Importing Files -->
