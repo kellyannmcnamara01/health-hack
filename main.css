@@ -34,7 +34,7 @@ _________________________________
 /* 01. Attributes */
 
 * {
-    margin 0 auto;
+    margin: 0 auto;
 }
 *, *::before, *::after {
     box-sizing: inherit;
@@ -368,7 +368,7 @@ p {
     text-align: center;
     height: 100%;
     margin: 0 auto;
-    background-image: url('../opt-imgs/landing-bg.png');
+    background-image: url('./opt-imgs/landing-bg.png');
     background-position: top;
     background-repeat: no-repeat;
     background-size: contain;

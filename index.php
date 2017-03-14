@@ -2,7 +2,7 @@
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
 ?>
-
+<main>
 
         <!-- 02-2-2. Main Content -->
         <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
@@ -38,7 +38,7 @@ require_once 'Common Views/sidebar.php';
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="CardioFeature/cardio.php" class="feature-btn">
+                    <a href="CardioFeature/Cardio.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/cardio-icon.png" alt="" />
                         </div>

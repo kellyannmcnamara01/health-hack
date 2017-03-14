@@ -26,7 +26,7 @@
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="opt-imgs/favicon.png">
     <!-- Importing Files -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="./main.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
 </head>
 <body>
@@ -37,7 +37,7 @@
         <h2 class="col-12">You will never know your limits unless you push yourself.</h2>
         <div id="landing-btns" class="col-12">
             <button type="button" id="loging-btn" data-toggle="modal" data-target="#loginModal">Login</button>
-            <button type="button" id="signup-btn">Sign Up</button>
+            <button type="button" id="signup-btn" data-toggle="modal" data-target="#SignupModal">Sign Up</button>
         </div>
     </main>
     <div id="loginModal" class="modal fade" role="form">
@@ -61,12 +61,15 @@
                 </div>
                 <input type="submit" class="formSubmit" value="Submit" />
                 <div class="form-field">
-                    <button type="button" class="formResetBtn">Reset Your Passowrd</button>
+                    <button type="button" class="formResetBtn">Reset Your Password</button>
                 </div>
             </form>
           </div>
         </div>
       </div>
+    </div>
+    <div>
+
     </div>
 </body>
     <!-- Importing Files -->
