@@ -16,11 +16,6 @@
     //once the user submits run the following code
     if(isset($_POST['grocery_list__submit'])) {
 
-        //create a new database class object
-        require_once '../Models/Database.php';
-        $dbconn = new Database();
-        $db = $dbconn->getDb();
-
         //create a new grocery list class object and set the value
         require_once '../Models/GroceryList.php';
         $g_list = new GroceryList();

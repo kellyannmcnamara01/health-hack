@@ -1,6 +1,16 @@
 <?php
 
 
+//create a new database class object
+require_once '../Models/Database.php';
+$dbconn = new Database();
+$db = $dbconn->getDb();
+
+//create a new instance of GL-DAO
+require_once '../Models/GroceryListDAO.php';
+$gListConn = new GroceryListDAO();
+$gList = $gListConn->populateGroceryLists($db);
+
 //create a function to populate grocery list btns
 function grocery_list__options() {
     //create an array to hold said options
