@@ -13,5 +13,6 @@ class GroceryListDAO
         $pdo_statement = $db->prepare($query_groceryLists);
         $pdo_statement = execute();
         $groceryLists = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
+        return $groceryLists;
     }
 }
