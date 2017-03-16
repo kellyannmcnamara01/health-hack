@@ -5,12 +5,29 @@
     //include the sidebar
     require_once "../Common Views/sidebar.php";
 
-    //include the populate-grocerylist.php file
-    require_once "../functions/populate-grocerylists.php";
+    //db
+    require_once "../Models/Database.php";
+    $dbConn = new Database();
+    $db = $dbConn->getDbTwo();
+
+    //include groceryList DAO
+    require_once "../Models/GroceryListDAO.php";
+    //$gListConn = new GroceryListDAO();
+    //$gLists = $gListConn->populateGroceryLists($db);
 
     //create an empty var for the grocery list options
     $grocery_list__options = "";
     $grocery_list__options_err = "";
+
+    //create a function to populate grocery list btns
+    function grocery_list__options() {
+        //create an array to hold said options
+        $grocery_lists = ['Vegetarian', 'Atkins', 'Gluten Free'];
+        //create a foreach loop that populates the new options
+        foreach($grocery_lists as $gl) {
+            ?><label class="btn btn-primary"><input type="radio" name="grocery_lists" value="<?php echo strtolower ($gl); ?>"><?php echo $gl; ?></label><?php
+        }
+    }
 
 
     //once the user submits run the following code
@@ -26,6 +43,8 @@
         //check for validation
         if(!isset($_POST['grocery_lists'])) {
             $grocery_list__options_err = "please choose a grocery list";
+        } else {
+            $grocery_list__options_err = $_POST['grocery_lists'];
         }
 
     }
@@ -48,6 +67,12 @@
                 <input type="submit" id="grocery_list__submit" name="grocery_list__submit" value="Submit">
             </form>
         </div>
+        <?php
+        //loop through the products from the products table to create their own radio btns
+        //foreach($gLists as $gL) {
+        //    echo "<p>" . $gL->list_name . "</p>";
+        //}
+        ?>
     </div>
 </main>
 

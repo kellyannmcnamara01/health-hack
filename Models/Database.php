@@ -20,7 +20,21 @@ class Database
         try {
             $this->db = new PDO($this->dsn, $this->username);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo 'connected';
+            //echo 'connected';
+
+        }
+        catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        return $this->db;
+    }
+
+    public function getDbTwo(){
+
+        try {
+            $this->db = new PDO($this->dsn, $this->username, $this->password);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //echo 'connected';
 
         }
         catch (PDOException $e) {

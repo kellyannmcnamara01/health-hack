@@ -9,7 +9,7 @@
 class GroceryListDAO
 {
     public function populateGroceryLists($db) {
-        $query_groceryLists = "SELECT list_name FROM GROCERY_LISTS";
+        $query_groceryLists = "SELECT * FROM GROCERY_LISTS";
         $pdo_statement = $db->prepare($query_groceryLists);
         $pdo_statement = execute();
         $groceryLists = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
