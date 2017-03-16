@@ -5,20 +5,13 @@
     //include the sidebar
     require_once "../Common Views/sidebar.php";
 
+    //include the populate-grocerylist.php file
+    require_once "../functions/populate-grocerylists.php";
 
     //create an empty var for the grocery list options
     $grocery_list__options = "";
     $grocery_list__options_err = "";
 
-    //create a function to populate grocery list btns
-    function grocery_list__options() {
-        //create an array to hold said options
-        $grocery_lists = ['Vegetarian', 'Atkins', 'Gluten Free'];
-        //create a foreach loop that populates the new options
-        foreach($grocery_lists as $gl) {
-            ?><label class="btn btn-primary"><input type="radio" name="grocery_lists" value="<?php echo strtolower ($gl); ?>"><?php echo $gl; ?></label><?php
-        }
-    }
 
     //once the user submits run the following code
     if(isset($_POST['grocery_list__submit'])) {
