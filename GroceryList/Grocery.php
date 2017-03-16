@@ -24,11 +24,9 @@
         //create a new grocery list class object and set the value
         require_once '../Models/GroceryList.php';
         $g_list = new GroceryList();
-        //$g_list->setListName();
+        //$g_list->setListId($list_id);
+        //$g_list->setListName($list_name);
 
-
-        //grab user input
-        //$grocery_list_options = $_POST['grocery_lists'];
 
         //check for validation
         if(!isset($_POST['grocery_lists'])) {
@@ -45,6 +43,7 @@
         </div>
         <div class="feature col-md-12 col-sm-12 col-12">
             <form action="" method="post" id="grocery_list__options">
+                <p><?php echo $grocery_list__options_err; ?></p>
                 <div class="btn-group" data-toggle="buttons">
                     <!--<label class="btn btn-primary" for="grocery_list_1"><input type="radio" name="grocery_lists" id="grocery_list__1">Vegetarian</label>
                     <label class="btn btn-primary" for="grocery_list_2"><input type="radio" name="grocery_lists" id="grocery_list__2">Atkins</label>
@@ -54,7 +53,6 @@
                 <input type="submit" id="grocery_list__submit" name="grocery_list__submit" value="Submit">
             </form>
         </div>
-        <p><?php echo $grocery_list__options_err; ?></p>
     </div>
 </main>
 
