@@ -268,7 +268,7 @@ p {
 }
     /* 04-1. Intro Banner */
     #intro-banner {
-        background-image: url("../opt-imgs/intro-bg.jpg");
+        background-image: url("opt-imgs/intro-bg.jpg");
         background-size: cover;
         height: 190px;
         padding-top: 75px;

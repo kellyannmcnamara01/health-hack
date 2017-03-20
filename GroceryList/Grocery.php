@@ -11,7 +11,7 @@
     $db = $dbConn->getDbTwo();
 
     //include groceryList DAO
-    require_once "../Models/GroceryListDAO.php";
+    //require_once "../Models/GroceryListDAO.php";
     //$gListConn = new GroceryListDAO();
     //$gLists = $gListConn->populateGroceryLists($db);
 
