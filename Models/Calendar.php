@@ -84,7 +84,7 @@ class Calendar {
     }
 
     public function draw() {
-        echo '<div class="calendar-feature col-sm-9">';
+        echo '<div class="calendar-feature col-md-9 col-sm-9">';
         echo $this->getControls();
         $strength_routines = $this->getRoutines();
         //var_dump($strength_routines);
