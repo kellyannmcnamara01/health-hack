@@ -52,8 +52,11 @@ INDEX
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="../opt-imgs/favicon.png">
     <!-- Importing Files -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="../main.css" />
-    <link rel="stylesheet" href="main.css" />
+    <?php if($homepage == $currentpage || $homepage2 == $currentpage) { ?>
+        <link rel="stylesheet" href="main.css?v=1" />
+    <?php } else { ?>
+        <link rel="stylesheet" href="../main.css?v=1" />
+        <?php } ?>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
 </head>
 <body>
@@ -96,7 +99,12 @@ INDEX
         <div id="mobile-menu" class="col-md-3">
             <!-- 02-1-1. Profile Photo -->
             <div class="profile">
-                <img src="opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />
+                <?php if($homepage == $currentpage || $homepage2 == $currentpage) {?>
+                    <img src="opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />
+                <?php } else { ?>
+                    <img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />
+                <?php } ?>
+
                 <!-- 02-1-2. User Details -->
                 <h2>Aira Summers</h2>
                 <h3>A_Summers_01</h3>
