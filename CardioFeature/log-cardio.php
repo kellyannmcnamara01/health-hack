@@ -99,7 +99,6 @@ if (isset($_POST['save_workout'])) {
         $seconds = 0;
 
         $success_message = "Your workout has been logged to the system!";
-        header("refresh:5; url=health-hack/CardioFeature/Cardio.php");
 
     }
 }
@@ -108,9 +107,14 @@ if (isset($_POST['save_workout'])) {
     <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
 <div class="container">
         <form action="#" method="post">
+            <p>&nbsp</p>
 
-                    <h2 class="text-center">Begin a Cardio workout</h2>
-                    <p>Select one of your custom cardio workouts below in the drop down menu and when you are done, log the total distance travelled and total time.</p>
+                    <h1 class=" light-grey text-center">Begin a Cardio workout</h1>
+            <p class="text-success"><?php if(isset($success_message)){echo $success_message;}?></p>
+
+            <p>&nbsp</p>
+            <h2 class="text-center">Load your workout here</h2>
+            <p>Select one of your custom cardio workouts from the drop-down menu below.</p>
             <p>&nbsp</p>
 
             <div class="form-group">
@@ -140,6 +144,8 @@ if (isset($_POST['save_workout'])) {
                     <input  type="submit" name="load_cardio" value="Load Details" class="col-md-3 col-sm-3 col-xs-3 form-control btn btn-success "/>
             </div>
             <p>&nbsp</p>
+            <h2 class="text-center">Log your workout here </h2>
+            <p>&nbsp</p>
 
 
             <div class="col-lg-10 text-center">
@@ -150,26 +156,28 @@ if (isset($_POST['save_workout'])) {
                         ?></h2>
                 </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <h3 class="text-center">Your goal Time: <span><?php
                             if (isset($cardio_Workout)) {
-                                echo $cardio_Workout['goal_time'];
+                                echo  $cardio_Workout['goal_time'];
                             }
                             ?></span></h3>
                 </div>
                 <div class="col-lg-6">
-                    <h3 class="text-center">Your goal Distance: <span><?php
+                    <h3 class="text-center">Your goal Distance in KM: <span><?php
                             if (isset($cardio_Workout)) {
                                 echo $cardio_Workout['goal_distance'];
                             }
-                            ?> km</span></h3>
+                            ?> </span></h3>
 
                 </div>
             </div>
+            <p>&nbsp</p>
+
             <form action="#" method="post">
                 <div class="form-group">
                     <label for="cardio_distance"> Total Distance:</label>
-                    <select class="form-control" name="cardio_distance">
+                    <select class="form-control col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
                         <?php
                         foreach (range(0, 100, 0.5) as $i):
                             ?>
@@ -189,7 +197,7 @@ if (isset($_POST['save_workout'])) {
                 </div>
                 <div class="row">
                     <label  for="cardio_time">Total Time:</label>
-                    <select class="form-control" name="hours">
+                    <select class="col-md-1 col-sm-1 col-xs-1 form-control" name="hours">
                         <?php
                         foreach (range(0, 10, 1) as $i):
                             ?>
@@ -206,7 +214,7 @@ if (isset($_POST['save_workout'])) {
                         endforeach;
                         ?>
                     </select><span>Hours</span>
-                    <select class="form-control" name="minutes">
+                    <select class="col-md-1 col-sm-1 col-xs-1  form-control" name="minutes">
                         <?php
                         foreach (range(0, 59, 1) as $i):
                             ?>
@@ -223,7 +231,7 @@ if (isset($_POST['save_workout'])) {
                         endforeach;
                         ?>
                     </select><span>Minutes</span>
-                    <select class="form-control" name="seconds">
+                    <select class="col-md-1 col-sm-1 col-xs-1  form-control" name="seconds">
                         <?php
                         foreach (range(0, 59, 1) as $i):
                             ?>
@@ -241,16 +249,17 @@ if (isset($_POST['save_workout'])) {
                         ?>
                     </select><span>seconds</span><span class="text-danger"><?php if(isset($time_error)){echo $time_error;}?></span>
                 </div>
+                <p>&nbsp</p>
 
-                    <div class="form-group">
+
+                <div class="form-group text-center">
                         <input type="hidden" name="cardio_workouts_id""/>
-                        <input type="submit" value="Save Workout" class=" form-control btn btn-success " name="save_workout"/>
-                    </div>
+                        <input type="submit" value="Save Workout" class="col-md-3 col-sm-3 col-xs-3 form-control btn btn-success " name="save_workout"/>
+                </div>
             <div class="form-group">
             <input type="hidden" value="<?php if (isset($cardio_id)) {echo $cardio_id;}?>"
             </div>
             </form>
-            <p class="text-success"><?php if(isset($success_message)){echo $success_message;}?></p>
 
     </div>
     </div>

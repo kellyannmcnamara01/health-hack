@@ -83,7 +83,7 @@ if (isset($_POST['save_workout'])) {
     <form action="#" method="post">
 
             <div class="col-md-12">
-                <h2 class="text-center">Quick Cardio Workout:</h2>
+                <h1 class="text-center light-grey">Quick Cardio Workout:</h1>
                 <p>Here, you can quickly record a cardio workout without having to load a previously created cardio workout!</p>
             </div>
         <p>&nbsp</p>
@@ -93,7 +93,7 @@ if (isset($_POST['save_workout'])) {
                  </div>
         <div class="form-group col-md-9 ">
                 <label for="cardio_distance"> Total Distance:</label>
-                <select class="form-control" name="cardio_distance">
+                <select class="form-control col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
                     <?php
                     foreach (range(0, 100, 0.5) as $i):
                         ?>
@@ -115,7 +115,7 @@ if (isset($_POST['save_workout'])) {
 
         <div class="row">
                 <label for="cardio_time">Total Time:</label>
-                <select class="form-control col-md-1 col-sm-1" name="hours">
+                <select class="form-control col-md-1 col-sm-1 col-xs-1" name="hours">
                     <?php
                     foreach (range(0, 10, 1) as $i):
                         ?>
@@ -132,7 +132,7 @@ if (isset($_POST['save_workout'])) {
                     endforeach;
                     ?>
                 </select><span>Hours</span>
-                <select class="form-control col-md-1 col-sm-1" name="minutes">
+                <select class="form-control col-md-1 col-sm-1 col-xs-1" name="minutes">
                     <?php
                     foreach (range(0, 59, 1) as $i):
                         ?>
@@ -149,7 +149,7 @@ if (isset($_POST['save_workout'])) {
                     endforeach;
                     ?>
                 </select><span>Minutes</span>
-                <select class="form-control col-md-1 col-sm-1" name="seconds">
+                <select class="form-control col-md-1 col-sm-1 col-xs-1" name="seconds">
                     <?php
                     foreach (range(0, 59, 1) as $i):
                         ?>

@@ -81,67 +81,55 @@ if (isset($_POST['submit_cardio'])){
 
 ?>
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
-
-    <h2>Create a Cardio Workout</h2>
+<div class="container">
+    <p>&nbsp</p>
+    <h1 class="light-grey text-center">Create a Cardio Workout</h1>
     <p>Here, you can create and store your own custom cardio workouts!</p>
 
     <form action="#" method="post">
-        <div>
-            <div>
+            <div class="form-group">
                 <label for="name_cardio">Name of Cardio Workout:</label><span class="text-danger"><?php if (isset($name_error)){ echo $name_error;}?></span>
-                <div>
-                    <input <?php if (isset($cardio_name)){ echo "value='" . $cardio_name ."'";}?> type="text" class="form-control" name="cardio_name"/>
-                </div>
+                <input <?php if (isset($cardio_name)){ echo "value='" . $cardio_name ."'";}?> type="text" class="form-control col-md-9 col-sm-9 col-xs-9" name="cardio_name"/>
             </div>
-        </div>
-        <div>
-            <div>
+            <div class="form-group">
                 <label for="type_cardio">Type of Cardio Workout</label><span class="text-danger"><?php if (isset($type_error)){ echo $type_error;}?></span>
-                <div>
-                    <input <?php if (isset($cardio_type)){ echo "value='" . $cardio_type ."'";}?> type="text" class="form-control" name="cardio_type"/>
-                </div>
+                    <input <?php if (isset($cardio_type)){ echo "value='" . $cardio_type ."'";}?> type="text" class="form-control col-md-9 col-sm-9 col-xs-9" name="cardio_type"/>
             </div>
-        </div>
-        <div>
-            <div>
+            <div class="form-group">
                 <label  for="goal_distance">Distance Goal:</label><span class="text-danger"><?php if (isset($distance_error)){ echo $distance_error;}?></span>
-                <div>
-                    <select name="cardio_distance">
+                    <select class="form-control col-md-3 col-sm-3 col-xs-3"  name="cardio_distance">
                         <?php foreach (range(0, 100, 0.5) as $i) :?>
                         <option <?php if(isset($cardio_distance) && $cardio_distance == $i){echo 'selected';}?> value="<?php echo  $i?>"><?php echo $i?></option>
                         <?php endforeach;?>
                     </select><span>km</span>
-                </div>
-                <label for="goal_time">Time Goal:</label><span class="text-danger"><?php if (isset($time_error)){echo $time_error;}?></span>
-                <div>
-                    <select name="hours">
+            </div>
+        <p>&nbsp</p>
+                <div class="row">
+                <label for="goal_time">Time Goal:</label>
+                    <select class="form-control col-md-1 col-sm-1 col-xs-1" name="hours">
                       <?php foreach (range(0, 10, 1) as $i) :?>
                         <option <?php if(isset($cardio_hours) && $cardio_hours == $i){echo 'selected';}?> value="<?php echo $i?>"><?php echo $i?></option>
                       <?php endforeach ; ?>
                     </select><span>Hours</span>
-                    <select name="minutes">
+                    <select class="form-control col-md-1 col-sm-1 col-xs-1" name="minutes">
                     <?php foreach (range(0, 59, 1) as $i) :?>
                       <option <?php if(isset($cardio_minutes) && $cardio_minutes == $i){echo 'selected';}?> value="<?php echo $i; ?>"><?php echo $i?></option>
                     <?php endforeach ;?>
                   </select><span>Minutes</span>
-                    <select name="seconds">
+                    <select class="form-control col-md-1 col-sm-1 col-xs-1" name="seconds">
                       <?php foreach (range(0, 59, 1) as $i) :?>
                         <option <?php if(isset($cardio_seconds) && $cardio_seconds == $i){echo 'selected';}?> value="<?php echo $i; ?>"><?php echo $i?></option>
                       <?php endforeach ;?>
                     </select><span>seconds</span>
-
-
+                </div><span class="text-danger"><?php if (isset($time_error)){echo $time_error;}?></span>
+        <p>&nbsp</p>
+                <div class="form-group text-center">
+                    <input class="form-control btn btn-success col-md-3 col-sm-3 col-xs-3" type="submit" name="submit_cardio"/>
                 </div>
-            </div>
-            <div>
-                <div>
-                    <button type="submit" name="submit_cardio">Save Workout</button>
-                </div>
-            </div>
     </form>
+</div>
     <div>
         <p class="text-success"><?php if (isset($success_message)){ echo $success_message;} ?></p>
-
     </div>
 
 </div>
