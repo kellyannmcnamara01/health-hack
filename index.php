@@ -2,8 +2,6 @@
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
 ?>
-<main>
-
         <!-- 02-2-2. Main Content -->
         <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
             <!-- 02-2-2-1. Intro Banner -->

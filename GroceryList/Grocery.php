@@ -11,9 +11,9 @@
     $db = $dbConn->getDbTwo();
 
     //include groceryList DAO
-    require_once "../Models/GroceryListDAO.php";
-    $gListConn = new GroceryListDAO();
-    $gLists = $gListConn->populateGroceryLists($db);
+    //require_once "../Models/GroceryListDAO.php";
+    //$gListConn = new GroceryListDAO();
+    //$gLists = $gListConn->populateGroceryLists($db);
 
     //create an empty var for the grocery list options
     $grocery_list__options = "";
@@ -69,9 +69,9 @@
         </div>
         <?php
         //loop through the products from the products table to create their own radio btns
-        foreach($gLists as $gL) {
-            echo "<p>" . $gL->list_name . "</p>";
-        }
+        //foreach($gLists as $gL) {
+        //    echo "<p>" . $gL->list_name . "</p>";
+        //}
         ?>
     </div>
 </main>
