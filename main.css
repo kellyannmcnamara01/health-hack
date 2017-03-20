@@ -7,6 +7,26 @@
 
 _________________________________
 
+  General Guidelines
+
+  Colours:
+  Red: #e04152
+  Blue: #35adda
+  Yellow: #ffcf48
+  Green: #8cc34b
+  Off White: #f6f7fb
+  Light Grey: #ccd0d9
+  Dark Grey: #434a54
+
+  Colour Meanings:
+  Red: Main Branding Colour
+  Blue: Main Content
+  Yellow: Accent Colour/Success Messages/Alerts
+  Green: Hover/Active/Interactive
+
+
+_________________________________
+
     INDEX
     01. Attributes
     02. Top Bar
@@ -221,7 +241,7 @@ body {
 /* 03. Typography */
 h1 {
     color: #fff;
-    font-size: 3.3em;
+    font-size: 4.5em;
     font-weight: 400;
     text-transform: uppercase;
 }
@@ -234,15 +254,17 @@ h2 {
 }
 h3 {
     color: #434a54;
-    font-size: 1.3em;
-    font-weight: 400;
+    font-size: 3em;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 h4 {
-    color: #8d97a4;
-    font-size: 1.4em;
+    color: #35adda;
+    font-size: 2.25em;
     font-weight: 400;
     text-align: center;
     padding-top: 10px;
+    text-transform: uppercase;
 }
 p {
     color: #8d97a4;
@@ -256,6 +278,24 @@ p {
 }
 .white {
     color: #fff;
+}
+.red {
+    color: #e04152;
+}
+.blue { 
+    color: #35adda; 
+}
+.yellow {
+    color: #ffcf48;
+}
+.green {
+    color: #8cc34b;
+}
+.off-white {
+    color: #f6f7fb;   
+}
+.dark-grey {
+    color: #434a54;
 }
 /* 04. Main Content */
 #main-content {
@@ -350,6 +390,10 @@ p {
     outline: none;
     background: #8cc34b;
     color: #fff;
+}
+.badge {
+    font-size: 1.5em;
+    padding: 5px 10px;
 }
 /* 06. Footer */
 #footer {
@@ -511,6 +555,9 @@ td.calendar-day, td.calendar-day-np {
 
 /* Media Queries */
 @media only screen and (max-width: 767px) {
+    h1 {
+        font-size: 3.3em;
+    }
     #nav{
         display: none;
     }

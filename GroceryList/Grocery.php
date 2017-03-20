@@ -19,17 +19,6 @@
     $grocery_list__options = "";
     $grocery_list__options_err = "";
 
-    //create a function to populate grocery list btns
-    function grocery_list__options() {
-        //create an array to hold said options
-        $grocery_lists = ['Vegetarian', 'Atkins', 'Gluten Free'];
-        //create a foreach loop that populates the new options
-        foreach($grocery_lists as $gl) {
-            ?><label class="btn btn-primary"><input type="radio" name="grocery_lists" value="<?php echo strtolower ($gl); ?>"><?php echo $gl; ?></label><?php
-        }
-    }
-
-
     //once the user submits run the following code
     if(isset($_POST['grocery_list__submit'])) {
 
@@ -62,17 +51,16 @@
                     <!--<label class="btn btn-primary" for="grocery_list_1"><input type="radio" name="grocery_lists" id="grocery_list__1">Vegetarian</label>
                     <label class="btn btn-primary" for="grocery_list_2"><input type="radio" name="grocery_lists" id="grocery_list__2">Atkins</label>
                     <label class="btn btn-primary" for="grocery_list_2"><input type="radio" name="grocery_lists" id="grocery_list__2">Gluten Free</label>-->
-                    <?php grocery_list__options() ?>
+                    <?php
+                    //loop through the products from the products table to create their own radio btns
+                    foreach($gLists as $gL) {
+                        ?><label class="btn btn-primary"><input type="radio" name="grocery_lists" value="<?php echo $gL->list_name; ?>"><?php echo $gL->list_name; ?></label><?php
+                    }
+                    ?>
                 </div>
                 <input type="submit" id="grocery_list__submit" name="grocery_list__submit" value="Submit">
             </form>
         </div>
-        <?php
-        //loop through the products from the products table to create their own radio btns
-        foreach($gLists as $gL) {
-            ?><label class="btn btn-primary"><input type="radio" name="grocery_lists" value="<?php echo $gL->list_name; ?>"><?php echo $gL->list_name; ?></label><?php
-        }
-        ?>
     </div>
 </main>
 

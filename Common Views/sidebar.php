@@ -14,7 +14,7 @@
             <!--<img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />-->
             <!-- 02-2-1-2. User Details -->
             <h2>Aira Summers</h2>
-            <h3>A_Summers_01</h3>
+            <p class="dark-grey center-text">A_Summers_01</p>
         </div>
         <!-- 02-2-1-3. Links -->
         <div class="nav-links">
