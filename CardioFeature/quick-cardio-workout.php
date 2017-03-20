@@ -78,32 +78,22 @@ if (isset($_POST['save_workout'])) {
 
 }
 ?>
-<div id="main-content" class="col-md-6 col-sm-12 col-12 row">
+<div id="main-content" class="col-md-9 col-sm-9 col-xs-9 row">
+<div class="container">
+    <form action="#" method="post">
 
-    <form class="form-horizontal" action="#" method="post">
-
-        <div class="row">
-            <div class="col-lg-10">
-                <h2>Quick Cardio Workout:</h2>
+            <div class="col-md-12">
+                <h2 class="text-center">Quick Cardio Workout:</h2>
                 <p>Here, you can quickly record a cardio workout without having to load a previously created cardio workout!</p>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-10">
-                <div class="form-group">
-                    <div class="row">
-                        <label class="control-label col-lg-4" for="select_cardio">Type of Cardio:</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="type"/><span class="text-danger"><?php if (isset($type_error)){echo $type_error;}?></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-                <label class="control-label col-lg-2" for="cardio_distance"> Total Distance:</label>
-                <select name="cardio_distance">
+        <p>&nbsp</p>
+                <div class="form-group col-md-9">
+                        <label for="select_cardio">Type of Cardio:</label>
+                        <input type="text" class="form-control" name="type"/><span class="text-danger"><?php if (isset($type_error)){echo $type_error;}?></span>
+                 </div>
+        <div class="form-group col-md-9 ">
+                <label for="cardio_distance"> Total Distance:</label>
+                <select class="form-control" name="cardio_distance">
                     <?php
                     foreach (range(0, 100, 0.5) as $i):
                         ?>
@@ -121,9 +111,11 @@ if (isset($_POST['save_workout'])) {
                     ?>
                 </select><span>km</span><span class="text-danger"><?php if (isset($distance_error)){ echo $distance_error;}?></span>
             </div>
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="cardio_time">Total Time:</label>
-                <select name="hours">
+        <p>&nbsp</p>
+
+        <div class="row">
+                <label for="cardio_time">Total Time:</label>
+                <select class="form-control col-md-1 col-sm-1" name="hours">
                     <?php
                     foreach (range(0, 10, 1) as $i):
                         ?>
@@ -140,7 +132,7 @@ if (isset($_POST['save_workout'])) {
                     endforeach;
                     ?>
                 </select><span>Hours</span>
-                <select name="minutes">
+                <select class="form-control col-md-1 col-sm-1" name="minutes">
                     <?php
                     foreach (range(0, 59, 1) as $i):
                         ?>
@@ -157,7 +149,7 @@ if (isset($_POST['save_workout'])) {
                     endforeach;
                     ?>
                 </select><span>Minutes</span>
-                <select name="seconds">
+                <select class="form-control col-md-1 col-sm-1" name="seconds">
                     <?php
                     foreach (range(0, 59, 1) as $i):
                         ?>
@@ -175,14 +167,13 @@ if (isset($_POST['save_workout'])) {
                     ?>
                 </select><span>seconds</span><span class="text-danger"><?php if(isset($time_error)){echo $time_error;}?></span>
             </div>
+        <p>&nbsp</p>
 
-            <div class="row">
-                <div class="col-lg-9 text-right">
-                    <input type="submit" value="Save Workout" class=" btn btn-success " name="save_workout"/>
-                </div>
+            <div class="form-group text-center">
+                    <input type="submit" value="Save Workout" class=" form-control btn btn-success col-md-3" name="save_workout"/>
             </div>
         </form>
         <p class="text-success"><?php if(isset($success_message)){echo $success_message;}?></p>
-
+</div>
 </div>
 </main>
