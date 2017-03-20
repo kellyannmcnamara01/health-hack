@@ -260,6 +260,7 @@ p {
 /* 04. Main Content */
 #main-content {
     width: 84%;
+    min-height: 100%; /* KAM 03/20/2017 */
     padding-left: 0;
     padding-right: 0;
     background: #fbf9f9;
