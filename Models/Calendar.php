@@ -42,43 +42,68 @@ class Calendar {
         $previous_month_link = '<div class="form-group"><a href="?month='.($this->month != 1 ? $this->month - 1 : 12).'&year='.($this->month != 1 ? $this->year : $this->year - 1).'" class="control">Previous Month</a></div>';
 
         // bridging the controls together
-        $controls = '<form method="get" class="form-inline">'.$select_month_control.$select_year_control.'<div class="form-group"><input type="submit" value="Go" class="btn btn-success" /></div>'.$previous_month_link.$next_month_link.'</form>';
+        $controls = '<form method="get">'.$select_month_control.$select_year_control.'<div class="form-group"><input type="submit" value="Go" class="btn btn-success" /></div>'.$previous_month_link.$next_month_link.'</form>';
 
         return $controls;
     }
 
     public function getRoutines() {
-        $query = "select routine_id, name, monday_strength, tuesday_strength, wednesday_strength, thursday_strength, friday_strength, saturday_strength, sunday_strength from routines";
+        $query = "select * from routines";
         $statement = $this->db->prepare($query);
         $statement->execute();
-        $strength_routines = $statement->fetchAll();
-        return $strength_routines;
+        $routines = $statement->fetchAll();
+        return $routines;
     }
 
-    public function getEvents() {
-        //require_once('database_events.php');
-        $query = "select name, DATE_FORMAT(start_date, '%Y-%m-%d') as start_date from events where start_date LIKE :date";
+    public function getRoutinesByDay($day) {
+        $workouts = array($day."_strength", $day."_cardio");
+        $query = "select routine_id, name, $workouts[0], $workouts[1] from routines
+                  where $workouts[0] IS NOT NULL OR $workouts[1] IS NOT NULL";
         $statement = $this->db->prepare($query);
-        $statement->bindValue(':date', $this->year.'-'.$this->month.'%');
         $statement->execute();
-        $events = $statement->fetchAll();
-        $statement->closeCursor();
-        foreach($events as $event):
-            $this->events[$event['start_date']][] = $event;
-        endforeach;
+        $routines = $statement->fetchAll();
+        return $routines;
+    }
+
+    public function getWorkoutById($type, $id)
+    {
+        $workout_name = "";
+        if ($type == "cardio") {
+            $query = "select name from cardio_workouts where cardio_id = :id";
+            $statement = $this->db->prepare($query);
+            $statement->bindValue(":id", $id);
+            $statement->execute();
+            $workout = $statement->fetch();
+            $workout_name = $workout['name'];
+        } else {
+            $query = "select name from strength_workouts where strength_id = :id";
+            $statement = $this->db->prepare($query);
+            $statement->bindValue(":id", $id);
+            $statement->execute();
+            $workout = $statement->fetch();
+            $workout_name = $workout['name'];
+        }
+        return $workout_name;
     }
 
     public function createCalendarEvent($day) {
         $output = "";
-        $strength_routines = $this->getRoutines();
-        foreach($strength_routines as $strength_routine)
+        $type = "";
+        $workouts = array($day."_strength", $day."_cardio");
+
+        $routines = $this->getRoutinesByDay($day);
+        foreach($routines as $routine)
         {
-            $output .= "<div>";
-            if (isset($strength_routine[$day])) 
+            $output .= "<div>".$routine['name']."<ul>";
+            for ($i = 0; $i < count($workouts); ++$i)
             {
-                $output .= $strength_routine['name'] . " / " . $strength_routine[$day];
+                $type = ($i == 0) ? "strength" : "cardio";
+                if (isset($routine[$workouts[$i]])) 
+                {
+                    $output .= "<li>".$this->getWorkoutById($type, $routine["routine_id"])."</li>";
+                }
             }
-           $output .= "</div>";
+            $output .= "</ul></div>";
         }
         return $output;
     }
@@ -115,7 +140,11 @@ class Calendar {
 
         //keep going with days....
         for($list_day = 1; $list_day <= $days_in_month; $list_day++) :
-            $calendar .= '<td class="calendar-day"><div>';
+            if (date("d") == $list_day && date("m") == $this->month && date('Y') == $this->year) {
+                $calendar .= '<td class="calendar-day today"><div>';
+            } else {
+                $calendar .= '<td class="calendar-day"><div>';
+            }
             
             // add in the day number
             $calendar .= '<div class="day-number">'.$list_day.'</div>';
@@ -127,41 +156,38 @@ class Calendar {
             switch (date('w', mktime(0, 0, 0, $this->month, $list_day, $this->year))) 
             {
                 case 0 :
-                    $calendar .= $this->createCalendarEvent('sunday_strength');
+                    $calendar .= $this->createCalendarEvent('sunday');
+                    //$calendar .= $this->createCalendarEvent('sunday_cardio');
                     break;
                 case 1:
-                    $calendar .= $this->createCalendarEvent('monday_strength');
+                    $calendar .= $this->createCalendarEvent('monday');
+                    //$calendar .= $this->createCalendarEvent('monday_cardio');
                     break;
                 case 2:
-                    $calendar .= $this->createCalendarEvent('tuesday_strength');
+                    $calendar .= $this->createCalendarEvent('tuesday');
+                    //$calendar .= $this->createCalendarEvent('tuesday_cardio');
                     break;
                 case 3:
-                    $calendar .= $this->createCalendarEvent('wednesday_strength');
+                    $calendar .= $this->createCalendarEvent('wednesday');
+                    //$calendar .= $this->createCalendarEvent('wednesday_cardio');
                     break;
                 case 4:
-                    $calendar .= $this->createCalendarEvent('thursday_strength');
+                    $calendar .= $this->createCalendarEvent('thursday');
+                    //$calendar .= $this->createCalendarEvent('thursday_cardio');
                     break;
                 case 5:
-                    $calendar .= $this->createCalendarEvent('friday_strength');
+                    $calendar .= $this->createCalendarEvent('friday');
+                    //$calendar .= $this->createCalendarEvent('friday_cardio');
                     break;
                 case 6:
-                    $calendar .= $this->createCalendarEvent('saturday_strength');
+                    $calendar .= $this->createCalendarEvent('saturday');
+                    //$calendar .= $this->createCalendarEvent('saturday_cardio');
                     break;
                 default :
-                    echo "Not Sunday";
                     break;
             }
             $calendar .= '</div>';
-            //echo $this->events[$event_day];
-            /*
-            if (isset($this->events[$event_day])) {
-                foreach($this->events[$event_day] as $event) :
-                    $calendar .= '<div class="event">'.$event['name'].'</div>';
-                endforeach;
-            } else {
-                $calendar .= str_repeat('<p>&nbsp;</p>', 2);
-            }
-            */
+
             $calendar .= '</div></td>';
 
             if ($running_day == 6) :

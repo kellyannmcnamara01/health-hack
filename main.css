@@ -488,6 +488,7 @@ button.close:focus {
 /* Calendar */
 table.calendar {
     border-left: 1px solid #999;
+    margin-bottom: 1rem;
 }
 
 tr.calendar-row { }
@@ -541,12 +542,25 @@ td.calendar-day, td.calendar-day-np {
     border-right: 1px solid #999;
 }
 
+.calendar-feature form {
+    margin: 0.5rem 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
 .calendar-feature div.form-group {
     margin-left: 0.5rem;
+    margin-right: 0.2rem;
+    display: inline-block;
 }
 
 .calendar-feature a {
     font-size: 1rem;
+}
+
+.today {
+    background-color: #eee;
 }
 
 /* 11. Rahul's Styling */
