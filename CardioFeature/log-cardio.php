@@ -63,13 +63,13 @@ if (isset($_POST['save_workout'])) {
     $v = new Validation();
 
     if ($cardio_id == 0) {
-        $cardio_workout_error = "You must select a cardio workout to log";
+        $cardio_workout_error = "Select a workout!";
     }
     if ($v->testZero($distance) == false) {
-        $distance_error = "You must enter a distance for this workout";
+        $distance_error = "Enter distance!";
     }
     if ($v->testZero($hours) == false && $v->testZero($minutes) == false && $v->testZero($seconds) == false) {
-        $time_error = "You must enter a time for this workout";
+        $time_error = "Enter time!";
     }
     //testing if everything validates to true, and if so, do the steps required to insert into the database.
     if ($cardio_id != 0 && $v->testZero($distance) == true && ($v->testZero($hours) == true || $v->testZero($minutes) == true || $v->testZero($seconds) == true)) {
@@ -98,7 +98,7 @@ if (isset($_POST['save_workout'])) {
         $minutes = 0;
         $seconds = 0;
 
-        $success_message = "Your workout has been logged to the system!";
+        $success_message = "Workout logged!";
 
     }
 }
@@ -107,19 +107,16 @@ if (isset($_POST['save_workout'])) {
     <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
 <div class="container">
         <form action="#" method="post">
-            <p>&nbsp</p>
+            <div class="col-md-12 big-spacing">
+            <h1 class="red">Begin a Cardio workout</h1>
+                <p>Here, you can select a cardio workout you created, and log it to your profile!</p>
+                <p class="badge badge-success"><?php if(isset($success_message)){echo $success_message;}?></p>
+            </div>
 
-                    <h1 class=" light-grey text-center">Begin a Cardio workout</h1>
-            <p class="text-success"><?php if(isset($success_message)){echo $success_message;}?></p>
-
-            <p>&nbsp</p>
-            <h2 class="text-center">Load your workout here</h2>
-            <p>Select one of your custom cardio workouts from the drop-down menu below.</p>
-            <p>&nbsp</p>
-
-            <div class="form-group">
-                            <label for="select_cardio">Select your Cardio Workout:</label>
-                            <select  name="cardio_workout" class="form-control col-md-9 col-sm-9 col-xs-9">
+            <h3 class=" offset-md-1 spacing">Load your workout here</h3>
+            <div class="form-field big-spacing col-md9 offset-md-0">
+                <h2 class="spacing">Select a cardio workout</h2>
+                <select  name="cardio_workout" class="form-control col-md-9 col-sm-9 col-xs-9">
                                     <option value="0">--Select--</option>
                                     <?php
                                     foreach ($cardio_workouts as $cardio):
@@ -136,48 +133,41 @@ if (isset($_POST['save_workout'])) {
                                         <?php
                                     endforeach;
                                     ?>
-                                </select><span class="text-danger"><?php if (isset($cardio_workout_error)){ echo $cardio_workout_error;}?></span>
+                                </select><span class="badge badge-warning"><?php if (isset($cardio_workout_error)){ echo $cardio_workout_error;}?></span>
                     </div>
-                    <p>&nbsp</p>
 
-            <div class="form-group text-center">
-                    <input  type="submit" name="load_cardio" value="Load Details" class="col-md-3 col-sm-3 col-xs-3 form-control btn btn-success "/>
+            <div class="form-field big-spacing">
+                    <input  type="submit" name="load_cardio" value="Load Details" class="formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3 "/>
             </div>
-            <p>&nbsp</p>
-            <h2 class="text-center">Log your workout here </h2>
-            <p>&nbsp</p>
+            <h3 class="offset-md-1 spacing">Log your workout here </h3>
 
 
-            <div class="col-lg-10 text-center">
-                    <h2><?php
+
+                    <h4 class="text-left offset-md-4"><?php
                         if (isset($cardio_Workout)) {
                             echo $cardio_Workout['name'];
                         }
-                        ?></h2>
-                </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <h3 class="text-center">Your goal Time: <span><?php
-                            if (isset($cardio_Workout)) {
-                                echo  $cardio_Workout['goal_time'];
-                            }
-                            ?></span></h3>
-                </div>
-                <div class="col-lg-6">
-                    <h3 class="text-center">Your goal Distance in KM: <span><?php
-                            if (isset($cardio_Workout)) {
-                                echo $cardio_Workout['goal_distance'];
-                            }
-                            ?> </span></h3>
+                        ?></h4>
 
+                <div class="row big-spacing">
+                    <h4 class=" text-left col-md-4 offset-md-0">Your goal Time: <?php
+                            if (isset($cardio_Workout)) {
+                                echo   $cardio_Workout['goal_time'];
+                            }
+                            ?></h4>
+                    <h4 class="text-left col-md-6 offset-md-0"">Your goal Distance in KM:<?php
+                            if (isset($cardio_Workout)) {
+                                echo  $cardio_Workout['goal_distance'];
+                            }
+                            ?></h4>
                 </div>
-            </div>
-            <p>&nbsp</p>
+
 
             <form action="#" method="post">
-                <div class="form-group">
-                    <label for="cardio_distance"> Total Distance:</label>
-                    <select class="form-control col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
+                <div class="form-field big-spacing col-md-9 offset-md-0">
+                    <h2 class="spacing">Enter the distance travelled.</h2>
+                    <select class="textInput col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
+                        <option value="0">Total Distance</option>
                         <?php
                         foreach (range(0, 100, 0.5) as $i):
                             ?>
@@ -193,11 +183,12 @@ if (isset($_POST['save_workout'])) {
                             <?php
                         endforeach;
                         ?>
-                    </select><span>km</span><span class="text-danger"><?php if (isset($distance_error)){ echo $distance_error;}?></span>
+                    </select><span class="badge badge-warning"><?php if (isset($distance_error)){ echo $distance_error;}?></span>
                 </div>
-                <div class="row">
-                    <label  for="cardio_time">Total Time:</label>
-                    <select class="col-md-1 col-sm-1 col-xs-1 form-control" name="hours">
+                <div class="form-field big-spacing offset-md-0">
+                    <h2 class="spacing">Enter the time it took to complete the workout:</h2>
+                    <select class="textInput col-md-2 col-sm-3 col-xs-1 offset-md-0" name="hours">
+                        <option value="0">Hours</option>
                         <?php
                         foreach (range(0, 10, 1) as $i):
                             ?>
@@ -213,8 +204,9 @@ if (isset($_POST['save_workout'])) {
                             <?php
                         endforeach;
                         ?>
-                    </select><span>Hours</span>
-                    <select class="col-md-1 col-sm-1 col-xs-1  form-control" name="minutes">
+                    </select>
+                    <select class="textInput col-md-2 col-sm-3 col-xs-1 offset-md-1" name="minutes">
+                        <option value="0">Minutes</option>
                         <?php
                         foreach (range(0, 59, 1) as $i):
                             ?>
@@ -230,8 +222,9 @@ if (isset($_POST['save_workout'])) {
                             <?php
                         endforeach;
                         ?>
-                    </select><span>Minutes</span>
-                    <select class="col-md-1 col-sm-1 col-xs-1  form-control" name="seconds">
+                    </select>
+                    <select class="textInput select-box col-md-2 col-sm-3 col-xs-1 offset-md-1" name="seconds">
+                        <option value="0">Seconds</option>
                         <?php
                         foreach (range(0, 59, 1) as $i):
                             ?>
@@ -247,14 +240,13 @@ if (isset($_POST['save_workout'])) {
                             <?php
                         endforeach;
                         ?>
-                    </select><span>seconds</span><span class="text-danger"><?php if(isset($time_error)){echo $time_error;}?></span>
+                    </select><span class="badge badge-warning"><?php if(isset($time_error)){echo $time_error;}?></span>
                 </div>
-                <p>&nbsp</p>
 
 
-                <div class="form-group text-center">
+                <div class="form-field big-spacing">
                         <input type="hidden" name="cardio_workouts_id""/>
-                        <input type="submit" value="Save Workout" class="col-md-3 col-sm-3 col-xs-3 form-control btn btn-success " name="save_workout"/>
+                        <input type="submit" value="Save Workout" class="formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3" name="save_workout"/>
                 </div>
             <div class="form-group">
             <input type="hidden" value="<?php if (isset($cardio_id)) {echo $cardio_id;}?>"

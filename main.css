@@ -481,6 +481,15 @@ button.close:focus {
     padding-bottom: 5px;
 }
 /* 08. Josh's Styling */
+.spacing {
+    padding-bottom: 20px;
+}
+.big-spacing {
+    padding-bottom: 50px;
+}
+.x-big-spacing{
+    padding-bottom: 50px;
+}
 
 /* 09. Bryan's Styling */
 

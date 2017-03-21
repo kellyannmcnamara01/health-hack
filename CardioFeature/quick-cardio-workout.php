@@ -24,13 +24,13 @@ if (isset($_POST['save_workout'])) {
     require_once '../Models/Validation.php';
     $v = new Validation();
     if ($v->testName($type) == false) {
-        $type_error = "You must enter what type of cardio workout this was.";
+        $type_error = "Name this workout.";
     }
     if ($v->testZero($distance) == false) {
-        $distance_error = "You must enter in a distance for this workout";
+        $distance_error = "Enter distance";
     }
     if ($v->testZero($hours) == false && $v->testZero($minutes) == false && $v->testZero($seconds) == false) {
-        $time_error = "You must enter a time for the workout";
+        $time_error = "Enter time";
     }
     if ($v->testName($type) == true && $v->testZero($distance) == true && ($v->testZero($hours) == true || $v->testZero($minutes) == true || $v->testZero($seconds) == true)) {
 
@@ -64,7 +64,7 @@ if (isset($_POST['save_workout'])) {
 
 
         //display success message
-        $success_message = "You cardio workout was saved!";
+        $success_message = "Workout saved!";
 
         //re-set all values
 
@@ -82,18 +82,22 @@ if (isset($_POST['save_workout'])) {
 <div class="container">
     <form action="#" method="post">
 
-            <div class="col-md-12">
-                <h1 class="text-center light-grey">Quick Cardio Workout:</h1>
+            <div class="col-md-12 big-spacing">
+                <h1 class="red">Quick Cardio Workout:</h1>
+                <p class="badge badge-success"><?php if(isset($success_message)){echo $success_message;}?></p>
+
                 <p>Here, you can quickly record a cardio workout without having to load a previously created cardio workout!</p>
             </div>
-        <p>&nbsp</p>
-                <div class="form-group col-md-9">
-                        <label for="select_cardio">Type of Cardio:</label>
-                        <input type="text" class="form-control" name="type"/><span class="text-danger"><?php if (isset($type_error)){echo $type_error;}?></span>
+                <div class="form-field big-spacing col-md-6 offset-md-0 ">
+                    <h2 class="spacing">Name the Cardio Workout:</h2>
+                        <input placeholder="Name of Cardio Workout" type="text" class="textInput" name="type"/><span class=" badge badge-warning"><?php if (isset($type_error)){echo $type_error;}?></span>
                  </div>
-        <div class="form-group col-md-9 ">
-                <label for="cardio_distance"> Total Distance:</label>
-                <select class="form-control col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
+
+        <div class="form-field big-spacing  col-md-9 offset-md-0 ">
+            <h2 class="spacing">Enter the distance travelled:</h2>
+
+            <select class="textInput  col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
+                    <option  value="0">Total Distance</option>
                     <?php
                     foreach (range(0, 100, 0.5) as $i):
                         ?>
@@ -109,13 +113,13 @@ if (isset($_POST['save_workout'])) {
                         <?php
                     endforeach;
                     ?>
-                </select><span>km</span><span class="text-danger"><?php if (isset($distance_error)){ echo $distance_error;}?></span>
+                </select><span class=" badge badge-warning"><?php if (isset($distance_error)){ echo $distance_error;}?></span>
             </div>
-        <p>&nbsp</p>
+        <div class="form-field big-spacing offset-md-0">
+            <h2 class="spacing">Enter the time it took to complete the workout:</h2>
 
-        <div class="row">
-                <label for="cardio_time">Total Time:</label>
-                <select class="form-control col-md-1 col-sm-1 col-xs-1" name="hours">
+            <select class="textInput col-md-2 col-sm-3 col-xs-1 offset-md-0" name="hours">
+                    <option value="0">Hours</option>
                     <?php
                     foreach (range(0, 10, 1) as $i):
                         ?>
@@ -131,8 +135,10 @@ if (isset($_POST['save_workout'])) {
                         <?php
                     endforeach;
                     ?>
-                </select><span>Hours</span>
-                <select class="form-control col-md-1 col-sm-1 col-xs-1" name="minutes">
+
+                </select>
+                <select class="textInput col-md-2 col-sm-3 col-xs-1 offset-md-1" name="minutes">
+                    <option value="0">Minutes</option>
                     <?php
                     foreach (range(0, 59, 1) as $i):
                         ?>
@@ -148,8 +154,9 @@ if (isset($_POST['save_workout'])) {
                         <?php
                     endforeach;
                     ?>
-                </select><span>Minutes</span>
-                <select class="form-control col-md-1 col-sm-1 col-xs-1" name="seconds">
+                </select>
+                <select class="textInput select-box col-md-2 col-sm-3 col-xs-1 offset-md-1" name="seconds">
+                    <option value="0">Seconds</option>
                     <?php
                     foreach (range(0, 59, 1) as $i):
                         ?>
@@ -165,15 +172,16 @@ if (isset($_POST['save_workout'])) {
                         <?php
                     endforeach;
                     ?>
-                </select><span>seconds</span><span class="text-danger"><?php if(isset($time_error)){echo $time_error;}?></span>
-            </div>
-        <p>&nbsp</p>
+                </select><span class=" badge badge-warning"><?php if(isset($time_error)){echo $time_error;}?></span>
+        </div>
 
-            <div class="form-group text-center">
-                    <input type="submit" value="Save Workout" class=" form-control btn btn-success col-md-3" name="save_workout"/>
+            <div class="form-field big-spacing">
+                    <input type="submit" value="Save Workout" class=" formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3" name="save_workout"/>
             </div>
         </form>
-        <p class="text-success"><?php if(isset($success_message)){echo $success_message;}?></p>
 </div>
 </div>
 </main>
+<?php
+require_once '../Common Views/Footer.php';
+?>
