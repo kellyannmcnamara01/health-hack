@@ -573,6 +573,65 @@ td.calendar-day, td.calendar-day-np {
 }
 
 /* 11. Rahul's Styling */
+.ratings_stars {
+    background: url('./opt-imgs/star_empty.png') no-repeat;
+    float:      left;
+    height:     28px;
+    padding:    2px;
+    width:      32px;
+}
+.ratings_vote {
+    background: url('./opt-imgs/star_full.png') no-repeat;
+}
+.ratings_over {
+    background: url('./opt-imgs/star_highlight.png') no-repeat;
+}
+#rating_div {
+    
+    top: 58px;
+    width:100%;
+    padding: 5px;
+    clear:both;
+    text-align:center;
+} 
+.rate_choice
+{
+    width:100%;
+    float:right;
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+#AvgDiv
+{
+    clear:both;    
+    padding-top:15px;
+    padding-bottom:15px;
+}
+#AvgChoice
+{
+    width:50%;
+    float:left;
+
+}
+
+#AvgRating
+{
+    width:50%;
+    float:left;
+    font-size:14px;
+    text-align:center;
+
+}
+.TopRatingDiv
+{
+    text-align:left;
+}
+#RatingContainer
+{
+    clear:both;
+    font-size:12px;
+}
 
 /* 12. Kelly's Styling */
 
