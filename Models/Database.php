@@ -53,6 +53,4 @@ class Database
         }
         return $this->db;
     }
-
-
 }
