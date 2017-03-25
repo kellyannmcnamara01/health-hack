@@ -18,6 +18,7 @@
     //create an empty var for the grocery list options
     $grocery_list__options = "";
     $grocery_list__options_err = "";
+    $grocery_list__options_success = "";
 
     //once the user submits run the following code
     if(isset($_POST['grocery_list__submit'])) {
@@ -32,33 +33,45 @@
         //check for validation
         if(!isset($_POST['grocery_lists'])) {
             $grocery_list__options_err = "please choose a grocery list";
-        } else {
-            $grocery_list__options_err = $_POST['grocery_lists'];
         }
-
+        if(isset($_POST['grocery_lists'])) {
+            $grocery_list__options_success = "Thank you for choosing " . $_POST['grocery_lists'];
+        }
     }
 
 ?>
-    <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
-        <div class="col-md-5">
+    <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
+        <div class="col-md-5 ">
             <h1 class="light-grey">Grocery Lists</h1>
             <p>Please select a grocery list from the following options. This list will be your main outlining diet for your journey with us here at Health Hack. </p>
         </div>
-        <div class="feature col-md-12 col-sm-12 col-12">
+        <div class="feature col-md-10 col-sm-12 col-12">
             <form action="" method="post" id="grocery_list__options">
-                <p><?php echo $grocery_list__options_err; ?></p>
-                <div class="btn-group" data-toggle="buttons">
-                    <!--<label class="btn btn-primary" for="grocery_list_1"><input type="radio" name="grocery_lists" id="grocery_list__1">Vegetarian</label>
-                    <label class="btn btn-primary" for="grocery_list_2"><input type="radio" name="grocery_lists" id="grocery_list__2">Atkins</label>
-                    <label class="btn btn-primary" for="grocery_list_2"><input type="radio" name="grocery_lists" id="grocery_list__2">Gluten Free</label>-->
+               <div id="grocery_list__options_err">
+                   <span class="badge badge-danger"><?php echo $grocery_list__options_err; ?></span>
+                   <span class="badge badge-success"><?php echo $grocery_list__options_success; ?></span>
+               </div>
+                <div class="row">
                     <?php
                     //loop through the products from the products table to create their own radio btns
                     foreach($gLists as $gL) {
-                        ?><label class="btn btn-primary"><input type="radio" name="grocery_lists" value="<?php echo $gL->list_name; ?>"><?php echo $gL->list_name; ?></label><?php
+                        ?><div class="grocery_lists col-md-4 col-sm-6 col-12 row">
+                            <p class="grocery_list__titles col-md-12"><?php echo $gL->list_name; ?></p>
+                            <div class="grocery_list__details col-md-12">
+                                <p><?php echo $gL->list_details; ?></p>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary">
+                                        <input type="radio" name="grocery_lists" value="<?php echo $gL->list_name; ?>" required>Select List
+                                    </label>
+                                </div>
+                            </div>
+                        </div><?php
                     }
                     ?>
                 </div>
-                <input type="submit" id="grocery_list__submit" name="grocery_list__submit" value="Submit">
+                <div id="grocery_list__submission">
+                    <input type="submit" id="grocery_list__submit" name="grocery_list__submit" value="Submit">
+                </div>
             </form>
         </div>
     </div>

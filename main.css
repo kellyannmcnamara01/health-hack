@@ -634,6 +634,72 @@ td.calendar-day, td.calendar-day-np {
 }
 
 /* 12. Kelly's Styling */
+.gListPicks h1{
+    text-align: center;
+}
+#grocery_list__options {
+    padding-top: 75px;
+}
+#grocery_list__options .grocery_lists  {
+    margin: 0;
+    /*border-right: 5px solid #fbf9f9;*/
+}
+.grocery_list__details .btn-primary {
+    border: none;
+    border-radius: 0;
+    background: #35adda;
+    vertical-align: bottom;
+}
+/*#grocery_list__options .btn-primary:nth-child(even) {
+    background: yellow;
+}*/
+.grocery_list__details .btn-primary:hover, .grocery_list__details .btn-primary:active, .grocery_list__details .btn-primary:focus, .grocery_list__details .btn-primary:valid{
+    background: #8cc34b;
+    outline: none;
+}
+.grocery_list__titles {
+    background: #e04152;
+    margin: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 7px;
+}
+.grocery_list__details {
+    background: #fff;
+    margin-bottom: 25px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 5px 5px 0px #ccd0d9;
+    position: relative;
+}
+.grocery_list__details p {
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+#grocery_list__options_err {
+    text-align: center;
+    margin-bottom: 25px;
+}
+#grocery_list__submit {
+    background: #35adda;
+    border-radius: 0;
+    border: none;
+    font-size: 1.7em;
+    color: #fff;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 5px 30px;
+}
+#grocery_list__submission {
+    text-align: center;
+}
+#grocery_list__submit:hover, #grocery_list__submit:active, #grocery_list__submit:focus {
+    background: #8cc34b;
+    outline: none;
+}
+/*.grocery_list__details:nth-child(2) {
+    background: #efefef;
+}*/
 
 /* Media Queries */
 @media only screen and (max-width: 767px) {
@@ -653,6 +719,9 @@ td.calendar-day, td.calendar-day-np {
     #landing-main h2 {
         padding: 75px 15px 0px;
         font-size: 4em;
+    }
+    .gListPicks {
+        padding: 100px 30px !important;
     }
 }
 @media only screen and (max-width: 480px) {
