@@ -7,7 +7,7 @@
  */
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
-$user_id = 1;
+$user_id = 2;
 
 if (isset($_POST['submit_strength'])){
 
@@ -45,20 +45,33 @@ if (isset($_POST['submit_strength'])){
         $strength_workout->setUserId($user_id);
         $strength_workout->setName($strength_name);
 
-        //create a new strengthDAO class and insert into the database.
+        //check if there is another strength workout that has the same name. If there is, provide an error message and do not proceed.
         require_once '../Models/StrengthWorkoutDAO.php';
         $sw = new StrengthWorkoutDAO();
-        $sw->insertStrengthWorkout($conn, $strength_workout);
-
-        $success_message = "Workout created!";
-        $strength_name = "";
-
-        //now, let's add the exercises that were stored in our list.
-
-        foreach ($string as $key=>$value){
-
+        $list = $sw->verifyUniqueName($conn, $strength_workout);
+        $namesList = array();
+        foreach ($list as $key=>$value){
+            array_push($namesList, $value[0]);
         }
+        if (in_array($strength_name, $namesList)){
+            $strength_error = "You must pick a unique workout name!";
+        }
+        else {
 
+            //create a new strengthDAO class and insert into the database.
+            require_once '../Models/StrengthWorkoutDAO.php';
+            $sw = new StrengthWorkoutDAO();
+            $sw->insertStrengthWorkout($conn, $strength_workout);
+
+
+            //now, let's add the exercises that were stored in our list.
+
+            foreach ($string as $key => $value) {
+                $sw->insertStrengthExercises($conn, $value, $strength_workout);
+            }
+            $success_message = "Workout created!";
+            $strength_name = "";
+        }
     }
 }
 ?>
