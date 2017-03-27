@@ -490,6 +490,11 @@ button.close:focus {
 .x-big-spacing{
     padding-bottom: 50px;
 }
+.exercises {
+    color: #35adda;
+    list-style: none;
+    font-size: 2.2em;
+}
 
 /* 09. Bryan's Styling */
 
