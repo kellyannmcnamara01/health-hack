@@ -9,7 +9,7 @@
 class StrengthWorkoutDAO
 {
     public function insertStrengthWorkout($db, $reqObj){
-        $query = "INSERT INTO STRENGTH_WORKOUTS (user_id, name) VALUES (:user_id, :name)";
+        $query = "INSERT INTO STRENGTH_WORKOUTS (user_id, strength_workout_name) VALUES (:user_id, :name)";
         $statement = $db->prepare($query);
         $statement->bindValue(':user_id', $reqObj->getUserId());
         $statement->bindValue(':name', $reqObj->getName());
@@ -18,7 +18,7 @@ class StrengthWorkoutDAO
 
     }
     public function insertStrengthExercises($db, $value, $reqObj){
-    $query = "INSERT INTO STRENGTH_EXERCISES (name, strength_workout_id) VALUES (:name, (SELECT strength_id FROM STRENGTH_WORKOUTS WHERE name = :strength_name AND user_id = :user_id))";
+    $query = "INSERT INTO STRENGTH_EXERCISES (exercise_name, strength_workout_id) VALUES (:name, (SELECT strength_id FROM STRENGTH_WORKOUTS WHERE strength_workout_name = :strength_name AND user_id = :user_id))";
     $statement = $db->prepare($query);
     $statement->bindValue(':name', $value);
     $statement->bindValue (':strength_name', $reqObj->getName());
@@ -27,7 +27,7 @@ class StrengthWorkoutDAO
     $statement->closeCursor();
 }
 public function verifyUniqueName ($db, $reqObj){
-        $query = "SELECT name FROM STRENGTH_WORKOUTS WHERE user_id = :user_id";
+        $query = "SELECT strength_workout_name FROM STRENGTH_WORKOUTS WHERE user_id = :user_id";
         $statement = $db->prepare($query);
         $statement->bindValue('user_id', $reqObj->getUserId());
         $statement->execute();
@@ -35,6 +35,27 @@ public function verifyUniqueName ($db, $reqObj){
         $statement->closeCursor();
         return $strength_workouts;
 
+}
+public function getStrengthWorkouts ($db, $reqObj){
+    $query = "SELECT * FROM STRENGTH_WORKOUTS WHERE user_id = :user_id";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user_id', $reqObj->getUserId());
+    $statement->execute();
+    $strength_workouts = $statement->fetchAll();
+    $statement->closeCursor();
+    return $strength_workouts;
+}
+public function get1StrengthWorkout($db, $reqObj){
+    $query = "SELECT * FROM STRENGTH_WORKOUTS JOIN  STRENGTH_EXERCISES ON 
+    STRENGTH_WORKOUTS.strength_id = STRENGTH_EXERCISES.strength_workout_id 
+    WHERE user_id = :user_id AND strength_id = :strength_id";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user_id', $reqObj->getUserId());
+    $statement->bindValue(':strength_id', $reqObj->getId());
+    $statement->execute();
+    $exercises = $statement->fetchAll();
+    $statement->closeCursor();
+    return $exercises;
 }
 
 }

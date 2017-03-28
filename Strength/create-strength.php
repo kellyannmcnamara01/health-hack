@@ -7,7 +7,7 @@
  */
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
-$user_id = 2;
+$user_id = 1;
 
 if (isset($_POST['submit_strength'])){
 
