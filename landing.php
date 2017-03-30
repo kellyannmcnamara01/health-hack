@@ -15,6 +15,30 @@ require_once './Models/Signup.php';
         //call newUser() method in Signup()
         $db->newUser($fname, $lName, $email, $password);
     }
+
+    //check if form is set (login)
+    if (isset($_POST['Login'])){
+        //echo "<script> console.log('attempted login'); </script>";
+
+        // grab values from login form
+        $loggedInUser = filter_input(INPUT_POST, 'loginUser');
+        $loggedInPass = filter_input(INPUT_POST, 'loginPass');
+
+        //new instance of Signup()
+        $db = new Signup();
+        //call newUser() method in Signup()
+        $db->isValidUser($loggedInUser, $loggedInPass);
+
+        // start session storage
+        session_start();
+        // initialize new SESSION variable
+        $_SESSION['username'] = $loggedInUser;
+        // session variable to hold first name (to be called once user is logged in)
+        echo $_SESSION['username'];
+
+        //point page to index.php
+        header("Location: index.php");
+    }
 ?>
 <!--
 
