@@ -53,4 +53,22 @@ class Database
         }
         return $this->db;
     }
+
+    public function getDbFromAWS() {
+        try {
+            $dbhost = 'health-hack.ceqjmflvpjil.us-east-1.rds.amazonaws.com';
+            $dbport = '3307';
+            $dbname = 'healthHack';
+            $charset = 'utf8';
+            $dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname}";
+            $username = 'boss';
+            $password = 'bossboss';
+            $this->db = new PDO($dsn, $username, $password);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //$this->db->exec('SET search_path TO healthHack');
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        return $this->db;
+    }
 }

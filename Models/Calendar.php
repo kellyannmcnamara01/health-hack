@@ -48,7 +48,7 @@ class Calendar {
     }
 
     public function getRoutines() {
-        $query = "select * from routines";
+        $query = "select * from ROUTINES";
         $statement = $this->db->prepare($query);
         $statement->execute();
         $routines = $statement->fetchAll();
@@ -57,7 +57,7 @@ class Calendar {
 
     public function getRoutinesByDay($day) {
         $workouts = array($day."_strength", $day."_cardio");
-        $query = "select routine_id, name, $workouts[0], $workouts[1] from routines
+        $query = "select routine_id, name, $workouts[0], $workouts[1] from ROUTINES
                   where $workouts[0] IS NOT NULL OR $workouts[1] IS NOT NULL";
         $statement = $this->db->prepare($query);
         $statement->execute();
