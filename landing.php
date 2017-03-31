@@ -89,7 +89,7 @@ require_once './Models/Signup.php';
           <div class="modal-body">
                 <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
                 <h2>Health Hack</h2>
-            <form action="" method="" id="login-form">
+            <form action="landing.php" method="post" id="login-form">
                 <div class="form-field">
                     <label for="loginUser" class="formLabel">Email</label>
                     <input type="text" id="loginUser" class="textInput" placeholder="Email" />
@@ -137,7 +137,7 @@ require_once './Models/Signup.php';
                                 <input type="password" class="textInput" name="password" placeholder="Password" />
                                 <span class="text-info">Passwords must be 8 characters, contain at least 1 number and one capital letter. </span>
                             </div>
-                            <input type="submit" class="btn btn-primary btn-block" name="Register" value="Register" />
+                            <input type="submit" class="button" name="Register" value="Register" />
                         </form>
                     </div>
                 </div>

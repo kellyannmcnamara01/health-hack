@@ -22,16 +22,20 @@ class Signup
 
         //encrypt password using SHA1
         $password = sha1($email . $password);
+        // assign current date & time to a variable
+        $join_date = date('Y-m-d H:i:s');
 
         // Query to insert new record of user
-        $insert = "INSERT INTO USERS (first_name, last_name, email, password) VALUES (:fName, :lName, :email, :pass)";
+        $insert = "INSERT INTO USERS (first_name, last_name, email, password, join_date) VALUES (:fName, :lName, :email, :pass, :jdate)";
         //prepare query
         $newUser = $connect->prepare($insert);
         //bind values
         $newUser->bindValue(":fName", $fname);
         $newUser->bindValue(":lName", $lname);
-        $newUser->bindValue(":email",$lname);
+        $newUser->bindValue(":email",$email);
         $newUser->bindValue(":pass",$password);
+        $newUser->bindValue(":jdate", $join_date);
+        // return execution of statement
         return $newUser->execute();
     }
 
@@ -51,9 +55,8 @@ class Signup
         //bind values
         $validUser->bindValue(":email", $email);
         $validUser->bindValue(":password", $password);
-        $validUser->execute();
-        //ensure only only result is returned
-        $valid = ($validUser->rowCount() == 1);
-        return $valid;
+        //
+        return $validUser->execute();
+
     }
 }
