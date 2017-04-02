@@ -576,6 +576,31 @@ td.calendar-day, td.calendar-day-np {
 .today {
     background-color: #eee;
 }
+/* Gym Locator */
+#mapHolder {
+    display: inline-block;
+    vertical-align: middle;
+}
+#map {
+    width: 80%;
+    height: 80%;
+}
+#gymlist > h2 {
+    text-align: center;
+}
+.gym-item > div {
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 1rem;
+}
+.gym-item > div:first-child, .gym-item > div:last-child {
+    margin-top: 30px;
+}
+.gym-item > div img {
+    width: 50px;
+    height: 50px;
+}
+
 
 /* 11. Rahul's Styling */
 .ratings_stars {

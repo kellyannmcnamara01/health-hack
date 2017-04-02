@@ -69,7 +69,7 @@ require_once 'Common Views/sidebar.php';
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="#" class="feature-btn">
+                    <a href="Gym" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/gymlocation-icon.png" alt="" />
                         </div>
