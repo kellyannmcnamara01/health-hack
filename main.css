@@ -577,28 +577,88 @@ td.calendar-day, td.calendar-day-np {
     background-color: #eee;
 }
 /* Gym Locator */
+.controls {
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    height: 29px;
+    margin-left: 17px;
+    margin-top: 10px;
+    outline: none;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+.controls:focus {
+    border-color: #4d90fe;
+}
+.title {
+    font-weight: bold;
+}
 #mapHolder {
     display: inline-block;
     vertical-align: middle;
+}
+#mapHolder h2 {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 #map {
     width: 80%;
     height: 80%;
 }
+#infowindow-content {
+    display: none;
+}
+#map #infowindow-content {
+    display: inline;
+}
+/**/
 #gymlist > h2 {
     text-align: center;
 }
 .gym-item > div {
+    width: 100%;
     vertical-align: top;
     display: inline-block;
     margin-left: 1rem;
 }
-.gym-item > div:first-child, .gym-item > div:last-child {
+.gym-item > div div {
+    display: inline-block;
+}
+.gym-item > div:first-child {
+    margin-top: 50px;
+}
+.gym-item > div:nth-child(2), .gym-item > div:last-child {
     margin-top: 30px;
 }
 .gym-item > div img {
     width: 50px;
     height: 50px;
+}
+.gym-to-default {
+    margin-top: 2rem;
+}
+.gym-to-default div {
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+.gym-to-default div:last-child {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}
+.gym-to-default input {
+    margin-left: 0.5rem;
+}
+.gym-to-default span {
+    font-size: 1rem;
+    margin-left: 1rem;
 }
 
 
