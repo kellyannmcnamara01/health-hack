@@ -3,12 +3,6 @@
 
     $user_id = 1;
 
-    //include the header
-    require_once "../Common Views/Header.php";
-
-    //include the sidebar
-    require_once "../Common Views/sidebar.php";
-
     //db
     require_once "../Models/Database.php";
     $dbConn = new Database();
@@ -54,7 +48,14 @@
         if(isset($_POST['grocery_lists'])) {
             $grocery_list__options_success = "Thank you for selecting a list";
         }
+        header('Location: ../GroceryList');
     }
+
+    //include the header
+    require_once "../Common Views/Header.php";
+
+    //include the sidebar
+    require_once "../Common Views/sidebar.php";
 
 ?>
     <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">

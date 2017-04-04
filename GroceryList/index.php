@@ -1,12 +1,7 @@
 <?php
 
 $user_id = 1;
-
-//include the header
-require_once "../Common Views/Header.php";
-
-//include the sidebar
-require_once "../Common Views/sidebar.php";
+$list_id = 5;
 
 //db
 require_once "../Models/Database.php";
@@ -16,9 +11,24 @@ $db = $dbConn->getDbFromAWS();
 //include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
-$veggieList = $gListConn->populateVeggieList($db);
-$atkinList = $gListConn->populateAtkinsList($db);
-$glutenFreeList = $gListConn->populateGlutenFreeList($db);
+
+if($list_id == 0){
+    header('Location: ../GroceryList/Grocery.php');
+} elseif($list_id == 5) {
+    $list = $gListConn->populateVeggieList($db);
+} elseif ($list_id == 6) {
+    $list = $gListConn->populateAtkinsList($db);
+} else {
+    $list = $gListConn->populateGlutenFreeList($db);
+}
+
+//include the header
+require_once "../Common Views/Header.php";
+
+//include the sidebar
+require_once "../Common Views/sidebar.php";
+
+
 
 ?>
 
@@ -29,15 +39,26 @@ $glutenFreeList = $gListConn->populateGlutenFreeList($db);
     </div>
     <div class="feature col-md-10 col-sm-12 col-12">
         <p>hi</p>
+        <div class="col-md-12 row foodlist-title-bar">
+            <div class="col-2"><p class="foodlist-title">Food Item</p></div>
+            <div class="col-2"><p class="foodlist-title">Category</p></div>
+            <div class="col-1"><p class="foodlist-title">Servings</p></div>
+            <div class="col-1"><p class="foodlist-title">Grams</p></div>
+            <div class="col-1"><p class="foodlist-title">Calories</p></div>
+            <div class="col-1"><p class="foodlist-title">Sodium</p></div>
+        </div>
         <?php
-        foreach ($veggieList as $v){
-            ?><li><?php echo $v->food_item_name ?></li><?php
-        }?><br><br><?php
-        foreach ($atkinList as $a){
-            ?><li><?php echo $a->food_item_name ?></li><?php
-        }?><br><br><?php
-        foreach ($glutenFreeList as $g){
-            ?><li><?php echo $g->food_item_name ?></li><?php
+        foreach ($list as $listOutput){
+            ?>
+            <div class="col-md-12 row">
+                <div class="col-md-2"><p><?php echo $listOutput->food_item_name ?></p></div>
+                <div class="col-md-2"><p><?php echo $listOutput->category ?></p></div>
+                <div class="col-md-1"><p><?php echo $listOutput->serving_count ?></p></div>
+                <div class="col-md-1"><p><?php echo $listOutput->grams ?> g</p></div>
+                <div class="col-md-1"><p><?php echo $listOutput->calories ?></p></div>
+                <div class="col-md-1"><p><?php echo $listOutput->sodium ?> mg</p></div>
+            </div>
+            <?php
         }
         ?>
     </div>
