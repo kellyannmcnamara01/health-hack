@@ -19,4 +19,13 @@ class GroceryListDAO
         $groceryLists = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
         return $groceryLists;
     }
+
+    /*public function updateUserListId($db) {
+        $query_updateListId = "INSERT INTO USERS (list_id) 
+                                VALUES :list_id";
+        $pdo_statement = $db->perpare($query_updateListId);
+        $pdo_statement->bind(":list_id", $list_id->getListId());
+        $pdo_statement->execute();
+        $pdo_statement->closeCursor();
+    }*/
 }

@@ -8,17 +8,20 @@
     //db
     require_once "../Models/Database.php";
     $dbConn = new Database();
-    $db = $dbConn->getDbTwo();
+    $db = $dbConn->getDbFromAWS();
 
     //include groceryList DAO
     require_once "../Models/GroceryListDAO.php";
     $gListConn = new GroceryListDAO();
     $gLists = $gListConn->populateGroceryLists($db);
 
+    //$userListId = $gListConn->updateUserListId($db, $list_id);
+
     //create an empty var for the grocery list options
     $grocery_list__options = "";
     $grocery_list__options_err = "";
     $grocery_list__options_success = "";
+    $list_id = "";
 
     //once the user submits run the following code
     if(isset($_POST['grocery_list__submit'])) {
@@ -26,6 +29,7 @@
         //create a new grocery list class object and set the value
         require_once '../Models/GroceryList.php';
         $g_list = new GroceryList();
+        $list_id = $_POST['grocery_lists'];
         //$g_list->setListId($list_id);
         //$g_list->setListName($list_name);
 
@@ -35,7 +39,7 @@
             $grocery_list__options_err = "please choose a grocery list";
         }
         if(isset($_POST['grocery_lists'])) {
-            $grocery_list__options_success = "Thank you for choosing " . $_POST['grocery_lists'];
+            $grocery_list__options_success = "Thank you for selecting a list";
         }
     }
 
@@ -43,14 +47,16 @@
     <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
         <div class="col-md-5 ">
             <h1 class="light-grey">Grocery Lists</h1>
-            <p>Please select a grocery list from the following options. This list will be your main outlining diet for your journey with us here at Health Hack. </p>
+            <p>Please select a grocery list from the following options and press submit. This list will be your main outlining diet for your journey with us here at Health Hack. </p>
         </div>
         <div class="feature col-md-10 col-sm-12 col-12">
             <form action="" method="post" id="grocery_list__options">
                <div id="grocery_list__options_err">
                    <span class="badge badge-danger"><?php echo $grocery_list__options_err; ?></span>
                    <span class="badge badge-success"><?php echo $grocery_list__options_success; ?></span>
+                   <?php echo $list_id;?>
                </div>
+
                 <div class="row">
                     <?php
                     //loop through the products from the products table to create their own radio btns
@@ -61,7 +67,7 @@
                                 <p><?php echo $gL->list_details; ?></p>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-primary">
-                                        <input type="radio" name="grocery_lists" value="<?php echo $gL->list_name; ?>" required>Select List
+                                        <input type="radio" name="grocery_lists" value="<?php echo $gL->list_id; ?>" required>Select List
                                     </label>
                                 </div>
                             </div>
@@ -70,7 +76,7 @@
                     ?>
                 </div>
                 <div id="grocery_list__submission">
-                    <input type="submit" id="grocery_list__submit" name="grocery_list__submit" value="Submit">
+                    <input type="submit" id="" name="grocery_list__submit" value="Submit List" class="formSubmit">
                 </div>
             </form>
         </div>

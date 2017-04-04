@@ -52,7 +52,7 @@ $user = $_SESSION['username'];
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="#" class="feature-btn">
+                    <a href="GroceryList/Grocery.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/foodgoals-icon.png" alt="" />
                         </div>

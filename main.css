@@ -365,13 +365,14 @@ p {
 }
 .formSubmit {
     width: 100%;
+    max-width: 200px;
+    text-align: center;
     border: none;
     outline: none;
     padding: 20px 15px;
-    text-align: left;
     font-size: 1.6em;
     color: #fff;
-    background: #e04152;
+    background: #35adda;
     transition: .7s all ease;
 }
 .formResetBtn {
