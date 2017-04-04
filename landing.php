@@ -34,7 +34,7 @@ require_once './Models/Signup.php';
 
         // initialize new SESSION variable
         $_SESSION['user'] = $userId->user_id;
-
+        var_dump($_SESSION['user']);
         //point page to index.php
         header("Location: index.php");
     }

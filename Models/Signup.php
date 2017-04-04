@@ -83,6 +83,7 @@ class Signup
             $select = "SELECT * FROM USERS WHERE user_id = :id";
             //prepare statement
             $slctUser = $connect->prepare($select);
+            //bind value for $id
             $slctUser->bindValue(":id", $id);
             $slctUser->execute();
             $return = $slctUser->fetch(PDO::FETCH_OBJ);
@@ -90,7 +91,6 @@ class Signup
         } catch (PDOException $e){
             $e->getMessage();
         }
-
         return $return;
     }
 }
