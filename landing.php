@@ -1,5 +1,7 @@
 
 <?php
+// start session storage
+session_start();
 require_once './Models/Signup.php';
 
     //check if form is set
@@ -29,12 +31,12 @@ require_once './Models/Signup.php';
         //call newUser() method in Signup()
         $db->isValidUser($loggedInUser, $loggedInPass);
 
-        // start session storage
-        session_start();
+
+
         // initialize new SESSION variable
         $_SESSION['username'] = $loggedInUser;
         // session variable to hold first name (to be called once user is logged in)
-        echo $_SESSION['username'];
+        //echo $_SESSION['username'];
 
         //point page to index.php
         header("Location: index.php");
@@ -77,7 +79,6 @@ require_once './Models/Signup.php';
             <button type="button" id="loging-btn" data-toggle="modal" data-target="#loginModal">Login</button>
             <button type="button" id="signup-btn" data-toggle="modal" data-target="#SignupModal">Sign Up</button>
         </div>
-        <?php if(isset($msg)){ echo $msg; }?>
     </main>
     <div id="loginModal" class="modal fade" role="form">
       <div class="modal-dialog">
@@ -92,13 +93,13 @@ require_once './Models/Signup.php';
             <form action="landing.php" method="post" id="login-form">
                 <div class="form-field">
                     <label for="loginUser" class="formLabel">Email</label>
-                    <input type="text" id="loginUser" class="textInput" placeholder="Email" />
+                    <input type="text" id="loginUser" name="loginUser" class="textInput" placeholder="Email" />
                 </div>
                 <div class="form-field">
                     <label for="loginPass" class="formLabel">Password</label>
-                    <input type="text" id="loginPass" class="textInput" placeholder="Password" />
+                    <input type="text" id="loginPass" name="loginPass" class="textInput" placeholder="Password" />
                 </div>
-                <input type="submit" class="formSubmit" value="Submit" />
+                <input type="submit" class="formSubmit" name="Login" value="Login" />
                 <div class="form-field">
                     <button type="button" class="formResetBtn">Reset Your Password</button>
                 </div>

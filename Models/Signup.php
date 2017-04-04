@@ -33,6 +33,10 @@ class Signup
         $newUser->bindValue(":fName", $fname);
         $newUser->bindValue(":lName", $lname);
         $newUser->bindValue(":email",$email);
+        // if the user attempts to enter an already registered email
+        if (!$email){
+            die("Email already registered.");
+        }
         $newUser->bindValue(":pass",$password);
         $newUser->bindValue(":jdate", $join_date);
         // return execution of statement
@@ -55,7 +59,7 @@ class Signup
         //bind values
         $validUser->bindValue(":email", $email);
         $validUser->bindValue(":password", $password);
-        //
+        // return execution of statement
         return $validUser->execute();
 
     }
