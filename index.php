@@ -3,16 +3,24 @@
 session_start();
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
+require_once './Models/Signup.php';
 
 // est. variable that contains session variable for email
-$user = $_SESSION['username'];
+$user = $_SESSION['user'];
+
+//new instance of Signup()
+$db = new Signup();
+// call userInfo() method
+$userId = $db->userInfo($user);
+//grab username
+$userName = $userId->first_name;
 ?>
     <main>
         <!-- 02-2-2. Main Content -->
         <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
             <!-- 02-2-2-1. Intro Banner -->
             <div id="intro-banner" class="col-md-12 col-sm-12 col-12">
-                <h1>Welcome Back <?php echo $user; ?>
+                <h1>Welcome Back <?php //echo $userName; ?>
                 </h1>
             </div>
             <!-- 02-2-2-2. Feature Call Out -->

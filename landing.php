@@ -4,6 +4,7 @@
 session_start();
 require_once './Models/Signup.php';
 
+
     //check if form is set
     if (isset($_POST['Register'])){
         // gets value of requested variable
@@ -34,12 +35,8 @@ require_once './Models/Signup.php';
         // initialize new SESSION variable
         $_SESSION['user'] = $userId->user_id;
 
-        echo $_SESSION['user'];
-
-
-
         //point page to index.php
-        //header("Location: index.php");
+        header("Location: index.php");
     }
 ?>
 <!--

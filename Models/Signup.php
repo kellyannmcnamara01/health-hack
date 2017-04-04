@@ -71,6 +71,26 @@ class Signup
         }
 
         return $return;
+    }
 
+    public function userInfo($id){
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDb();
+        $return = array();
+
+        try{
+            $select = "SELECT * FROM USERS WHERE user_id = :id";
+            //prepare statement
+            $slctUser = $connect->prepare($select);
+            $slctUser->bindValue(":id", $id);
+            $slctUser->execute();
+            $return = $slctUser->fetch(PDO::FETCH_OBJ);
+            $slctUser->closeCursor();
+        } catch (PDOException $e){
+            $e->getMessage();
+        }
+
+        return $return;
     }
 }
