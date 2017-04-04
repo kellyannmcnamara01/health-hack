@@ -741,6 +741,13 @@ td.calendar-day, td.calendar-day-np {
     background: #35adda;
     vertical-align: bottom;
 }
+.foodlist-title-bar {
+    background: #8d97a4;
+    padding-bottom: 8px;
+}
+.foodlist-title {
+    color: #fff;
+}
 /*#grocery_list__options .btn-primary:nth-child(even) {
     background: yellow;
 }*/
