@@ -76,7 +76,7 @@
                     ?>
                 </div>
                 <div id="grocery_list__submission">
-                    <input type="submit" id="grocery_list__submit" name="grocery_list__submit" value="Submit">
+                    <input type="submit" id="" name="grocery_list__submit" value="Submit" class="formSubmit">
                 </div>
             </form>
         </div>
