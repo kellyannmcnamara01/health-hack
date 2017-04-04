@@ -20,12 +20,20 @@ class GroceryListDAO
         return $groceryLists;
     }
 
-    /*public function updateUserListId($db) {
-        $query_updateListId = "INSERT INTO USERS (list_id) 
-                                VALUES :list_id";
-        $pdo_statement = $db->perpare($query_updateListId);
-        $pdo_statement->bind(":list_id", $list_id->getListId());
+    public function populateUserListId($db) {
+        $query_userListId = "SELECT * FROM USERS";
+        $pdo_statement = $db->prepare($query_userListId);
+        $pdo_statement->execute();
+        $userListId = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
+        return $userListId;
+    }
+
+    public function updateUserListId($db) {
+        $query_updateListId = "UPDATE USERS SET list_id = :list_id WHERE user_id = :user_id";
+        $pdo_statement = $db->prepare($query_updateListId);
+        $pdo_statement->bindValue(":list_id", $list_id);
+        $pdo_statement->bindValue(":user_id", $user_id);
         $pdo_statement->execute();
         $pdo_statement->closeCursor();
-    }*/
+    }
 }

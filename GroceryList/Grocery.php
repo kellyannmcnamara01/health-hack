@@ -1,4 +1,8 @@
 <?php
+
+
+    $user_id = 1;
+
     //include the header
     require_once "../Common Views/Header.php";
 
@@ -14,6 +18,8 @@
     require_once "../Models/GroceryListDAO.php";
     $gListConn = new GroceryListDAO();
     $gLists = $gListConn->populateGroceryLists($db);
+    $userList = $gListConn->populateUserListId($db);
+    //$updateUserListId = $gListConn->updateUserListId($db);
 
     //$userListId = $gListConn->updateUserListId($db, $list_id);
 
@@ -33,7 +39,14 @@
         //$g_list->setListId($list_id);
         //$g_list->setListName($list_name);
 
+        $query_updateListId = "UPDATE USERS SET list_id = :list_id WHERE user_id = :user_id";
+        $pdo_statement = $db->prepare($query_updateListId);
+        $pdo_statement->bindValue(":list_id", $list_id);
+        $pdo_statement->bindValue(":user_id", $user_id);
+        $pdo_statement->execute();
+        $pdo_statement->closeCursor();
 
+        //header('Location: index.php');
         //check for validation
         if(!isset($_POST['grocery_lists'])) {
             $grocery_list__options_err = "please choose a grocery list";
@@ -55,6 +68,11 @@
                    <span class="badge badge-danger"><?php echo $grocery_list__options_err; ?></span>
                    <span class="badge badge-success"><?php echo $grocery_list__options_success; ?></span>
                    <?php echo $list_id;?>
+                   <?php
+                   foreach($userList as $u) {
+                       echo $u->user_id;
+                   }
+                   ?>
                </div>
 
                 <div class="row">
