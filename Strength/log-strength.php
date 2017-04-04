@@ -8,7 +8,7 @@
 
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
-
+//test change
 $user_id = 1;
 
 //grab all the strength workouts associated with the id, and store it for access in a drop down list.
