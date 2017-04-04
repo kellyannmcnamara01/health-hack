@@ -36,4 +36,28 @@ class GroceryListDAO
         $pdo_statement->execute();
         $pdo_statement->closeCursor();
     }
+
+    public function populateVeggieList($db) {
+        $query_veggieList = "SELECT * FROM FOOD_ITEMS WHERE category = 'Vegetables' OR category = 'Grains'";
+        $pdo_statement = $db->prepare($query_veggieList);
+        $pdo_statement->execute();
+        $veggieList = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
+        return $veggieList;
+    }
+
+    public function populateAtkinsList($db) {
+        $query_atkinsList = "SELECT * FROM FOOD_ITEMS WHERE ((carbs * 4)/ calories) <= 0.2 OR calories <= 40";
+        $pdo_statement = $db->prepare($query_atkinsList);
+        $pdo_statement->execute();
+        $atkinsList = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
+        return $atkinsList;
+    }
+
+    public function populateGlutenFreeList($db) {
+        $query_glutenFreeList = "SELECT * FROM FOOD_ITEMS WHERE gluten_free = 1";
+        $pdo_statement = $db->prepare($query_glutenFreeList);
+        $pdo_statement->execute();
+        $glutenFreeList = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
+        return $glutenFreeList;
+    }
 }

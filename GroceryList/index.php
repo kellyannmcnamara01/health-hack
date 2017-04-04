@@ -16,7 +16,9 @@ $db = $dbConn->getDbFromAWS();
 //include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
-$gLists = $gListConn->populateGroceryLists($db);
+$veggieList = $gListConn->populateVeggieList($db);
+$atkinList = $gListConn->populateAtkinsList($db);
+$glutenFreeList = $gListConn->populateGlutenFreeList($db);
 
 ?>
 
@@ -27,6 +29,17 @@ $gLists = $gListConn->populateGroceryLists($db);
     </div>
     <div class="feature col-md-10 col-sm-12 col-12">
         <p>hi</p>
+        <?php
+        foreach ($veggieList as $v){
+            ?><li><?php echo $v->food_item_name ?></li><?php
+        }?><br><br><?php
+        foreach ($atkinList as $a){
+            ?><li><?php echo $a->food_item_name ?></li><?php
+        }?><br><br><?php
+        foreach ($glutenFreeList as $g){
+            ?><li><?php echo $g->food_item_name ?></li><?php
+        }
+        ?>
     </div>
 </div>
 </main>
