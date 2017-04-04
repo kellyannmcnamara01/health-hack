@@ -11,7 +11,7 @@ require_once 'Database.php';
 
 class Signup
 {
-    private $newUser, $validUser;
+    private $newUser, $validUser, $return;
 
     public function newUser($fname,$lname,$email,$password){
 
@@ -49,18 +49,28 @@ class Signup
         //est. connection to DB
         $db = new Database();
         $connect = $db->getDb();
+        $return = array();
 
         //encrypt password using SHA1
         $password = sha1($email . $password);
 
-        $select = "SELECT user_id FROM USERS WHERE email = :email AND password = :password";
-        //prepare query
-        $validUser = $connect->prepare($select);
-        //bind values
-        $validUser->bindValue(":email", $email);
-        $validUser->bindValue(":password", $password);
-        // return execution of statement
-        return $validUser->execute();
+        // user_id
+        // *
+        try{
+            $select = "SELECT * FROM USERS WHERE email = :email AND password = :password";
+            //prepare query
+            $validUser = $connect->prepare($select);
+            //bind values
+            $validUser->bindValue(":email", $email);
+            $validUser->bindValue(":password", $password);
+            $validUser->execute();
+            $return = $validUser->fetch(PDO::FETCH_OBJ);
+            $validUser->closeCursor();
+        } catch (PDOException $e){
+            $e->getMessage();
+        }
+
+        return $return;
 
     }
 }

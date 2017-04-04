@@ -29,17 +29,17 @@ require_once './Models/Signup.php';
         //new instance of Signup()
         $db = new Signup();
         //call newUser() method in Signup()
-        $db->isValidUser($loggedInUser, $loggedInPass);
-
-
+        $userId = $db->isValidUser($loggedInUser, $loggedInPass);
 
         // initialize new SESSION variable
-        $_SESSION['username'] = $loggedInUser;
-        // session variable to hold first name (to be called once user is logged in)
-        //echo $_SESSION['username'];
+        $_SESSION['user'] = $userId->user_id;
+
+        echo $_SESSION['user'];
+
+
 
         //point page to index.php
-        header("Location: index.php");
+        //header("Location: index.php");
     }
 ?>
 <!--
@@ -97,7 +97,7 @@ require_once './Models/Signup.php';
                 </div>
                 <div class="form-field">
                     <label for="loginPass" class="formLabel">Password</label>
-                    <input type="text" id="loginPass" name="loginPass" class="textInput" placeholder="Password" />
+                    <input type="password" id="loginPass" name="loginPass" class="textInput" placeholder="Password" />
                 </div>
                 <input type="submit" class="formSubmit" name="Login" value="Login" />
                 <div class="form-field">
