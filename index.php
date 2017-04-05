@@ -16,8 +16,13 @@ $userId = $db->userInfo($user);
 //grab username
 $userName = $userId->first_name;
 //var_dump($user);
+
+//check if logout button is set
+
 ?>
     <main>
+        <!-- Logout Modal -->
+
         <!-- 02-2-2. Main Content -->
         <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
             <!-- 02-2-2-1. Intro Banner -->
