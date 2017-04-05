@@ -31,11 +31,20 @@ class Signup
         $newUser = $connect->prepare($insert);
         //bind values
         $newUser->bindValue(":fName", $fname);
+        if (!$fname){
+            $error = "Please enter a valid first name.";
+            return $error;
+        }
         $newUser->bindValue(":lName", $lname);
+        if (!$lname){
+            $error = "Please enter a valid last name.";
+            return $error;
+        }
         $newUser->bindValue(":email",$email);
         // if the user attempts to enter an already registered email
         if (!$email){
-            die("Email already registered.");
+            $error = "Email already registered.";
+            return $error;
         }
         $newUser->bindValue(":pass",$password);
         $newUser->bindValue(":jdate", $join_date);
