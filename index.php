@@ -15,7 +15,7 @@ $db = new Signup();
 $userId = $db->userInfo($user);
 //grab username
 $userName = $userId->first_name;
-//var_dump($user);
+
 
 //check if logout button is set
 
