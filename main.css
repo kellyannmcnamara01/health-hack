@@ -46,7 +46,7 @@ _________________________________
     09. Bryan's Styling
     10. Ivan's Styling
     11. Rahul's Styling
-    12. Kelly's Styling
+    12. y's Styling
     13. Media Queries
 
 */
@@ -742,11 +742,28 @@ td.calendar-day, td.calendar-day-np {
     vertical-align: bottom;
 }
 .foodlist-title-bar {
-    background: #8d97a4;
+    background: #e04152;
     padding-bottom: 8px;
 }
 .foodlist-title {
     color: #fff;
+}
+.buttonLink {
+    background: #35adda;
+    transition: .7s all ease;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 1.3em;
+}
+.buttonLink:hover, .buttonLink:active, .buttonLink:focus {
+    outline: none;
+    background: #8cc34b;
+    text-decoration: none;
+    color: #fff;
+}
+#changeListBtn {
+    padding: 30px 0px;
+    margin: auto 0;
 }
 /*#grocery_list__options .btn-primary:nth-child(even) {
     background: yellow;
