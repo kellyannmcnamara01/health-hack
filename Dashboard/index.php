@@ -12,7 +12,8 @@ session_start();
 // include project files (check if files are already included, if they are, won't include require them again)
 require_once '../Models/Signup.php';
 require_once '../Common Views/Header.php';
-//require_once '../Common Views/sidebar.php';
+require_once 'processImg.php';
+
 
 // est. variable that contains session variable for email
 $user = $_SESSION['user'];
@@ -25,10 +26,18 @@ $userId = $db->userInfo($user);
 $id = $userId->user_id;
 $userName = $userId->first_name;
 
+if (isset($_POST['profileSubmit'])){
+    $file_type = $_FILES['profileImg'];
+    //$file_dir = getcwd() . DIRECTORY_SEPARATOR . $_FILES['profileImg']['name'];
+    //echo $file_dir;
+    // call processImg function()
+    ProfileImg($file_type);
+}
+
 ?>
 <div class="container">
     <div id="main-content" class="col-12">
-        <h1 class="h1 col col-md-8"><?php echo $userName;?>'s Dashboard</h1>
+        <h2 class="h2 col col-md-8"><?php echo $userName;?>'s Dashboard</h2>
         <p class="text-primary col col-md-8">Update your age, weight, and profile image below</p>
     <!-- form to update user profile information -->
     <!-- since user will upload an image, set enctype on form -->
@@ -45,11 +54,11 @@ $userName = $userId->first_name;
             </div>
             <div class="form-field col col-md-8">
                 <label class="formLabel">Upload Profile Image</label>
-                <input class="textInput" type="file">
-                <span class="text-info">Please select an image for your profile</span>
+                <input class="textInput" type="file" name="profileImg">
+                <span class="text-info">Please select an image to display for your profile</span>
             </div>
             <div class="form-field col-6 col-md-4">
-                <input type="submit" class="formSubmit" name="Submit" value="Submit">
+                <input type="submit" class="formSubmit" name="profileSubmit" value="Submit">
             </div>
         </form>
     </div> <!-- end of main-content div-->
