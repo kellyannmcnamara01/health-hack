@@ -117,7 +117,7 @@ INDEX
                     <li class="link-hover"><a href="#" title="Fitness Link">Fitness</a></li>
                     <li class="link-hover"><a href="#" title="Gym Locator Link">Gym Locator</a></li>
                     <li class="link-hover"><a href="#" title="Nutrition Link">Nutrition</a></li>
-                    <li class="link-hover"><a href="#" title="Log Out Link">Log Out</a></li>
+                    <li class="link-hover"><a href="logout.php" title="Log Out Link">Log Out</a></li>
                 </ul>
             </div>
             </nav>
