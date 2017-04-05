@@ -36,7 +36,7 @@ if (isset($_POST['submit_strength'])){
         //create a connection
         require_once '../Models/Database.php';
         $db = new Database();
-        $conn = $db->getDb();
+        $conn = $db->getDbFromAWS();
 
         //create a new strength workout class and set its values.
 

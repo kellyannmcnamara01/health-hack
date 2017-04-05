@@ -52,7 +52,7 @@ if (isset($_POST['submit_cardio'])){
 
         require_once '../Models/Database.php';
         $db = new Database();
-        $conn = $db->getDb();
+        $conn = $db->getDbFromAWS();
 
     //now we grab our DAO object, call the insert method, passing in our db connection and our cardio workout object.
 

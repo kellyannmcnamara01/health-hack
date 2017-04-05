@@ -46,7 +46,7 @@ if (isset($_POST['save_workout'])) {
 
         require_once '../Models/Database.php';
         $db = new Database();
-        $conn = $db->getDb();
+        $conn = $db->getDbFromAWS();
 
         //grab our quick workout class, create an object, set its properties
 

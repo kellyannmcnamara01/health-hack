@@ -14,7 +14,7 @@ $c->setUserId($user_id);
 
 require_once '../Models/Database.php';
 $db   = new Database();
-$conn = $db->getDb();
+$conn = $db->getDbFromAWS();
 
 //create a new cardioWorkoutDAO object and pass in our cardio object and database connection.
 require_once '../Models/cardioworkoutDAO.php';

@@ -21,7 +21,7 @@ $sw->setUserId($user_id);
 //create the db connection
 require_once '../Models/Database.php';
 $db = new Database();
-$conn = $db->getDb();
+$conn = $db->getDbFromAWS();
 
 //grab all of our strength workouts passing in the connection and strength workout object
 require_once '../Models/StrengthWorkoutDAO.php';
@@ -70,7 +70,7 @@ if (isset($_POST['save_strength'])){
 //create the db connection
     require_once '../Models/Database.php';
     $db = new Database();
-    $conn = $db->getDb();
+    $conn = $db->getDbFromAWS();
 $strength_id = filter_input(INPUT_POST,'strength_workout');
 //validate it to make sure it's not zero.
 
