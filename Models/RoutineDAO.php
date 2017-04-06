@@ -43,5 +43,27 @@ saturday_strength, saturday_cardio, sunday_strength, sunday_cardio, active) VALU
          $statement->execute();
          $statement->closeCursor();
     }
+    public function setActive($db, $reqObj){
+        $query = "UPDATE ROUTINES SET active = 'yes' WHERE routine_id = :id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $reqObj->getRoutineId());
+        $statement->execute();
+        $statement->closeCursor();
+}
+    public function getRoutines($db){
+        $query = "SELECT * FROM ROUTINES";
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $routines = $statement->fetchAll();
+        $statement->closeCursor();
+        return $routines;
+    }
+    public function deleteRoutine($db, $reqObj){
+        $query = "DELETE FROM ROUTINES WHERE routine_id = :routine_id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':routine_id', $reqObj->getRoutineId());
+        $statement->execute();
+        $statement->closeCursor();
+}
 
     }

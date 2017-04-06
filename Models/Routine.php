@@ -8,7 +8,23 @@
  */
 class Routine
 {
-    private $user_id, $name, $monday_cardio, $monday_strength, $tuesday_cardio, $tuesday_strength, $wednesday_cardio, $wednesday_strength, $thursday_cardio, $thursday_strength, $friday_cardio, $friday_strength, $saturday_cardio, $saturday_strength, $sunday_cardio, $sunday_strength, $active;
+    private $routine_id, $user_id, $name, $monday_cardio, $monday_strength, $tuesday_cardio, $tuesday_strength, $wednesday_cardio, $wednesday_strength, $thursday_cardio, $thursday_strength, $friday_cardio, $friday_strength, $saturday_cardio, $saturday_strength, $sunday_cardio, $sunday_strength, $active;
+
+    /**
+     * @return mixed
+     */
+    public function getRoutineId()
+    {
+        return $this->routine_id;
+    }
+
+    /**
+     * @param mixed $routine_id
+     */
+    public function setRoutineId($routine_id)
+    {
+        $this->routine_id = $routine_id;
+    }
 
     /**
      * @return mixed
