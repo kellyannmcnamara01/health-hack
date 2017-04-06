@@ -11,7 +11,7 @@ $c->setUserId($user_id);
 
 require_once '../Models/Database.php';
 $db   = new Database();
-$conn = $db->getDbFromAWS();
+$conn = $db->getDb();
 
 //create a new cardioWorkoutDAO object and pass in our cardio object and database connection.
 require_once '../Models/cardioworkoutDAO.php';
@@ -35,11 +35,115 @@ $strength_workouts = $get_strength->getStrengthWorkouts($conn, $sw);
 
 if (isset($_POST['routine_yes']) || isset($_POST['routine_no'])){
 
+
+    //grab all the data
+    //validate and set appropriate fields to null. if a field has a value of 0, we convert it to null to be entered in the database as a null value.
+
+    require_once '../functions/convert_to_null.php';
+
+
+    $routine_name = filter_input(INPUT_POST, 'routine_name');
+
+    $monday_cardio = filter_input(INPUT_POST, 'monday_cardio');
+    $monday_cardio = convertToNull($monday_cardio);
+
+    $monday_strength = filter_input(INPUT_POST, 'monday_strength');
+    $monday_strength = convertToNull($monday_strength);
+    }
+
+    $tuesday_cardio = filter_input(INPUT_POST, 'tuesday_cardio');
+    $tuesday_cardio = convertToNull($tuesday_cardio);
+
+    $tuesday_strength = filter_input(INPUT_POST, 'tuesday_strength');
+    $tuesday_strength = convertToNull($tuesday_strength);
+
+
+    $wednesday_cardio = filter_input(INPUT_POST, 'wednesday_cardio');
+    $wednesday_cardio = convertToNull($wednesday_cardio);
+    $wednesday_strength = filter_input(INPUT_POST, 'wednesday_strength');
+    $wednesday_strength = convertToNull($wednesday_strength);
+
+    $thursday_cardio = filter_input(INPUT_POST, 'thursday_cardio');
+    $thursday_cardio = convertToNull($thursday_cardio);
+
+    $thursday_strength = filter_input(INPUT_POST, 'thursday_strength');
+    $thursday_strength = convertToNull($thursday_strength);
+
+    $friday_cardio = filter_input(INPUT_POST, 'friday_cardio');
+    $friday_cardio = convertToNull($friday_cardio);
+
+    $friday_strength = filter_input(INPUT_POST, 'friday_strength');
+    $friday_strength = convertToNull($friday_strength);
+
+    $saturday_cardio = filter_input(INPUT_POST, 'saturday_cardio');
+    $saturday_cardio = convertToNull($saturday_cardio);
+
+    $saturday_strength = filter_input(INPUT_POST, 'saturday_strength');
+    $saturday_strength = convertToNull($saturday_strength);
+
+    $sunday_cardio = filter_input(INPUT_POST, 'sunday_cardio');
+    $sunday_cardio = convertToNull($sunday_cardio);
+
+    $sunday_strength = filter_input(INPUT_POST, 'sunday_strength');
+    $sunday_strength = convertToNull($sunday_strength);
+
     //create a new routine object
+    require_once '../Models/Routine.php';
+    $r = new Routine();
 
     //create a routine DAO object and use it to insert into db
+require_once '../Models/Routine.php';
+$r = new Routine();
+$r->setName($routine_name);
+$r->setUserId($user_id);
 
-    //if they would like to make this the active routine, query for routines where active is set to yes, and update to no, then insert our routine with active 'yes'
+//set the cardio workouts
+$r->setMondayCardio($monday_cardio);
+$r->setTuesdayCardio($tuesday_cardio);
+$r->setWednesdayCardio($wednesday_cardio);
+$r->setThursdayCardio($thursday_cardio);
+$r->setFridayCardio($friday_cardio);
+$r->setSaturdayCardio($saturday_cardio);
+$r->setSundayCardio($sunday_cardio);
+
+//set the strength workouts
+    $r->setMondayStrength($monday_strength);
+    $r->setTuesdayStrength($tuesday_strength);
+    $r->setWednesdayStrength($wednesday_strength);
+    $r->setThursdayStrength($thursday_strength);
+    $r->setFridayStrength($friday_strength);
+    $r->setSaturdayStrength($saturday_strength);
+    $r->setSundayStrength($sunday_strength);
+
+//two different possibilities depending on if they want to make the routine the active routine in their calendar.
+
+    //if they do want to make it active
+    if (isset($_POST['routine_yes'])){
+        $activeValue = "Yes";
+        $r->setActive($activeValue);
+        //query to find the record where active is set to "yes" and set it to "no".
+       /* $query = "UPDATE ROUTINES set active = 'no' WHERE active = 'yes'";
+        $statement->prepare($query);
+        $statement->execute();
+        $statement->closeCursor();*/
+
+        require_once '../Models/RoutineDAO.php';
+        $rou_yes = new RoutineDAO();
+        $rou_yes->insertRoutine($conn, $r);
+        $success_message = "Routine set in calendar";
+    }
+
+    //if they don't want to make it active
+    if (isset($_POST['routine_no'])){
+        $activeValue = "No";
+        $r->setActive($activeValue);
+
+
+
+        require_once '../Models/RoutineDAO.php';
+        $rou_no = new RoutineDAO();
+        $rou_no->insertRoutine($conn, $r);
+        $success_message = "Routine added";
 
 }
 
@@ -48,15 +152,21 @@ require_once '../Common Views/sidebar.php';
 ?>
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
     <div class="container">
+
+
         <form action="#" method="post">
         <div class="col-md-12 big-spacing">
             <h1 class="red">Set a Routine</h1>
+            <p class="badge badge-success"><?php if (isset($success_message)){ echo $success_message;} ?></p>
+
             <p>Here, you can create a routine by selecting a cardio and strength workout for each day of the week. Your routine will appear in your calendar so that you can easily schedule and complete workouts!</p>
+            <input placeholder="Provide Name for Workout Routine" <?php if (isset($routine_name)){ echo "value='" . $routine_name ."'";}?> type="text" class="form-control col-md-9 col-sm-9 col-xs-9" name="routine_name"/>
+
             <div class="row">
                 <div class="col-md-3">
                     <h2>Monday</h2>
                     <select name="monday_cardio" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Cardio--</option>
                         <?php
                         foreach ($cardio_workouts as $cardio):
                             ?>
@@ -74,7 +184,7 @@ require_once '../Common Views/sidebar.php';
                         ?>
                     </select>
                     <select name="monday_strength" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Strength--</option>
                         <?php
                         foreach ($strength_workouts as $strength):
                             ?>
@@ -101,7 +211,7 @@ require_once '../Common Views/sidebar.php';
                 <div class="col-md-3">
                     <h2>Tuesday</h2>
                     <select name="tuesday_cardio" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Cardio--</option>
                         <?php
                         foreach ($cardio_workouts as $cardio):
                             ?>
@@ -119,7 +229,7 @@ require_once '../Common Views/sidebar.php';
                         ?>
                     </select>
                     <select name="tuesday_strength" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Strength--</option>
                         <?php
                         foreach ($strength_workouts as $strength):
                             ?>
@@ -145,7 +255,7 @@ require_once '../Common Views/sidebar.php';
                 <div class="col-md-3">
                     <h2>Wednesday</h2>
                     <select name="wednesday_cardio" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Cardio--</option>
                         <?php
                         foreach ($cardio_workouts as $cardio):
                             ?>
@@ -163,7 +273,7 @@ require_once '../Common Views/sidebar.php';
                         ?>
                     </select>
                     <select name="wednesday_strength" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Strength--</option>
                         <?php
                         foreach ($strength_workouts as $strength):
                             ?>
@@ -189,7 +299,7 @@ require_once '../Common Views/sidebar.php';
                 <div class="col-md-3">
                     <h2>Thursday</h2>
                     <select name="thursday_cardio" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Cardio--</option>
                         <?php
                         foreach ($cardio_workouts as $cardio):
                             ?>
@@ -207,7 +317,7 @@ require_once '../Common Views/sidebar.php';
                         ?>
                     </select>
                     <select name="thursday_strength" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Strength--</option>
                         <?php
                         foreach ($strength_workouts as $strength):
                             ?>
@@ -235,7 +345,7 @@ require_once '../Common Views/sidebar.php';
                 <div class="col-md-4">
                     <h2>Friday</h2>
                     <select name="friday_cardio" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Cardio--</option>
                         <?php
                         foreach ($cardio_workouts as $cardio):
                             ?>
@@ -253,7 +363,7 @@ require_once '../Common Views/sidebar.php';
                         ?>
                     </select>
                     <select name="friday_strength" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Strength--</option>
                         <?php
                         foreach ($strength_workouts as $strength):
                             ?>
@@ -279,7 +389,7 @@ require_once '../Common Views/sidebar.php';
                 <div class="col-md-4">
                     <h2>Saturday</h2>
                     <select name="saturday_cardio" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Cardio--</option>
                         <?php
                         foreach ($cardio_workouts as $cardio):
                             ?>
@@ -297,7 +407,7 @@ require_once '../Common Views/sidebar.php';
                         ?>
                     </select>
                     <select name="saturday_strength" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Strength--</option>
                         <?php
                         foreach ($strength_workouts as $strength):
                             ?>
@@ -323,7 +433,7 @@ require_once '../Common Views/sidebar.php';
                 <div class="col-md-4">
                     <h2>Sunday</h2>
                     <select name="sunday_cardio" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Cardio--</option>
                     <?php
                     foreach ($cardio_workouts as $cardio):
                         ?>
@@ -341,7 +451,7 @@ require_once '../Common Views/sidebar.php';
                     ?>
                     </select>
                     <select name="sunday_strength" class="form-control">
-                        <option value="0">--Select--</option>
+                        <option value="0">--Strength--</option>
                         <?php
                         foreach ($strength_workouts as $strength):
                             ?>
