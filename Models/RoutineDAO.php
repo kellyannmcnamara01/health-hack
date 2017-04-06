@@ -37,5 +37,11 @@ saturday_strength, saturday_cardio, sunday_strength, sunday_cardio, active) VALU
         $statement->closeCursor();
 
     }
+    public function setInactive($db){
+         $query = "UPDATE ROUTINES set active = 'no' WHERE active = 'yes'";
+         $statement = $db->prepare($query);
+         $statement->execute();
+         $statement->closeCursor();
+    }
 
     }
