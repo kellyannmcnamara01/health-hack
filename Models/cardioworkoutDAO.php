@@ -59,5 +59,20 @@ class cardioworkoutDAO
         $statement->execute();
         $statement->closeCursor();
     }
+    public function deleteCardio ($db, $reqObj){
+        $query = "DELETE FROM CARDIO_WORKOUTS WHERE user_id = :user_id AND cardio_id = :cardio_id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':user_id', $reqObj->getUserId());
+        $statement->bindValue(':cardio_id', $reqObj->getId());
+        $statement->execute();
+        $statement->closeCursor();
+    }
+    public function deleteCompletedCardio ($db, $reqObj){
+        $query ="DELETE FROM COMPLETED_CARDIO_WORKOUTS WHERE cardio_id = :cardio_id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':cardio_id', $reqObj->getCardioId());
+        $statement->execute();
+        $statement->closeCursor();
+    }
 
 }

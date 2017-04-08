@@ -29,6 +29,14 @@ require_once '../Common Views/sidebar.php';
                     <p class="text-center">Quick Cardio Workout</p>
                 </a>
             </div>
+            <div class="feature col-md-4 col-sm-4 col-4">
+                <a href="manage-cardio-workouts.php" class="feature-btn">
+                    <div class="feature-icon">
+                        <img src="../opt-imgs/fitnessprogress-icon.png" alt="" />
+                    </div>
+                    <p class="text-center">Manage Cardio Workouts</p>
+                </a>
+            </div>
         </div>
     </div>
 </main>

@@ -8,17 +8,18 @@
 require_once '../Models/Database.php';
 $db = new Database();
 $conn = $db->getDbFromAWS();
-
+$user_id = 1;
 if (isset($_POST['set_active'])){
     //change the row that is active to 'no'
     $routine_id = filter_input(INPUT_POST, 'routine');
     require_once '../Models/Routine.php';
     $routine_Change = new Routine();
     $routine_Change->setRoutineId($routine_id);
+    $routine_Change->setUserId($user_id);
 
     require_once '../Models/RoutineDAO.php';
     $r_Change = new RoutineDAO();
-    $r_Change->setInactive($conn);
+    $r_Change->setInactive($conn, $routine_Change);
     //update the row with the id we have now and set it to active = 'yes'
 
     $r_Change->setActive($conn, $routine_Change);
@@ -39,6 +40,7 @@ if (isset($_POST['delete_routines'])) {
 
             $routine_Delete = new Routine();
             $routine_Delete->setRoutineId($value);
+            $routine_Delete->setUserId($user_id);
 
             $r_Delete = new RoutineDAO();
             $r_Delete->deleteRoutine($conn, $routine_Delete);
@@ -49,10 +51,13 @@ if (isset($_POST['delete_routines'])) {
 }
 
 
-//get routines
+//get routines where the user id is equal to our user
 require_once '../Models/RoutineDAO.php';
+require_once '../Models/Routine.php';
+$our_User = new Routine();
+$our_User->setUserId($user_id);
 $r = new RoutineDAO();
-$routines = $r->getRoutines($conn);
+$routines = $r->getRoutines($conn, $our_User);
 
 
 
