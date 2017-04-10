@@ -11,6 +11,8 @@ $db = $dbConn->getDbFromAWS();
 //include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
+$gLists = $gListConn->populateGroceryLists($db);
+$userList = $gListConn->populateUserListId($db);
 
 if($list_id == 0){
     header('Location: ../GroceryList/Grocery.php');
@@ -21,10 +23,6 @@ if($list_id == 0){
 } else {
     $list = $gListConn->populateGlutenFreeList($db);
 }
-
-//include addFoodDiaryEntry() from groceryList DAO
-$foodEntryConn = new GroceryListDAO();
-$foodEntry = $foodEntryConn->addFoodDiaryEntry($db);
 
 //include the header
 require_once "../Common Views/Header.php";
@@ -41,6 +39,32 @@ $track_id = "";
 
 if(isset($_POST['foodEntrySubmit'])) {
 
+    //include the getter and setter for the food entry file
+    require_once "../Models/FoodEntry.php";
+
+    //set the vars
+    $foodEntryGetSet = new FoodEntry();
+    $food_item_id = $_POST["food-item-selected"];
+    $meal = $_POST["meal"];
+    $servings_count = $_POST["severing"];
+    //$time = new DateTime();
+    //$timestamp = $time->format('Y-m-d H:i:s');
+    $timestamp = date('Y-m-d H:i:s');
+    $user_id = 1;
+
+    //adding content query
+    $query_foodDiaryEntry = "INSERT INTO FOOD_TRACKING_LISTS
+                                  VALUES (:track_id, :user_id, :food_item_id, :meal, :servings_count, :timeInput )";
+    $pdo_statement = $db->prepare($query_foodDiaryEntry);
+    $pdo_statement->bindValue("track_id", $track_id);
+    $pdo_statement->bindValue(":user_id", $user_id);
+    $pdo_statement->bindValue(":food_item_id", $food_item_id);
+    $pdo_statement->bindValue(":meal", $meal);
+    $pdo_statement->bindValue(":servings_count", $servings_count);
+    $pdo_statement->bindValue(":timeInput", $timestamp);
+    $pdo_statement->execute();
+    $pdo_statement->closeCursor();
+
 }
 
 
@@ -54,12 +78,13 @@ if(isset($_POST['foodEntrySubmit'])) {
         <div id="nutrition"><a class="buttonLink" href="index.php">Back to Nutrition Home Page</a></div>
     </div>
     <div class="feature col-md-10 col-sm-12 col-12">
+
         <form method="post" action="" id="food-diary-entry">
             <div class="form-field">
                 <label for="food-item-selected">Food Item Name:</label>
                 <select name="food-item-selected">
                     <?php foreach ($list as $listOutput) { ?>
-                        <option value="<?php echo $listOutput->food_item_id ?>"><?php echo $listOutput->food_item_name ?></option>
+                        <option value="<?php echo $listOutput->food_item_id ?>"><?php echo $listOutput->food_item_id ?></option>
                     <?php } ?>
                 </select>
             </div>
