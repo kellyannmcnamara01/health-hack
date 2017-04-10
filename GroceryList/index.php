@@ -38,6 +38,7 @@ require_once "../Common Views/sidebar.php";
         <p>Welcome to your nutrition section of Health Hack. Here you will be able to select what grocery list you'd like to base your diet off of. As well you will be able to see and add to your selected list. Finally you will also be able to track what you ate and when. This is important on your way to a healthy life style.</p>
         <p>Below you will see a list of food items that are currently in your list. If you would like to change your grocery list please use the button below.</p>
         <div id="changeListBtn"><a class="buttonLink" href="Grocery.php">Select a New Grocery List</a></div>
+        <div id="enterFood"><a class="buttonLink" href="FoodDiaryEntry.php">Food Tracker</a></div>
     </div>
     <div class="feature col-md-10 col-sm-12 col-12">
         <div class="col-md-12 row foodlist-title-bar">
@@ -63,11 +64,14 @@ require_once "../Common Views/sidebar.php";
         }
         ?>
         <div class="col-md-12 row">
+        <!--
             <form method="post" action="#" id="addFood">
                 <div class="form-field">
-                    <input type="text" id="user_food_item" name="user_food_item" placeholder="Food Item Name" />
+                    <label for="user_food_item" class="">Food Item Name</label>
+                    <input type="text" id="user_food_item" name="user_food_item" class="" placeholder="Food Item Name" />
                 </div>
             </form>
+        -->
         </div>
     </div>
 </div>

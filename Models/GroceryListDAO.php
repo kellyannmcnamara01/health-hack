@@ -60,4 +60,10 @@ class GroceryListDAO
         $glutenFreeList = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $glutenFreeList;
     }
+    /*public function addFoodDiaryEntry($db) {
+        $query_foodDiaryEntry = "INSERT INTO FOOD_TRACKING_LIST
+                                  VALUES (:food_item_id, :meal, :servings_count, :timeInput, :track_id, :user_id )";
+        $pdo_statement = $db->prepare($query_foodDiaryEntry);
+
+    }*/
 }
