@@ -6,6 +6,9 @@ require_once '../Common Views/sidebar.php';
 
 $user_id = 1;
 if (isset($_POST['submit_cardio'])){
+
+    //set up a flag variable that gets turned to false if any of our validation fails
+    $cardio_Valid = true;
     //grab inputs from previous form
 
     $cardio_name = filter_input(INPUT_POST, 'cardio_name');
@@ -18,24 +21,55 @@ if (isset($_POST['submit_cardio'])){
 
 //now let's validate
 
+    //now let's get the database connection and create a new object
+
+    require_once '../Models/Database.php';
+    $db = new Database();
+    $conn = $db->getDbFromAWS();
+
     require_once '../Models/Validation.php';
+    require_once '../Models/cardioworkout.php';
+    $c = new cardioworkout();
+
+    $c->setUserId($user_id);
+
+    require_once '../Models/cardioworkoutDAO.php';
+    $insert_C = new cardioworkoutDAO();
+
+    $list = $insert_C->verify_Unique_Cardio($conn, $c);
+    $cardio_Names_List = array();
+    foreach ($list as $key => $value){
+        array_push($cardio_Names_List, $value[0]);
+    }
+    if (in_array($cardio_name, $cardio_Names_List)){
+        $name_error = "You must pick a unique name!";
+        $cardio_Valid = false;
+    }
+
     $v = new Validation();
 
     if ($v->testName($cardio_name) == false) {
         $name_error = "Name workout!";
+        $cardio_Valid = false;
+
     }
     if ($v->testName($cardio_type == false)){
         $type_error = "Specify type!";
+        $cardio_Valid = false;
+
     }
     if ($v->testZero($cardio_distance) == false){
         $distance_error = "Enter goal distance!";
+        $cardio_Valid = false;
+
     }
     if ($v->testZero($cardio_hours) == false && $v->testZero($cardio_minutes) == false && $v->testZero($cardio_seconds) == false){
         $time_error = "Enter goal time!!";
+        $cardio_Valid = false;
+
     }
 
-    if ($v->testName($cardio_name) == true && $v->testName($cardio_type == true && $v->testZero($cardio_distance) == true && ($v->testZero($cardio_hours) == true || $v->testZero($cardio_minutes) == true || $v->testZero($cardio_seconds) == true))){
-        //insert a function to change the time format
+if ($cardio_Valid){        //insert a function to change the time format
 
         require_once '../functions/time_format_function.php';
 
@@ -51,16 +85,10 @@ if (isset($_POST['submit_cardio'])){
         $c->setGoalTime($cardio_time);
         $c->setUserId($user_id);
 
-        //now let's get the database connection and create a new object
-
-        require_once '../Models/Database.php';
-        $db = new Database();
-        $conn = $db->getDbFromAWS();
 
     //now we grab our DAO object, call the insert method, passing in our db connection and our cardio workout object.
 
-    require_once '../Models/cardioworkoutDAO.php';
-    $insert_C = new cardioworkoutDAO();
+
     $insert_C->insertCardio($conn, $c);
 $_SESSION['cardio_success'] = "Cardio workout created!";
 header("Location: Cardio.php");

@@ -92,4 +92,14 @@ saturday_strength, saturday_cardio, sunday_strength, sunday_cardio, active) VALU
         $statement->execute();
         $statement->closeCursor();
     }
+    public function verifyUniqueName ($db, $reqObj){
+        $query = "SELECT name FROM ROUTINES WHERE user_id = :user_id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':user_id', $reqObj->getUserId());
+        $statement->execute();
+        $names = $statement->fetchAll();
+        $statement->closeCursor();
+        return $names;
+    }
+
 }

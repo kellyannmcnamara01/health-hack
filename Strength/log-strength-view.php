@@ -8,7 +8,7 @@
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 ?>
-div id="main-content" class="col-md-9 col-sm-12 col-12 row">
+<div id="main-content" class="col-md-9 col-sm-12 col-12 row">
     <div class="container">
         <form action="#" method="post">
         <div class="col-md-12 big-spacing">

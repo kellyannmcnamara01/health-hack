@@ -74,5 +74,14 @@ class cardioworkoutDAO
         $statement->execute();
         $statement->closeCursor();
     }
+    public function verify_Unique_Cardio ($db, $reqObj){
+        $query = "SELECT name FROM CARDIO_WORKOUTS WHERE user_id = :user_id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':user_id', $reqObj->getUserId());
+        $statement->execute();
+        $cardio_names = $statement->fetchAll();
+        $statement->closeCursor();
+        return $cardio_names;
+    }
 
 }

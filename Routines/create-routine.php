@@ -36,6 +36,9 @@ $strength_workouts = $get_strength->getStrengthWorkouts($conn, $sw);
 
 if (isset($_POST['routine_yes']) || isset($_POST['routine_no'])) {
 
+        //setting up a flag variable here for validation later. If any of our
+        //validation fails, this will be set to false and submission to db will not occur.
+    $valid = true;
 
     //grab all the data, and run a function that converts values of zero to null.
 
@@ -71,18 +74,13 @@ if (isset($_POST['routine_yes']) || isset($_POST['routine_no'])) {
         $sunday_strength = filter_input(INPUT_POST, 'sunday_strength');
         $sunday_strength = convertToNull($sunday_strength);
 
-            //validation
+            //validation for empty
     require_once '../Models/Validation.php';
     $v = new Validation();
     if ($v->testName($routine_name) == false){
         $routine_name_error = "You must provide a name for the routine";
+        $valid = false;
     }
-    if ($monday_strength == null && $tuesday_strength == null && $wednesday_strength == null && $thursday_strength == null && $friday_strength == null &&
-        $saturday_strength == null && $sunday_strength == null && $monday_cardio == null && $tuesday_cardio == null && $wednesday_cardio == null && $thursday_cardio == null && $friday_cardio == null && $saturday_cardio == null && $sunday_cardio == null){
-        $workout_error = "You forgot to enter workouts!";
-    }
-
-else {
     //create a new routine object
     require_once '../Models/Routine.php';
     $r = new Routine();
@@ -93,51 +91,73 @@ else {
     $r->setName($routine_name);
     $r->setUserId($user_id);
 
+    //now let's create a new workout routine dao, pass in our routine in the getRoutines function to make sure we
+    //our user names their new routine uniquely.
+    require_once '../Models/RoutineDAO.php';
+    $unique_Name_Check = new RoutineDAO();
+    $list = $unique_Name_Check->verifyUniqueName($conn, $r);
+    $routine_Names_List = array();
+    foreach ($list as $key => $value) {
+        array_push($routine_Names_List, $value[0]);
+    }
+    if (in_array($routine_name, $routine_Names_List)) {
+        $routine_name_error = "You must pick a unique workout name!";
+        $valid = false;
+    }
+
+    if ($monday_strength == null && $tuesday_strength == null && $wednesday_strength == null && $thursday_strength == null && $friday_strength == null &&
+        $saturday_strength == null && $sunday_strength == null && $monday_cardio == null && $tuesday_cardio == null && $wednesday_cardio == null && $thursday_cardio == null && $friday_cardio == null && $saturday_cardio == null && $sunday_cardio == null){
+        $workout_error = "You forgot to enter workouts!";
+        $valid = false;
+    }
+
+if ($valid) {
+
+
+
 //set the cardio workouts
-    $r->setMondayCardio($monday_cardio);
-    $r->setTuesdayCardio($tuesday_cardio);
-    $r->setWednesdayCardio($wednesday_cardio);
-    $r->setThursdayCardio($thursday_cardio);
-    $r->setFridayCardio($friday_cardio);
-    $r->setSaturdayCardio($saturday_cardio);
-    $r->setSundayCardio($sunday_cardio);
+        $r->setMondayCardio($monday_cardio);
+        $r->setTuesdayCardio($tuesday_cardio);
+        $r->setWednesdayCardio($wednesday_cardio);
+        $r->setThursdayCardio($thursday_cardio);
+        $r->setFridayCardio($friday_cardio);
+        $r->setSaturdayCardio($saturday_cardio);
+        $r->setSundayCardio($sunday_cardio);
 
 //set the strength workouts
-    $r->setMondayStrength($monday_strength);
-    $r->setTuesdayStrength($tuesday_strength);
-    $r->setWednesdayStrength($wednesday_strength);
-    $r->setThursdayStrength($thursday_strength);
-    $r->setFridayStrength($friday_strength);
-    $r->setSaturdayStrength($saturday_strength);
-    $r->setSundayStrength($sunday_strength);
+        $r->setMondayStrength($monday_strength);
+        $r->setTuesdayStrength($tuesday_strength);
+        $r->setWednesdayStrength($wednesday_strength);
+        $r->setThursdayStrength($thursday_strength);
+        $r->setFridayStrength($friday_strength);
+        $r->setSaturdayStrength($saturday_strength);
+        $r->setSundayStrength($sunday_strength);
 
 //two different possibilities depending on if they want to make the routine the active routine in their calendar.
 
-    //if they do want to make the routine active in the calendar
-    if (isset($_POST['routine_yes'])) {
-        $activeValue = "Yes";
-        $r->setActive($activeValue);
-        require_once '../Models/RoutineDAO.php';
-        $rou_yes = new RoutineDAO();
-        //run query to set all rows (should only be 1) that are set to active to inactive
-        $rou_yes->setInactive($conn, $r);
-        $rou_yes->insertRoutine($conn, $r);
-        $_SESSION['routine_success'] = "Routine set in calendar";
-        header("Location: routines.php");
-    }
+        //if they do want to make the routine active in the calendar
+        if (isset($_POST['routine_yes'])) {
+            $activeValue = "Yes";
+            $r->setActive($activeValue);
+            $rou_yes = new RoutineDAO();
+            //run query to set all rows (should only be 1) that are set to active to inactive
+            $rou_yes->setInactive($conn, $r);
+            $rou_yes->insertRoutine($conn, $r);
+            $_SESSION['routine_success'] = "Routine set in calendar";
+            header("Location: routines.php");
+        }
 
-    //if they don't want to make it active in the calendar.
-    if (isset($_POST['routine_no'])) {
-        $activeValue = "No";
-        $r->setActive($activeValue);
-        require_once '../Models/RoutineDAO.php';
-        $rou_no = new RoutineDAO();
-        $rou_no->insertRoutine($conn, $r);
-        $_SESSION['routine_success'] = "Routine added";
-        header("Location: routines.php");
+        //if they don't want to make it active in the calendar.
+        if (isset($_POST['routine_no'])) {
+            $activeValue = "No";
+            $r->setActive($activeValue);
+            $rou_no = new RoutineDAO();
+            $rou_no->insertRoutine($conn, $r);
+            $_SESSION['routine_success'] = "Routine added";
+            header("Location: routines.php");
 
+        }
     }
-}
 
 }
 
