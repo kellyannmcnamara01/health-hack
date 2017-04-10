@@ -36,7 +36,7 @@ require_once './Models/Signup.php';
         $_SESSION['user'] = $userId->user_id;
         var_dump($_SESSION['user']);
         //point page to create-routine.php
-        header("Location: create-routine.php");
+        header("Location: index.php");
     }
 ?>
 <!--

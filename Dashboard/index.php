@@ -11,6 +11,7 @@ session_start();
 
 // include project files (check if files are already included, if they are, won't include require them again)
 require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
 require_once '../Common Views/Header.php';
 require_once 'processImg.php';
 
@@ -24,14 +25,32 @@ $db = new Signup();
 $userId = $db->userInfo($user);
 //grab  user id, username
 $id = $userId->user_id;
-$userName = $userId->first_name;
+$userName = $userId->first_name . '' . $userId->last_name;
 
 if (isset($_POST['profileSubmit'])){
-    $file_type = $_FILES['profileImg'];
-    //$file_dir = getcwd() . DIRECTORY_SEPARATOR . $_FILES['profileImg']['name'];
-    //echo $file_dir;
-    // call processImg function()
-    ProfileImg($file_type);
+    $file_error = $_FILES['profileImg']['error'];
+    $file_size = $_FILES['profileImg']['size'];
+    $file_name = $_FILES['profileImg']['name'];
+
+    // form values
+    $age = filter_input(INPUT_POST, "ProfileAge");
+    $weight = filter_input(INPUT_POST, "ProfileWeight");
+
+    // call Image validation function(s)
+    $img_error = ImgCode($file_error);
+    $img_size = ImgSize($file_size);
+
+    if($img_size === true && $img_error == true){
+        // call ImgPath()
+        $img_name = ImgPath($file_name,$userName);
+        var_dump($img_name);
+        // move_uploaded_file()
+        //move_uploaded_file($file_name, $img_name);
+        // new instance of Profile
+        //$signup = new Profile();
+        //$signup->UserInfo($id,$age,$weight,$img_name);
+    }
+
 }
 
 ?>
@@ -44,12 +63,12 @@ if (isset($_POST['profileSubmit'])){
         <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation">
             <div class="form-field col col-md-8">
                 <label class="formLabel">Age</label>
-                <input class="textInput" pattern="^\d[1-100]?" title="Please enter a valid number" placeholder="Age" name="ProfileAge">
+                <input class="textInput" title="Please enter a valid number" placeholder="Age" name="ProfileAge">
                 <span class="text-info">Please enter your age</span>
             </div>
             <div class="form-field col col-md-8">
                 <label class="formLabel">Weight</label>
-                <input class="textInput" pattern="^\d[1-350]?" title="Please enter a valid number" placeholder="Weight" name="ProfileWeight">
+                <input class="textInput"  title="Please enter a valid number" placeholder="Weight" name="ProfileWeight">
                 <span class="text-info">Please enter your weight</span>
             </div>
             <div class="form-field col col-md-8">
