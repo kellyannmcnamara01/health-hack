@@ -5,9 +5,9 @@
  * Date: 2017-03-27
  * Time: 3:29 PM
  */
+ob_start();
+session_start();
 
-require_once '../Common Views/Header.php';
-require_once '../Common Views/sidebar.php';
 //test change
 $user_id = 1;
 
@@ -90,7 +90,7 @@ else {
 
     $get_Strength = new StrengthWorkoutDAO();
     $strength_Workout = $get_strength->get1StrengthWorkout($conn, $selected_Strength_Workout);
-}
+
 
 //grab all of our strength workouts passing in the connection and strength workout object
     require_once '../Models/StrengthWorkoutDAO.php';
@@ -104,96 +104,49 @@ else {
     $set_1 = array($_POST['set_1'])[0];
     $set_2 = array ($_POST['set_2'])[0];
     $set_3 = array($_POST['set_3'])[0];
+    // must evaluate for a value of 0 within weight and set 1. Our users are allowed to do only 1 set of an exercise so we only have to make sure the first set is not 0
+    //we will do this by searching the array for 0
 
-    for ($i = 0; $i < count($completed_exercise_id); $i++){
-        $query = "INSERT INTO COMPLETED_STRENGTH_EXERCISES 
+    if (in_array(0, $weight)){
+        if (in_array(0, $set_1)){
+            $set_1_error = "You must provide a value for at least the first set.";
+        }
+        $weight_error = "You must enter a weight!";
+
+    }
+    else {
+
+        //now that we've grabbed all the elements we need, we must insert them into the completed strength workouts table in a foreach loop
+
+        for ($i = 0; $i < count($completed_exercise_id); $i++) {
+            //if the value is no weight (in the case of weightless exercises like pull ups
+            //we switch the value back to 0 to insert into db. We must do it this way because
+            //the alternative is to allow for 0 values in the select box, which would not validate for users
+            //forgetting to enter a weight. So at the bottom of the weight select box, we provide a value that is
+            //"No weight."
+            if ($weight[$i] == "1") {
+                $weight[$i] = 0;
+            }
+            $query = "INSERT INTO COMPLETED_STRENGTH_EXERCISES 
         (exercise_id, strength_id, exercise_name, weight, set_1, set_2, set_3)
         VALUES (:completed_exercise_id, :completed_strength_id, :exercise_name, :weight,:set_1, :set_2, :set_3 )";
-        $statement= $conn->prepare($query);
-        $statement->bindValue(':completed_exercise_id', $completed_exercise_id[$i]);
-        $statement->bindValue(':completed_strength_id', $completed_strength_id[$i]);
-        $statement->bindValue('exercise_name', $exercise_name[$i]);
-        $statement->bindValue(':weight', $weight[$i]);
-        $statement->bindValue(':set_1', $set_1[$i]);
-        $statement->bindValue(':set_2', $set_2[$i]);
-        $statement->bindValue(':set_3', $set_3[$i]);
-        $statement->execute();
-        $statement->closeCursor();
+            $statement = $conn->prepare($query);
+            $statement->bindValue(':completed_exercise_id', $completed_exercise_id[$i]);
+            $statement->bindValue(':completed_strength_id', $completed_strength_id[$i]);
+            $statement->bindValue('exercise_name', $exercise_name[$i]);
+            $statement->bindValue(':weight', $weight[$i]);
+            $statement->bindValue(':set_1', $set_1[$i]);
+            $statement->bindValue(':set_2', $set_2[$i]);
+            $statement->bindValue(':set_3', $set_3[$i]);
+            $statement->execute();
+            $statement->closeCursor();
+            $log_success = "Workout logged!";
+            $_SESSION['strength_success'] = "Workout saved. Nice work!";
+            header("Location: strength.php");
+        }
+        }
+
     }
-
-    //now that we've grabbed all the elements we need, we must insert them into the completed strength workouts table in a foreach loop
-
 }
+require_once 'log-strength-view.php';
 ?>
-<div id="main-content" class="col-md-9 col-sm-12 col-12 row">
-    <div class="container">
-        <form action="#" method="post">
-        <div class="col-md-12 big-spacing">
-            <h1 class="red">Log a Strength Workout</h1>
-            <p>Here, you can select a strength workout you created, and log it to your profile!</p>
-            <p class="badge badge-success"><?php if(isset($success_message)){echo $success_message;}?></p>
-        </div>
-
-        <h3 class=" offset-md-1 spacing">Load your workout here</h3>
-        <div class="form-field big-spacing col-md9 offset-md-0">
-            <h2 class="spacing">Select a strength workout</h2>
-            <select  name="strength_workout" class="form-control col-md-9 col-sm-9 col-xs-9">
-                <option value="0">--Select--</option>
-                <?php
-                foreach ($strength_workouts as $strength):
-                    ?>
-                    <option <?php
-                    if (isset($strength_Workout)) {
-                        foreach ($strength_Workout as $key){
-                            if ($key['strength_id'] == $strength['strength_id']){
-                                echo 'selected ';
-                            }
-
-                        }
-                    }
-                    ?>  value="<?php
-                    echo $strength['strength_id'];
-                    ?>"><?php
-                        echo $strength['strength_workout_name'];
-                        ?></option>
-                    <?php
-                endforeach;
-                ?>
-            </select><span class="badge badge-warning"><?php if (isset($strength_workout_error)){ echo $strength_workout_error;}?></span>
-        </div>
-
-        <div class="form-field big-spacing">
-            <input  type="submit" name="load_strength" value="Load Details" class="formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3 "/>
-        </div>
-        <h3 class="offset-md-1 spacing">Log your workout here </h3>
-            <div class="table-responsive big-spacing">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Exercise</th>
-                        <th>Weight</th>
-                        <th>Set 1</th>
-                        <th>Set 2</th>
-                        <th>Set 3</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php if (isset($strength_Workout)){
-                        require_once 'exercise-form.php';
-                    }?>
-
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="form-field big-spacing">
-              <input  type="submit" name="save_strength" value="Save Workout" class="formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3    "/>
-            </div>
-        </form>
-    </div>
-    </div>
-</main>
-<?php
-require_once '../Common Views/Footer.php';
-?>
-

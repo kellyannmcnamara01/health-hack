@@ -36,6 +36,7 @@ function toggleMobileMenu() {
 /* adding an exercise JOSH MCCORMICK */
 $(document).ready(function(){
     var ex_Reg_Ex = /^[a-z]+\s?[a-z]+\s?[a-z]+\s?$/i;
+    var number = 1;
     $('#add_ex').click(function(){
         var addEx = $('input[name=exer' +
             'cise_name]').val();
@@ -45,13 +46,15 @@ $(document).ready(function(){
         else {
             $(".exercise_error").html("");
             $('#ex_list').append("<input type='hidden' name='exercises[]' value='" + addEx +"'/>"
-            + "<li class='exercises'>" + addEx + "<input type='button' class='delete_exercise btn btn-danger offset-md-3' value='Remove'/></li>");
+            + "<li class='exercises'>" +number + ") " +  addEx + "</li>");
             $('input[name=exercise_name]').val("");
+            number ++;
         }
 
     });
-$('.delete_exercise').bind('click',function(){
-    alert('test');
+$("#delete_ex").click(function(){
+   $("#ex_list").html("");
+   number = 1;
 });
 });
 

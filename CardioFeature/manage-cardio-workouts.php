@@ -6,6 +6,8 @@
  * Time: 6:13 PM
  */
 //grab the database connection.
+ob_start();
+session_start();
 $user_id = 1;
 require_once '../Models/Database.php';
 $db   = new Database();
@@ -49,8 +51,8 @@ if (isset($_POST['delete_cardio'])){
 
                 $c_Delete = new cardioworkoutDAO();
                 $c_Delete->deleteCardio($conn, $cardio_Delete);
-                $success_message = "Cardio workout deleted!";
-
+                $_SESSION['cardio_success'] = "Cardio workout deleted";
+                header("Location: Cardio.php");
         }
 
         }

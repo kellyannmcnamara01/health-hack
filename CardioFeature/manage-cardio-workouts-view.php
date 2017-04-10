@@ -13,7 +13,7 @@ require_once '../Common Views/sidebar.php';
 <form action="#" method="post">
     <h1 class="red">Manage Cardio Workouts</h1>
     <p class="badge badge-success"><?php if (isset($success_message)){ echo $success_message;} ?></p>
-    <p>Here, you can set delete cardio workouts. All instances of the cardio workout will also be deleted in your completed cardio workouts.</p>
+    <p>Here, you can delete cardio workouts. All instances of the cardio workout will also be deleted in your completed cardio workouts.</p>
     <p>If the workout is part of a routine, that routine will also be deleted.</p>
 
     <h2>Your Cardio Workouts</h2>

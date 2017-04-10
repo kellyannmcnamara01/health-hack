@@ -57,5 +57,19 @@ public function get1StrengthWorkout($db, $reqObj){
     $statement->closeCursor();
     return $exercises;
 }
+public function deleteStrengthExercises($db, $reqObj){
+    $query = "DELETE FROM STRENGTH_EXERCISES WHERE strength_workout_id = :strength_workout_id";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':strength_workout_id', $reqObj->getStrengthWorkoutId());
+    $statement->execute();
+    $statement->closeCursor();
+}
+public function deleteStrengthWorkout($db, $reqObj){
+    $query = "DELETE FROM STRENGTH_WORKOUTS WHERE strength_id = :strength_id";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':strength_id', $reqObj->getId());
+    $statement->execute();
+    $statement->closeCursor();
+}
 
 }

@@ -24,6 +24,7 @@
                         ?></option>
                 <?php endforeach;
                 ?>
+                <option value="1">No Weight</option>
             </select>
         </td>
         <td><select name="set_1[]">

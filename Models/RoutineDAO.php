@@ -78,9 +78,17 @@ saturday_strength, saturday_cardio, sunday_strength, sunday_cardio, active) VALU
     }
     public function deleteCardioRoutine($db, $cardio_id){
         $query = "DELETE FROM ROUTINES WHERE monday_cardio = :cardio_id OR tuesday_cardio = :cardio_id OR wednesday_cardio = :cardio_id OR
- thursday_cardio = :cardio_id OR friday_cardio = :cardio_id OR saturday_cardio = :cardio_id OR sunday_cardio = :cardio_id";
+        thursday_cardio = :cardio_id OR friday_cardio = :cardio_id OR saturday_cardio = :cardio_id OR sunday_cardio = :cardio_id";
         $statement = $db->prepare($query);
         $statement->bindValue(':cardio_id', $cardio_id);
+        $statement->execute();
+        $statement->closeCursor();
+    }
+    public function deleteStrengthRoutine($db, $strength_id){
+        $query = "DELETE FROM ROUTINES WHERE monday_strength = :strength_id OR tuesday_strength = :strength_id OR wednesday_strength = :strength_id
+        OR thursday_strength = :strength_id OR friday_strength = :strength_id OR saturday_strength = :strength_id OR sunday_strength = :strength_id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':strength_id', $strength_id);
         $statement->execute();
         $statement->closeCursor();
     }

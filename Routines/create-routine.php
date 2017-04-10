@@ -1,4 +1,5 @@
 <?php
+session_start();
 $user_id = 1;
 //create a new $cardioworkout object and set it's user id equal to that of the user logged in.
 
@@ -119,9 +120,10 @@ else {
         require_once '../Models/RoutineDAO.php';
         $rou_yes = new RoutineDAO();
         //run query to set all rows (should only be 1) that are set to active to inactive
-        $rou_yes->setInactive($conn);
+        $rou_yes->setInactive($conn, $r);
         $rou_yes->insertRoutine($conn, $r);
-        $success_message = "Routine set in calendar";
+        $_SESSION['routine_success'] = "Routine set in calendar";
+        header("Location: routines.php");
     }
 
     //if they don't want to make it active in the calendar.
@@ -131,7 +133,8 @@ else {
         require_once '../Models/RoutineDAO.php';
         $rou_no = new RoutineDAO();
         $rou_no->insertRoutine($conn, $r);
-        $success_message = "Routine added";
+        $_SESSION['routine_success'] = "Routine added";
+        header("Location: routines.php");
 
     }
 }

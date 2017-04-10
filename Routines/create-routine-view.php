@@ -15,8 +15,6 @@ require_once '../Common Views/sidebar.php';
             <form action="#" method="post">
                 <div class="col-md-12 big-spacing">
                     <h1 class="red">Set a Routine</h1>
-                    <p class="badge badge-success"><?php if (isset($success_message)){ echo $success_message;} ?></p>
-
                     <p>Here, you can create a routine by selecting a cardio and strength workout for each day of the week. Your routine will appear in your calendar so that you can easily schedule and complete workouts!</p>
                 <span class="badge badge-danger"><?php if (isset($routine_name_error)){ echo $routine_name_error;}?></span>
                     <h2>Routine Name</h2>

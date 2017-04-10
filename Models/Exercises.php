@@ -8,7 +8,8 @@
  */
 class Exercises
 {
-private $user_id, $name, $strength_workout_id/**
+private $user_id, $name, $strength_workout_id;
+    /**
  * @return mixed
  */
 public function getUserId()

@@ -33,7 +33,7 @@ $userName = $userId->first_name;
             <!-- 02-2-2-2. Feature Call Out -->
             <div id="feature-callouts" class="col-md-9 col-sm-9 col-12 row">
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="#" class="feature-btn">
+                    <a href="Routines/routines.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="./opt-imgs/routine-icon.png" alt="" />
                         </div>
