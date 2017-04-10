@@ -28,14 +28,14 @@ class GroceryListDAO
         return $userListId;
     }
 
-    public function updateUserListId($db) {
+    /*public function updateUserListId($db) {
         $query_updateListId = "UPDATE USERS SET list_id = :list_id WHERE user_id = :user_id";
         $pdo_statement = $db->prepare($query_updateListId);
         $pdo_statement->bindValue(":list_id", $list_id);
         $pdo_statement->bindValue(":user_id", $user_id);
         $pdo_statement->execute();
         $pdo_statement->closeCursor();
-    }
+    }*/
 
     public function populateVeggieList($db) {
         $query_veggieList = "SELECT * FROM FOOD_ITEMS WHERE category = 'Vegetables' OR category = 'Grains'";
@@ -60,10 +60,17 @@ class GroceryListDAO
         $glutenFreeList = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $glutenFreeList;
     }
-    /*public function addFoodDiaryEntry($db) {
-        $query_foodDiaryEntry = "INSERT INTO FOOD_TRACKING_LIST
+    public function addFoodDiaryEntry($db) {
+        $query_foodDiaryEntry = "INSERT INTO FOOD_TRACKING_LISTS
                                   VALUES (:food_item_id, :meal, :servings_count, :timeInput, :track_id, :user_id )";
         $pdo_statement = $db->prepare($query_foodDiaryEntry);
-
-    }*/
+        $pdo_statement->bindValue(":food_item_id", $food_item_id);
+        $pdo_statement->bindValue(":meal", $meal);
+        $pdo_statement->bindValue(":servings_count", $servings_count);
+        $pdo_statement->bindValue(":timeInput", $timestamp);
+        $pdo_statement->bindValue("track_id", $track_id);
+        $pdo_statement->bindValue(":user_id", $user_id);
+        $pdo_statement->execute();
+        $pdo_statement->closeCursor();
+    }
 }

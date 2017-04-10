@@ -22,12 +22,26 @@ if($list_id == 0){
     $list = $gListConn->populateGlutenFreeList($db);
 }
 
+//include addFoodDiaryEntry() from groceryList DAO
+$foodEntryConn = new GroceryListDAO();
+$foodEntry = $foodEntryConn->addFoodDiaryEntry($db);
+
 //include the header
 require_once "../Common Views/Header.php";
 
 //include the sidebar
 require_once "../Common Views/sidebar.php";
 
+//empty vars prior to submit
+$food_item_id = "";
+$meal = "";
+$servings_count = "";
+$timestamp = "";
+$track_id = "";
+
+if(isset($_POST['foodEntrySubmit'])) {
+
+}
 
 
 ?>
@@ -63,7 +77,7 @@ require_once "../Common Views/sidebar.php";
                 <input type="text" name="severing" id="severing" />
             </div>
             <div class="form-field">
-                <input type="submit" />
+                <input id="foodEntrySubmit" name="foodEntrySubmit" type="submit" />
             </div>
         </form>
     </div>
