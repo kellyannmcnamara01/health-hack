@@ -59,14 +59,13 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         // Subject of email
         $mail->Subject = "Welcome to Healthhack!";
         // Body of email
-        $mail ->Body = "Thanks for signing up $fullName. Welcome to Healthhack.";
+        $mail ->Body = "Thanks for signing up $fullName. Welcome to Healthhack. <a href='http://localhost/health-hack/index.php'>Click her to confirm your account</a>.";
         // alternatively, set text for non-HTML ==> $mail->AltBody
 
         // validate => if email is unable to send, inform user and let them know mailer error
-
         if(!$mail->send())
         {
-            echo 'Message could not be sent';
+            $sentEmail = 'Message could not be sent';
             echo 'Mailer error: ' . $mail->ErrorInfo;
         }
         else
@@ -131,6 +130,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
     </div>
     <main id="landing-main" class="col-12 row">
         <h2 class="col-12">You will never know your limits unless you push yourself.</h2>
+        <span class="text-info"><?php if(isset($sentEmail)){ echo $sentEmail; }?></span>
         <div id="landing-btns" class="col-12">
             <button type="button" id="loging-btn" data-toggle="modal" data-target="#loginModal">Login</button>
             <button type="button" id="signup-btn" data-toggle="modal" data-target="#SignupModal">Sign Up</button>
@@ -176,7 +176,6 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                         <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
                         <h2>Health Hack</h2>
                         <h3>Create an Account</h3>
-                        <span class="text-info"><?php if(isset($sentEmail)){ echo $sentEmail; }?></span>
                         <form action="landing.php" method="post">
                             <div class="form-field">
                                 <label class="formLabel">First Name</label>
