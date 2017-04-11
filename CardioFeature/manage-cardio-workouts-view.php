@@ -26,8 +26,15 @@ require_once '../Common Views/sidebar.php';
             <div class="spacing">
                 <input  type="submit" name="delete_cardio" value="Delete Cardio Workouts" class="formSubmit offset-md-1 col-md-3 col-sm-6 col-xs-1 offset-sm-3    "/>
             </div>
-            </form>
-            <span class="badge badge-danger"><?php if (isset($delete_error)){ echo $delete_error;}?></span>
+    <div class="spacing">
+    <span class="badge badge-danger"><?php if (isset($delete_error)){ echo $delete_error;}?></span>
+    </div>
+</form>
+            <div class="row">
+                <a href="Cardio.php" class="btn btn-info btn-lg offset-md-0">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+                </a>
+            </div>
 
         </div>
     </div>

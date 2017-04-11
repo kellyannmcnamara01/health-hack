@@ -75,6 +75,11 @@ require_once '../Common Views/sidebar.php';
     <input  type="submit" name="save_strength" value="Save Workout" class="formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3    "/>
 </div>
 </form>
+        <div class="row">
+            <a href="strength.php" class="btn btn-info btn-lg offset-md-0">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+            </a>
+        </div>
 </div>
 </div>
 </main>

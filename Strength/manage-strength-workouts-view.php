@@ -24,12 +24,18 @@ require_once '../Common Views/sidebar.php';
                     </div>
                 <?php endforeach;?>
 
-                <div class="spacing">
+                <div class="big-spacing">
                     <input  type="submit" name="delete_strength" value="Delete Strength Workouts" class="formSubmit offset-md-1 col-md-3 col-sm-6 col-xs-1 offset-sm-3    "/>
                 </div>
+                <div class="big-spacing">
+                <span class="badge badge-danger"><?php if (isset($delete_error)){ echo $delete_error;}?></span>
+                </div>
             </form>
-            <span class="badge badge-danger"><?php if (isset($delete_error)){ echo $delete_error;}?></span>
-
+            <div class="row">
+                <a href="strength.php" class="btn btn-info btn-lg offset-md-0">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+                </a>
+            </div>
         </div>
     </div>
     </div>

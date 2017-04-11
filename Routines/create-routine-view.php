@@ -363,6 +363,11 @@ require_once '../Common Views/sidebar.php';
                     <input  type="submit" name="routine_no" value="No" class="formSubmit col-md-3 col-sm-6 col-xs-1 offset-sm-3    "/>
                 </div>
             </form>
+            <div class="row">
+                <a href="routines.php" class="btn btn-info btn-lg offset-md-0">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+                </a>
+            </div>
         </div>
     </div>
     </main>

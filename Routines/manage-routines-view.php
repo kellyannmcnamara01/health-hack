@@ -17,7 +17,6 @@ require_once '../Common Views/sidebar.php';
 
                     <p>Here, you can set change the active routine in your calendar and delete routines you don't need.</p>
                     <h2>Set New Routine</h2>
-                    <span class="badge badge-danger"><?php if (isset($delete_error)){ echo $delete_error;}?></span>
                     <select class="form-control" name ="routine">
                         <?php foreach ($routines as $r):?>
                         <option value="<?php echo $r['routine_id']?>"><?php echo $r['name']?></option>
@@ -36,9 +35,19 @@ require_once '../Common Views/sidebar.php';
                                 <?php endforeach;?>
 
                 </div>
+                <div class="big-spacing">
                 <input  type="submit" name="delete_routines" value="Delete Routines" class="formSubmit offset-md-1 col-md-3 col-sm-6 col-xs-1 offset-sm-3    "/>
+                </div>
+                <div class="spacing">
+                    <span class="badge badge-danger"><?php if (isset($delete_error)){ echo $delete_error;}?></span>
 
+                </div>
             </form>
+            <div class="row">
+                <a href="routines.php" class="btn btn-info btn-lg offset-md-0">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+                </a>
+            </div>
     </div>
     </div>
     </main>

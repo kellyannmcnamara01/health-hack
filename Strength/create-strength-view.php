@@ -34,8 +34,16 @@ require_once '../Common Views/sidebar.php';
 <ul id="ex_list">
 
 </ul>
+<div class="big-spacing">
 <input class="formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3" type="submit" name="submit_strength"/>
-</form>
+
+</div>
+        </form>
+        <div class="row">
+            <a href="strength.php" class="btn btn-info btn-lg offset-md-0">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+            </a>
+        </div>
 </div>
 </div>
 </main>

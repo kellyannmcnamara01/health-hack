@@ -150,6 +150,11 @@
                     <input type="hidden" name="cardio_workouts_id""/>
                     <input type="submit" value="Save Workout" class="formSubmit col-md-3 col-sm-6 col-xs-1 text-center offset-md-5 offset-sm-3" name="save_workout"/>
                 </div>
+                <div class="row">
+                    <a href="Cardio.php" class="btn btn-info btn-lg offset-md-0">
+                        <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+                    </a>
+                </div>
                 <div class="form-group">
                     <input type="hidden" value="<?php if (isset($cardio_id)) {echo $cardio_id;}?>"
                 </div>
