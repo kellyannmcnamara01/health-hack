@@ -28,15 +28,6 @@ class GroceryListDAO
         return $userListId;
     }
 
-    /*public function updateUserListId($db) {
-        $query_updateListId = "UPDATE USERS SET list_id = :list_id WHERE user_id = :user_id";
-        $pdo_statement = $db->prepare($query_updateListId);
-        $pdo_statement->bindValue(":list_id", $list_id);
-        $pdo_statement->bindValue(":user_id", $user_id);
-        $pdo_statement->execute();
-        $pdo_statement->closeCursor();
-    }*/
-
     public function populateVeggieList($db) {
         $query_veggieList = "SELECT * FROM FOOD_ITEMS WHERE category = 'Vegetables' OR category = 'Grains'";
         $pdo_statement = $db->prepare($query_veggieList);
@@ -60,17 +51,18 @@ class GroceryListDAO
         $glutenFreeList = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $glutenFreeList;
     }
-    /*public function addFoodDiaryEntry($db) {
-        $query_foodDiaryEntry = "INSERT INTO FOOD_TRACKING_LISTS
-                                  VALUES (:food_item_id, :meal, :servings_count, :timeInput, :track_id, :user_id )";
-        $pdo_statement = $db->prepare($query_foodDiaryEntry);
-        $pdo_statement->bindValue(":food_item_id", $food_item_id);
-        $pdo_statement->bindValue(":meal", $meal);
-        $pdo_statement->bindValue(":servings_count", $servings_count);
-        $pdo_statement->bindValue(":timeInput", $timestamp);
-        $pdo_statement->bindValue("track_id", $track_id);
-        $pdo_statement->bindValue(":user_id", $user_id);
+
+    public function populateTodaysFoodEntries($db){
+        $query_todaysFoodEntries = "SELECT food_item_name, servings_count, calories, sodium, carbs, protein, meal, FOOD_TRACKING_LISTS.user_id
+                                    FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
+                                    WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
+                                      AND FOOD_TRACKING_LISTS.user_id = :user_id
+	                                  AND time_stamp = CURDATE();";
+        $pdo_statement = $db->prepare($query_todaysFoodEntries);
+        $pdo_statement->bindValue(":user_id", 1);
         $pdo_statement->execute();
-        $pdo_statement->closeCursor();
-    }*/
+        $todaysFoodEntries = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
+        return $todaysFoodEntries;
+
+    }
 }
