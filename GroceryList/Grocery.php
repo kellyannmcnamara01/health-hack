@@ -26,19 +26,17 @@
     //once the user submits run the following code
     if(isset($_POST['grocery_list__submit'])) {
 
+
+        $list_id = $_POST['grocery_lists'];
+
         //create a new grocery list class object and set the value
         require_once '../Models/GroceryList.php';
-        $g_list = new GroceryList();
-        $list_id = $_POST['grocery_lists'];
-        //$g_list->setListId($list_id);
-        //$g_list->setListName($list_name);
 
-        $query_updateListId = "UPDATE USERS SET list_id = :list_id WHERE user_id = :user_id";
-        $pdo_statement = $db->prepare($query_updateListId);
-        $pdo_statement->bindValue(":list_id", $list_id);
-        $pdo_statement->bindValue(":user_id", $user_id);
-        $pdo_statement->execute();
-        $pdo_statement->closeCursor();
+        $g_list = new GroceryList();
+        $g_list->setListId($list_id);
+        $g_list->setUserId($user_id);
+
+        $gListConn->userSelectList($db, $g_list);
 
         //header('Location: index.php');
         //check for validation

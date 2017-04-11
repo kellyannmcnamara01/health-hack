@@ -13,7 +13,11 @@ require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
 $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
-$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
+//$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
+$todaysBreakfast = $gListConn->populateTodaysBreakfast($db);
+$todaysLunch = $gListConn->populateTodaysLunch($db);
+$todaysDinner = $gListConn->populateTodaysDinner($db);
+$todaysSnacks = $gListConn->populateTodaysSnacks($db);
 
 if($list_id == 0){
     header('Location: ../GroceryList/Grocery.php');
@@ -36,7 +40,7 @@ $food_item_id = "";
 $meal = "";
 $servings_count = "";
 $timestamp = "";
-$track_id = "";
+$cals_total = "";
 
 if(isset($_POST['foodEntrySubmit'])) {
 
@@ -44,7 +48,6 @@ if(isset($_POST['foodEntrySubmit'])) {
     require_once "../Models/FoodEntry.php";
 
     //set the vars
-    $foodEntryGetSet = new FoodEntry();
     $food_item_id = $_POST["food-item-selected"];
     $meal = $_POST["meal"];
     $servings_count = $_POST["severing"];
@@ -53,21 +56,18 @@ if(isset($_POST['foodEntrySubmit'])) {
     $timestamp = date("Y-m-d");
     $user_id = 1;
 
-    //adding content query
-    $query_foodDiaryEntry = "INSERT INTO FOOD_TRACKING_LISTS
-                                  VALUES (:track_id, :user_id, :food_item_id, :meal, :servings_count, :timeInput )";
-    $pdo_statement = $db->prepare($query_foodDiaryEntry);
-    $pdo_statement->bindValue("track_id", $track_id);
-    $pdo_statement->bindValue(":user_id", $user_id);
-    $pdo_statement->bindValue(":food_item_id", $food_item_id);
-    $pdo_statement->bindValue(":meal", $meal);
-    $pdo_statement->bindValue(":servings_count", $servings_count);
-    $pdo_statement->bindValue(":timeInput", $timestamp);
-    $pdo_statement->execute();
-    $pdo_statement->closeCursor();
+    //setting the values
+    $foodEntryGetSet = new FoodEntry();
+    $foodEntryGetSet->setFoodItemId($food_item_id);
+    $foodEntryGetSet->setMeal($meal);
+    $foodEntryGetSet->setServingsCount($servings_count);
+    $foodEntryGetSet->setTimestamp($timestamp);
+    $foodEntryGetSet->setUserId($user_id);
+
+    //var_dump($foodEntryGetSet->getUserId());
+    $gListConn->userFoodEntry($db, $foodEntryGetSet);
 
 }
-
 
 ?>
 
@@ -106,14 +106,83 @@ if(isset($_POST['foodEntrySubmit'])) {
                 <input id="foodEntrySubmit" name="foodEntrySubmit" type="submit" />
             </div>
         </form>
+        <h3>Breakfast</h3>
         <div class="col-md-12 row">
-            <?php foreach ($todaysEntries as $today){ ?>
-                <div class="col-md-3"><?php echo $today->food_item_name ?></div>
+            <div class="col-md-4"><strong>food item name</strong></div>
+            <div class="col-md-2"><strong>servings count</strong></div>
+            <div class="col-md-1"><strong>calories</strong></div>
+            <div class="col-md-1"><strong>sodium</strong></div>
+            <div class="col-md-1"><strong>carbs</strong></div>
+            <div class="col-md-1"><strong>protein</strong></div>
+        </div>
+        <div class="col-md-12 row">
+            <?php foreach ($todaysBreakfast as $today){ ?>
+                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
+                <div class="col-md-2"><?php echo $today->servings_count ?></div>
                 <div class="col-md-1"><?php echo $today->calories ?></div>
                 <div class="col-md-1"><?php echo $today->sodium ?></div>
                 <div class="col-md-1"><?php echo $today->carbs ?></div>
                 <div class="col-md-1"><?php echo $today->protein ?></div>
-                <div class="col-md-3"><?php echo $today->meal ?></div>
+            <?php } ?>
+        </div>
+        <br><br>
+        <h3>Lunch</h3>
+        <div class="col-md-12 row">
+            <div class="col-md-4"><strong>food item name</strong></div>
+            <div class="col-md-2"><strong>servings count</strong></div>
+            <div class="col-md-1"><strong>calories</strong></div>
+            <div class="col-md-1"><strong>sodium</strong></div>
+            <div class="col-md-1"><strong>carbs</strong></div>
+            <div class="col-md-1"><strong>protein</strong></div>
+        </div>
+        <div class="col-md-12 row">
+            <?php foreach ($todaysLunch as $today){ ?>
+                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
+                <div class="col-md-2"><?php echo $today->servings_count ?></div>
+                <div class="col-md-1"><?php echo $today->calories ?></div>
+                <div class="col-md-1"><?php echo $today->sodium ?></div>
+                <div class="col-md-1"><?php echo $today->carbs ?></div>
+                <div class="col-md-1"><?php echo $today->protein ?></div>
+            <?php } ?>
+        </div>
+        <br><br>
+        <h3>Dinner</h3>
+        <div class="col-md-12 row">
+            <div class="col-md-4"><strong>food item name</strong></div>
+            <div class="col-md-2"><strong>servings count</strong></div>
+            <div class="col-md-1"><strong>calories</strong></div>
+            <div class="col-md-1"><strong>sodium</strong></div>
+            <div class="col-md-1"><strong>carbs</strong></div>
+            <div class="col-md-1"><strong>protein</strong></div>
+        </div>
+        <div class="col-md-12 row">
+            <?php foreach ($todaysDinner as $today){ ?>
+                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
+                <div class="col-md-2"><?php echo $today->servings_count ?></div>
+                <div class="col-md-1"><?php echo $today->calories ?></div>
+                <div class="col-md-1"><?php echo $today->sodium ?></div>
+                <div class="col-md-1"><?php echo $today->carbs ?></div>
+                <div class="col-md-1"><?php echo $today->protein ?></div>
+            <?php } ?>
+        </div>
+        <br><br>
+        <h3>Snacks</h3>
+        <div class="col-md-12 row">
+            <div class="col-md-4"><strong>food item name</strong></div>
+            <div class="col-md-2"><strong>servings count</strong></div>
+            <div class="col-md-1"><strong>calories</strong></div>
+            <div class="col-md-1"><strong>sodium</strong></div>
+            <div class="col-md-1"><strong>carbs</strong></div>
+            <div class="col-md-1"><strong>protein</strong></div>
+        </div>
+        <div class="col-md-12 row">
+            <?php foreach ($todaysSnacks as $today){ ?>
+                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
+                <div class="col-md-2"><?php echo $today->servings_count ?></div>
+                <div class="col-md-1"><?php echo $today->calories ?></div>
+                <div class="col-md-1"><?php echo $today->sodium ?></div>
+                <div class="col-md-1"><?php echo $today->carbs ?></div>
+                <div class="col-md-1"><?php echo $today->protein ?></div>
             <?php } ?>
         </div>
     </div>

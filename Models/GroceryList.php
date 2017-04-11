@@ -9,7 +9,7 @@
 class GroceryList
 {
     //properties
-    private $list_id, $list_name, $list_details;
+    private $list_id, $list_name, $list_details, $user_id;
 
     //get list_id
     public function getListId()
@@ -34,6 +34,7 @@ class GroceryList
     {
         $this->list_name = $list_name;
     }
+
     //get list_details
     public function getListDetails()
     {
@@ -44,5 +45,17 @@ class GroceryList
     public function setListDetails($list_details)
     {
         $this->list_details = $list_details;
+    }
+
+    //get user_id
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    //set user_id
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
     }
 }
