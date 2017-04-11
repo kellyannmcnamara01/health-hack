@@ -15,8 +15,6 @@
     $userList = $gListConn->populateUserListId($db);
     //$updateUserListId = $gListConn->updateUserListId($db);
 
-    //$userListId = $gListConn->updateUserListId($db, $list_id);
-
     //create an empty var for the grocery list options
     $grocery_list__options = "";
     $grocery_list__options_err = "";
@@ -32,6 +30,7 @@
         //create a new grocery list class object and set the value
         require_once '../Models/GroceryList.php';
 
+        //
         $g_list = new GroceryList();
         $g_list->setListId($list_id);
         $g_list->setUserId($user_id);
