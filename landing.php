@@ -3,6 +3,8 @@
 // start session storage
 session_start();
 require_once './Models/Signup.php';
+// require PHPMailerAutoload
+require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
 
     //check if form is set
@@ -17,6 +19,62 @@ require_once './Models/Signup.php';
         $db = new Signup();
         //call newUser() method in Signup()
         $db->newUser($fname, $lName, $email, $password);
+
+        // concatenate user's first and last name
+        $fullName = $fname . ' ' . $lName;
+
+        // new instance of PHPMailer
+        $mail = new PHPMailer;
+
+        // set mailer to use SMTP
+        $mail->isSMTP();
+
+        // Enable verbose debug output
+        //$mail->SMTPDebug = 3;
+
+        //Specify main & backup SMTP servers
+        $mail->Host = 'smtp.gmail.com';
+
+        // Enable SMTP authentication
+        $mail->SMTPAuth = true;
+
+        // SMTP username
+        $mail->Username = 'healthhack.about@gmail.com';
+        // SMTP password
+        $mail->Password = 'p()s()w()d()';
+
+        // Specify encrpytion
+        $mail->SMTPSecure = 'TSL';
+
+        // TCP port to connect to
+        $mail->Port = 587;
+
+        $mail->setFrom('healthhack.about@gmail.com', 'Health Hack');
+        // Recipient
+        $mail->addAddress("$email" , "$fullName");
+
+        // Set email format to HTML
+        $mail->isHTML(true);
+
+        // Subject of email
+        $mail->Subject = "Welcome to Healthhack!";
+        // Body of email
+        $mail ->Body = "Thanks for signing up $fullName. Welcome to Healthhack.";
+        // alternatively, set text for non-HTML ==> $mail->AltBody
+
+        // validate => if email is unable to send, inform user and let them know mailer error
+
+        if(!$mail->send())
+        {
+            echo 'Message could not be sent';
+            echo 'Mailer error: ' . $mail->ErrorInfo;
+        }
+        else
+        {
+            //echo 'Message has been sent to ' . $email;
+            $sentEmail = "A confirmation email has been sent to $email. Please click the link to confirm";
+        }
+
     }
 
     //check if form is set (login)
@@ -34,7 +92,8 @@ require_once './Models/Signup.php';
 
         // initialize new SESSION variable
         $_SESSION['user'] = $userId->user_id;
-        var_dump($_SESSION['user']);
+        //var_dump($_SESSION['user']);
+
         //point page to create-routine.php
         header("Location: index.php");
     }
@@ -117,6 +176,7 @@ require_once './Models/Signup.php';
                         <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
                         <h2>Health Hack</h2>
                         <h3>Create an Account</h3>
+                        <span class="text-info"><?php if(isset($sentEmail)){ echo $sentEmail; }?></span>
                         <form action="landing.php" method="post">
                             <div class="form-field">
                                 <label class="formLabel">First Name</label>
