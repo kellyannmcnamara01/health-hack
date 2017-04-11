@@ -13,6 +13,7 @@ require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
 $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
+$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
 
 if($list_id == 0){
     header('Location: ../GroceryList/Grocery.php');
@@ -49,7 +50,7 @@ if(isset($_POST['foodEntrySubmit'])) {
     $servings_count = $_POST["severing"];
     //$time = new DateTime();
     //$timestamp = $time->format('Y-m-d H:i:s');
-    $timestamp = date('Y-m-d H:i:s');
+    $timestamp = date("Y-m-d");
     $user_id = 1;
 
     //adding content query
@@ -84,7 +85,7 @@ if(isset($_POST['foodEntrySubmit'])) {
                 <label for="food-item-selected">Food Item Name:</label>
                 <select name="food-item-selected">
                     <?php foreach ($list as $listOutput) { ?>
-                        <option value="<?php echo $listOutput->food_item_id ?>"><?php echo $listOutput->food_item_id ?></option>
+                        <option value="<?php echo $listOutput->food_item_id ?>"><?php echo $listOutput->food_item_name ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -105,6 +106,16 @@ if(isset($_POST['foodEntrySubmit'])) {
                 <input id="foodEntrySubmit" name="foodEntrySubmit" type="submit" />
             </div>
         </form>
+        <div class="col-md-12 row">
+            <?php foreach ($todaysEntries as $today){ ?>
+                <div class="col-md-3"><?php echo $today->food_item_name ?></div>
+                <div class="col-md-1"><?php echo $today->calories ?></div>
+                <div class="col-md-1"><?php echo $today->sodium ?></div>
+                <div class="col-md-1"><?php echo $today->carbs ?></div>
+                <div class="col-md-1"><?php echo $today->protein ?></div>
+                <div class="col-md-3"><?php echo $today->meal ?></div>
+            <?php } ?>
+        </div>
     </div>
 </div>
 </main>
