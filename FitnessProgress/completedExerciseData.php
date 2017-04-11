@@ -12,7 +12,7 @@
     $year = $_GET['year'];
 
 
-    $workouts = json_encode($fitnessProg->getStrengthStatsForMonthYear2($month, $year, $_SESSION["user"]));
+    $workouts = json_encode($fitnessProg->getStrengthStatsForMonthYear3($month, $year, $_SESSION["user"]));
 
     header("Content-Type: application/json");
     echo $workouts;

@@ -698,6 +698,19 @@ div.calendar {
     text-align: center;
 }
 
+#chartPlace {
+    width: 90%;
+    padding-right: 4rem;
+}
+
+#strengthControls {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#strengthControls > div {
+    display: inline-block;
+}
 
 /* 11. Rahul's Styling */
 .ratings_stars {
@@ -904,5 +917,12 @@ div.calendar {
     }
     #progress-recap {
         margin-left: 15px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    #chartPlace {
+        width: 100%;
+        padding-right: 2rem;
     }
 }

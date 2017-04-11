@@ -47,6 +47,25 @@
             return $compl_workouts;
         }
 
+        public function getStrengthStatsForMonthYear3($month, $year, $userId) {
+            $dateFormat = $year."-".$month."-%";
+            $query = "select cse.exercise_id, cse.exercise_name, sum(ifnull(set_1, 0) + ifnull(set_2, 0) + ifnull(set_3, 0) + ifnull(set_4, 0) + ifnull(set_5, 0)) as SetSum
+                      from COMPLETED_STRENGTH_EXERCISES cse
+                      join STRENGTH_WORKOUTS sw on sw.strength_id = cse.strength_id
+                      join STRENGTH_EXERCISES se on se.exercise_id = cse.exercise_id
+                      where sw.user_id = :userID and cse.date LIKE :dateF
+                      group by exercise_id";
+            $statement = $this->db->prepare($query);
+            $statement->bindValue(':userID', $userId);
+            $statement->bindValue(':dateF', $dateFormat);
+
+            $statement->execute();
+
+            $compl_exersices = $statement->fetchAll();
+            $statement->closeCursor();
+            return $compl_exersices;
+        }
+
         public function getStrengthStatsForMonthYear2($month, $year, $userId)
         {
             $dateFormat = $year."-".$month."-%";

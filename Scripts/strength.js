@@ -35,10 +35,30 @@ $(document).ready(function() {
     $('#strengthControls input').click(function() {
         console.log(selyear + ":" +selmonth);
         $.getJSON('completedExerciseData.php', {month : selmonth, year: selyear}, function (data) {
-            var result = "";
+            var ctx = document.getElementById("myChart");
+            var labels = [];
+            var datasets = [
+                {
+                    label: "Statistics",
+                    borderWidth: 1,
+                    data: []
+                }
+            ];
             $.each(data, function(index,exercise){
-                console.log(exercise.exercise_name + ":" + exercise.weight);
-            });    
+                labels.push(exercise.exercise_name);
+                //console.log(exercise.exercise_id + ":" + exercise.exercise_name + ":" + exercise.SetSum);
+                datasets[0].data.push(exercise.SetSum);
+            });
+
+            var data = {
+                labels: labels,
+                datasets: datasets
+            }
+
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+            });
         });
     });
 
