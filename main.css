@@ -669,6 +669,35 @@ div.calendar {
     margin-left: 1rem;
 }
 
+/* Fitness Progress */
+
+#fitness-progress h2 {
+    text-align: center;
+}
+
+#progress-place {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#strength, #cardio {
+    margin-top: 2rem;
+}
+
+#strength input, #cardio input {
+    padding: 3rem;
+    width: 20%;
+}
+
+#strength input:hover, #cardio input:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#fitness-progress h3 {
+    text-align: center;
+}
+
 
 /* 11. Rahul's Styling */
 .ratings_stars {
