@@ -25,7 +25,7 @@ $db = new Signup();
 $userId = $db->userInfo($user);
 //grab  user id, username
 $id = $userId->user_id;
-$userName = $userId->first_name . '' . $userId->last_name;
+$userName = $userId->first_name . '&' . $userId->last_name;
 
 if (isset($_POST['profileSubmit'])){
     $file_error = $_FILES['profileImg']['error'];
@@ -42,13 +42,17 @@ if (isset($_POST['profileSubmit'])){
 
     if($img_size === true && $img_error == true){
         // call ImgPath()
-        $img_name = ImgPath($file_name,$userName);
-        var_dump($img_name);
+        //$img_name = ImgPath($file_name,$userName);
+        //folder to move the uploaded file . "user?" . $userName . "/"
+        $target = "ProfileImages/";
+        //var_dump($_FILES["profileImg"]["tmp_name"]);
+        //$target_path = $target_path .  $file_name;
+        //var_dump($img_name);
         // move_uploaded_file()
-        //move_uploaded_file($file_name, $img_name);
+        move_uploaded_file($_FILES['profileImg']['tmp_name'], $target.$file_name);
         // new instance of Profile
-        //$signup = new Profile();
-        //$signup->UserInfo($id,$age,$weight,$img_name);
+        $signup = new Profile();
+        $signup->UserInfo($id,$age,$weight,$file_name);
     }
 
 }

@@ -63,7 +63,6 @@ function ImgPath($img, $username){
     //require_once '../opt-imgs';
     $imgPath = $img;
     $user = $username;
-
     //set up target path
     $target_path = "opt-imgs/";
 
