@@ -1,11 +1,14 @@
 <?php
 require('../Models/Database.php');
 require('../Models/Calendar.php');
-$db = new Database();
-//$db = $db->getDbWithPass("ivan95");
-$db = $db->getDbFromAWS();
 date_default_timezone_set('America/Toronto');
-$calendar = new Calendar(date('m'), date('Y'));
+
+$db = new Database();
+$db = $db->getDbFromAWS();
+session_start();
+$_SESSION["user"] = 1;
+
+$calendar = new Calendar(date('m'), date('Y'), $_SESSION["user"]);
 $calendar->setDb($db);
 
 $action = 'Index';

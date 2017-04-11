@@ -1,18 +1,22 @@
 <?php
 class Calendar {
-    private $month;
-    private $year;
+    public $month;
+    public $year;
+    public $day;
     private $headings = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+    private $headingsm = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
     private $db;
+    private $user;
 
     public function setDb($db) {
         $this->db = $db;
     }
 
-    function __construct($month, $year, $events = array()) {
+    function __construct($month, $year, $userId) {
         $this->month = $month;
         $this->year = $year;
-        $this->events = $events;
+        $this->day = date("d");
+        $this->user = $userId;
     }
 
     public function getControls() {
@@ -46,20 +50,22 @@ class Calendar {
 
         return $controls;
     }
-
+/*
     public function getRoutines() {
         $query = "select * from ROUTINES";
         $statement = $this->db->prepare($query);
         $statement->execute();
         $routines = $statement->fetchAll();
         return $routines;
-    }
+    }*/
 
     public function getRoutinesByDay($day) {
         $workouts = array($day."_strength", $day."_cardio");
         $query = "select routine_id, name, $workouts[0], $workouts[1] from ROUTINES
-                  where $workouts[0] IS NOT NULL OR $workouts[1] IS NOT NULL";
+                  where ($workouts[0] IS NOT NULL OR $workouts[1] IS NOT NULL)
+                        AND user_id = :userID AND active = 'Yes'";
         $statement = $this->db->prepare($query);
+        $statement->bindValue(':userID', $this->user);
         $statement->execute();
         $routines = $statement->fetchAll();
         return $routines;
@@ -69,19 +75,19 @@ class Calendar {
     {
         $workout_name = "";
         if ($type == "cardio") {
-            $query = "select name from cardio_workouts where cardio_id = :id";
+            $query = "select name from CARDIO_WORKOUTS where cardio_id = :id";
             $statement = $this->db->prepare($query);
             $statement->bindValue(":id", $id);
             $statement->execute();
             $workout = $statement->fetch();
             $workout_name = $workout['name'];
         } else {
-            $query = "select name from strength_workouts where strength_id = :id";
+            $query = "select strength_workout_name from STRENGTH_WORKOUTS where strength_id = :id";
             $statement = $this->db->prepare($query);
             $statement->bindValue(":id", $id);
             $statement->execute();
             $workout = $statement->fetch();
-            $workout_name = $workout['name'];
+            $workout_name = $workout['strength_workout_name'];
         }
         return $workout_name;
     }
@@ -94,24 +100,89 @@ class Calendar {
         $routines = $this->getRoutinesByDay($day);
         foreach($routines as $routine)
         {
-            $output .= "<div>".$routine['name']."<ul>";
+            $output .= "<div class='routine'><div><strong>Routine: ".$routine['name']."</strong></div>";
             for ($i = 0; $i < count($workouts); ++$i)
             {
                 $type = ($i == 0) ? "strength" : "cardio";
                 if (isset($routine[$workouts[$i]])) 
                 {
-                    $output .= "<li>".$this->getWorkoutById($type, $routine["routine_id"])."</li>";
+                    $output .= "<div><span>".$this->getWorkoutById($type, $routine[$workouts[$i]])."</span></div>";
                 }
             }
-            $output .= "</ul></div>";
+            $output .= "</div>";
         }
         return $output;
     }
 
+    public function drawMobile()
+    {
+        $curDay = date('d', strtotime($this->year.'-'.$this->month.'-'.$this->day));
+        $curMonday = date('d', strtotime('Monday this week', strtotime($this->year.'-'.$this->month.'-'.$this->day)));
+        $dayCounter = $curMonday;
+        
+        $calendar = "<div class='calendar'>";
+
+        foreach($this->headingsm as $heading) :
+            if ($dayCounter == $curDay) {
+                $calendar .= "<div class='day-of-week current-day'>";
+            } else {
+                $calendar .= "<div class='day-of-week'>";
+            }
+            $calendar .= "<div><span>".$dayCounter."</span></div>";
+            $calendar .= "<div><strong>".$heading."</strong></div>";
+
+            $calendar .= '<div class="routines">';
+            switch (date('w', mktime(0, 0, 0, $this->month, $dayCounter, $this->year))) 
+            {
+                case 0 :
+                    $calendar .= $this->createCalendarEvent('sunday');
+                    //$calendar .= $this->createCalendarEvent('sunday_cardio');
+                    break;
+                case 1:
+                    $calendar .= $this->createCalendarEvent('monday');
+                    //$calendar .= $this->createCalendarEvent('monday_cardio');
+                    break;
+                case 2:
+                    $calendar .= $this->createCalendarEvent('tuesday');
+                    //$calendar .= $this->createCalendarEvent('tuesday_cardio');
+                    break;
+                case 3:
+                    $calendar .= $this->createCalendarEvent('wednesday');
+                    //$calendar .= $this->createCalendarEvent('wednesday_cardio');
+                    break;
+                case 4:
+                    $calendar .= $this->createCalendarEvent('thursday');
+                    //$calendar .= $this->createCalendarEvent('thursday_cardio');
+                    break;
+                case 5:
+                    $calendar .= $this->createCalendarEvent('friday');
+                    //$calendar .= $this->createCalendarEvent('friday_cardio');
+                    break;
+                case 6:
+                    $calendar .= $this->createCalendarEvent('saturday');
+                    //$calendar .= $this->createCalendarEvent('saturday_cardio');
+                    break;
+                default :
+                    break;
+            }
+            $calendar .= '</div>';
+
+            $calendar .= "</div>";
+            ++$dayCounter;
+        endforeach;
+
+        $dayCounter = $curMonday;
+
+        $calendar .= "</div>";
+
+        return $calendar;
+    }
+
     public function draw() {
+        //echo $this->user;
         echo '<div class="calendar-feature col-md-9 col-sm-9">';
         echo $this->getControls();
-        $strength_routines = $this->getRoutines();
+        //$strength_routines = $this->getRoutines();
         //var_dump($strength_routines);
         // draw table
         $calendar = '<table class="calendar">';
