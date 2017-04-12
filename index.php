@@ -6,40 +6,7 @@ require_once './Models/Profile.php';
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
 
-
-
-// check if GET paramater for access_token exists; if it does, create var to hold it's value; keep $text undefined,
-//if (isset($_GET['access_token'])) {
-//    // var to hold URI from GET request (from email)
-//    $emailRefer = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . '?access_token=' . $_GET['access_token'];
-//
-//    // set var to hold the value of the access_token from specific request
-//    $access_token = substr($emailRefer, strpos($emailRefer, "&access_token=") +14);
-//
-//    $text = $_GET['access_token'];
-//
-//    // check if URI is same as $emailRefer; if URI was not directed from that, ignore check for access_token
-//    if($_SERVER['REQUEST_URI'] === $emailRefer){
-//
-//        //new instance of Signup()
-//        $d = new Profile();
-//
-//        // GetUserIdByToken ==> grab user information by the access token (unique to each user)
-//        $register = $d->GetUserIdByToken($access_token);
-//
-//        // set $SESSION['user'] to value of user_id from the $register
-//        $_SESSION['user'] = $register->user_id;
-//
-//        //store $SESSION in $user
-//        return $user = $_SESSION['user'];
-//    }
-//
-//}else{
-//    // Fallback behaviour goes here
-//    $text = '';
-//    echo $text;
-//}
-
+// check if $_GET paramaters exist on incoming URI
 if (isset($_GET['access_token'])) {
     $test = $_GET['access_token'];
     // var to hold URI from GET request (from email)

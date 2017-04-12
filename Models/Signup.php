@@ -103,4 +103,36 @@ class Signup
         }
         return $return;
     }
+
+    public function userInfoByEmail($email){
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDb();
+        $return = array();
+
+        $select = "SELECT email,first_name,last_name FROM USERS WHERE email = :email";
+        //prepare statement
+        $slctEmail = $connect->prepare($select);
+        //bind value for $email
+        $slctEmail->bindValue(":email", $email);
+        $slctEmail->execute();
+        $return = $slctEmail->fetch(PDO::FETCH_OBJ);
+        $slctEmail->closeCursor();
+
+        return $return;
+    }
+    public function grantPasswordResetToken($token,$email){
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDb();
+
+        $update = "UPDATE USERS SET resetToken = :token WHERE email = :email";
+        // prepare statement
+        $updateStmt = $connect->prepare($update);
+        //bind values for $token, $email
+        $updateStmt->bindValue(":token", $token);
+        $updateStmt->bindValue(":email", $email);
+
+        return $updateStmt->execute();
+    }
 }

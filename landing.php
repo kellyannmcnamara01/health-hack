@@ -82,7 +82,6 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
     //check if form is set (login)
     if (isset($_POST['Login'])){
-        //echo "<script> console.log('attempted login'); </script>";
 
         // grab values from login form
         $loggedInUser = filter_input(INPUT_POST, 'loginUser');
@@ -93,14 +92,113 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         //call newUser() method in Signup()
         $userId = $db->isValidUser($loggedInUser, $loggedInPass);
 
-        // initialize new SESSION variable
-        $_SESSION['user'] = $userId->user_id;
-        //var_dump($_SESSION['user']);
+        //if invalid login
+        if($userId === null)
+        {
+            $error = "Invalid email or password. Please try again";
+        }
+        else
+        {
+            // initialize new SESSION variable
+            $_SESSION['user'] = $userId->user_id;
 
-        //point page to create-routine.php
-        header("Location: index.php");
+            //point page to create-routine.php
+            header("Location: index.php");
+        }
     }
 
+    // check if form is set (reset)
+    if(isset($_POST['Reset'])){
+
+        // grab values from reset form
+        $userEmail = filter_input(INPUT_POST, "emailReset");
+
+        // new instance of Signup()
+        $db = new Signup();
+        // call userInfoByEmail() in Signup()
+        $Email = $db->userInfoByEmail($userEmail);
+
+        $returnedUserEmail = $Email->email;
+        $returnedUserName = $Email->first_name . ' ' . $Email->last_name;
+
+        //if email is not registered
+        if($Email === null)
+        {
+            $error = "We couldn't find the request email. Please enter a valid email";
+        }
+        else
+        {
+            //encode a password reset token
+            $passwordToken = base64_encode("$returnedUserEmail");
+
+            // call grantPasswordResetToken() in Signup
+            $reset = $db->grantPasswordResetToken($passwordToken,$returnedUserEmail);
+
+            //check if grantPasswordResetToken() returned true
+            if ($reset === null)
+            {
+                $error = "unable to reset password, please try again. Ensure provided email is correctly spelled.";
+            }
+            else
+            {
+                // new instance of PHPMailer
+                $mail = new PHPMailer;
+
+                // set mailer to use SMTP
+                $mail->isSMTP();
+
+                // Enable verbose debug output
+                //$mail->SMTPDebug = 3;
+
+                //Specify main & backup SMTP servers
+                $mail->Host = 'smtp.gmail.com';
+
+                // Enable SMTP authentication
+                $mail->SMTPAuth = true;
+
+                // SMTP username
+                $mail->Username = 'healthhack.about@gmail.com';
+                // SMTP password
+                $mail->Password = 'p()s()w()d()';
+
+                // Specify encrpytion
+                $mail->SMTPSecure = 'TSL';
+
+                // TCP port to connect to
+                $mail->Port = 587;
+
+                $mail->setFrom('healthhack.about@gmail.com', 'Health Hack');
+                // Recipient
+                $mail->addAddress("$returnedUserEmail" , "$returnedUserName");
+
+                // Set email format to HTML
+                $mail->isHTML(true);
+
+                // Subject of email
+                $mail->Subject = "Healthhack: Password reset ";
+                // Body of email
+                $url = "http://localhost/health-hack/Dashboard/resetpassword.php?reset_token=" . $passwordToken;
+
+
+                $mail ->Body = "Hey $returnedUserName.<br /> Sorry you forgot your password.<br /><br /><a href='$url'>Click her to create a new one</a>.";
+                // alternatively, set text for non-HTML ==> $mail->AltBody
+
+
+                // validate => if email is unable to send, inform user and let them know mailer error
+                if(!$mail->send())
+                {
+                    $sentEmail = 'Message could not be sent';
+                    echo 'Mailer error: ' . $mail->ErrorInfo;
+                }
+                else
+                {
+                    //echo 'Message has been sent to ' . $email;
+                    $sentEmail = "An email to reset your password has been sent to $returnedUserEmail. Please following the instructions in the email to reset your password";
+                }
+            }
+        }
+    }
+//echo base64_encode("hello world");
 ?>
 <!--
 
@@ -161,15 +259,42 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                     <input type="password" id="loginPass" name="loginPass" class="textInput" placeholder="Password" />
                 </div>
                 <input type="submit" class="formSubmit" name="Login" value="Login" />
-                <div class="form-field">
-                    <button type="button" class="formResetBtn">Reset Your Password</button>
-                </div>
+<!--                <div class="form-field">-->
+<!--                    <button type="button" class="formResetBtn">Reset Your Password</button>-->
+<!--                </div>-->
             </form>
+                  <div class="form-field">
+                      <button type="button" data-dismiss="modal" data-toggle="modal" data-target="#resetModal" class="formResetBtn">Reset Your Password</button>
+                  </div>
           </div>
         </div>
       </div>
     </div>
     <div>
+        <div id="resetModal" class="modal fade" role="form">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div>
+                    <div class="modal-body">
+                        <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
+                        <h2>Health Hack</h2>
+                        <h3>Password reset</h3>
+                        <p>Looks like you forgot your password. That happens, we understand. Please enter your email below and we'll send you a link to reset it.</p>
+                        <form action="landing.php" method="post">
+                            <div class="form-field">
+                                <label class="formLabel">Email</label>
+                                <input type="text" class="textInput" name="emailReset" placeholder="Email"
+                            </div>
+                            <input type="submit" class="button" name="Reset" value="Reset" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
 
         <div id="SignupModal" class="modal fade" role="form">
             <div class="modal-dialog">

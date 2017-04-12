@@ -499,6 +499,10 @@ button.close:focus {
 
 /* 09. Bryan's Styling */
 
+    a.reset{
+        text-decoration: none;
+        color: initial;
+    }
 /* 10. Ivan's Styling */
 /* Calendar */
 #calendar-feature {
