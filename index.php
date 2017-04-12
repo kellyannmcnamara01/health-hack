@@ -2,6 +2,7 @@
 //start session
 session_start();
 require_once './Models/Signup.php';
+require_once './Models/Profile.php';
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
 
@@ -41,11 +42,25 @@ require_once 'Common Views/sidebar.php';
 
 if (isset($_GET['access_token'])) {
     $test = $_GET['access_token'];
-    echo $test;
+    // var to hold URI from GET request (from email)
+    $emailRefer = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+    // set var to hold the value of the access_token from specific request
+    $access_token = substr($emailRefer, strpos($emailRefer, "access_token=") +13);
+    //echo $access_token;
+
+    // new instance of Profile()
+    $db = new Profile();
+
+    // call GetUserIdByToken()
+    $profile = $db->GetUserIdByToken($access_token);
+
+    // initialize new SESSION variable
+    $_SESSION['user'] = $profile->user_id;
+    // set $user to $_SESSION['user']
+    $user = $_SESSION['user'];
 }else{
-    // Fallback behaviour goes here
     $test = '';
-    echo $test . " could not be found";
 }
 
 // est. variable that contains session variable for email

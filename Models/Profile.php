@@ -39,7 +39,7 @@ class Profile
         $return = array();
 
         // query to grab user info by access_token
-        $select = "SELECT user_id from USERS WHERE access_token := token";
+        $select = "SELECT user_id from USERS WHERE access_token = :token";
 
         //prepare query
         $userInfo = $connect->prepare($select);

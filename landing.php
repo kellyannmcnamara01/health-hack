@@ -55,7 +55,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         // Subject of email
         $mail->Subject = "Welcome to Healthhack!";
         // Body of email
-        $url = "http://localhost/health-hack/index.php?access_token=" . urlencode($access);
+        $url = "http://localhost/health-hack/index.php?access_token=" . $access;
 
 
         $mail ->Body = "Thanks for signing up $fullName. Welcome to Healthhack.<br /><br /><a href='$url'>Click her to confirm your account</a>.";
