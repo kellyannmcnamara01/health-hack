@@ -6,7 +6,14 @@ require_once './Models/Signup.php';
 // require PHPMailerAutoload
 require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
-
+if (isset($_GET['access_token'])) {
+    $text = $_GET['access_token'];
+    echo $text;
+}else{
+    // Fallback behaviour goes here
+    $text = "no GET found";
+    echo $text;
+}
     //check if form is set
     if (isset($_POST['Register'])){
         // gets value of requested variable
@@ -14,11 +21,8 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         $lName = filter_input(INPUT_POST, "lName");
         $email = filter_input(INPUT_POST, "email");
         $password = filter_input(INPUT_POST, "password");
-
-        //new instance of Signup()
-        $db = new Signup();
-        //call newUser() method in Signup()
-        $db->newUser($fname, $lName, $email, $password);
+        // access_token => current minute (w/ leading zeros) and standard DES-based hash of $email, Swatch Internet time (0-999)
+        $access = date('i') . crypt($email,'e') . date('B');
 
         // concatenate user's first and last name
         $fullName = $fname . ' ' . $lName;
@@ -59,8 +63,16 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         // Subject of email
         $mail->Subject = "Welcome to Healthhack!";
         // Body of email
-        $mail ->Body = "Thanks for signing up $fullName. Welcome to Healthhack. <a href='http://localhost/health-hack/index.php'>Click her to confirm your account</a>.";
+        $url = "http://localhost/health-hack/index.php?access_token=" . urlencode($access);
+
+
+        $mail ->Body = "Thanks for signing up $fullName. Welcome to Healthhack.<br /><br /><a href='$url'>Click her to confirm your account</a>.";
         // alternatively, set text for non-HTML ==> $mail->AltBody
+
+        //new instance of Signup()
+        $db = new Signup();
+        //call newUser() method in Signup()
+        $db->newUser($fname, $lName, $email, $password,$access);
 
         // validate => if email is unable to send, inform user and let them know mailer error
         if(!$mail->send())
@@ -96,6 +108,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         //point page to create-routine.php
         header("Location: index.php");
     }
+
 ?>
 <!--
 

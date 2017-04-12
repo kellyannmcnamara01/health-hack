@@ -9,22 +9,47 @@
 //start session
 session_start();
 
+$currentPage = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . '?access_token=' . $_GET['access_token'];
+
+//$access_token = $_GET['access_token'];
 // include project files (check if files are already included, if they are, won't include require them again)
 require_once '../Models/Signup.php';
 require_once '../Models/Profile.php';
 require_once '../Common Views/Header.php';
 require_once 'processImg.php';
 
+//create variable to hold current uri
+//$currentPage = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
+//$test = 'http://localhost/health-hack/index.php?email=bryanstephensdevelopment@gmail.com&access_token=45*0781';
+
+//$test1 = substr($currentPage, strpos($currentPage, "&access_token=") +14);
+//echo $test1;
+
+//new instance of Signup()
+//$d = new Profile();
+
+//$register = $d->GetUserIdByToken($test1);
+
+//$registerName = $register->first_name;
+//echo $registerName;
 // est. variable that contains session variable for email
 $user = $_SESSION['user'];
 
-//new instance of Signup()
-$db = new Signup();
+if($_SERVER['HTTP_REFERER'] === 'landing.php')
+{
+    echo "previously at landing.php";
+}
+else
+{
+    echo "I don't know where I came from";
+}
+
 // call userInfo() method
 $userId = $db->userInfo($user);
 //grab  user id, username
 $id = $userId->user_id;
+$userFirst = $userId->first_name;
 $userName = $userId->first_name . '&' . $userId->last_name;
 
 if (isset($_POST['profileSubmit'])){
@@ -60,8 +85,9 @@ if (isset($_POST['profileSubmit'])){
 ?>
 <div class="container">
     <div id="main-content" class="col-12">
-        <h2 class="h2 col col-md-8"><?php echo $userName;?>'s Dashboard</h2>
+        <h2 class="h2 col col-md-8"><?php if(isset($userFirst)){ echo $userFirst; } ?>'s Dashboard</h2>
         <p class="text-primary col col-md-8">Update your age, weight, and profile image below</p>
+<!--         <p>--><?php //echo $currentPage;?><!--</p>-->
     <!-- form to update user profile information -->
     <!-- since user will upload an image, set enctype on form -->
         <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation">
@@ -86,7 +112,6 @@ if (isset($_POST['profileSubmit'])){
         </form>
     </div> <!-- end of main-content div-->
 </div> <!-- end of container div-->
-
 <?php
 require_once '../Common Views/Footer.php';
 ?>

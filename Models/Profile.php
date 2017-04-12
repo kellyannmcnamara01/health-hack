@@ -32,4 +32,25 @@ class Profile
         // return the execution of the insert statement
         return $Profile->execute();
     }
+    public function GetUserIdByToken($id){
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDb();
+        $return = array();
+
+        // query to grab user info by access_token
+        $select = "SELECT user_id from USERS WHERE access_token := token";
+
+        //prepare query
+        $userInfo = $connect->prepare($select);
+        //bind value
+        $userInfo->bindValue(":token", $id);
+        //execute
+        $userInfo->execute();
+        //Allow for access of return values by object reference
+        $return = $userInfo->fetch(PDO::FETCH_OBJ);
+        $userInfo->closeCursor();
+
+        return $return;
+    }
 }

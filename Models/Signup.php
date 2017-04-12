@@ -13,7 +13,7 @@ class Signup
 {
     private $newUser, $validUser, $return;
 
-    public function newUser($fname,$lname,$email,$password){
+    public function newUser($fname,$lname,$email,$password, $access){
 
         //est. connection to DB
         $db = new Database();
@@ -26,7 +26,7 @@ class Signup
         $join_date = date('Y-m-d H:i:s');
 
         // Query to insert new record of user
-        $insert = "INSERT INTO USERS (first_name, last_name, email, password, join_date) VALUES (:fName, :lName, :email, :pass, :jdate)";
+        $insert = "INSERT INTO USERS (first_name, last_name, email, password, join_date, access_token) VALUES (:fName, :lName, :email, :pass, :jdate, :access)";
         //prepare query
         $newUser = $connect->prepare($insert);
         //bind values
@@ -48,6 +48,7 @@ class Signup
         }
         $newUser->bindValue(":pass",$password);
         $newUser->bindValue(":jdate", $join_date);
+        $newUser->bindValue(":access", $access);
         // return execution of statement
         return $newUser->execute();
     }
