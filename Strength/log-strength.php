@@ -109,12 +109,13 @@ if (isset($_POST['save_strength'])) {
             // must evaluate for a value of 0 within weight and set 1. Our users are allowed to do only 1 set of an exercise so we only have to make sure the first set is not 0
             //we will do this by searching the array for 0
 
-            if (in_array(0, $weight)) {
+            if (in_array(0, $weight) || in_array(0, $set_1)) {
                 if (in_array(0, $set_1)) {
                     $set_1_error = "You must provide a value for at least the first set.";
                 }
-                $weight_error = "You must enter a weight!";
-
+                if (in_array(0, $weight)) {
+                    $weight_error = "You must enter a weight!";
+                }
             } else {
 
                 //now that we've grabbed all the elements we need, we must insert them into the completed strength workouts table in a foreach loop
@@ -142,8 +143,11 @@ if (isset($_POST['save_strength'])) {
                     $statement->execute();
                     $statement->closeCursor();
                     $log_success = "Workout logged!";
-                    $_SESSION['strength_success'] = "Workout saved. Nice work!";
+                    //$_SESSION['strength_success'] = "Workout saved. Nice work!";
+                    $expire = time() + 1;
+                    setcookie('success', 'Workout logged!', $expire, '/');
                     header("Location: strength.php");
+
                 }
             }
 

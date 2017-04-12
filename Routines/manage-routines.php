@@ -23,7 +23,9 @@ if (isset($_POST['set_active'])){
     //update the row with the id we have now and set it to active = 'yes'
 
     $r_Change->setActive($conn, $routine_Change);
-    $success_message = "Active routine changed!";
+    $expire = time() +1;
+    setcookie('success', 'Routine set!', $expire, '/');
+    header("Location: routines.php");
 }
 if (isset($_POST['delete_routines'])) {
     require_once '../Models/Routine.php';
@@ -44,7 +46,9 @@ if (isset($_POST['delete_routines'])) {
 
             $r_Delete = new RoutineDAO();
             $r_Delete->deleteRoutine($conn, $routine_Delete);
-            $success_message = "Routine deleted!";
+            $expire = time() + 1;
+            setcookie('success', 'Routine(s) deleted', $expire, '/');
+            header("Location: routines.php");
         }
     }
 

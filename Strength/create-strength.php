@@ -72,7 +72,8 @@ if (isset($_POST['submit_strength'])){
             }
             $success_message = "Workout created!";
             $strength_name = "";
-            $_SESSION['strength_success'] = "Workout created!";
+            $expire = time() + 1;
+            setcookie('success', 'Workout created!', $expire, '/');
             header("Location: strength.php");
         }
     }

@@ -90,7 +90,8 @@ if ($cardio_Valid){        //insert a function to change the time format
 
 
     $insert_C->insertCardio($conn, $c);
-$_SESSION['cardio_success'] = "Cardio workout created!";
+$expire = time() + 1;
+setcookie('success', 'Cardio workout created!', $expire, '/');
 header("Location: Cardio.php");
 
         //set all form values back to zero
