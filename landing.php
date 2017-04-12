@@ -6,15 +6,7 @@ require_once './Models/Signup.php';
 // require PHPMailerAutoload
 require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
-if (isset($_GET['access_token'])) {
-    $text = $_GET['access_token'];
-    echo $text;
-}else{
-    // Fallback behaviour goes here
-    $text = "no GET found";
-    echo $text;
-}
-    //check if form is set
+//check if form is set
     if (isset($_POST['Register'])){
         // gets value of requested variable
         $fname = filter_input(INPUT_POST, "fName");

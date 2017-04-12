@@ -9,8 +9,6 @@
 //start session
 session_start();
 
-$currentPage = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . '?access_token=' . $_GET['access_token'];
-
 //$access_token = $_GET['access_token'];
 // include project files (check if files are already included, if they are, won't include require them again)
 require_once '../Models/Signup.php';
@@ -18,35 +16,15 @@ require_once '../Models/Profile.php';
 require_once '../Common Views/Header.php';
 require_once 'processImg.php';
 
-//create variable to hold current uri
-//$currentPage = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-//$test = 'http://localhost/health-hack/index.php?email=bryanstephensdevelopment@gmail.com&access_token=45*0781';
+// else
 
-//$test1 = substr($currentPage, strpos($currentPage, "&access_token=") +14);
-//echo $test1;
-
-//new instance of Signup()
-//$d = new Profile();
-
-//$register = $d->GetUserIdByToken($test1);
-
-//$registerName = $register->first_name;
-//echo $registerName;
-// est. variable that contains session variable for email
 $user = $_SESSION['user'];
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
 
-if($_SERVER['HTTP_REFERER'] === 'landing.php')
-{
-    echo "previously at landing.php";
-}
-else
-{
-    echo "I don't know where I came from";
-}
-
-// call userInfo() method
 $userId = $db->userInfo($user);
+
 //grab  user id, username
 $id = $userId->user_id;
 $userFirst = $userId->first_name;
@@ -66,13 +44,8 @@ if (isset($_POST['profileSubmit'])){
     $img_size = ImgSize($file_size);
 
     if($img_size === true && $img_error == true){
-        // call ImgPath()
-        //$img_name = ImgPath($file_name,$userName);
         //folder to move the uploaded file . "user?" . $userName . "/"
         $target = "ProfileImages/";
-        //var_dump($_FILES["profileImg"]["tmp_name"]);
-        //$target_path = $target_path .  $file_name;
-        //var_dump($img_name);
         // move_uploaded_file()
         move_uploaded_file($_FILES['profileImg']['tmp_name'], $target.$file_name);
         // new instance of Profile
