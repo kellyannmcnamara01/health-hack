@@ -8,6 +8,23 @@
             $this->db = $db;
         }
 
+        public function getCompletedCardWorkouts($month, $year, $userId)
+        {
+            $dateFormat = $year."-".$month."-%";
+            $query = "select sum(cw.goal_distance) as goal_distance, sum(ccw.distance) as distance
+                      from COMPLETED_CARDIO_WORKOUTS ccw
+                      join CARDIO_WORKOUTS cw on cw.cardio_id = ccw.cardio_id
+                      where cw.user_id = :userID and ccw.DATETIME LIKE :dateF";
+            $statement = $this->db->prepare($query);
+            $statement->bindValue(':userID', $userId);
+            $statement->bindValue(':dateF', $dateFormat);
+            $statement->execute();
+
+            $completed_cardio = $statement->fetchAll();
+            $statement->closeCursor();
+            return $completed_cardio;
+        }
+
         public function getStrWorkoutsForUser($userId)
         {
             $query = "select strength_id, strength_workout_name from STRENGTH_WORKOUTS where user_id = :userID";

@@ -20,11 +20,11 @@
         </div>
     <?php } ?>
 
-    <?php if ($action == "Strength") { ?>
+    <?php if ($action == "Strength" || $action == "Cardio") { ?>
     <form method="post">
         <input type="submit" name="backtoindex" class="btn btn-default" value="Back to workouts">
     </form>
-    <h3>Strength</h3>
+    <h3><?php echo $action; ?></h3>
         <div id="strengthControls">
             <div class="form-group">
                 <select name="month" class="form-control">
@@ -35,7 +35,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-info" value="Show Progress" />
+                <?php if ($action == "Strength") { ?>
+                    <input id="strengthProgress" type="submit" class="btn btn-info" value="Show Progress" />
+                <?php } else { ?>
+                    <input id="cardioProgress" type="submit" class="btn btn-info" value="Show Progress" />
+                <?php } ?>
             </div>
         </div>
         <div id="chartPlace">
@@ -48,7 +52,7 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<?php if ($action == "Strength") { ?>
-<script src="../Scripts/strength.js"></script>
+<?php if ($action == "Strength" || $action == "Cardio") { ?>
+<script src="../Scripts/strength.js?v=1"></script>
 <?php } ?>
 

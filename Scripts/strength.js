@@ -32,7 +32,7 @@ $(document).ready(function() {
         selyear = yearControl.val();
     });
 
-    $('#strengthControls input').click(function() {
+    $('#strengthProgress').click(function() {
         console.log(selyear + ":" +selmonth);
         $.getJSON('completedExerciseData.php', {month : selmonth, year: selyear}, function (data) {
             var ctx = document.getElementById("myChart");
@@ -57,6 +57,40 @@ $(document).ready(function() {
 
             var myBarChart = new Chart(ctx, {
                 type: 'bar',
+                data: data,
+            });
+        });
+    });
+
+    $('#cardioProgress').click(function() {
+        console.log(selyear + ":" +selmonth);
+        $.getJSON('completedCardioData.php', {month : selmonth, year: selyear}, function (data) {
+            var ctx = document.getElementById("myChart");
+
+            var labels = [];
+            var datasets = [
+                {
+                    data: [],
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                    ]
+                }
+            ];
+
+            $.each(data, function(index,crdexercise){
+                //console.log(crdexercise.distance + ":" + crdexercise.goal_distance);
+                datasets[0].data.push(crdexercise.distance);
+                datasets[0].data.push(crdexercise.goal_distance);
+            });
+
+            var data = {
+                labels: labels,
+                datasets: datasets
+            }
+
+            var myPieChart = new Chart(ctx,{
+                type: 'pie',
                 data: data,
             });
         });
