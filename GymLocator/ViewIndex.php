@@ -29,6 +29,7 @@
             <span id="place-address"></span><br>
             <img id="place-photo" src=""  width="50" height="50" /><br>
             <form id="add-gym-form" action="../Gym/index.php" method="post">
+                <input type="hidden" name="place-id" id="place-id-input">
                 <input type="hidden" name="place-name" id="place-name-input">
                 <input type="hidden" name="place-address" id="place-address-input">
                 <input type="hidden" name="place-lat" id="place-lat-input">

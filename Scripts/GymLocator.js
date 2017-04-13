@@ -1,5 +1,6 @@
 var infowindowContent;
 var markerArray = [];
+//var curresult;
 window.onload = function() {
     var infoWindow;
     infowindowContent = document.getElementById('infowindow-content');
@@ -74,19 +75,27 @@ function searchForGyms(map) {
                     console.log(status);
                     return;
                 }
+                console.log(result.place_id);
                 infoWindow.setContent(infowindowContent);
                 infowindowContent.children['place-name'].textContent = result.name;
                 infowindowContent.children['place-address'].textContent = result.formatted_address;
-                if (result.photos) {
+                /*if (result.photos) {
                     infowindowContent.children['place-photo'].src = result.photos[0].getUrl({maxHeight: 50, minHeight: 50});
                 } else {
                     infowindowContent.children['place-photo'].src = "../opt-imgs/favicon.png";
-                }
+                }*/
+
+                infowindowContent.children['place-photo'].src = "../opt-imgs/favicon.png";
+
+                infowindowContent.children['add-gym-form'].children['place-id-input'].value = result.place_id;
                 infowindowContent.children['add-gym-form'].children['place-name-input'].value = result.name;
                 infowindowContent.children['add-gym-form'].children['place-address-input'].value = result.formatted_address;
                 infowindowContent.children['add-gym-form'].children['place-lat-input'].value = result.geometry.location.lat();
                 infowindowContent.children['add-gym-form'].children['place-lng-input'].value = result.geometry.location.lng();
-                console.log(result.opening_hours);
+                /*if (result.opening_hours.weekday_text) {
+                    infowindowContent.children['add-gym-form'].children['place-hours-array'].value = JSON.stringify(result.opening_hours.weekday_text);
+                }
+                console.log(result.opening_hours);*/
                 infoWindow.open(map, marker);
             });
         });
@@ -139,3 +148,27 @@ function searchForPlace(map) {
         infowindow.open(map, marker);
     });
 }
+/*
+function getGymData(result) {
+    if (result)
+    {
+        var postData = {
+            "name": result.name,
+            "address": result.formatted_address,
+            "lat": result.geometry.location.lat(),
+            "lng": result.geometry.location.lng(),
+            "hours": result.opening_hours.weekday_text
+        }
+
+        console.log(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "/health-hack/GymLocator/index.php",
+            data: {myData: postData},
+            success: function(data) {
+                alert('items added');
+            }
+        });
+    }
+}*/

@@ -50,6 +50,28 @@ class Calendar {
 
         return $controls;
     }
+
+    public function getDefaultGym()
+    {
+        $query = "select marker_id, address from GYMS where defaultGym = 1 and user_id = :userID";
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':userID', $_SESSION['user']);
+        $statement->execute();
+        $arr = $statement->fetch();
+
+        return isset($arr['marker_id']) ? $arr['marker_id'] : false;
+    }
+
+    public function getDefaultGymTime()
+    {
+        $place_id = $this->getDefaultGym();
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/place/details/json?placeid=".$place_id."&key=AIzaSyB-eAHJBHdVL8yYg7eeHsY5rg8f1Q1qZ4Q");
+        $result = json_decode(curl_exec($ch), true);
+
+        return $result;
+    }
 /*
     public function getRoutines() {
         $query = "select * from ROUTINES";

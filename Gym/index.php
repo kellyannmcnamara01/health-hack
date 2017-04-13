@@ -9,17 +9,22 @@ $gymObj->setDb($db);
 
 $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 session_start();
-$_SESSION['userId'] = 1;
+$_SESSION['user'] = 1;
 
 $action = 'Index';
 
+
 if (isset($_POST['addGym'])) {
     $gymInfo = new GymLocation($_POST);
-
     if ($gymObj->getGymCountPerUser($_SESSION['userId']) < 5) {
         $addedGym = $gymObj->addGymToFav($gymInfo);
-        $_SESSION['message'] = "New Location was successfully added to your list!";
-        $_SESSION['msgStatus'] = 1;
+        if ($addedGym === true) {
+            $_SESSION['message'] = "New Location was successfully added to your list!";
+            $_SESSION['msgStatus'] = 1;
+        } else {
+            $_SESSION['message'] = "This Gym is already on the list!";
+            $_SESSION['msgStatus'] = 0;
+        }
     } else {
         $_SESSION['message'] = "No more than 5 Gyms allowed!";
         $_SESSION['msgStatus'] = 0;
@@ -29,8 +34,8 @@ if (isset($_POST['addGym'])) {
 }
 
 if (isset($_POST['gymToChoose'])) {
-    $updatedGym = $gymObj->updateDefaultGym($_POST['defaultGym']);
-    if ($updatedGym == true) {
+    $updatedGym = $gymObj->updateDefaultGym($_POST['gymToChoose']);
+    if ($updatedGym === true) {
         $_SESSION['message'] = "Default Gym was successfully changed!";
         $_SESSION['msgStatus'] = 1;
     } else {
