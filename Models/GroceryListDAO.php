@@ -73,19 +73,27 @@ class GroceryListDAO
         $pdo_statement->closeCursor();
     }
 
-    /*public function populateTodaysFoodEntries($db){
-        $query_todaysFoodEntries = "SELECT food_item_name, servings_count, (calories *servings_count) AS calories, (sodium  *servings_count) AS sodium, (carbs *servings_count) AS carbs, (protein *servings_count) AS protein, meal, FOOD_TRACKING_LISTS.user_id
-                                    FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
-                                    WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
+    public function populateTodaysFoodEntries($db){
+        $query_todaysFoodEntries = "SELECT food_item_name, sum(servings_count) AS servings_count, 
+                                        (calories * sum(servings_count)) AS calories, 
+                                        (fat * sum(servings_count)) AS fat, 
+                                        (cholesterol * sum(servings_count)) AS cholesterol, 
+                                        (sodium  * sum(servings_count)) AS sodium, 
+                                        (carbs * sum(servings_count)) AS carbs, 
+                                        (protein * sum(servings_count)) AS protein, 
+                                        meal, FOOD_TRACKING_LISTS.user_id
+                                      FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
+                                      WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp = CURDATE()";
+	                                  AND time_stamp = CURDATE()
+	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysFoodEntries);
         $pdo_statement->bindValue(":user_id", 1);
         $pdo_statement->execute();
         $todaysFoodEntries = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysFoodEntries;
 
-    }*/
+    }
 
     public function populateTodaysBreakfast($db) {
         $query_todaysBreakfast = "SELECT food_item_name, sum(servings_count) AS servings_count, 

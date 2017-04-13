@@ -12,6 +12,8 @@ $db = $dbConn->getDbFromAWS();
 require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
 
+
+
 if($list_id == 0){
     header('Location: ../GroceryList/Grocery.php');
 } elseif($list_id == 5) {

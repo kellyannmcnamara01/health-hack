@@ -85,9 +85,18 @@ if(isset($_POST['foodEntrySubmit'])) {
 }
 
 ?>
+
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
-    <div class="col-md-3">
-        <canvas id="nutritionChart" height="100px" width="100px"></canvas>
+
+    <div class="col-md-12 row">
+        <div class="col-md-3">
+            <h2 class="text-center">Daily Nutrition Intake Total</h2>
+            <canvas id="nutritionChart"></canvas>
+        </div>
+        <div class="col-md-3">
+            <h2 class="text-center">Daily Value Intake Total</h2>
+            <canvas id="dvChart"></canvas>
+        </div>
     </div>
     <?php foreach ($todaysEntries as $today){
         $totalCals += $today->calories;
@@ -132,4 +141,3 @@ require_once '../Common Views/Footer.php';
 ?>
 
 <script src="../Scripts/nutrition.js"></script>
-

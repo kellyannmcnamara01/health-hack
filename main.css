@@ -966,10 +966,10 @@ div#gym-hours {
 #food-diary-entry {
     padding: 25px 0px;
 }
-#nutritionChart {
+/*#nutritionChart {
     max-width: 100px;
     max-height: 100px;
-}
+}*/
 
 /* Media Queries */
 @media only screen and (max-width: 767px) {
