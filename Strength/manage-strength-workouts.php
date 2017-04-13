@@ -59,7 +59,9 @@ if (isset($_POST['delete_strength'])){
 
             $s_Delete = new StrengthWorkoutDAO();
             $s_Delete->deleteStrengthWorkout($conn, $strength_Delete);
-            $_SESSION['strength_success'] = "Workout(s) deleted.";
+            $expire = time() + 1;
+            setcookie('success', 'Workout(s) deleted!', $expire, '/');
+            header("Location: strength.php");
             header("Location: strength.php");
         }
 

@@ -51,8 +51,10 @@ if (isset($_POST['delete_cardio'])){
 
                 $c_Delete = new cardioworkoutDAO();
                 $c_Delete->deleteCardio($conn, $cardio_Delete);
-                $_SESSION['cardio_success'] = "Cardio workout deleted";
+                $expire = time() + 1;
+                setcookie('success', 'Cardio workout(s) deleted!', $expire, '/');
                 header("Location: Cardio.php");
+
         }
 
         }

@@ -28,15 +28,11 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($cardio_workouts as $cardio):
                                     ?>
-                                    <option <?php
-                                    if (isset($cardio_Workout) && $cardio_Workout['name'] == $cardio['name']) {
-                                        echo 'selected';
-                                    }
-                                    ?> ) value="<?php
+                                    <option  value="<?php
                                     echo $cardio['cardio_id'];
-                                    ?>"><?php
-                                        echo $cardio['name'];
-                                        ?></option>
+                                    ?>" <?php if (isset($monday_cardio) && $monday_cardio == $cardio['cardio_id']) echo 'selected';
+                                        ?>><?php echo $cardio['name'];
+                                    ?></option>
                                     <?php
                                 endforeach;
                                 ?>
@@ -46,18 +42,11 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($strength_workouts as $strength):
                                     ?>
-                                    <option <?php
-                                    if (isset($strength_Workout)) {
-                                        foreach ($strength_Workout as $key){
-                                            if ($key['strength_id'] == $strength['strength_id']){
-                                                echo 'selected ';
-                                            }
-
-                                        }
-                                    }
-                                    ?>  value="<?php
+                                    <option
+                                value="<?php
                                     echo $strength['strength_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($monday_strength) && $monday_strength == $strength['strength_id']) echo 'selected';
+                                    ?>><?php
                                         echo $strength['strength_workout_name'];
                                         ?></option>
                                     <?php
@@ -73,13 +62,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($cardio_workouts as $cardio):
                                     ?>
-                                    <option <?php
-                                    if (isset($cardio_Workout) && $cardio_Workout['name'] == $cardio['name']) {
-                                        echo 'selected';
-                                    }
-                                    ?> ) value="<?php
+                                    <option value="<?php
                                     echo $cardio['cardio_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($tuesday_cardio) && $tuesday_cardio == $cardio['cardio_id']) echo 'selected';
+                                    ?>><?php
                                         echo $cardio['name'];
                                         ?></option>
                                     <?php
@@ -91,18 +77,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($strength_workouts as $strength):
                                     ?>
-                                    <option <?php
-                                    if (isset($strength_Workout)) {
-                                        foreach ($strength_Workout as $key){
-                                            if ($key['strength_id'] == $strength['strength_id']){
-                                                echo 'selected ';
-                                            }
-
-                                        }
-                                    }
-                                    ?>  value="<?php
+                                    <option value="<?php
                                     echo $strength['strength_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($tuesday_strength) && $tuesday_strength == $strength['strength_id']) echo 'selected';
+                                    ?>><?php
                                         echo $strength['strength_workout_name'];
                                         ?></option>
                                     <?php
@@ -117,13 +95,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($cardio_workouts as $cardio):
                                     ?>
-                                    <option <?php
-                                    if (isset($cardio_Workout) && $cardio_Workout['name'] == $cardio['name']) {
-                                        echo 'selected';
-                                    }
-                                    ?> ) value="<?php
+                                    <option  value="<?php
                                     echo $cardio['cardio_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($wednesday_cardio) && $wednesday_cardio == $cardio['cardio_id']) echo 'selected';
+                                    ?>><?php
                                         echo $cardio['name'];
                                         ?></option>
                                     <?php
@@ -135,18 +110,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($strength_workouts as $strength):
                                     ?>
-                                    <option <?php
-                                    if (isset($strength_Workout)) {
-                                        foreach ($strength_Workout as $key){
-                                            if ($key['strength_id'] == $strength['strength_id']){
-                                                echo 'selected ';
-                                            }
-
-                                        }
-                                    }
-                                    ?>  value="<?php
+                                    <option  value="<?php
                                     echo $strength['strength_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($wednesday_strength) && $wednesday_strength == $strength['strength_id']) echo 'selected';
+                                    ?>><?php
                                         echo $strength['strength_workout_name'];
                                         ?></option>
                                     <?php
@@ -161,13 +128,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($cardio_workouts as $cardio):
                                     ?>
-                                    <option <?php
-                                    if (isset($cardio_Workout) && $cardio_Workout['name'] == $cardio['name']) {
-                                        echo 'selected';
-                                    }
-                                    ?> ) value="<?php
+                                    <option  value="<?php
                                     echo $cardio['cardio_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($thursday_cardio) && $thursday_cardio == $cardio['cardio_id']) echo 'selected';
+                                    ?>><?php
                                         echo $cardio['name'];
                                         ?></option>
                                     <?php
@@ -179,18 +143,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($strength_workouts as $strength):
                                     ?>
-                                    <option <?php
-                                    if (isset($strength_Workout)) {
-                                        foreach ($strength_Workout as $key){
-                                            if ($key['strength_id'] == $strength['strength_id']){
-                                                echo 'selected ';
-                                            }
-
-                                        }
-                                    }
-                                    ?>  value="<?php
+                                    <option value="<?php
                                     echo $strength['strength_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($thursday_strength) && $thursday_strength == $strength['strength_id']) echo 'selected';
+                                    ?>><?php
                                         echo $strength['strength_workout_name'];
                                         ?></option>
                                     <?php
@@ -207,13 +163,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($cardio_workouts as $cardio):
                                     ?>
-                                    <option <?php
-                                    if (isset($cardio_Workout) && $cardio_Workout['name'] == $cardio['name']) {
-                                        echo 'selected';
-                                    }
-                                    ?> ) value="<?php
+                                    <option  value="<?php
                                     echo $cardio['cardio_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($friday_cardio) && $friday_cardio == $cardio['cardio_id']) echo 'selected';
+                                    ?>><?php
                                         echo $cardio['name'];
                                         ?></option>
                                     <?php
@@ -225,18 +178,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($strength_workouts as $strength):
                                     ?>
-                                    <option <?php
-                                    if (isset($strength_Workout)) {
-                                        foreach ($strength_Workout as $key){
-                                            if ($key['strength_id'] == $strength['strength_id']){
-                                                echo 'selected ';
-                                            }
-
-                                        }
-                                    }
-                                    ?>  value="<?php
+                                    <option value="<?php
                                     echo $strength['strength_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($friday_strength) && $friday_strength == $strength['strength_id']) echo 'selected';
+                                    ?>><?php
                                         echo $strength['strength_workout_name'];
                                         ?></option>
                                     <?php
@@ -251,13 +196,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($cardio_workouts as $cardio):
                                     ?>
-                                    <option <?php
-                                    if (isset($cardio_Workout) && $cardio_Workout['name'] == $cardio['name']) {
-                                        echo 'selected';
-                                    }
-                                    ?> ) value="<?php
+                                    <option  value="<?php
                                     echo $cardio['cardio_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($saturday_cardio) && $saturday_cardio == $cardio['cardio_id']) echo 'selected';
+                                    ?>><?php
                                         echo $cardio['name'];
                                         ?></option>
                                     <?php
@@ -269,18 +211,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($strength_workouts as $strength):
                                     ?>
-                                    <option <?php
-                                    if (isset($strength_Workout)) {
-                                        foreach ($strength_Workout as $key){
-                                            if ($key['strength_id'] == $strength['strength_id']){
-                                                echo 'selected ';
-                                            }
-
-                                        }
-                                    }
-                                    ?>  value="<?php
+                                    <option  value="<?php
                                     echo $strength['strength_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($saturday_strength) && $saturday_strength == $strength['strength_id']) echo 'selected';
+                                    ?>><?php
                                         echo $strength['strength_workout_name'];
                                         ?></option>
                                     <?php
@@ -295,13 +229,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($cardio_workouts as $cardio):
                                     ?>
-                                    <option <?php
-                                    if (isset($cardio_Workout) && $cardio_Workout['name'] == $cardio['name']) {
-                                        echo 'selected';
-                                    }
-                                    ?> ) value="<?php
+                                    <option  value="<?php
                                     echo $cardio['cardio_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($sunday_cardio) && $sunday_cardio == $cardio['cardio_id']) echo 'selected';
+                                    ?>><?php
                                         echo $cardio['name'];
                                         ?></option>
                                     <?php
@@ -313,18 +244,10 @@ require_once '../Common Views/sidebar.php';
                                 <?php
                                 foreach ($strength_workouts as $strength):
                                     ?>
-                                    <option <?php
-                                    if (isset($strength_Workout)) {
-                                        foreach ($strength_Workout as $key){
-                                            if ($key['strength_id'] == $strength['strength_id']){
-                                                echo 'selected ';
-                                            }
-
-                                        }
-                                    }
-                                    ?>  value="<?php
+                                    <option value="<?php
                                     echo $strength['strength_id'];
-                                    ?>"><?php
+                                    ?>"<?php if (isset($sunday_strength) && $sunday_strength == $strength['strength_id']) echo 'selected';
+                                    ?>><?php
                                         echo $strength['strength_workout_name'];
                                         ?></option>
                                     <?php

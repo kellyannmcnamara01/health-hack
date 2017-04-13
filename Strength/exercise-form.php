@@ -16,7 +16,7 @@
                 <?php
                 foreach (range(0, 200, 5) as $i):
                     ?>
-                    <option
+                    <option <?php if (isset($weight) && $weight[] = $i){ echo 'selected';}?>
                         value="<?php
                         echo $i;
                         ?>"><?php

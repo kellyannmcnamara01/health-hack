@@ -67,9 +67,11 @@ $(document).ready(function() {
         $.getJSON('completedCardioData.php', {month : selmonth, year: selyear}, function (data) {
             var ctx = document.getElementById("myChart");
 
-            var labels = [];
+            var labels = ["Distance", "Goal Distance"];
             var datasets = [
                 {
+                    label: "Statistics",
+                    borderWidth: 1,
                     data: [],
                     backgroundColor: [
                         "#FF6384",
@@ -79,7 +81,6 @@ $(document).ready(function() {
             ];
 
             $.each(data, function(index,crdexercise){
-                //console.log(crdexercise.distance + ":" + crdexercise.goal_distance);
                 datasets[0].data.push(crdexercise.distance);
                 datasets[0].data.push(crdexercise.goal_distance);
             });
@@ -90,7 +91,7 @@ $(document).ready(function() {
             }
 
             var myPieChart = new Chart(ctx,{
-                type: 'pie',
+                type: 'bar',
                 data: data,
             });
         });

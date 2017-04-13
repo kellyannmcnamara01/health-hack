@@ -12,14 +12,14 @@ require_once '../Common Views/sidebar.php';
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
     <div class="container">
         <div class="row spacing">
-            <span class="badge badge-success"><?php if (isset($_SESSION['routine_success'])){ echo $_SESSION['routine_success'];}?></span>
+            <span class="badge badge-success"><?php if (isset($_COOKIE['success'])){ echo $_COOKIE['success'];}?></span>
         </div>
     </div>
         <div id="feature-callouts" class="col-md-9 col-sm-9 col-12 row">
         <div class="feature col-md-4 col-sm-4 col-4">
                 <a href="create-routine.php" class="feature-btn">
                     <div class="feature-icon">
-                        <img src="../opt-imgs/Create-Cardio-Icon.jpg" alt="" />
+                        <img src="../opt-imgs/routine-icon.png" alt="" />
                     </div>
                     <p class="text-center">Create a Routine</p>
                 </a>
@@ -27,7 +27,7 @@ require_once '../Common Views/sidebar.php';
             <div class="feature col-md-4 col-sm-4 col-4">
                 <a href="manage-routines.php" class="feature-btn">
                     <div class="feature-icon">
-                        <img src="../opt-imgs/Log-Cardio-Icon.jpg" alt="" />
+                        <img src="../opt-imgs/manage.png" alt="" />
                     </div>
                     <p class="text-center">Manage Routines</p>
                 </a>

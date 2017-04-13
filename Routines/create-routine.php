@@ -143,8 +143,10 @@ if ($valid) {
             //run query to set all rows (should only be 1) that are set to active to inactive
             $rou_yes->setInactive($conn, $r);
             $rou_yes->insertRoutine($conn, $r);
-            $_SESSION['routine_success'] = "Routine set in calendar";
+            $expire = time() + 1;
+            setcookie('success', 'Routine set!', $expire, '/');
             header("Location: routines.php");
+
         }
 
         //if they don't want to make it active in the calendar.
@@ -153,7 +155,8 @@ if ($valid) {
             $r->setActive($activeValue);
             $rou_no = new RoutineDAO();
             $rou_no->insertRoutine($conn, $r);
-            $_SESSION['routine_success'] = "Routine added";
+            $expire = time() + 1;
+            setcookie('success', 'Routine created!', $expire, '/');
             header("Location: routines.php");
 
         }

@@ -53,6 +53,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <?php if ($action == "Strength" || $action == "Cardio") { ?>
-<script src="../Scripts/strength.js?v=1"></script>
+<script src="../Scripts/strength.js"></script>
 <?php } ?>
 

@@ -65,8 +65,10 @@ if (isset($_POST['save_workout'])) {
 
 
         //display success message
-        $_SESSION['cardio_success'] = "Workout logged. Nice work!";
+        $expire = time() + 1;
+        setcookie('success', 'Cardio workout logged!', $expire, '/');
         header("Location: Cardio.php");
+
 
         //re-set all values
 

@@ -31,13 +31,17 @@ if (isset($_POST['load_cardio'])) {
     $cardio_id = filter_input(INPUT_POST, 'cardio_workout');
     //now assign this value to a new cardio workout object
 
-    $selected_Cardio_Workout = new cardioworkout();
-    $selected_Cardio_Workout->setUserId($user_id);
-    $selected_Cardio_Workout->setId($cardio_id);
+    if ($cardio_id == "0") {
+        $cardio_workout_error = "You must select a cardio workout to log.";
+    } else {
+        $selected_Cardio_Workout = new cardioworkout();
+        $selected_Cardio_Workout->setUserId($user_id);
+        $selected_Cardio_Workout->setId($cardio_id);
 
-    //running a query to get all of the information for the cardio workout that was selected.
-    $get_1_Cardio   = new cardioworkoutDAO();
-    $cardio_Workout = $get_1_Cardio->get1CardioWorkout($conn, $selected_Cardio_Workout);
+        //running a query to get all of the information for the cardio workout that was selected.
+        $get_1_Cardio = new cardioworkoutDAO();
+        $cardio_Workout = $get_1_Cardio->get1CardioWorkout($conn, $selected_Cardio_Workout);
+    }
 }
 if (isset($_POST['save_workout'])) {
 
@@ -100,8 +104,10 @@ if (isset($_POST['save_workout'])) {
         $minutes = 0;
         $seconds = 0;
 
-    $_SESSION['cardio_success'] = "Workout logged. Nice work!";
-    header("Location: Cardio.php");
+        $expire = time() + 1;
+        setcookie('success', 'Cardio workout logged!', $expire, '/');
+        header("Location: Cardio.php");
+
     }
 }
 require_once 'log-cardio-view.php';

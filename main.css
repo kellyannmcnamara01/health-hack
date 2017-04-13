@@ -685,12 +685,12 @@ div.calendar {
 }
 
 #strength, #cardio {
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 #strength input, #cardio input {
-    padding: 3rem;
-    width: 20%;
+    /*padding: 3rem;
+    width: 20%;*/
 }
 
 #strength input:hover, #cardio input:hover {
@@ -703,7 +703,7 @@ div.calendar {
 }
 
 #chartPlace {
-    width: 50%;
+    width: 90%;
     padding-right: 4rem;
 }
 

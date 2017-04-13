@@ -12,7 +12,7 @@ require_once '../Common Views/sidebar.php';
     <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
         <div class="container">
             <form action="#" method="post">
-                <h1 class="red">Manage Cardio Workouts</h1>
+                <h1 class="red">Manage Strength Workouts</h1>
                 <p class="badge badge-success"><?php if (isset($success_message)){ echo $success_message;} ?></p>
                 <p>Here, you can delete strength workouts. All instances of the strength workout will also be deleted in your completed strength workouts.</p>
                 <p>If the workout is part of a routine, that routine will also be deleted.</p>
