@@ -53,4 +53,44 @@ class Profile
 
         return $return;
     }
+
+    public function GetUserIdByResetToken($id){
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDb();
+        $return = array();
+
+        // query to grab user info by access_token
+        $select = "SELECT user_id from USERS WHERE resetToken = :token";
+
+        //prepare query
+        $userInfo = $connect->prepare($select);
+        //bind value
+        $userInfo->bindValue(":token", $id);
+        //execute
+        $userInfo->execute();
+        //Allow for access of return values by object reference
+        $return = $userInfo->fetch(PDO::FETCH_OBJ);
+        $userInfo->closeCursor();
+
+        return $return;
+    }
+
+    public function ResetPassword($password,$id){
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDb();
+
+        //encrypt password using SHA1
+        $Newpassword = sha1($id . $password);
+
+        $update = "UPDATE USERS SET password = :password WHERE user_id = :id";
+        // prepare statement
+        $updateStmt = $connect->prepare($update);
+        //bind values for $token, $email
+        $updateStmt->bindValue(":password", $Newpassword);
+        $updateStmt->bindValue(":id", $id);
+
+        return $updateStmt->execute();
+    }
 }

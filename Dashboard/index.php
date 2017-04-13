@@ -13,11 +13,7 @@ session_start();
 // include project files (check if files are already included, if they are, won't include require them again)
 require_once '../Models/Signup.php';
 require_once '../Models/Profile.php';
-require_once '../Common Views/Header.php';
 require_once 'processImg.php';
-
-
-// else
 
 $user = $_SESSION['user'];
 // call userInfo() method using user_id from $_SESSION
@@ -54,15 +50,14 @@ if (isset($_POST['profileSubmit'])){
     }
 
 }
-
+require_once '../Common Views/Header.php';
+require_once "../Common Views/sidebar.php";
 ?>
-<div class="container">
-    <div id="main-content" class="col-12">
+
+<div id="main-content" class="col-md-9 col-sm-12 col-12 row">
+    <div class="container">
         <h2 class="h2 col col-md-8"><?php if(isset($userFirst)){ echo $userFirst; } ?>'s Dashboard</h2>
         <p class="text-primary col col-md-8">Update your age, weight, and profile image below</p>
-<!--         <p>--><?php //echo $currentPage;?><!--</p>-->
-    <!-- form to update user profile information -->
-    <!-- since user will upload an image, set enctype on form -->
         <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation">
             <div class="form-field col col-md-8">
                 <label class="formLabel">Age</label>
@@ -85,6 +80,8 @@ if (isset($_POST['profileSubmit'])){
         </form>
     </div> <!-- end of main-content div-->
 </div> <!-- end of container div-->
+</main>
+
 <?php
 require_once '../Common Views/Footer.php';
 ?>

@@ -42,6 +42,12 @@ $servings_count = "";
 $timestamp = "";
 $cals_total = "";
 
+$totalCalsB = "";
+$totalCalsL = "";
+$totalCalsD = "";
+$totalCalsS = "";
+
+
 if(isset($_POST['foodEntrySubmit'])) {
 
     //include the getter and setter for the food entry file
@@ -67,31 +73,31 @@ if(isset($_POST['foodEntrySubmit'])) {
     //var_dump($foodEntryGetSet->getUserId());
     $gListConn->userFoodEntry($db, $foodEntryGetSet);
 
+
 }
 
 ?>
 
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
-    <div class="col-md-5 ">
+    <div class="col-md-6 col-sm-8 col-10">
         <h1 class="light-grey">Food Tracker</h1>
         <p>Please fill out the below form to keep track of what you have been eating. This is where many of your results will populate from.</p>
-        <div id="changeListBtn"><a class="buttonLink" href="Grocery.php">Select a New Grocery List</a></div>
-        <div id="nutrition"><a class="buttonLink" href="index.php">Back to Nutrition Home Page</a></div>
+        <!--<div id="changeListBtn"><a class="buttonLink" href="Grocery.php">Select a New Grocery List</a></div>
+        <div id="nutrition"><a class="buttonLink" href="index.php">Back to Nutrition Home Page</a></div>-->
     </div>
-    <div class="feature col-md-10 col-sm-12 col-12">
-
-        <form method="post" action="" id="food-diary-entry">
+    <div class="feature col-md-10 col-sm-10 col-12">
+        <form method="post" action="FoodDiaryEntry.php" id="food-diary-entry" class="col-md-7 col-sm-8 col-10">
             <div class="form-field">
-                <label for="food-item-selected">Food Item Name:</label>
-                <select name="food-item-selected">
+                <label for="food-item-selected" class="col-md-12">Food Item Name:</label>
+                <select name="food-item-selected" class="col-md-12" required>
                     <?php foreach ($list as $listOutput) { ?>
                         <option value="<?php echo $listOutput->food_item_id ?>"><?php echo $listOutput->food_item_name ?></option>
                     <?php } ?>
                 </select>
             </div>
             <div class="form-field">
-                <label for="meal">Meal:</label>
-                <select name="meal">
+                <label for="meal" class="col-md-12">Meal:</label>
+                <select name="meal" class="col-md-12" required>
                     <option value="breakfast" id="breakfast">Breakfast</option>
                     <option value="lunch" id="lunch">Lunch</option>
                     <option value="dinner" id="dinner">Dinner</option>
@@ -99,11 +105,11 @@ if(isset($_POST['foodEntrySubmit'])) {
                 </select>
             </div>
             <div class="form-field">
-                <label for="severing">Severing Size:</label>
-                <input type="text" name="severing" id="severing" />
+                <label for="severing" class="col-md-12">Severing Size:</label>
+                <input type="text" name="severing" id="severing" class="col-md-12" required/>
             </div>
             <div class="form-field">
-                <input id="foodEntrySubmit" name="foodEntrySubmit" type="submit" />
+                <input id="foodEntrySubmit" name="foodEntrySubmit" type="submit" class="formSubmit" />
             </div>
         </form>
         <h3>Breakfast</h3>
@@ -115,16 +121,22 @@ if(isset($_POST['foodEntrySubmit'])) {
             <div class="col-md-1"><strong>carbs</strong></div>
             <div class="col-md-1"><strong>protein</strong></div>
         </div>
-        <div class="col-md-12 row">
             <?php foreach ($todaysBreakfast as $today){ ?>
-                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
-                <div class="col-md-2"><?php echo $today->servings_count ?></div>
-                <div class="col-md-1"><?php echo $today->calories ?></div>
-                <div class="col-md-1"><?php echo $today->sodium ?></div>
-                <div class="col-md-1"><?php echo $today->carbs ?></div>
-                <div class="col-md-1"><?php echo $today->protein ?></div>
+            <div class="col-md-12 row">
+                <div class=""><?php echo $today->food_item_name ?></div>
+                <div class=""><?php echo $today->servings_count ?></div>
+                <div class=""><?php echo $today->calories ?></div>
+                <div class=""><?php echo $today->fat ?></div>
+                <div class=""><?php echo $today->cholesterol ?></div>
+                <div class=""><?php echo $today->sodium ?></div>
+                <div class=""><?php echo $today->carbs ?></div>
+                <div class=""><?php echo $today->protein ?></div>
+            </div>
             <?php } ?>
-        </div>
+            <?php foreach ($todaysBreakfast as $today){
+                $totalCalsB += $today->calories;
+            } ?>
+            <div class="col-md-12" style="color: blue;"><?php echo $totalCalsB ?></div>
         <br><br>
         <h3>Lunch</h3>
         <div class="col-md-12 row">
@@ -135,16 +147,22 @@ if(isset($_POST['foodEntrySubmit'])) {
             <div class="col-md-1"><strong>carbs</strong></div>
             <div class="col-md-1"><strong>protein</strong></div>
         </div>
-        <div class="col-md-12 row">
             <?php foreach ($todaysLunch as $today){ ?>
-                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
-                <div class="col-md-2"><?php echo $today->servings_count ?></div>
-                <div class="col-md-1"><?php echo $today->calories ?></div>
-                <div class="col-md-1"><?php echo $today->sodium ?></div>
-                <div class="col-md-1"><?php echo $today->carbs ?></div>
-                <div class="col-md-1"><?php echo $today->protein ?></div>
+                <div class="col-md-12 row">
+                    <div class=""><?php echo $today->food_item_name ?></div>
+                    <div class=""><?php echo $today->servings_count ?></div>
+                    <div class=""><?php echo $today->calories ?></div>
+                    <div class=""><?php echo $today->fat ?></div>
+                    <div class=""><?php echo $today->cholesterol ?></div>
+                    <div class=""><?php echo $today->sodium ?></div>
+                    <div class=""><?php echo $today->carbs ?></div>
+                    <div class=""><?php echo $today->protein ?></div>
+                </div>
             <?php } ?>
-        </div>
+            <?php foreach ($todaysLunch as $today){
+                $totalCalsL += $today->calories;
+            } ?>
+        <div class="col-md-12" style="color: blue;"><?php echo $totalCalsL ?></div>
         <br><br>
         <h3>Dinner</h3>
         <div class="col-md-12 row">
@@ -155,16 +173,22 @@ if(isset($_POST['foodEntrySubmit'])) {
             <div class="col-md-1"><strong>carbs</strong></div>
             <div class="col-md-1"><strong>protein</strong></div>
         </div>
-        <div class="col-md-12 row">
             <?php foreach ($todaysDinner as $today){ ?>
-                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
-                <div class="col-md-2"><?php echo $today->servings_count ?></div>
-                <div class="col-md-1"><?php echo $today->calories ?></div>
-                <div class="col-md-1"><?php echo $today->sodium ?></div>
-                <div class="col-md-1"><?php echo $today->carbs ?></div>
-                <div class="col-md-1"><?php echo $today->protein ?></div>
+                <div class="col-md-12 row">
+                    <div class=""><?php echo $today->food_item_name ?></div>
+                    <div class=""><?php echo $today->servings_count ?></div>
+                    <div class=""><?php echo $today->calories ?></div>
+                    <div class=""><?php echo $today->fat ?></div>
+                    <div class=""><?php echo $today->cholesterol ?></div>
+                    <div class=""><?php echo $today->sodium ?></div>
+                    <div class=""><?php echo $today->carbs ?></div>
+                    <div class=""><?php echo $today->protein ?></div>
+                </div>
             <?php } ?>
-        </div>
+            <?php foreach ($todaysDinner as $today){
+                $totalCalsD += $today->calories;
+            } ?>
+        <div class="col-md-12" style="color: blue;"><?php echo $totalCalsD ?></div>
         <br><br>
         <h3>Snacks</h3>
         <div class="col-md-12 row">
@@ -175,16 +199,22 @@ if(isset($_POST['foodEntrySubmit'])) {
             <div class="col-md-1"><strong>carbs</strong></div>
             <div class="col-md-1"><strong>protein</strong></div>
         </div>
-        <div class="col-md-12 row">
             <?php foreach ($todaysSnacks as $today){ ?>
-                <div class="col-md-4"><?php echo $today->food_item_name ?></div>
-                <div class="col-md-2"><?php echo $today->servings_count ?></div>
-                <div class="col-md-1"><?php echo $today->calories ?></div>
-                <div class="col-md-1"><?php echo $today->sodium ?></div>
-                <div class="col-md-1"><?php echo $today->carbs ?></div>
-                <div class="col-md-1"><?php echo $today->protein ?></div>
+                <div class="col-md-12 row">
+                    <div class=""><?php echo $today->food_item_name ?></div>
+                    <div class=""><?php echo $today->servings_count ?></div>
+                    <div class=""><?php echo $today->calories ?></div>
+                    <div class=""><?php echo $today->fat ?></div>
+                    <div class=""><?php echo $today->cholesterol ?></div>
+                    <div class=""><?php echo $today->sodium ?></div>
+                    <div class=""><?php echo $today->carbs ?></div>
+                    <div class=""><?php echo $today->protein ?></div>
+                </div>
             <?php } ?>
-        </div>
+            <?php foreach ($todaysSnacks as $today){
+                $totalCalsS += $today->calories;
+            } ?>
+        <div class="col-md-12" style="color: blue;"><?php echo $totalCalsS ?></div>
     </div>
 </div>
 </main>
