@@ -610,7 +610,20 @@ div.calendar {
 .routine {
     margin-bottom: 1rem;
 }
-
+div#gym-hours {
+    text-align: left;
+}
+#gym-hours > div span {
+    display: block;
+}
+#gym-hours > div {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+#gym-hours p {
+    text-align: center;
+    color: #e04152;
+}
 /* Gym Locator */
 
 .controls {
@@ -658,6 +671,11 @@ div.calendar {
 #gymlist > h2 {
     text-align: center;
 }
+.fav-gyms > div:last-child {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 .gym-item > div {
     width: 100%;
     vertical-align: top;
@@ -678,16 +696,26 @@ div.calendar {
     height: 50px;
 }
 .gym-to-default {
-    margin-top: 2rem;
+    /*margin-top: 6rem;*/
+    /*margin-left: 0;*/
+    /*position: absolute;*/
+    /*position: absolute;*/
 }
 .gym-to-default div {
     display: inline-block;
     margin-left: 1.5rem;
+    /*margin-top: 5.9rem;*/
+}
+.gym-to-default div:first-child {
+    /*margin-top: 6rem;*/
 }
 .gym-to-default div:last-child {
     display: block;
     text-align: center;
     margin-top: 1rem;
+    /*position: absolute;
+    bottom: 0;
+    right: 0;*/
 }
 .gym-to-default input {
     margin-left: 0.5rem;
