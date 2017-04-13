@@ -807,6 +807,8 @@ div.calendar {
     padding: 10px 15px;
     color: #fff;
     font-size: 1.3em;
+    border: none;
+    margin: 15px 0px;
 }
 .buttonLink:hover, .buttonLink:active, .buttonLink:focus {
     outline: none;
