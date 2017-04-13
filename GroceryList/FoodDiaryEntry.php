@@ -74,7 +74,7 @@ if(isset($_POST['foodEntrySubmit'])) {
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
     <div class="col-md-5 ">
         <h1 class="light-grey">Food Tracker</h1>
-        <p>Please fill out the below form to keep track of what you have been eating. This is where many of your results will populate from.</p>
+        <p>Please fill out the below form to keep track of what you have been eating. This is where many of your results will populate from..</p>
         <div id="changeListBtn"><a class="buttonLink" href="Grocery.php">Select a New Grocery List</a></div>
         <div id="nutrition"><a class="buttonLink" href="index.php">Back to Nutrition Home Page</a></div>
     </div>
