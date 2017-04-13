@@ -353,27 +353,50 @@ p {
 .textInput {
     width: 100%;
     border: none;
-    font-size: 1.6em;
+    font-size: 12em;
     color: #8d97a4;
     outline: none;
-    border-bottom: solid 2px #e5e7ec;
+    box-shadow: inset 0px -2px 0px 0px #e5e7ec;
     padding: 15px 15px 25px 15px;
     transition: .3s all ease;
+    background: #fff;
 }
-.textInput:hover, .textInput:active, .textInput:focus{
-    border-bottom: solid 6px #8cc34b;
+input[type="text"], input[type="password"], input[type="email"], select {
+    border: none;font-size: 1.3em;
+    color: #8d97a4;
+    outline: none;
+    box-shadow: inset 0px -2px 0px 0px #e5e7ec;
+    padding: 12px 15px;
+    transition: .3s all ease;
+    background: #fff;
+}
+select {
+    height: 40px;
+    margin-bottom: 5px;
+    border-radius: 0px;
+}
+.textInput:hover, .textInput:active, .textInput:focus, .textInput2:hover, .textInput2:active, .textInput2:focus, input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus, input[type="password"]:hover, input[type="password"]:active, input[type="password"]:focus, input[type="email"]:hover, input[type="email"]:active, input[type="email"]:focus, select:hover, select:active, select:focus {
+    box-shadow: inset 0px -3px 0px 0px #8cc34b;
+}
+label {
+    font-size: 1.3em;
+    color: #8d97a4;
+    font-weight: 400;
+    padding: 15px 0px 0px;
+    margin: 0px;
 }
 .formSubmit {
     width: 100%;
-    max-width: 200px;
+    max-width: 175px;
     text-align: center;
     border: none;
     outline: none;
-    padding: 20px 15px;
+    padding: 15px 10px;
     font-size: 1.6em;
     color: #fff;
     background: #35adda;
     transition: .7s all ease;
+    margin-top: 15px;
 }
 .formResetBtn {
     width: 100%;
@@ -868,9 +891,12 @@ div.calendar {
     background: #8cc34b;
     outline: none;
 }
-/*.grocery_list__details:nth-child(2) {
-    background: #efefef;
-}*/
+.panel-group {
+    margin: 0 auto;
+    margin-top: 100px;
+    color: #8d97a4;
+    font-size: 1.3em;
+}
 .panel-heading {
     background: #e04152;
 }
@@ -879,7 +905,7 @@ div.calendar {
 }
 .panel-title a {
     color: #fff;
-    font-size: 0.7em;
+    font-size: 0.5em;
     text-transform: none;
 }
 .panel-title a:hover, .panel-title a:active, .panel-title a:focus {
@@ -887,6 +913,30 @@ div.calendar {
 }
 .panel-title:hover, .panel-title:active, .panel-title:focus {
     background: #8cc34b;
+}
+.panel-body {
+    margin-bottom: 25px;
+}
+.nutrition-category {
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+.nutrition-serving-size {
+    border-bottom: 2px solid #8d97a4;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+}
+.nutrition-amount, .nutrition-dv {
+    font-size: 0.8em;
+    padding-bottom: 10px;
+    font-weight: 700;
+}
+.nutrition-dv {
+    text-align: right;
+    margin-right: -5px;
+}
+#food-diary-entry {
+    padding: 25px 0px;
 }
 
 /* Media Queries */

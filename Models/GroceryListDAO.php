@@ -88,7 +88,14 @@ class GroceryListDAO
     }*/
 
     public function populateTodaysBreakfast($db) {
-        $query_todaysBreakfast = "SELECT food_item_name, sum(servings_count) AS servings_count, (calories * sum(servings_count)) AS calories, (sodium  * sum(servings_count)) AS sodium, (carbs * sum(servings_count)) AS carbs, (protein * sum(servings_count)) AS protein, meal, FOOD_TRACKING_LISTS.user_id
+        $query_todaysBreakfast = "SELECT food_item_name, sum(servings_count) AS servings_count, 
+                                    (calories * sum(servings_count)) AS calories, 
+                                    (fat * sum(servings_count)) AS fat, 
+                                    (cholesterol * sum(servings_count)) AS cholesterol, 
+                                    (sodium  * sum(servings_count)) AS sodium, 
+                                    (carbs * sum(servings_count)) AS carbs, 
+                                    (protein * sum(servings_count)) AS protein, 
+                                    meal, FOOD_TRACKING_LISTS.user_id
                                   FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                   WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                     AND FOOD_TRACKING_LISTS.user_id = :user_id
@@ -103,13 +110,20 @@ class GroceryListDAO
     }
 
     public function populateTodaysLunch($db) {
-        $query_todaysLunch = "SELECT food_item_name, sum(servings_count) AS servings_count, (calories * sum(servings_count)) AS calories, (sodium  * sum(servings_count)) AS sodium, (carbs * sum(servings_count)) AS carbs, (protein * sum(servings_count)) AS protein, meal, FOOD_TRACKING_LISTS.user_id
-                                  FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
-                                  WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
-                                    AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                AND time_stamp = CURDATE()
-	                                AND meal = 'lunch'
-	                              GROUP BY food_item_name";
+        $query_todaysLunch = "SELECT food_item_name, sum(servings_count) AS servings_count, 
+                                (calories * sum(servings_count)) AS calories, 
+                                (fat * sum(servings_count)) AS fat, 
+                                (cholesterol * sum(servings_count)) AS cholesterol, 
+                                (sodium  * sum(servings_count)) AS sodium, 
+                                (carbs * sum(servings_count)) AS carbs, 
+                                (protein * sum(servings_count)) AS protein, 
+                                meal, FOOD_TRACKING_LISTS.user_id
+                              FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
+                              WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
+                                AND FOOD_TRACKING_LISTS.user_id = :user_id
+                                AND time_stamp = CURDATE()
+                                AND meal = 'lunch'
+                              GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysLunch);
         $pdo_statement->bindValue(":user_id", 1);
         $pdo_statement->execute();
@@ -118,13 +132,20 @@ class GroceryListDAO
     }
 
     public function populateTodaysDinner($db) {
-        $query_todaysDinner = "SELECT food_item_name, sum(servings_count) AS servings_count, (calories * sum(servings_count)) AS calories, (sodium  * sum(servings_count)) AS sodium, (carbs * sum(servings_count)) AS carbs, (protein * sum(servings_count)) AS protein, meal, FOOD_TRACKING_LISTS.user_id
-                                  FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
-                                  WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
-                                    AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                AND time_stamp = CURDATE()
-	                                AND meal = 'dinner'
-	                              GROUP BY food_item_name";
+        $query_todaysDinner = "SELECT food_item_name, sum(servings_count) AS servings_count, 
+                                (calories * sum(servings_count)) AS calories, 
+                                (fat * sum(servings_count)) AS fat, 
+                                (cholesterol * sum(servings_count)) AS cholesterol, 
+                                (sodium  * sum(servings_count)) AS sodium, 
+                                (carbs * sum(servings_count)) AS carbs, 
+                                (protein * sum(servings_count)) AS protein, 
+                                meal, FOOD_TRACKING_LISTS.user_id
+                              FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
+                              WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
+                                AND FOOD_TRACKING_LISTS.user_id = :user_id
+                                AND time_stamp = CURDATE()
+                                AND meal = 'dinner'
+                              GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysDinner);
         $pdo_statement->bindValue(":user_id", 1);
         $pdo_statement->execute();
@@ -133,13 +154,20 @@ class GroceryListDAO
     }
 
     public function populateTodaysSnacks($db) {
-        $query_todaysSnacks = "SELECT food_item_name, sum(servings_count) AS servings_count, (calories * sum(servings_count)) AS calories, (sodium  * sum(servings_count)) AS sodium, (carbs * sum(servings_count)) AS carbs, (protein * sum(servings_count)) AS protein, meal, FOOD_TRACKING_LISTS.user_id
-                                  FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
-                                  WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
-                                    AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                AND time_stamp = CURDATE()
-	                                AND meal = 'snack'
-	                              GROUP BY food_item_name";
+        $query_todaysSnacks = "SELECT food_item_name, sum(servings_count) AS servings_count, 
+                                (calories * sum(servings_count)) AS calories, 
+                                (fat * sum(servings_count)) AS fat, 
+                                (cholesterol * sum(servings_count)) AS cholesterol, 
+                                (sodium  * sum(servings_count)) AS sodium, 
+                                (carbs * sum(servings_count)) AS carbs, 
+                                (protein * sum(servings_count)) AS protein, 
+                                meal, FOOD_TRACKING_LISTS.user_id
+                              FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
+                              WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
+                                AND FOOD_TRACKING_LISTS.user_id = :user_id
+                                AND time_stamp = CURDATE()
+                                AND meal = 'snack'
+                              GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysSnacks);
         $pdo_statement->bindValue(":user_id", 1);
         $pdo_statement->execute();
