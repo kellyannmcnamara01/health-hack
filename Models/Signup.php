@@ -110,7 +110,7 @@ class Signup
         $connect = $db->getDb();
         $return = array();
 
-        $select = "SELECT email,first_name,last_name FROM USERS WHERE email = :email";
+        $select = "SELECT email,first_name,last_name,email FROM USERS WHERE email = :email";
         //prepare statement
         $slctEmail = $connect->prepare($select);
         //bind value for $email
@@ -135,4 +135,5 @@ class Signup
 
         return $updateStmt->execute();
     }
+
 }
