@@ -43,10 +43,10 @@ $userId = $db->userInfo($user);
 
 //grab  user id, username
 $id = $userId->user_id;
-$userEmail = $userId->email
+$userEmail = $userId->email;
 //$userFirst = $userId->first_name;
-/$userName = $userId->first_name . ' ' . $userId->last_name;
-/echo $userName;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+//echo $userName;
 //include the header & sidebar
 if(isset($_POST['passwordUpDateSubmit'])){
     //echo "Hello World";
@@ -58,7 +58,9 @@ if(isset($_POST['passwordUpDateSubmit'])){
     //confirm user has enter the same password for both fields
     if ($password === $confirmPassword){
         //echo "They match";
-        $newPassword = $db->grantPasswordResetToken($password,$id);
+        //new instance of Profile()
+        $profile = new Profile();
+        $newPassword = $profile->ResetPassword($password,$id);
         $success = "Password was officially updated for $userEmail";
     }
     else
@@ -74,8 +76,8 @@ require_once "../Common Views/sidebar.php";
         <div class="container">
             <h2 class="h2 col col-md-8 text-center">Reset Your Password</h2>
             <p class="text-primary col col-md-8 text-center">Please enter your new password below.</p>
-            <p class="text-info col col-md-8 text-center"><?php if (isset($error)){ echo $error;}?></p>
-            <p class="text-info col col-md-8 text-center"><?php if (isset($error)){ echo $error;}?></p>
+            <p class="badge badge-error col col-md-8 text-center"><?php if (isset($error)){ echo $error;}?></p>
+            <p class="text-center badge badge-success col col-md-8 "><?php if (isset($success)){ echo $success;}?></p>
             <form action="resetpassword.php" method="post" id="changeUserPassword">
                 <div class="form-field col col-md-8">
                     <label class="formLabel">Password</label>

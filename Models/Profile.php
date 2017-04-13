@@ -81,12 +81,15 @@ class Profile
         $db = new Database();
         $connect = $db->getDb();
 
+        //encrypt password using SHA1
+        $Newpassword = sha1($id . $password);
+
         $update = "UPDATE USERS SET password = :password WHERE user_id = :id";
         // prepare statement
         $updateStmt = $connect->prepare($update);
         //bind values for $token, $email
-        $updateStmt->bindValue(":password", $password);
-        $updateStmt->bindValue(":user_id", $id);
+        $updateStmt->bindValue(":password", $Newpassword);
+        $updateStmt->bindValue(":id", $id);
 
         return $updateStmt->execute();
     }
