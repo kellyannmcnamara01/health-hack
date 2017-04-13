@@ -37,13 +37,10 @@ require_once "../Common Views/sidebar.php";
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
     <div class="col-md-6 ">
         <h1 class="light-grey">Nutrition</h1>
-<<<<<<< Updated upstream
         <p>Welcome to your nutrition section of Health Hack. Here you will be able to select what grocery list you'd like to base your diet off of. As well you will be able to see and add to your selected list. Finally you will also be able to track what you ate and when. This is important on your way to a healthy life style.</p>
         <p>Below you will see a list of food items that are currently in your list. If you would like to change your grocery list please use the button below..</p>
-=======
         <p>Welcome to your nutrition list by Health Hack. Here you will be able to see and add to your selected list. </p>
         <p>Below you will see a list of food items that are currently in your list. If you would like to see the full nutrition facts for a food item please click on the name and it will expand to show more information. If you would like to change your grocery list please use the button below.</p>
->>>>>>> Stashed changes
         <div class="col-md-12 row">
             <div class="col-md-7">
                 <button class="buttonLink" href="Grocery.php">Select a New Grocery List</button>
@@ -71,8 +68,8 @@ require_once "../Common Views/sidebar.php";
                         <div class="col-md-12">Category: <?php echo $listOutput->category ?></div>
                         <div class="col-md-12">Serving Size <?php echo $listOutput->grams ?> g</div>
                         <div class="col-md-12 row">
-                            <div class="col-md-6">Amount Per Serving</div>
-                            <div class="col-md-6">% Daily Value</div>
+                            <div class="col-md-7">Amount Per Serving</div>
+                            <div class="col-md-5">% Daily Value</div>
                         </div>
                         <div class="col-md-12">Calories <?php echo $listOutput->calories ?></div>
                         <div class="col-md-9">
