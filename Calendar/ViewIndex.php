@@ -3,7 +3,7 @@
     require_once('../Common Views/sidebar.php');
 ?>
     <div id='calendar-feature' class='col-md-9 col-sm-12'>
-        <h3>Today is <?php echo date('l'); ?></h3>
+        <h3>Today is <?php echo date('d'); ?> <?php echo date('F'); ?> <?php echo date('l'); ?> <?php echo date('Y'); ?></h3>
         <p>Check out what is on Agenda</p>
         <p>Working hours for your gym</p>
         <div id='gym-hours' class='row'></div>

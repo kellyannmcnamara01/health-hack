@@ -128,7 +128,10 @@ class Calendar {
                 $type = ($i == 0) ? "strength" : "cardio";
                 if (isset($routine[$workouts[$i]])) 
                 {
-                    $output .= "<div><span>".$this->getWorkoutById($type, $routine[$workouts[$i]])."</span></div>";
+                    if ($type === "strength")
+                        $output .= "<div><span><a href='/health-hack/Strength/log-strength.php'>".$this->getWorkoutById($type, $routine[$workouts[$i]])."</a></span></div>";
+                    else
+                        $output .= "<div><span><a href='/health-hack/CardioFeature/log-cardio.php'>".$this->getWorkoutById($type, $routine[$workouts[$i]])."</a></span></div>";
                 }
             }
             $output .= "</div>";
