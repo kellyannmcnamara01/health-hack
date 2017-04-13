@@ -216,9 +216,20 @@ if(isset($_POST['foodEntrySubmit'])) {
             } ?>
         <div class="col-md-12" style="color: blue;"><?php echo $totalCalsS ?></div>
     </div>
+    <!-------------->
+    <!-------------->
+    <!-------------->
+    <!-------------->
+    <!-------------->
+    <!-------------->
+    <div class="col-md-12">
+        <canvas id="skills" height="100px" width="100px"></canvas>
+    </div>
 </div>
 </main>
 
 <?php
 require_once '../Common Views/Footer.php';
 ?>
+
+<script src="../Scripts/nutrition.js"></script>
