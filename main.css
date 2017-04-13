@@ -395,6 +395,7 @@ p {
 .badge {
     font-size: 1.5em;
     padding: 5px 10px;
+    display: block;
 }
 /* 06. Footer */
 #footer {
