@@ -91,6 +91,11 @@ require_once "../Common Views/sidebar.php";
         <?php
             }
         ?>
+        <div class="col-md-12 row">
+            <a href="index.php" class="back-btn offset-md-0">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+            </a>
+        </div>
     </div>
 </div>
 </main>

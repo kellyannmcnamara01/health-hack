@@ -90,6 +90,11 @@
                 </div>
             </form>
         </div>
+        <div class="col-md-12 row">
+            <a href="index.php" class="back-btn offset-md-1">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+            </a>
+        </div>
     </div>
 </main>
 

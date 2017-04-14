@@ -394,7 +394,6 @@ label {
     padding: 15px 10px;
     font-size: 1.6em;
     color: #fff;
-    background: #35adda;
     transition: .7s all ease;
     margin-top: 15px;
 }
@@ -975,10 +974,12 @@ div#gym-hours {
 #food-diary-entry {
     padding: 25px 0px;
 }
-/*#nutritionChart {
-    max-width: 100px;
-    max-height: 100px;
-}*/
+.progress {
+    background-color: #ccd0d9 !important;
+}
+.progress-bar {
+    background-color: #e04152 !important;
+}
 
 /* Media Queries */
 @media only screen and (max-width: 767px) {

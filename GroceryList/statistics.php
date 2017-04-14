@@ -14,6 +14,7 @@ $gListConn = new GroceryListDAO();
 $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
 $todaysEntries = $gListConn->populateTodaysFoodEntries($db);
+$weeksEntries = $gListConn->populateWeeksFoodEntries($db);
 $todaysBreakfast = $gListConn->populateTodaysBreakfast($db);
 $todaysLunch = $gListConn->populateTodaysLunch($db);
 $todaysDinner = $gListConn->populateTodaysDinner($db);
@@ -55,6 +56,19 @@ $totalSodium = "";
 $totalCarbs = "";
 $totalProtein = "";
 
+foreach ($todaysEntries as $today){
+    $totalCals += $today->calories;
+    $totalFat += $today->fat;
+    $totalCholesterol += $today->cholesterol;
+    $totalSodium += $today->sodium;
+    $totalCarbs += $today->carbs;
+    $totalProtein += $today->protein;
+    $fatDV = round(($today->fat / 300) * 100);
+    $cholesterolDV = round(($today->cholesterol / 300) * 100);
+    $sodiumDV = round(($today->sodium / 300) * 100);
+    $carbsDV = round(($today->carbs / 300) * 100);
+}
+
 
 if(isset($_POST['foodEntrySubmit'])) {
 
@@ -89,13 +103,11 @@ if(isset($_POST['foodEntrySubmit'])) {
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
 
     <div class="col-md-12 row">
-        <div class="col-md-12">
-            <div class="col-md-4">
-                <h2 class="text-center">Daily Nutrition Intake Total</h2>
-                <canvas id="nutritionChart"></canvas>
-            </div>
+        <div class="col-md-4">
+            <h2 class="text-center">Comparative Daily Nutrition Intake</h2>
+            <canvas id="nutritionChart"></canvas>
         </div>
-        <div class="col-md-3 col-sm-6 col-8">
+        <!--<div class="col-md-3 col-sm-6 col-8">
             <h2 class="text-center">Fat Daily Value Intake Total</h2>
             <canvas id="fatDVChart"></canvas>
         </div>
@@ -110,20 +122,42 @@ if(isset($_POST['foodEntrySubmit'])) {
         <div class="col-md-3 col-sm-6 col-8">
             <h2 class="text-center">Carbs Daily Value Intake Total</h2>
             <canvas id="carbsDVChart"></canvas>
+        </div>-->
+        <div class="col-md-8 row">
+            <div class="col-md-6 col-sm-6 col-8">
+                <p class="text-center"><?php echo $fatDV ?>% Fat Daily Value Intake Total</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
+                        <?php echo $fatDV ?>%
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-8">
+                <p class="text-center"><?php echo $cholesterolDV ?>% Cholesterol Daily Value Intake Total</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
+                        <?php echo $cholesterolDV ?>%
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-8">
+                <p class="text-center"><?php echo $sodiumDV ?>% Sodium Daily Value Intake Total</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
+                        <?php echo $sodiumDV ?>%
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-8">
+                <p class="text-center"><?php echo $carbsDV ?>% Carbs Daily Value Intake Total</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
+                        <?php echo $carbsDV ?>%
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <?php foreach ($todaysEntries as $today){
-        $totalCals += $today->calories;
-        $totalFat += $today->fat;
-        $totalCholesterol += $today->cholesterol;
-        $totalSodium += $today->sodium;
-        $totalCarbs += $today->carbs;
-        $totalProtein += $today->protein;
-        $fatDV = round(($today->fat / 65) * 100);
-        $cholesterolDV = round(($today->cholesterol / 300) * 100);
-        $sodiumDV = round(($today->sodium / 2400) * 100);
-        $carbsDV = round(($today->carbs / 300) * 100);
-    } ?>
     <div class="col-md-12">Total Cals for the day: <?php echo $totalCals ?></div>
     <div class="col-md-12">Total Fat for the day: <?php echo $totalFat ?></div>
     <div class="col-md-12">Total cholesterol for the day: <?php echo $totalCholesterol ?></div>
@@ -146,6 +180,11 @@ if(isset($_POST['foodEntrySubmit'])) {
         <div id="cholesterolDV"><?php echo $cholesterolDV ?></div>
         <div id="sodiumDV"><?php echo $sodiumDV ?></div>
         <div id="carbsDV"><?php echo $carbsDV ?></div>
+    </div>
+    <div class="col-md-12 row">
+        <a href="index.php" class="back-btn offset-md-0">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+        </a>
     </div>
 </div>
 </main>

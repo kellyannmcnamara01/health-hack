@@ -54,6 +54,7 @@ $(document).ready(function(){
 
     var totalCarbsDV = document.getElementById("carbsDV");
     var carbsDV = parseInt(totalCarbsDV.innerHTML, 10);
+    console.log(carbsDV);
 
     //function to inout the data into chat js canvas called fatDVChart
     var fatdvContext = document.getElementById("fatDVChart").getContext('2d');

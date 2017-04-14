@@ -94,6 +94,27 @@ class GroceryListDAO
         return $todaysFoodEntries;
 
     }
+    public function populateWeeksFoodEntries($db){
+        $query_weeksFoodEntries = "SELECT food_item_name, sum(servings_count) AS servings_count, 
+                                        (calories * sum(servings_count)) AS calories, 
+                                        (fat * sum(servings_count)) AS fat, 
+                                        (cholesterol * sum(servings_count)) AS cholesterol, 
+                                        (sodium  * sum(servings_count)) AS sodium, 
+                                        (carbs * sum(servings_count)) AS carbs, 
+                                        (protein * sum(servings_count)) AS protein, 
+                                        meal, FOOD_TRACKING_LISTS.user_id
+                                      FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
+                                      WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
+                                      AND FOOD_TRACKING_LISTS.user_id = :user_id
+	                                  AND time_stamp BETWEEN (CURDATE() - INTERVAL 7 DAY) AND CURDATE()
+	                                  GROUP BY food_item_name";
+        $pdo_statement = $db->prepare($query_weeksFoodEntries);
+        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->execute();
+        $weeksFoodEntries = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
+        return $weeksFoodEntries;
+
+    }
 
     public function populateTodaysBreakfast($db) {
         $query_todaysBreakfast = "SELECT food_item_name, sum(servings_count) AS servings_count, 
