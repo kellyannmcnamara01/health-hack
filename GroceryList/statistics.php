@@ -15,6 +15,11 @@ $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
 $todaysEntries = $gListConn->populateTodaysFoodEntries($db);
 $weeksEntries = $gListConn->populateWeeksFoodEntries($db);
+$sixDaysAgo = $gListConn->populateSixDaysAgo($db);
+$fiveDaysAgo = $gListConn->populateFiveDaysAgo($db);
+$fourDaysAgo = $gListConn->populateFourDaysAgo($db);
+$threeDaysAgo = $gListConn->populateThreeDaysAgo($db);
+$twoDaysAgo = $gListConn->populateSixDaysAgo($db);
 $todaysBreakfast = $gListConn->populateTodaysBreakfast($db);
 $todaysLunch = $gListConn->populateTodaysLunch($db);
 $todaysDinner = $gListConn->populateTodaysDinner($db);
@@ -49,25 +54,91 @@ $totalCalsD = "";
 $totalCalsS = "";
 
 ////////
-$totalCals = "";
-$totalFat = "";
-$totalCholesterol = "";
-$totalSodium = "";
-$totalCarbs = "";
-$totalProtein = "";
+/*$totalCals = ""; $totalFat = ""; $totalCholesterol = ""; $totalSodium = ""; $totalCarbs = ""; $totalProtein = "";
+$totalWeekCals = ""; $totalWeekFat = ""; $totalWeekCholesterol = ""; $totalWeekSodium = ""; $totalWeekCarbs = ""; $totalWeekProtein = "";
+$totalSixDaysCals = ""; $totalSixDaysFat = ""; $totalSixDaysCholesterol = ""; $totalSixDaysSodium = ""; $totalSixDaysCarbs = ""; $totalSixDaysProtein = "";
+$totalFiveDaysCals = ""; $totalFiveDaysFat = ""; $totalFiveDaysCholesterol = ""; $totalFiveDaysSodium = ""; $totalFiveDaysCarbs = ""; $totalFiveDaysProtein = "";
+$totalFourDaysCals = ""; $totalFourDaysFat = ""; $totalFourDaysCholesterol = ""; $totalFourDaysSodium = ""; $totalFourDaysCarbs = ""; $totalFourDaysProtein = "";
+$totalThreeDaysCals = ""; $totalThreeDaysFat = ""; $totalThreeDaysCholesterol = ""; $totalThreeDaysSodium = ""; $totalThreeDaysCarbs = ""; $totalThreeDaysProtein = "";
+$totalTwoDaysCals = ""; $totalTwoDaysFat = ""; $totalTwoDaysCholesterol = ""; $totalTwoDaysSodium = ""; $totalTwoDaysCarbs = ""; $totalTwoDaysProtein = "";
+*/
+
+
+
+$todayArr = array();
+
 
 foreach ($todaysEntries as $today){
-    $totalCals += $today->calories;
-    $totalFat += $today->fat;
-    $totalCholesterol += $today->cholesterol;
-    $totalSodium += $today->sodium;
-    $totalCarbs += $today->carbs;
-    $totalProtein += $today->protein;
-    $fatDV = round(($today->fat / 65) * 100);
-    $cholesterolDV = round(($today->cholesterol / 300) * 100);
-    $sodiumDV = round(($today->sodium / 2400) * 100);
-    $carbsDV = round(($today->carbs / 300) * 100);
+    $todayArr['calories'] += $today->calories;
+    $todayArr['fat'] += $today->fat;
+    $todayArr['cholesterol'] += $today->cholesterol;
+    $todayArr['sodium'] += $today->sodium;
+    $todayArr['carbs'] += $today->carbs;
+    $todayArr['protein'] += $today->protein;
+    //$totalCals += $today->calories;
+    //$totalFat += $today->fat;
+    //$totalCholesterol += $today->cholesterol;
+    //$totalSodium += $today->sodium;
+    //$totalCarbs += $today->carbs;
+    //$totalProtein += $today->protein;
 }
+/*
+$todayDvArr = ["fatDV" => round(($todaysEntries->fat / 65) * 100),
+    "cholesterolDV" => round(($todaysEntries->cholesterol / 300) * 100),
+    "sodiumDV" => round(($todaysEntries->sodium / 2400) * 100),
+    "carbsDV" => round(($todaysEntries->carbs / 300) * 100)];
+*/
+
+
+/*
+foreach ($weeksEntries as $entry) {
+    $totalWeekCals += $entry->calories;
+    $totalWeekFat += $entry->fat;
+    $totalWeekCholesterol += $entry->cholesterol;
+    $totalWeekSodium += $entry->sodium;
+    $totalWeekCarbs += $entry->carbs;
+    $totalWeekProtein += $entry->protein;
+}
+foreach ($sixDaysAgo as $entry) {
+    $totalSixDaysCals += $entry->calories;
+    $totalSixDaysFat += $entry->fat;
+    $totalSixDaysCholesterol += $entry->cholesterol;
+    $totalSixDaysSodium += $entry->sodium;
+    $totalSixDaysCarbs += $entry->carbs;
+    $totalSixDaysProtein += $entry->protein;
+}
+foreach ($fiveDaysAgo as $entry) {
+    $totalFiveDaysCals += $entry->calories;
+    $totalFiveDaysFat += $entry->fat;
+    $totalFiveDaysCholesterol += $entry->cholesterol;
+    $totalFiveDaysSodium += $entry->sodium;
+    $totalFiveDaysCarbs += $entry->carbs;
+    $totalFiveDaysProtein += $entry->protein;
+}
+foreach ($fourDaysAgo as $entry) {
+    $totalFourDaysCals += $entry->calories;
+    $totalFourDaysFat += $entry->fat;
+    $totalFourDaysCholesterol += $entry->cholesterol;
+    $totalFourDaysSodium += $entry->sodium;
+    $totalFourDaysCarbs += $entry->carbs;
+    $totalFourDaysProtein += $entry->protein;
+}
+foreach ($threeDaysAgo as $entry) {
+    $totalThreeDaysCals += $entry->calories;
+    $totalThreeDaysFat += $entry->fat;
+    $totalThreeDaysCholesterol += $entry->cholesterol;
+    $totalThreeDaysSodium += $entry->sodium;
+    $totalThreeDaysCarbs += $entry->carbs;
+    $totalThreeDaysProtein += $entry->protein;
+}
+foreach ($twoDaysAgo as $entry) {
+    $totalTwoDaysCals += $entry->calories;
+    $totalTwoDaysFat += $entry->fat;
+    $totalTwoDaysCholesterol += $entry->cholesterol;
+    $totalTwoDaysSodium += $entry->sodium;
+    $totalTwoDaysCarbs += $entry->carbs;
+    $totalTwoDaysProtein += $entry->protein;
+}*/
 
 
 if(isset($_POST['foodEntrySubmit'])) {
@@ -103,6 +174,9 @@ if(isset($_POST['foodEntrySubmit'])) {
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
 
     <div class="col-md-12 row">
+        <div>
+            <?php print_r($todayArr) ?>
+        </div>
         <div class="col-md-4">
             <h4 class="text-center">Comparative Daily Nutrition Intake</h4>
             <canvas id="nutritionChart"></canvas>
@@ -173,16 +247,88 @@ if(isset($_POST['foodEntrySubmit'])) {
         <div id="cholesterolDV"><?php echo $cholesterolDV ?></div>
         <div id="sodiumDV"><?php echo $sodiumDV ?></div>
         <div id="carbsDV"><?php echo $carbsDV ?></div>
-    </div>
-    <div class="col-md-12 row">
-        <a href="index.php" class="back-btn offset-md-0">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
-        </a>
+        <div id="totalWeekCals"><?php echo $totalWeekCals ?></div>
+        <div id="totalWeekFat"><?php echo $totalWeekFat ?></div>
+        <div id="totalWeekCholesterol"><?php echo $totalWeekCholesterol ?></div>
+        <div id="totalWeekSodium"><?php echo $totalWeekSodium ?></div>
+        <div id="totalWeekCarbs"><?php echo $totalWeekCarbs ?></div>
+        <div id="totalWeekProtein"><?php echo $totalWeekProtein ?></div>
+        <div id="totalSixDaysCals"><?php echo $totalSixDaysCals ?></div>
+        <div id="totalSixDaysFat"><?php echo $totalSixDaysFat ?></div>
+        <div id="totalSixDaysCholesterol"><?php echo $totalSixDaysCholesterol ?></div>
+        <div id="totalSixDaysSodium"><?php echo $totalSixDaysSodium ?></div>
+        <div id="totalSixDaysCarbs"><?php echo $totalSixDaysCarbs ?></div>
+        <div id="totalSixDaysProtein"><?php echo $totalSixDaysProtein ?></div>
+        <div id="totalFiveDaysCals"><?php echo $totalFiveDaysCals ?></div>
+        <div id="totalFiveDaysFat"><?php echo $totalFiveDaysFat ?></div>
+        <div id="totalFiveDaysCholesterol"><?php echo $totalFiveDaysCholesterol ?></div>
+        <div id="totalFiveDaysSodium"><?php echo $totalFiveDaysSodium ?></div>
+        <div id="totalFiveDaysCarbs"><?php echo $totalFiveDaysCarbs ?></div>
+        <div id="totalFiveDaysProtein"><?php echo $totalFiveDaysProtein ?></div>
+        <div id="totalFourDaysCals"><?php echo $totalFourDaysCals ?></div>
+        <div id="totalFourDaysFat"><?php echo $totalFourDaysFat ?></div>
+        <div id="totalFourDaysCholesterol"><?php echo $totalFourDaysCholesterol ?></div>
+        <div id="totalFourDaysSodium"><?php echo $totalFourDaysSodium ?></div>
+        <div id="totalFourDaysCarbs"><?php echo $totalFourDaysCarbs ?></div>
+        <div id="totalFourDaysProtein"><?php echo $totalFourDaysProtein ?></div>
+        <div id="totalThreeDaysCals"><?php echo $totalThreeDaysCals ?></div>
+        <div id="totalThreeDaysFat"><?php echo $totalThreeDaysFat ?></div>
+        <div id="totalThreeDaysCholesterol"><?php echo $totalThreeDaysCholesterol ?></div>
+        <div id="totalThreeDaysSodium"><?php echo $totalThreeDaysSodium ?></div>
+        <div id="totalThreeDaysCarbs"><?php echo $totalThreeDaysCarbs ?></div>
+        <div id="totalThreeDaysProtein"><?php echo $totalThreeDaysProtein ?></div>
+        <div id="totalTwoDaysCals"><?php echo $totalTwoDaysCals ?></div>
+        <div id="totalTwoDaysFat"><?php echo $totalTwoDaysFat ?></div>
+        <div id="totalTwoDaysCholesterol"><?php echo $totalTwoDaysCholesterol ?></div>
+        <div id="totalTwoDaysSodium"><?php echo $totalTwoDaysSodium ?></div>
+        <div id="totalTwoDaysCarbs"><?php echo $totalTwoDaysCarbs ?></div>
+        <div id="totalTwoDaysProtein"><?php echo $totalTwoDaysProtein ?></div>
+        <div id="totalWeekCals"><?php echo $totalWeekCals ?></div>
+        <div id="totalWeekFat"><?php echo $totalWeekFat ?></div>
+        <div id="totalWeekCholesterol"><?php echo $totalWeekCholesterol ?></div>
+        <div id="totalWeekSodium"><?php echo $totalWeekSodium ?></div>
+        <div id="totalWeekCarbs"><?php echo $totalWeekCarbs ?></div>
+        <div id="totalWeekProtein"><?php echo $totalWeekProtein ?></div>
+        <div id="totalSixDaysCals"><?php echo $totalSixDaysCals ?></div>
+        <div id="totalSixDaysFat"><?php echo $totalSixDaysFat ?></div>
+        <div id="totalSixDaysCholesterol"><?php echo $totalSixDaysCholesterol ?></div>
+        <div id="totalSixDaysSodium"><?php echo $totalSixDaysSodium ?></div>
+        <div id="totalSixDaysCarbs"><?php echo $totalSixDaysCarbs ?></div>
+        <div id="totalSixDaysProtein"><?php echo $totalSixDaysProtein ?></div>
+        <div id="totalFiveDaysCals"><?php echo $totalFiveDaysCals ?></div>
+        <div id="totalFiveDaysFat"><?php echo $totalFiveDaysFat ?></div>
+        <div id="totalFiveDaysCholesterol"><?php echo $totalFiveDaysCholesterol ?></div>
+        <div id="totalFiveDaysSodium"><?php echo $totalFiveDaysSodium ?></div>
+        <div id="totalFiveDaysCarbs"><?php echo $totalFiveDaysCarbs ?></div>
+        <div id="totalFiveDaysProtein"><?php echo $totalFiveDaysProtein ?></div>
+        <div id="totalFourDaysCals"><?php echo $totalFourDaysCals ?></div>
+        <div id="totalFourDaysFat"><?php echo $totalFourDaysFat ?></div>
+        <div id="totalFourDaysCholesterol"><?php echo $totalFourDaysCholesterol ?></div>
+        <div id="totalFourDaysSodium"><?php echo $totalFourDaysSodium ?></div>
+        <div id="totalFourDaysCarbs"><?php echo $totalFourDaysCarbs ?></div>
+        <div id="totalFourDaysProtein"><?php echo $totalFourDaysProtein ?></div>
+        <div id="totalThreeDaysCals"><?php echo $totalThreeDaysCals ?></div>
+        <div id="totalThreeDaysFat"><?php echo $totalThreeDaysFat ?></div>
+        <div id="totalThreeDaysCholesterol"><?php echo $totalThreeDaysCholesterol ?></div>
+        <div id="totalThreeDaysSodium"><?php echo $totalThreeDaysSodium ?></div>
+        <div id="totalThreeDaysCarbs"><?php echo $totalThreeDaysCarbs ?></div>
+        <div id="totalThreeDaysProtein"><?php echo $totalThreeDaysProtein ?></div>
+        <div id="totalTwoDaysCals"><?php echo $totalTwoDaysCals ?></div>
+        <div id="totalTwoDaysFat"><?php echo $totalTwoDaysFat ?></div>
+        <div id="totalTwoDaysCholesterol"><?php echo $totalTwoDaysCholesterol ?></div>
+        <div id="totalTwoDaysSodium"><?php echo $totalTwoDaysSodium ?></div>
+        <div id="totalTwoDaysCarbs"><?php echo $totalTwoDaysCarbs ?></div>
+        <div id="totalTwoDaysProtein"><?php echo $totalTwoDaysProtein ?></div>
     </div>
     <div class="col-md-12 row">
         <div class="col-md-10">
             <canvas id="weeklyChart"></canvas>
         </div>
+    </div>
+    <div class="col-md-12 row">
+        <a href="index.php" class="back-btn offset-md-0">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+        </a>
     </div>
 </div>
 </main>
