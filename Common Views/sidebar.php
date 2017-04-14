@@ -1,29 +1,6 @@
 <?php
 
 
-//if(!$_SESSION)
-//{
-//    session_start();
-//}
-//
-//$user = $_SESSION['user'];
-
-//include project files (check if files are already included, if they are, won't include require them again)
-//require_once 'Models/Signup.php';
-
-
-
-//// call userInfo() method using user_id from $_SESSION
-//$db = new Signup();
-//
-//$userId = $db->userInfo($user);
-//
-////grab  user id, username
-//$id = $userId->user_id;
-//$userFirst = $userId->first_name;
-//$userName = $userId->first_name . ' ' . $userId->last_name;
-//$userEmail = $userId->email;
-//print_r($userEmail)
 
 ?>
 <!-- 02-2. Main Content -->
