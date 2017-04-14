@@ -44,7 +44,7 @@ require_once '../Common Views/sidebar.php';
             </div>
             <div class="row offset-md-1 offset-sm-1 offset-xs-1">
                 <a href="../index.php" class="btn btn-info btn-lg offset-md-0">
-                    <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+                    <span class="glyphicon glyphicon-circle-arrow-left">Back</span>
                 </a>
             </div>
         </div>
