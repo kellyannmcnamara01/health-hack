@@ -1,3 +1,31 @@
+<?php
+
+
+//if(!$_SESSION)
+//{
+//    session_start();
+//}
+//
+//$user = $_SESSION['user'];
+
+//include project files (check if files are already included, if they are, won't include require them again)
+//require_once 'Models/Signup.php';
+
+
+
+//// call userInfo() method using user_id from $_SESSION
+//$db = new Signup();
+//
+//$userId = $db->userInfo($user);
+//
+////grab  user id, username
+//$id = $userId->user_id;
+//$userFirst = $userId->first_name;
+//$userName = $userId->first_name . ' ' . $userId->last_name;
+//$userEmail = $userId->email;
+//print_r($userEmail)
+
+?>
 <!-- 02-2. Main Content -->
 <main id="main" class="row">
     <!-- 02-2-1. Nav -->
@@ -5,7 +33,7 @@
         <!-- 02-2-1-1. Profile Photo -->
         <div class="profile">
             <?php
-            if($homepage == $currentpage || $homepage2 == $currentpage) {
+            if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) {
                 ?><img src="opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" /><?php
             } else {
                 ?><img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" /><?php
@@ -13,8 +41,8 @@
             ?>
             <!--<img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />-->
             <!-- 02-2-1-2. User Details -->
-            <h2>Aira Summers</h2>
-            <p class="dark-grey center-text">A_Summers_01</p>
+            <h2><?php if(isset($userName)){ echo $userName; } ?></h2>
+            <p class="dark-grey center-text"><?php if(isset($userEmail)){ echo $userEmail; } ?></p>
         </div>
         <!-- 02-2-1-3. Links -->
         <div class="nav-links">

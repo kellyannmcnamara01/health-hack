@@ -1,10 +1,16 @@
 <?php
+ob_start();
 //start session
 session_start();
-require_once './Models/Signup.php';
-require_once './Models/Profile.php';
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
+
+require_once './Models/Signup.php';
+require_once './Models/Profile.php';
+
+if(!isset($_SESSION['user'])){
+    header("Location:Landing.php");
+}
 
 // check if $_GET paramaters exist on incoming URI
 if (isset($_GET['access_token'])) {
@@ -35,13 +41,23 @@ $user = $_SESSION['user'];
 
 //new instance of Signup()
 $db = new Signup();
+
+////grab  user id, username
+//$id = $userId->user_id;
+//$userFirst = $userId->first_name;
+//$userName = $userId->first_name . ' ' . $userId->last_name;
+//$userEmail = $userId->email;
 // call userInfo() method
 $userId = $db->userInfo($user);
-//grab username
-$userName = $userId->first_name;
+//grab username, email
+$userFirst = $userId->first_name;
+
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
 
 
 //check if logout button is set
+
 
 ?>
     <main>

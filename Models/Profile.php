@@ -16,7 +16,7 @@ class Profile
 
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
 
         // insert statement (into PROFILES tbl)
         $insert = "INSERT INTO PROFILES (user_id, age, weight, profile_image) VALUES (:userid, :age, :weight, :profileImg)";
@@ -35,7 +35,7 @@ class Profile
     public function GetUserIdByToken($id){
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
         $return = array();
 
         // query to grab user info by access_token
@@ -57,7 +57,7 @@ class Profile
     public function GetUserIdByResetToken($id){
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
         $return = array();
 
         // query to grab user info by access_token
@@ -79,16 +79,16 @@ class Profile
     public function ResetPassword($password,$id){
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
 
         //encrypt password using SHA1
-        $Newpassword = sha1($id . $password);
+        $newPassword = sha1($id . $password);
 
         $update = "UPDATE USERS SET password = :password WHERE user_id = :id";
         // prepare statement
         $updateStmt = $connect->prepare($update);
         //bind values for $token, $email
-        $updateStmt->bindValue(":password", $Newpassword);
+        $updateStmt->bindValue(":password", $newPassword);
         $updateStmt->bindValue(":id", $id);
 
         return $updateStmt->execute();

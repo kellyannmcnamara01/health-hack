@@ -17,7 +17,7 @@ class Signup
 
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
 
 
         //encrypt password using SHA1
@@ -58,7 +58,7 @@ class Signup
 
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
         $return = array();
 
         //encrypt password using SHA1
@@ -86,7 +86,7 @@ class Signup
     public function userInfo($id){
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
         $return = array();
 
         try{
@@ -107,7 +107,7 @@ class Signup
     public function userInfoByEmail($email){
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
         $return = array();
 
         $select = "SELECT email,first_name,last_name,email FROM USERS WHERE email = :email";
@@ -124,7 +124,7 @@ class Signup
     public function grantPasswordResetToken($token,$email){
         //est. connection to DB
         $db = new Database();
-        $connect = $db->getDb();
+        $connect = $db->getDbFromAWS();
 
         $update = "UPDATE USERS SET resetToken = :token WHERE email = :email";
         // prepare statement

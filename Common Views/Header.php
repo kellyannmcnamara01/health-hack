@@ -7,7 +7,12 @@
  */
 $homepage = "/health-hack/index.php";
 $homepage2 = "/health-hack/";
+//pattern for access_token
+$access = "/[?]access[_]token[=]\d{2}[*]\d{4}/";
+// contains current host & request uri
 $currentpage = $_SERVER['REQUEST_URI'];
+$currentpage2 = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
 
 ?>
 
@@ -52,7 +57,7 @@ INDEX
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="../opt-imgs/favicon.png">
     <!-- Importing Files -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <?php if($homepage == $currentpage || $homepage2 == $currentpage) { ?>
+    <?php if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) { ?>
         <link rel="stylesheet" href="main.css?v=1" />
     <?php } else { ?>
         <link rel="stylesheet" href="../main.css?v=1" />

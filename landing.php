@@ -96,6 +96,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         if($userId === null)
         {
             $error = "Invalid email or password. Please try again";
+            return false;
         }
         else
         {
@@ -125,6 +126,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         if($Email === null)
         {
             $error = "We couldn't find the request email. Please enter a valid email";
+            return false;
         }
         else
         {
@@ -138,6 +140,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
             if ($reset === null)
             {
                 $error = "unable to reset password, please try again. Ensure provided email is correctly spelled.";
+                return false;
             }
             else
             {
@@ -198,7 +201,6 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
             }
         }
     }
-//echo base64_encode("hello world");
 ?>
 <!--
 
@@ -259,9 +261,6 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                     <input type="password" id="loginPass" name="loginPass" class="textInput" placeholder="Password" />
                 </div>
                 <input type="submit" class="formSubmit" name="Login" value="Login" />
-<!--                <div class="form-field">-->
-<!--                    <button type="button" class="formResetBtn">Reset Your Password</button>-->
-<!--                </div>-->
             </form>
                   <div class="form-field">
                       <button type="button" data-dismiss="modal" data-toggle="modal" data-target="#resetModal" class="formResetBtn">Reset Your Password</button>
@@ -271,31 +270,6 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
       </div>
     </div>
     <div>
-        <div id="resetModal" class="modal fade" role="form">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div>
-                    <div class="modal-body">
-                        <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
-                        <h2>Health Hack</h2>
-                        <h3>Password reset</h3>
-                        <p>Looks like you forgot your password. That happens, we understand. Please enter your email below and we'll send you a link to reset it.</p>
-                        <form action="landing.php" method="post">
-                            <div class="form-field">
-                                <label class="formLabel">Email</label>
-                                <input type="text" class="textInput" name="emailReset" placeholder="Email"
-                            </div>
-                            <input type="submit" class="button" name="Reset" value="Reset" />
-                        </form>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-
         <div id="SignupModal" class="modal fade" role="form">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -325,6 +299,30 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                                 <span class="text-info">Passwords must be 8 characters, contain at least 1 number and one capital letter. </span>
                             </div>
                             <input type="submit" class="button" name="Register" value="Register" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="resetModal" class="modal fade" role="form">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div>
+                    <div class="modal-body">
+                        <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
+                        <h2>Health Hack</h2>
+                        <h3>Password reset</h3>
+                        <p>Looks like you forgot your password. That happens, we understand. Please enter your email below and we'll send you a link to reset it.</p>
+                        <form action="landing.php" method="post">
+                            <div class="form-field">
+                                <label class="formLabel">Email</label>
+                                <input type="text" class="textInput" name="emailReset" placeholder="Email"
+                            </div>
+                            <input type="submit" class="button" name="Reset" value="Reset" />
                         </form>
                     </div>
                 </div>
