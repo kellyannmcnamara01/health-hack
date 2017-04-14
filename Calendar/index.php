@@ -1,19 +1,26 @@
 <?php
-require('../Models/Database.php');
-require('../Models/Calendar.php');
-date_default_timezone_set('America/Toronto');
-
-$db = new Database();
-$db = $db->getDbFromAWS();
 session_start();
-$_SESSION["user"] = 1;
+if (isset($_SESSION["user"])) {
+    require('../Models/Database.php');
+    require('../Models/Calendar.php');
+    date_default_timezone_set('America/Toronto');
 
-$calendar = new Calendar(date('m'), date('Y'), $_SESSION["user"]);
-$calendar->setDb($db);
+    $db = new Database();
+    $db = $db->getDbFromAWS();
+    //session_start();
+    //$_SESSION["user"] = 1;
 
-$action = 'Index';
+    $calendar = new Calendar(date('m'), date('Y'), $_SESSION["user"]);
+    $calendar->setDb($db);
 
-if ($action == 'Index') {
-    include('ViewIndex.php');
+    $action = 'Index';
+
+    if ($action == 'Index') {
+        include('ViewIndex.php');
+    }
+} else {
+    $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'];
+    $redirect_uri .= '/health-hack/landing.php';
+    header("Location: " . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 ?>
