@@ -21,7 +21,7 @@ class Signup
 
 
         //encrypt password using SHA1
-        $password = sha1($email . $password);
+        $shaPassword = sha1($email . $password);
         // assign current date & time to a variable
         $join_date = date('Y-m-d H:i:s');
 
@@ -31,22 +31,9 @@ class Signup
         $newUser = $connect->prepare($insert);
         //bind values
         $newUser->bindValue(":fName", $fname);
-        if (!$fname){
-            $error = "Please enter a valid first name.";
-            return $error;
-        }
         $newUser->bindValue(":lName", $lname);
-        if (!$lname){
-            $error = "Please enter a valid last name.";
-            return $error;
-        }
         $newUser->bindValue(":email",$email);
-        // if the user attempts to enter an already registered email
-        if (!$email){
-            $error = "Email already registered.";
-            return $error;
-        }
-        $newUser->bindValue(":pass",$password);
+        $newUser->bindValue(":pass",$shaPassword);
         $newUser->bindValue(":jdate", $join_date);
         $newUser->bindValue(":access", $access);
         // return execution of statement
@@ -62,7 +49,7 @@ class Signup
         $return = array();
 
         //encrypt password using SHA1
-        $password = sha1($email . $password);
+        $shaPassword = sha1($email . $password);
 
         // user_id
         // *
@@ -72,7 +59,7 @@ class Signup
             $validUser = $connect->prepare($select);
             //bind values
             $validUser->bindValue(":email", $email);
-            $validUser->bindValue(":password", $password);
+            $validUser->bindValue(":password", $shaPassword);
             $validUser->execute();
             $return = $validUser->fetch(PDO::FETCH_OBJ);
             $validUser->closeCursor();

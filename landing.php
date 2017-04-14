@@ -93,7 +93,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         $userId = $db->isValidUser($loggedInUser, $loggedInPass);
 
         //if invalid login
-        if($userId === null)
+        if($userId === false)
         {
             $error = "Invalid email or password. Please try again";
             return false;
@@ -101,8 +101,8 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         else
         {
             // initialize new SESSION variable
-            $_SESSION['user'] = $userId->user_id;
-
+            //$_SESSION['user'] = $userId->user_ids;
+            $_SESSION['user'] = 1;
             //point page to create-routine.php
             header("Location: index.php");
         }
@@ -252,6 +252,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                 <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
                 <h2>Health Hack</h2>
             <form action="landing.php" method="post" id="login-form">
+                <span class=""><?php if (isset($error)){ echo $error;}?></span>
                 <div class="form-field">
                     <label for="loginUser" class="formLabel">Email</label>
                     <input type="text" id="loginUser" name="loginUser" class="textInput" placeholder="Email" />
