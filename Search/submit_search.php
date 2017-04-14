@@ -4,11 +4,11 @@ require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 $user_id = 1;  //get it from session
 $ModuleID=1;//get it from feature which is integrating this feature this system
-if (isset($_POST['txtSearch']))
+if (isset($_POST['search']))
 {
     //save the values
 
-    $txtSearch = filter_input(INPUT_POST, 'txtSearch');
+    $txtSearch = filter_input(INPUT_POST, 'search');
    
 
     require_once '../Models/Search.php';
