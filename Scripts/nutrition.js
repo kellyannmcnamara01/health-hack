@@ -6,47 +6,16 @@ $(document).ready(function(){
     //-------------------
     //-------------------
 
+    //JSON call to todaysArrCall.php to grab today's input
     var todaysArr = [];
-    $.getJSON('StatsCall.php', function(data){
-        console.log(data.calories);
+    $.getJSON('todaysArrCall.php', function(data){
         todaysArr.push(data.calories);
         todaysArr.push(data.carbs);
         todaysArr.push(data.cholesterol);
         todaysArr.push(data.fat);
         todaysArr.push(data.protein);
         todaysArr.push(data.sodium);
-    });
-
-    console.log(todaysArr);
-
-
-
-    //-------------------
-    //-------------------
-    //-------------------
-    //-------------------
-    //-------------------
-
-
-    //nutrition chart
-    //get nutrition numbers
-    //var totalCals = document.getElementById("totalCals");
-    //var cals = parseInt(totalCals.innerHTML, 10);
-
-    //var totalFat = document.getElementById("totalFat");
-    //var fat = parseInt(totalFat.innerHTML, 10);
-
-    //var totalCholesterol = document.getElementById("totalCholesterol");
-    //var cholesterol = parseInt(totalCholesterol.innerHTML, 10);
-
-    //var totalSodium = document.getElementById("totalSodium");
-    //var sodium = parseInt(totalSodium.innerHTML, 10);
-
-    //var totalCarbs = document.getElementById("totalCarbs");
-    //var carbs = parseInt(totalCarbs.innerHTML, 10);
-
-    //var totalProtein = document.getElementById("totalProtein");
-    //var protein = parseInt(totalProtein.innerHTML, 10);
+    }); //end of json call
 
     //function to input data into chart js canvas called nutritionChart
     var nutritionContext = document.getElementById('nutritionChart').getContext('2d');
@@ -64,6 +33,48 @@ $(document).ready(function(){
                     "#ccd0d9"
                 ],
                 data: todaysArr//[cals, fat, cholesterol, sodium, carbs, protein]
+            }] //end datasets
+        }, //end data
+        options: {
+            legend: {
+                display: true,
+                position: 'bottom'
+            }
+        }//end options
+        }); //end nutritionChart var
+
+    //--------------------------
+
+    //JSON call to weeklyArrCall.php to grab weekly input
+    var weeklyArr = [];
+    $.getJSON('weeklyArrCall.php', function(data){
+        console.log(data.calories);
+        weeklyArr.push(data.calories);
+        weeklyArr.push(data.carbs);
+        weeklyArr.push(data.cholesterol);
+        weeklyArr.push(data.fat);
+        weeklyArr.push(data.protein);
+        weeklyArr.push(data.sodium);
+    }); //end of json call
+
+    console.log(weeklyArr);
+
+    //function to input data into chart js canvas called nutritionChart
+    var weeklyContext = document.getElementById('weeklyNutritionChart').getContext('2d');
+    var weeklyNutritionChart = new Chart(weeklyContext, {
+        type: 'doughnut',
+        data: {
+            labels: ["Calories", "Fat", "Cholesterol", "Sodium", "Carbohydrates", "Protein"],
+            datasets: [{
+                backgroundColor: [
+                    "#e04152",
+                    "#434a54",
+                    "#35adda",
+                    "#ffcf48",
+                    "#8cc34b",
+                    "#ccd0d9"
+                ],
+                data: weeklyArr//[cals, fat, cholesterol, sodium, carbs, protein]
             }] //end datasets
         } //end data
     }); //end nutritionChart var
