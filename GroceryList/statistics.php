@@ -89,13 +89,27 @@ if(isset($_POST['foodEntrySubmit'])) {
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
 
     <div class="col-md-12 row">
-        <div class="col-md-3">
-            <h2 class="text-center">Daily Nutrition Intake Total</h2>
-            <canvas id="nutritionChart"></canvas>
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <h2 class="text-center">Daily Nutrition Intake Total</h2>
+                <canvas id="nutritionChart"></canvas>
+            </div>
         </div>
-        <div class="col-md-3">
-            <h2 class="text-center">Daily Value Intake Total</h2>
-            <canvas id="dvChart"></canvas>
+        <div class="col-md-3 col-sm-6 col-8">
+            <h2 class="text-center">Fat Daily Value Intake Total</h2>
+            <canvas id="fatDVChart"></canvas>
+        </div>
+        <div class="col-md-3 col-sm-6 col-8">
+            <h2 class="text-center">Cholesterol Daily Value Intake Total</h2>
+            <canvas id="cholesterolDVChart"></canvas>
+        </div>
+        <div class="col-md-3 col-sm-6 col-8">
+            <h2 class="text-center">Sodium Daily Value Intake Total</h2>
+            <canvas id="sodiumDVChart"></canvas>
+        </div>
+        <div class="col-md-3 col-sm-6 col-8">
+            <h2 class="text-center">Carbs Daily Value Intake Total</h2>
+            <canvas id="carbsDVChart"></canvas>
         </div>
     </div>
     <?php foreach ($todaysEntries as $today){
