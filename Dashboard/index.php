@@ -76,17 +76,17 @@ if (isset($_POST['profileSubmit'])){
         <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation">
             <div class="form-field col col-md-8">
                 <label class="formLabel">Age</label>
-                <input class="textInput" title="Please enter a valid number" placeholder="Age" name="ProfileAge">
+                <input type="text" class="textInput" title="Please enter a valid number" placeholder="Age" name="ProfileAge">
                 <span class="text-info">Please enter your age</span>
             </div>
             <div class="form-field col col-md-8">
                 <label class="formLabel">Weight</label>
-                <input class="textInput"  title="Please enter a valid number" placeholder="Weight" name="ProfileWeight">
+                <input type="text" class="textInput" title="Please enter a valid number" placeholder="Weight" name="ProfileWeight">
                 <span class="text-info">Please enter your weight</span>
             </div>
             <div class="form-field col col-md-8">
-                <label class="formLabel">Upload Profile Image</label>
-                <input class="textInput" type="file" name="profileImg">
+<!--                <label class="formLabel">Upload Profile Image</label>-->
+                <input type="file" name="profileImg">
                 <span class="text-info">Please select an image to display for your profile</span>
             </div>
             <div class="form-field col-6 col-md-4">
