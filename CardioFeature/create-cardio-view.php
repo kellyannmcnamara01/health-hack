@@ -60,7 +60,7 @@
 </form>
     <div class="row">
         <a href="Cardio.php" class="btn btn-info btn-lg offset-md-0">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+            <span class="glyphicon glyphicon-circle-arrow-left">Back</span>
         </a>
     </div>
 </div>

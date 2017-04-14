@@ -65,17 +65,15 @@ $userName = $userId->first_name;
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="#" class="feature-btn">
+                    <a href="GroceryList/FoodDiaryEntry.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/foodlog-icon.png" alt="" />
                         </div>
-                        <p class="text-center">Food Dirary</p>
-                        <span class="badge badge-danger">This is an error msg</span>
-                        <span class="badge badge-success">This is a success msg</span>
+                        <p class="text-center">Food Diary</p>
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="#" class="feature-btn">
+                    <a href="FitnessProgress/index.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/fitnessprogress-icon.png" alt="" />
                         </div>
@@ -95,7 +93,7 @@ $userName = $userId->first_name;
                         <div class="feature-icon">
                             <img src="opt-imgs/foodgoals-icon.png" alt="" />
                         </div>
-                        <p class="text-center">Nutrition Goals</p>
+                        <p class="text-center">Nutrition Statistics</p>
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
