@@ -225,6 +225,11 @@ if(isset($_POST['foodEntrySubmit'])) {
     <div class="col-md-12">
         <canvas id="skills" height="100px" width="100px"></canvas>
     </div>
+    <div class="col-md-12 row">
+        <a href="index.php" class="back-btn offset-md-1">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+        </a>
+    </div>
 </div>
 </main>
 
