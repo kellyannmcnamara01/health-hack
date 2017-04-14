@@ -38,7 +38,6 @@ require_once '../Common Views/sidebar.php';
             </div>
         </div>
     </div>
-    </div>
     </main>
 
 

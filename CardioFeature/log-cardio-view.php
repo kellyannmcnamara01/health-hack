@@ -68,7 +68,7 @@
             <form action="#" method="post">
                 <div class="form-field big-spacing col-md-9 offset-md-0">
                     <h2 class="spacing">Enter the distance travelled.</h2>
-                    <select class="textInput col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
+                    <select class=" col-md-3 col-sm-3 col-xs-3" name="cardio_distance">
                         <option value="0">Total Distance</option>
                         <?php
                         foreach (range(0, 100, 0.5) as $i):
@@ -89,7 +89,7 @@
                 </div>
                 <div class="form-field big-spacing offset-md-0">
                     <h2 class="spacing">Enter the time it took to complete the workout:</h2>
-                    <select class="textInput col-md-2 col-sm-3 col-xs-1 offset-md-0" name="hours">
+                    <select class=" col-md-2 col-sm-3 col-xs-1 offset-md-0" name="hours">
                         <option value="0">Hours</option>
                         <?php
                         foreach (range(0, 10, 1) as $i):
@@ -107,7 +107,7 @@
                         endforeach;
                         ?>
                     </select>
-                    <select class="textInput col-md-2 col-sm-3 col-xs-1 offset-md-1" name="minutes">
+                    <select class=" col-md-2 col-sm-3 col-xs-1 offset-md-1" name="minutes">
                         <option value="0">Minutes</option>
                         <?php
                         foreach (range(0, 59, 1) as $i):
@@ -125,7 +125,7 @@
                         endforeach;
                         ?>
                     </select>
-                    <select class="textInput select-box col-md-2 col-sm-3 col-xs-1 offset-md-1" name="seconds">
+                    <select class=" col-md-2 col-sm-3 col-xs-1 offset-md-1" name="seconds">
                         <option value="0">Seconds</option>
                         <?php
                         foreach (range(0, 59, 1) as $i):

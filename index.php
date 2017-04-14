@@ -103,7 +103,7 @@ $userName = $userId->first_name;
                         <div class="feature-icon">
                             <img src="opt-imgs/strength-icon.png" alt="" />
                         </div>
-                        <p class="text-center">Stength Workouts</p>
+                        <p class="text-center">Strength Workouts</p>
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
