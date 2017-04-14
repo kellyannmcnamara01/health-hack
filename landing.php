@@ -91,7 +91,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         $db = new Signup();
         //call newUser() method in Signup()
         $userId = $db->isValidUser($loggedInUser, $loggedInPass);
-
+        var_dump($userId);
         //if invalid login
         if($userId === false)
         {
@@ -101,8 +101,8 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         else
         {
             // initialize new SESSION variable
-            //$_SESSION['user'] = $userId->user_ids;
-            $_SESSION['user'] = 1;
+            $_SESSION['user'] = $userId->user_id;
+
             //point page to create-routine.php
             header("Location: index.php");
         }
