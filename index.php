@@ -8,9 +8,6 @@ require_once 'Common Views/sidebar.php';
 require_once './Models/Signup.php';
 require_once './Models/Profile.php';
 
-if(!isset($_SESSION['user'])){
-    header("Location:Landing.php");
-}
 
 // check if $_GET paramaters exist on incoming URI
 if (isset($_GET['access_token'])) {
@@ -36,8 +33,12 @@ if (isset($_GET['access_token'])) {
     $test = '';
 }
 
+require_once 'redirect.php';
+
 // est. variable that contains session variable for email
 $user = $_SESSION['user'];
+
+
 
 //new instance of Signup()
 $db = new Signup();
