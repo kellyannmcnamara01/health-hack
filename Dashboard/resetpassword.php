@@ -21,17 +21,12 @@ if (isset($_GET['reset_token'])) {
 
     // set var to hold the value of the access_token from specific request
     $access_token = substr($emailRefer, strpos($emailRefer, "reset_token") +12);
-    //echo $access_token;
-
-
 
     // call GetUserIdByToken()
     $profile = $db->GetUserIdByResetToken($access_token);
     //echo $profile->user_id;
     // initialize new SESSION variable
     $_SESSION['user'] = $profile->user_id;
-    //echo $profile->user_id;
-    // set $user to $_SESSION['user']
 }else{
     $test = 'No get parameter set';
 }

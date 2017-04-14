@@ -10,11 +10,6 @@
 session_start();
 
 
-require_once '../Common Views/Header.php';
-require_once "../Common Views/sidebar.php";
-
-//$access_token = $_GET['access_token'];
-// include project files (check if files are already included, if they are, won't include require them again)
 require_once '../Models/Signup.php';
 require_once '../Models/Profile.php';
 require_once 'processImg.php';
@@ -28,12 +23,6 @@ $db = new Signup();
 
 $userId = $db->userInfo($user);
 
-
-////grab  user id, username
-//$id = $userId->user_id;
-//$userFirst = $userId->first_name;
-//$userName = $userId->first_name . ' ' . $userId->last_name;
-//$userEmail = $userId->email;
 //grab  user id, username
 $id = $userId->user_id;
 $userFirst = $userId->first_name;
@@ -67,6 +56,8 @@ if (isset($_POST['profileSubmit'])){
     }
 
 }
+require_once '../Common Views/Header.php';
+require_once "../Common Views/sidebar.php";
 ?>
 
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row">

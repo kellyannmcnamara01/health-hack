@@ -2,8 +2,6 @@
 ob_start();
 //start session
 session_start();
-require_once 'Common Views/Header.php';
-require_once 'Common Views/sidebar.php';
 
 require_once './Models/Signup.php';
 require_once './Models/Profile.php';
@@ -59,6 +57,8 @@ $userEmail = $userId->email;
 
 //check if logout button is set
 
+require_once 'Common Views/Header.php';
+require_once 'Common Views/sidebar.php';
 
 ?>
         <!-- Logout Modal -->
