@@ -19,6 +19,10 @@
         </div>-->
         <h2>Find Your Gym</h2>
 
+        <a href="/health-hack" class="btn btn-info btn-lg offset-md-0">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+        </a>
+
         <input type="text" id="pac-input" class="controls" placeholder="Enter place to search for Gyms around">
 
         <div id="map">

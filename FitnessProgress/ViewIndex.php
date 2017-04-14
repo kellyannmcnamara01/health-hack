@@ -18,12 +18,18 @@
                 </form>
             </div>
         </div>
+        <a href="/health-hack" class="btn btn-info btn-lg offset-md-0">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+        </a>
     <?php } ?>
 
     <?php if ($action == "Strength" || $action == "Cardio") { ?>
-    <form method="post">
+    <a href="/health-hack/FitnessProgress" class="btn btn-info btn-lg offset-md-0">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+    </a>
+    <!--<form method="post">
         <input type="submit" name="backtoindex" class="btn btn-default" value="Back to workouts">
-    </form>
+    </form>-->
     <h3><?php echo $action; ?></h3>
         <div id="strengthControls">
             <div class="form-group">

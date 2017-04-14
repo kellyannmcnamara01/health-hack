@@ -8,6 +8,9 @@
         <p>Working hours for your gym</p>
         <div id='gym-hours' class='row'></div>
         <?php echo $calendar->drawMobile(); ?>
+        <a href="/health-hack" class="btn btn-info btn-lg offset-md-0">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+        </a>
     </div>
 <?php
     require_once('../Common Views/Footer.php');

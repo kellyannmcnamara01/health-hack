@@ -605,6 +605,7 @@ a.reset{
 
 div.calendar {
     vertical-align: top;
+    margin-bottom: 1rem;
 }
 
 .routine > div {
@@ -659,7 +660,10 @@ div#gym-hours {
 }
 #mapHolder h2 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+#mapHolder a {
+    margin-bottom: 1rem;
 }
 #map {
     width: 80%;
@@ -747,6 +751,7 @@ div#gym-hours {
 #strength input, #cardio input {
     /*padding: 3rem;
     width: 20%;*/
+    background-color: #8cc34b;
 }
 
 #strength input:hover, #cardio input:hover {
