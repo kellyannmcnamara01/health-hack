@@ -40,7 +40,12 @@ $(document).ready(function(){
         } //end data
     }); //end nutritionChart var
 
-    //---------------------------
+    //--------------------------
+
+
+
+
+    /*//---------------------------
     //dv chart
     //get dv numbers
     var totalFatDV = document.getElementById("fatDV");
@@ -68,7 +73,7 @@ $(document).ready(function(){
             }] //end datasets
         } //end data
     }); //end of dvChart*/
-    //dv for fat
+    /*//dv for fat
     var fatDVChart = new Chart(fatdvContext, {
         type: 'doughnut',
         data: {
@@ -120,7 +125,7 @@ $(document).ready(function(){
                 data: [carbsDV, (100 - carbsDV)]
             }] //end datasets
         }//end data
-    }); //end of cholesterolDVChart
+    }); //end of cholesterolDVChart*/
 
 }); //end of page load
 

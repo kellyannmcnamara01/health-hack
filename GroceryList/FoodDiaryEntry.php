@@ -214,7 +214,6 @@ if(isset($_POST['foodEntrySubmit'])) {
             <?php foreach ($todaysSnacks as $today){
                 $totalCalsS += $today->calories;
             } ?>
-        <div class="col-md-12" style="color: blue;"><?php echo $totalCalsS ?></div>
     </div>
     <!-------------->
     <!-------------->

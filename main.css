@@ -396,6 +396,7 @@ label {
     color: #fff;
     transition: .7s all ease;
     margin-top: 15px;
+    background: #35adda;
 }
 .back-btn {
     margin-bottom: 15px;

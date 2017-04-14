@@ -63,9 +63,9 @@ foreach ($todaysEntries as $today){
     $totalSodium += $today->sodium;
     $totalCarbs += $today->carbs;
     $totalProtein += $today->protein;
-    $fatDV = round(($today->fat / 300) * 100);
+    $fatDV = round(($today->fat / 65) * 100);
     $cholesterolDV = round(($today->cholesterol / 300) * 100);
-    $sodiumDV = round(($today->sodium / 300) * 100);
+    $sodiumDV = round(($today->sodium / 2400) * 100);
     $carbsDV = round(($today->carbs / 300) * 100);
 }
 
@@ -104,7 +104,7 @@ if(isset($_POST['foodEntrySubmit'])) {
 
     <div class="col-md-12 row">
         <div class="col-md-4">
-            <h2 class="text-center">Comparative Daily Nutrition Intake</h2>
+            <h4 class="text-center">Comparative Daily Nutrition Intake</h4>
             <canvas id="nutritionChart"></canvas>
         </div>
         <!--<div class="col-md-3 col-sm-6 col-8">
@@ -124,50 +124,43 @@ if(isset($_POST['foodEntrySubmit'])) {
             <canvas id="carbsDVChart"></canvas>
         </div>-->
         <div class="col-md-8 row">
-            <div class="col-md-6 col-sm-6 col-8">
-                <p class="text-center"><?php echo $fatDV ?>% Fat Daily Value Intake Total</p>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
-                        <?php echo $fatDV ?>%
+            <div class="col-md-12 col-sm-12 col-12 row">
+                <h4 class="col-md-12 col-sm-12 col-12">Today's DV% Intakes</h4>
+                <div class="col-md-6 col-sm-6 col-8">
+                    <h2 class="text-center">Fat DV% Intake Total</h2>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
+                            <?php echo $fatDV ?>%
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-8">
-                <p class="text-center"><?php echo $cholesterolDV ?>% Cholesterol Daily Value Intake Total</p>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
-                        <?php echo $cholesterolDV ?>%
+                <div class="col-md-6 col-sm-6 col-8">
+                    <h2 class="text-center">Cholesterol DV% Intake Total</h2>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
+                            <?php echo $cholesterolDV ?>%
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-8">
-                <p class="text-center"><?php echo $sodiumDV ?>% Sodium Daily Value Intake Total</p>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
-                        <?php echo $sodiumDV ?>%
+                <div class="col-md-6 col-sm-6 col-8">
+                    <h2 class="text-center">Sodium DV% Intake Total</h2>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
+                            <?php echo $sodiumDV ?>%
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-8">
-                <p class="text-center"><?php echo $carbsDV ?>% Carbs Daily Value Intake Total</p>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
-                        <?php echo $carbsDV ?>%
+                <div class="col-md-6 col-sm-6 col-8">
+                    <h2 class="text-center">Carbs DV% Intake Total</h2>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
+                            <?php echo $carbsDV ?>%
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-12">Total Cals for the day: <?php echo $totalCals ?></div>
-    <div class="col-md-12">Total Fat for the day: <?php echo $totalFat ?></div>
-    <div class="col-md-12">Total cholesterol for the day: <?php echo $totalCholesterol ?></div>
-    <div class="col-md-12">Total sodium for the day: <?php echo $totalSodium ?></div>
-    <div class="col-md-12">Total carbs for the day: <?php echo $totalCarbs ?></div>
-    <div class="col-md-12">Total protein for the day: <?php echo $totalProtein ?></div>
-    <div class="col-md-12">Total fat DV% for the day: <?php echo $fatDV ?>%</div>
-    <div class="col-md-12">Total cholesterol DV% for the day: <?php echo $cholesterolDV ?>%</div>
-    <div class="col-md-12">Total sodium DV% for the day: <?php echo $sodiumDV ?>%</div>
-    <div class="col-md-12">Total carbs DV% for the day: <?php echo $carbsDV ?>%</div>
     <!--hidden div containing all of the number output-->
     <div style="display: none">
         <div id="totalCals"><?php echo $totalCals ?></div>
@@ -185,6 +178,11 @@ if(isset($_POST['foodEntrySubmit'])) {
         <a href="index.php" class="back-btn offset-md-0">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
         </a>
+    </div>
+    <div class="col-md-12 row">
+        <div class="col-md-10">
+            <canvas id="weeklyChart"></canvas>
+        </div>
     </div>
 </div>
 </main>
