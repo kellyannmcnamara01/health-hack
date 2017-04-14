@@ -5,6 +5,7 @@
  * Date: 2017-03-09
  * Time: 9:10 AM
  */
+
 $homepage = "/health-hack/index.php";
 $homepage2 = "/health-hack/";
 //pattern for access_token
@@ -12,7 +13,6 @@ $access = "/[?]access[_]token[=]\d{2}[*]\d{4}/";
 // contains current host & request uri
 $currentpage = $_SERVER['REQUEST_URI'];
 $currentpage2 = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
 
 ?>
 

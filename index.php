@@ -61,7 +61,6 @@ $userEmail = $userId->email;
 
 
 ?>
-    <main>
         <!-- Logout Modal -->
 
         <!-- 02-2-2. Main Content -->

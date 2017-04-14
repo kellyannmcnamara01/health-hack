@@ -91,9 +91,8 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         $db = new Signup();
         //call newUser() method in Signup()
         $userId = $db->isValidUser($loggedInUser, $loggedInPass);
-        var_dump($userId);
         //if invalid login
-        if($userId === false)
+        if($userId === null)
         {
             $error = "Invalid email or password. Please try again";
             return false;
