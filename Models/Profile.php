@@ -93,4 +93,26 @@ class Profile
 
         return $updateStmt->execute();
     }
+
+
+    public function getUserProfileImg($id)
+    {
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDbFromAWS();
+        $results = array();
+
+        $select = "SELECT profile_image FROM PROFILES WHERE user_id = :id";
+        // prepare
+        $selectImg = $connect->prepare($select);
+        //bind value
+        $selectImg->bindValue(":id", $id);
+        //execute
+        $selectImg->execute();
+        $results = $selectImg->fetch(PDO::FETCH_OBJ);
+        $selectImg->closeCursor();
+
+        return $results;
+
+    }
 }
