@@ -105,6 +105,9 @@ if (isset($_POST['profileUpdate']))
     }
     else
     {
+        // destroy old file
+        //unlink("../opt-imgs/userId=" . $id . ".jpg'"); // /opt-imgs/userId=4.jpg
+        // upload new file
         $filename = pathinfo($file_name);
         $newFile = "userId=" . $id .".". $filename['extension'];
 
@@ -128,6 +131,7 @@ if (isset($_POST['profileUpdate']))
     // new instance of Profile
     $signup = new Profile();
     $signup->updateUserProfileInformation($age,$weight,$newFile,$id);
+    //var_dump($signup);
     $success = "Successfully Updated Profile Information";
 }
 require_once '../Common Views/Header.php';
@@ -143,7 +147,7 @@ require_once "../Common Views/sidebar.php";
         if($results)
         {
             echo "<div class='text-center'>";
-            echo "<h3 class=' h2 col col-md-9'> Your recorded profile information: </h3>";
+            echo "<h4 class='h3 col col-md-9'> Your recorded profile information: </h4>";
             echo "<h4 class='text-primary col col-md-9'> Age: " . $age . "</h4>";
             echo "<h4 class='text-primary col col-md-9'> Weight: " . $weight . "</h4>";
             echo "<img src='../opt-imgs/userId=" . $id . ".jpg' alt='$userFirst profile image' class='rounded-circle' width='139' height='139' />";
