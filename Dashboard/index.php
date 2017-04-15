@@ -29,12 +29,9 @@ $userFirst = $userId->first_name;
 $userName = $userId->first_name . ' ' . $userId->last_name;
 $userEmail = $userId->email;
 
+$profile = new Profile();
 
-// test image
-$test = "../opt-imgs/userId=$id.jpg";
-$newTest = "../opt-imgs/userId='$id'EDITED.jpg";
-//ProfileImageSize($test,$newTest, 139, 139);
-
+$results = $profile->getUserProfileIinfo($id);
 
 if (isset($_POST['profileSubmit'])){
     $file_error = $_FILES['profileImg']['error'];
@@ -82,9 +79,28 @@ require_once "../Common Views/sidebar.php";
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
     <div class="container">
         <h2 class="h2 col col-md-8 text-center"><?php if(isset($userFirst)){ echo $userFirst; } ?>'s Dashboard</h2>
+        <?php
+
+        // if user has profile information on file, load information from PROFILE tbl
+        if($results)
+        {
+            $age = $results->age;
+            $weight = $results->weight;
+
+
+            echo "<h4 class='text-primary col col-md-9 text-center'> Age: " . $age . "</h4>";
+            echo "<h4 class='text-primary col col-md-9 text-center'> Weight: " . $weight . "</h4>";
+            echo "<img src='../opt-imgs/userId=" . $id . ".jpg' />";
+        }
+
+
+
+
+
+        ?>
         <p class="text-primary col col-md-8 text-center">Update your age, weight, and profile image below</p>
-        <span class="text-info col col-md-8 text-center"><?php if (isset($success)){ echo $success; }?></span>
-        <span class="text-info col col-md-8 text-center"><?php if (isset($error)){ echo $error; }?></span>
+        <p class="text-info col col-md-8 text-center"><?php if (isset($success)){ echo $success; }?></p>
+        <p class="text-info col col-md-8 text-center"><?php if (isset($error)){ echo $error; }?></p>
         <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation">
             <div class="form-field col col-md-8">
                 <label class="formLabel">Age</label>
@@ -109,7 +125,6 @@ require_once "../Common Views/sidebar.php";
                 <span class="glyphicon glyphicon-circle-arrow-left">Back</span>
             </a>
         </div>
-<!--        <img src="../opt-imgs/userId=--><?php //echo $id; ?><!--.jpg" />-->
     </div> <!-- end of main-content div-->
 </div> <!-- end of container div-->
 </main>

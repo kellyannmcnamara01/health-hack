@@ -9,11 +9,12 @@
     <nav id="nav" class="col-md-3 col-sm-0 col-0">
         <!-- 02-2-1-1. Profile Photo -->
         <div class="profile">
+
             <?php
             if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) {
-                ?><img src="opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" /><?php
+                ?><img src="opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
             } else {
-                ?><img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" /><?php
+                ?><img src="../opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
             }
             ?>
             <!--<img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />-->
@@ -33,3 +34,6 @@
             </ul>
         </div>
     </nav>
+
+
+<!--     -->

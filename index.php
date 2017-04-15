@@ -42,7 +42,7 @@ $user = $_SESSION['user'];
 $db = new Signup();
 
 ////grab  user id, username
-//$id = $userId->user_id;
+
 //$userFirst = $userId->first_name;
 //$userName = $userId->first_name . ' ' . $userId->last_name;
 //$userEmail = $userId->email;
@@ -50,7 +50,8 @@ $db = new Signup();
 $userId = $db->userInfo($user);
 //grab username, email
 $userFirst = $userId->first_name;
-
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
 $userName = $userId->first_name . ' ' . $userId->last_name;
 $userEmail = $userId->email;
 

@@ -77,72 +77,73 @@ function ImgPath($img, $username)
 //resize Images to 139x139
 // based on "How to Work with files, uploads, and images" Joel Murach, PHP/MySQL 2nd Edition (Chapter 23, 773-776)
 //
-function ProfileImageSize($original, $new, $width ,$height)
-{
-    //get image type
-    $imgInfo = getimagesize($original);
-    $type = $imgInfo[2];
-
-    //set up function names (based upon image extensions)
-    switch($type)
-    {
-        case IMAGETYPE_JPEG:
-            $fromFile = "imgFromJPEG";
-            $toFile = "ImgJPEG";
-            break;
-        case IMAGETYPE_GIF:
-            $fromFile = "imgFromGIF";
-            $toFile = "ImgGIF";
-            break;
-        case IMAGETYPE_PNG:
-            $fromFile = "imgFromPNG";
-            $toFile = "ImgPNG";
-            break;
-        default:
-            echo "File Must be a JPEG, GIF, or PNG image";
-            exit;
-    }
-
-    // get old image & height/width
-    $oldImg = $fromFile($original);
-    $oldWidth = imagesx($oldImg);
-    $oldHeight = imagesy($oldImg);
-
-    // calculate height and width ratios
-    $widthRatio = $oldWidth / $width;
-    $heightRatio = $oldHeight / $height;
-
-    // if image is larger than specified ratio, create new image
-    if ($widthRatio > 1 || $heightRatio > 1)
-    {
-        // calculate heigth & width for new image
-        $ratio = max($widthRatio, $heightRatio);
-        $newHeight = round($oldHeight / $ratio);
-        $newWidth = round($oldWidth / $ratio);
-
-        // create new image
-        $new_image = imagecreatetruecolor($newHeight,$newWidth);
-
-        // copy old image to new image - resizes image
-        $new_x = 0;
-        $new_y = 0;
-        $old_x = 0;
-        $old_y = 0;
-        imagecopyresampled($new_image, $oldImg, $new_x, $new_y, $old_x, $old_y, $newWidth, $newHeight, $oldWidth, $oldHeight);
-
-        // write new image to a new file
-        $toFile($new_image, $new);
-
-        // free any memory associated with new image
-        imagedestroy($new);
-    }
-    else
-    {
-        //write old image to new file
-        $toFile($original, $new);
-    }
-
-    // free any memory associated with old image
-    imagedestroy($original);
-}
+//function ProfileImageSize($original, $new, $width = 139 ,$height = 139)
+//{
+//    //get image type
+//    $imgInfo = getimagesize($original);
+//    $type = $imgInfo[2];
+//
+//    //set up function names (based upon image extensions)
+//    switch($type)
+//    {
+//        case IMAGETYPE_JPEG:
+//            $fromFile = "imagecreatefromjpeg";
+//            $toFile = "ImgJPEG";
+//            break;
+//        case IMAGETYPE_GIF:
+//            $fromFile = "imagecreatefromgif";
+//            $toFile = "ImgGIF";
+//            break;
+//        case IMAGETYPE_PNG:
+//            $fromFile = "imagecreatefrompng";
+//            $toFile = "ImgPNG";
+//            break;
+//        default:
+//            echo "File Must be a JPEG, GIF, or PNG image";
+//            exit;
+//    }
+//
+//    // get old image & height/width
+//    $oldImg = $fromFile($original);
+//    $oldWidth = imagesx($oldImg);
+//    $oldHeight = imagesy($oldImg);
+//
+//    // calculate height and width ratios
+//    $widthRatio = $oldWidth / $width;
+//    $heightRatio = $oldHeight / $height;
+//
+//    // if image is larger than specified ratio, create new image
+//    if ($widthRatio > 1 || $heightRatio > 1)
+//    {
+//        // calculate heigth & width for new image
+//        $ratio = max($widthRatio, $heightRatio);
+//        $newHeight = round($oldHeight / $ratio);
+//        $newWidth = round($oldWidth / $ratio);
+//
+//        // create new image
+//        $new_image = imagecreatetruecolor($newHeight,$newWidth);
+//
+//        // copy old image to new image - resizes image
+//        $new_x = 0;
+//        $new_y = 0;
+//        $old_x = 0;
+//        $old_y = 0;
+//        imagecopyresampled($new_image, $oldImg, $new_x, $new_y, $old_x, $old_y, $newWidth, $newHeight, $oldWidth, $oldHeight);
+//
+//        // write new image to a new file
+//        //$toFile($new_image, $new);
+//        imagepng($new, $original);
+//
+//        // free any memory associated with new image
+//        imagedestroy($new_image);
+//    }
+//    else
+//    {
+//        //write old image to new file
+//        imagepng($new, $original);
+//    }
+//
+//    // free any memory associated with old image
+//    imagedestroy($oldImg);
+//}
 

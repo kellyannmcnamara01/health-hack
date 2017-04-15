@@ -115,4 +115,24 @@ class Profile
         return $results;
 
     }
+
+    public function getUserProfileIinfo($id)
+    {
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDbFromAWS();
+
+        $select = "SELECT * FROM PROFILES WHERE user_id = :id LIMIT 1";
+        // prepare
+        $selectInfo = $connect->prepare($select);
+        //bind value
+        $selectInfo->bindValue(":id", $id);
+        //execute
+        $selectInfo->execute();
+        $results = $selectInfo->fetch(PDO::FETCH_OBJ);
+        $selectInfo->closeCursor();
+
+        return $results;
+
+    }
 }
