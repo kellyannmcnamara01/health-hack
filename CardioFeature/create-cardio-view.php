@@ -5,6 +5,10 @@
  * Date: 2017-04-09
  * Time: 9:26 PM
  */
+
+require_once 'create-cardio.php';
+require_once '../Common Views/Header.php';
+require_once '../Common Views/sidebar.php';
 ?>
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row">
 <div class="container">

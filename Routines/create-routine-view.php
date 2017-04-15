@@ -5,6 +5,7 @@
  * Date: 2017-04-06
  * Time: 8:25 AM
  */
+require_once 'create-routine.php';
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 ?>

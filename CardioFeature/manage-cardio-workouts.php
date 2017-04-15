@@ -8,7 +8,22 @@
 //grab the database connection.
 ob_start();
 session_start();
-$user_id = 1;
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
+
 require_once '../Models/Database.php';
 $db   = new Database();
 $conn = $db->getDbFromAWS();
@@ -46,7 +61,7 @@ if (isset($_POST['delete_cardio'])){
                 //then we delete the parent keys.
                 $cardio_Delete = new cardioworkout();
                 $cardio_Delete->setId($value);
-                $cardio_Delete->setUserId($user_id);
+                $cardio_Delete->setUserId($id);
 
 
                 $c_Delete = new cardioworkoutDAO();
@@ -66,7 +81,7 @@ if (isset($_POST['delete_cardio'])){
 
 require_once '../Models/cardioworkout.php';
 $c = new cardioworkout();
-$c->setUserId($user_id);
+$c->setUserId($id);
 //create a new cardioWorkoutDAO object and pass in our cardio object and database connection.
 require_once '../Models/cardioworkoutDAO.php';
 $get_Cardio      = new cardioworkoutDAO();

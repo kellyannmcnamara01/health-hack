@@ -1,10 +1,21 @@
 <?php
 ob_start();
 session_start();
-require_once '../Common Views/Header.php';
-require_once '../Common Views/sidebar.php';
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
 
-$user_id = 1;
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
 if (isset($_POST['submit_cardio'])){
 
     //set up a flag variable that gets turned to false if any of our validation fails
@@ -31,7 +42,7 @@ if (isset($_POST['submit_cardio'])){
     require_once '../Models/cardioworkout.php';
     $c = new cardioworkout();
 
-    $c->setUserId($user_id);
+    $c->setUserId($id);
 
     require_once '../Models/cardioworkoutDAO.php';
     $insert_C = new cardioworkoutDAO();
@@ -80,10 +91,10 @@ if ($cardio_Valid){        //insert a function to change the time format
         $c = new cardioworkout();
 
         $c->setName($cardio_name);
-        $c->setUserId($user_id);
+        $c->setUserId($id);
         $c->setGoalDistance($cardio_distance);
         $c->setGoalTime($cardio_time);
-        $c->setUserId($user_id);
+        $c->setUserId($id);
 
 
     //now we grab our DAO object, call the insert method, passing in our db connection and our cardio workout object.

@@ -7,10 +7,22 @@
  */
 ob_start();
 session_start();
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
 
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
 
-//manually setting the user
-$user_id = 1;
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
+
 if (isset($_POST['save_workout'])) {
 
     //grab the variables from the form
@@ -53,7 +65,7 @@ if (isset($_POST['save_workout'])) {
 
         require_once '../Models/quickworkout.php';
         $q = new quickworkout();
-        $q->setUserId($user_id);
+        $q->setUserId($id);
         $q->setTime($time);
         $q->setDistance($distance);
         $q->setType($type);

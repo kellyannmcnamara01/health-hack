@@ -7,8 +7,22 @@
  */
 ob_start();
 session_start();
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
 
-$user_id = 1;
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
+
 
 if (isset($_POST['submit_strength'])){
 
@@ -43,7 +57,7 @@ if (isset($_POST['submit_strength'])){
 
         require_once '../Models/StrengthWorkout.php';
         $strength_workout = new StrengthWorkout();
-        $strength_workout->setUserId($user_id);
+        $strength_workout->setUserId($id);
         $strength_workout->setName($strength_name);
 
         //check if there is another strength workout that has the same name. If there is, provide an error message and do not proceed.

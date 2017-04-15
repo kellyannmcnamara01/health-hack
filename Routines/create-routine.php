@@ -1,11 +1,25 @@
 <?php
 session_start();
-$user_id = 1;
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
 //create a new $cardioworkout object and set it's user id equal to that of the user logged in.
 
 require_once '../Models/cardioworkout.php';
 $c = new cardioworkout();
-$c->setUserId($user_id);
+$c->setUserId($id);
 
 
 //grab the database connection.
@@ -26,7 +40,7 @@ $cardio_workouts = $get_Cardio->getCardioWorkouts($conn, $c);
 
 require_once '../Models/StrengthWorkout.php';
 $sw = new StrengthWorkout();
-$sw->setUserId($user_id);
+$sw->setUserId($id);
 
 //grab all of our strength workouts passing in the connection and strength workout object
 require_once '../Models/StrengthWorkoutDAO.php';
@@ -89,7 +103,7 @@ if (isset($_POST['routine_yes']) || isset($_POST['routine_no'])) {
     require_once '../Models/Routine.php';
     $r = new Routine();
     $r->setName($routine_name);
-    $r->setUserId($user_id);
+    $r->setUserId($id);
 
     //now let's create a new workout routine dao, pass in our routine in the getRoutines function to make sure we
     //our user names their new routine uniquely.

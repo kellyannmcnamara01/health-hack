@@ -5,9 +5,11 @@
  * Date: 2017-04-09
  * Time: 9:39 PM
  */
+require_once 'quick-cardio-workout.php';
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 ?>
+
 <div id="main-content" class="col-md-9 col-sm-9 col-xs-9 row">
     <div class="container">
         <form action="#" method="post">

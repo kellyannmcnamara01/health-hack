@@ -5,6 +5,7 @@
  * Date: 2017-04-09
  * Time: 9:57 PM
  */
+require_once 'create-strength.php';
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 ?>

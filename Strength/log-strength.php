@@ -8,15 +8,27 @@
 ob_start();
 session_start();
 
-//test change
-$user_id = 1;
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
 
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
 //grab all the strength workouts associated with the id, and store it for access in a drop down list.
 //create a new strength workout and set it's id equal to that of the user signed in.
 
 require_once '../Models/StrengthWorkout.php';
 $sw = new StrengthWorkout();
-$sw->setUserId($user_id);
+$sw->setUserId($id);
 
 //create the db connection
 require_once '../Models/Database.php';
@@ -45,7 +57,7 @@ if (isset($_POST['load_strength'])){
         //now create the strength workout object
 
         $selected_Strength_Workout = new StrengthWorkout();
-        $selected_Strength_Workout->setUserId($user_id);
+        $selected_Strength_Workout->setUserId($id);
         $selected_Strength_Workout->setId($strength_id);
 
         //now let's get all the exercises associated with that strength workout.
@@ -68,7 +80,7 @@ if (isset($_POST['save_strength'])) {
 
         require_once '../Models/StrengthWorkout.php';
         $sw = new StrengthWorkout();
-        $sw->setUserId($user_id);
+        $sw->setUserId($id);
 
 //create the db connection
         require_once '../Models/Database.php';
@@ -85,7 +97,7 @@ if (isset($_POST['save_strength'])) {
             //now create the strength workout object
 
             $selected_Strength_Workout = new StrengthWorkout();
-            $selected_Strength_Workout->setUserId($user_id);
+            $selected_Strength_Workout->setUserId($id);
             $selected_Strength_Workout->setId($strength_id);
 
             //now let's get all the exercises associated with that strength workout.

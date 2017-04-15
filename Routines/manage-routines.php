@@ -5,17 +5,33 @@
  * Date: 2017-04-06
  * Time: 2:47 PM
  */
+session_start();
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
+
 require_once '../Models/Database.php';
 $db = new Database();
 $conn = $db->getDbFromAWS();
-$user_id = 1;
 if (isset($_POST['set_active'])){
     //change the row that is active to 'no'
     $routine_id = filter_input(INPUT_POST, 'routine');
     require_once '../Models/Routine.php';
     $routine_Change = new Routine();
     $routine_Change->setRoutineId($routine_id);
-    $routine_Change->setUserId($user_id);
+    $routine_Change->setUserId($id);
 
     require_once '../Models/RoutineDAO.php';
     $r_Change = new RoutineDAO();
@@ -42,7 +58,7 @@ if (isset($_POST['delete_routines'])) {
 
             $routine_Delete = new Routine();
             $routine_Delete->setRoutineId($value);
-            $routine_Delete->setUserId($user_id);
+            $routine_Delete->setUserId($id);
 
             $r_Delete = new RoutineDAO();
             $r_Delete->deleteRoutine($conn, $routine_Delete);
@@ -59,7 +75,7 @@ if (isset($_POST['delete_routines'])) {
 require_once '../Models/RoutineDAO.php';
 require_once '../Models/Routine.php';
 $our_User = new Routine();
-$our_User->setUserId($user_id);
+$our_User->setUserId($id);
 $r = new RoutineDAO();
 $routines = $r->getRoutines($conn, $our_User);
 

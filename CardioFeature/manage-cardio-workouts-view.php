@@ -5,6 +5,7 @@
  * Date: 2017-04-06
  * Time: 6:39 PM
  */
+require_once 'manage-cardio-workouts.php';
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 ?>

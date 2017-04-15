@@ -7,7 +7,21 @@
  */
 ob_start();
 session_start();
-$user_id = 1;
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
 require_once '../Models/Database.php';
 $db   = new Database();
 $conn = $db->getDbFromAWS();
@@ -54,7 +68,7 @@ if (isset($_POST['delete_strength'])){
             //then we delete the parent keys.
             $strength_Delete = new StrengthWorkout();
             $strength_Delete->setId($value);
-            $strength_Delete->setUserId($user_id);
+            $strength_Delete->setUserId($id);
 
 
             $s_Delete = new StrengthWorkoutDAO();
@@ -74,7 +88,7 @@ if (isset($_POST['delete_strength'])){
 
 require_once '../Models/StrengthWorkout.php';
 $s = new StrengthWorkout();
-$s->setUserId($user_id);//create a new cardioWorkoutDAO object and pass in our cardio object and database connection.
+$s->setUserId($id);//create a new cardioWorkoutDAO object and pass in our cardio object and database connection.
 require_once '../Models/StrengthWorkoutDAO.php';
 $get_Strength      = new StrengthWorkoutDAO();
 $strength_workouts = $get_Strength->getStrengthWorkouts($conn, $s);

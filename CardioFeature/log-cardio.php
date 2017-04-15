@@ -1,15 +1,26 @@
 <?php
 ob_start();
 session_start();
-include '../Common Views/Header.php';
-include '../Common Views/sidebar.php';
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
 
-$user_id = 1;
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
 //create a new $cardioworkout object and set it's user id equal to that of the user logged in.
 
 require_once '../Models/cardioworkout.php';
 $c = new cardioworkout();
-$c->setUserId($user_id);
+$c->setUserId($id);
 
 
 //grab the database connection.
@@ -35,7 +46,7 @@ if (isset($_POST['load_cardio'])) {
         $cardio_workout_error = "You must select a cardio workout to log.";
     } else {
         $selected_Cardio_Workout = new cardioworkout();
-        $selected_Cardio_Workout->setUserId($user_id);
+        $selected_Cardio_Workout->setUserId($id);
         $selected_Cardio_Workout->setId($cardio_id);
 
         //running a query to get all of the information for the cardio workout that was selected.
@@ -51,7 +62,7 @@ if (isset($_POST['save_workout'])) {
     //now assign this value to a new cardio workout object
 
     $selected_Cardio_Workout = new cardioworkout();
-    $selected_Cardio_Workout->setUserId($user_id);
+    $selected_Cardio_Workout->setUserId($id);
     $selected_Cardio_Workout->setId($cardio_id);
 
     //running a query to get all of the information for the cardio workout that was selected.

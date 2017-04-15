@@ -5,6 +5,7 @@
  * Date: 2017-04-09
  * Time: 10:01 PM
  */
+require_once 'log-strength.php';
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 ?>

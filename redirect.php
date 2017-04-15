@@ -7,6 +7,6 @@
  */
 
 if(!isset($_SESSION['user'])){
-    header("Location:Landing.php");
+    header("Location:/health-hack/landing.php");
 }
 

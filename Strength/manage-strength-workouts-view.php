@@ -5,6 +5,7 @@
  * Date: 2017-04-08
  * Time: 4:28 PM
  */
+require_once 'manage-strength-workouts.php';
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
 
@@ -25,7 +26,7 @@ require_once '../Common Views/sidebar.php';
                 <?php endforeach;?>
 
                 <div class="big-spacing">
-                    <input  type="submit" name="delete_strength" value="Delete Strength Workouts" class="formSubmit offset-md-1 col-md-3 col-sm-6 col-xs-1 offset-sm-3    "/>
+                    <input  type="submit" name="delete_strength" value="Delete Workouts" class="formSubmit offset-md-1 col-md-3 col-sm-6 col-xs-1 offset-sm-3    "/>
                 </div>
                 <div class="big-spacing">
                 <span class="badge badge-danger"><?php if (isset($delete_error)){ echo $delete_error;}?></span>
