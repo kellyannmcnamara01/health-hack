@@ -89,7 +89,7 @@ if(isset($_POST['foodEntrySubmit'])) {
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
 
     <div id="feature-callouts" class="col-md-9 col-sm-9 col-12 row">
-        <div class="feature col-md-4 col-sm-4 col-4">
+        <div class="feature col-md-6 col-sm-6 col-6">
             <a href="Grocery.php" class="feature-btn">
                 <div class="feature-icon">
                     <img src="../opt-imgs/g-list-icon.png" alt="" />
@@ -97,7 +97,7 @@ if(isset($_POST['foodEntrySubmit'])) {
                 <p class="text-center">Change Grocery List</p>
             </a>
         </div>
-        <div class="feature col-md-4 col-sm-4 col-4">
+        <div class="feature col-md-6 col-sm-6 col-6">
             <a href="List.php" class="feature-btn">
                 <div class="feature-icon">
                     <img src="../opt-imgs/foodgoals-icon.png" alt="" />
@@ -105,7 +105,7 @@ if(isset($_POST['foodEntrySubmit'])) {
                 <p class="text-center">Nutrition Listings</p>
             </a>
         </div>
-        <div class="feature col-md-4 col-sm-4 col-4">
+        <div class="feature col-md-6 col-sm-6 col-6">
             <a href="FoodDiaryEntry.php" class="feature-btn">
                 <div class="feature-icon">
                     <img src="../opt-imgs/foodlog-icon.png" alt="" />
@@ -113,7 +113,7 @@ if(isset($_POST['foodEntrySubmit'])) {
                 <p class="text-center">Food Diary Eateries</p>
             </a>
         </div>
-        <div class="feature col-md-4 col-sm-4 col-4">
+        <div class="feature col-md-6 col-sm-6 col-6">
             <a href="statistics.php" class="feature-btn">
                 <div class="feature-icon">
                     <img src="../opt-imgs/chart-icon.png" alt="" />
@@ -121,6 +121,11 @@ if(isset($_POST['foodEntrySubmit'])) {
                 <p class="text-center">Nutrition Statistics</p>
             </a>
         </div>
+    </div>
+    <div class="col-md-12 row">
+        <a href="../index.php" class="back-btn offset-md-0">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
+        </a>
     </div>
 </div>
 </main>

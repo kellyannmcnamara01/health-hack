@@ -86,14 +86,6 @@ $carbsDV = round(($todayArr['carbs'] / 300) * 100);
 
 
 /*
-foreach ($weeksEntries as $entry) {
-    $totalWeekCals += $entry->calories;
-    $totalWeekFat += $entry->fat;
-    $totalWeekCholesterol += $entry->cholesterol;
-    $totalWeekSodium += $entry->sodium;
-    $totalWeekCarbs += $entry->carbs;
-    $totalWeekProtein += $entry->protein;
-}
 foreach ($sixDaysAgo as $entry) {
     $totalSixDaysCals += $entry->calories;
     $totalSixDaysFat += $entry->fat;
@@ -252,6 +244,7 @@ if(isset($_POST['foodEntrySubmit'])) {
             <h4 class="text-center">Comparative Weekly Nutrition Intake</h4>
             <canvas id="weeklyNutritionChart"></canvas>
         </div>
+        <canvas id="weekResults"></canvas>
     </div>
     <!--hidden div containing all of the number output-->
     <div style="display: none">
