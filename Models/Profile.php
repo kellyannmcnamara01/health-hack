@@ -76,13 +76,13 @@ class Profile
         return $return;
     }
 
-    public function ResetPassword($password,$id){
+    public function ResetPassword($password,$email,$id){
         //est. connection to DB
         $db = new Database();
         $connect = $db->getDbFromAWS();
 
         //encrypt password using SHA1
-        $newPassword = sha1($id . $password);
+        $newPassword = sha1($email . $password);
 
         $update = "UPDATE USERS SET password = :password WHERE user_id = :id";
         // prepare statement

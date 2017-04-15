@@ -55,7 +55,7 @@ if(isset($_POST['passwordUpDateSubmit'])){
         //echo "They match";
         //new instance of Profile()
         $profile = new Profile();
-        $newPassword = $profile->ResetPassword($password,$id);
+        $newPassword = $profile->ResetPassword($password,$userEmail,$id);
         $success = "Password was officially updated for $userEmail";
     }
     else
