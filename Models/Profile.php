@@ -135,4 +135,21 @@ class Profile
         return $results;
 
     }
+
+    public function updateUserProfileInformation($age,$weight,$profile,$id)
+    {
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDbFromAWS();
+
+        $update = "UPDATE PROFILES SET age = :age, weight = :weight, profile_image = :image WHERE user_id = :id";
+        //prepare
+        $updateInfo = $connect->prepare($update);
+        $updateInfo->bindValue(":age", $age);
+        $updateInfo->bindValue(":weight", $weight);
+        $updateInfo->bindValue(":image", $profile);
+        $updateInfo->bindValue(":id", $id);
+
+        return $updateInfo->execute();
+    }
 }

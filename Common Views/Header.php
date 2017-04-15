@@ -108,14 +108,14 @@ INDEX
             <!-- 02-1-1. Profile Photo -->
             <div class="profile">
                 <?php if($homepage == $currentpage || $homepage2 == $currentpage) {?>
-                    <img src="opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />
+                    <img src="opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
                 <?php } else { ?>
-                    <img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />
+                    <img src="../opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
                 <?php } ?>
 
                 <!-- 02-1-2. User Details -->
-                <h2>Aira Summers</h2>
-                <h3>A_Summers_01</h3>
+                <h2><?php if(isset($userName)){ echo $userName; } ?></h2>
+<!--                <h3>--><?php //if(isset($userEmail)){ echo $userEmail; } ?><!--</h3>-->
             </div>
             <!-- 02-1-3. Links -->
             <div class="nav-links">
