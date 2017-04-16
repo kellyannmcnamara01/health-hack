@@ -26,9 +26,9 @@ require_once "../Models/Database.php";
 $dbConn = new Database();
 $db = $dbConn->getDbFromAWS();
 
-require_once "../Models/FoodEntriesLunch.php";
-$lunch = new FoodEntriesLunch();
-$lunch->setId($id);
+//require_once "../Models/FoodEntriesLunch.php";
+//$lunch = new FoodEntriesLunch();
+//$lunch->setId($id);
 
 
 //include groceryList DAO
@@ -38,8 +38,7 @@ $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
 //$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
 $todaysBreakfast = $gListConn->populateTodaysBreakfast($db);
-$todaysLunch = $gListConn->populateTodaysLunch($db, $lunch);
-//$lunch->setId($id);
+$todaysLunch = $gListConn->populateTodaysLunch($db);
 $todaysDinner = $gListConn->populateTodaysDinner($db);
 $todaysSnacks = $gListConn->populateTodaysSnacks($db);
 
