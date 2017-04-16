@@ -41,22 +41,19 @@ $user = $_SESSION['user'];
 //new instance of Signup()
 $db = new Signup();
 
-////grab  user id, username
 
-//$userFirst = $userId->first_name;
-//$userName = $userId->first_name . ' ' . $userId->last_name;
-//$userEmail = $userId->email;
 // call userInfo() method
 $userId = $db->userInfo($user);
 //grab username, email
+
+// *** $id & $userFirst variables are needed for sidebar.php and need to be on every page
 $userFirst = $userId->first_name;
 $id = $userId->user_id;
+
 $userFirst = $userId->first_name;
 $userName = $userId->first_name . ' ' . $userId->last_name;
 $userEmail = $userId->email;
 
-
-//check if logout button is set
 
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
