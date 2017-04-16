@@ -1,12 +1,35 @@
 <?php
 
-$user_id = 1;
-$list_id = 5;
+//$user_id = 1;
+//$list_id = 5;
+
+session_start();
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
+$list_id = $userId->list_id;
 
 //db
 require_once "../Models/Database.php";
 $dbConn = new Database();
 $db = $dbConn->getDbFromAWS();
+
+require_once "../Models/FoodEntriesLunch.php";
+$lunch = new FoodEntriesLunch();
+$lunch->setId($id);
+
 
 //include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
@@ -15,7 +38,8 @@ $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
 //$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
 $todaysBreakfast = $gListConn->populateTodaysBreakfast($db);
-$todaysLunch = $gListConn->populateTodaysLunch($db);
+$todaysLunch = $gListConn->populateTodaysLunch($db, $lunch);
+//$lunch->setId($id);
 $todaysDinner = $gListConn->populateTodaysDinner($db);
 $todaysSnacks = $gListConn->populateTodaysSnacks($db);
 
@@ -52,6 +76,7 @@ if(isset($_POST['foodEntrySubmit'])) {
 
     //include the getter and setter for the food entry file
     require_once "../Models/FoodEntry.php";
+    $foodEntryGetSet = new FoodEntry();
 
     //set the vars
     $food_item_id = $_POST["food-item-selected"];
@@ -60,15 +85,14 @@ if(isset($_POST['foodEntrySubmit'])) {
     //$time = new DateTime();
     //$timestamp = $time->format('Y-m-d H:i:s');
     $timestamp = date("Y-m-d");
-    $user_id = 1;
+    //$user_id = 1;
 
     //setting the values
-    $foodEntryGetSet = new FoodEntry();
     $foodEntryGetSet->setFoodItemId($food_item_id);
     $foodEntryGetSet->setMeal($meal);
     $foodEntryGetSet->setServingsCount($servings_count);
     $foodEntryGetSet->setTimestamp($timestamp);
-    $foodEntryGetSet->setUserId($user_id);
+    $foodEntryGetSet->setUserId($id);
 
     //var_dump($foodEntryGetSet->getUserId());
     $gListConn->userFoodEntry($db, $foodEntryGetSet);

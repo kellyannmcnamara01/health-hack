@@ -244,7 +244,7 @@ class GroceryListDAO
         return $todaysBreakfast;
     }
 
-    public function populateTodaysLunch($db) {
+    public function populateTodaysLunch($db, $id) {
         $query_todaysLunch = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                 (calories * sum(servings_count)) AS calories, 
                                 (fat * sum(servings_count)) AS fat, 
@@ -260,7 +260,7 @@ class GroceryListDAO
                                 AND meal = 'lunch'
                               GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysLunch);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", $id->getId());
         $pdo_statement->execute();
         $todaysLunch = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysLunch;
