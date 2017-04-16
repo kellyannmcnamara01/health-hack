@@ -76,7 +76,7 @@ require_once "../Common Views/sidebar.php";
             <form action="resetpassword.php" method="post" id="changeUserPassword">
                 <div class="form-field col col-md-8">
                     <label class="formLabel">Password</label>
-                    <input type="password" class="textInput" title="Please enter a new " placeholder="New Password" name="NewPassword">
+                    <input type="password" class="textInput" title="Please enter a new password" placeholder="New Password" name="NewPassword">
                     <span class="text-info">Please enter a new password</span>
                 </div>
                 <div class="form-field col col-md-8">
@@ -91,6 +91,9 @@ require_once "../Common Views/sidebar.php";
             <div class="row offset-md-1 offset-sm-1 offset-xs-1">
                 <a href="../index.php" class="btn btn-info btn-lg offset-md-0">
                     <span class="glyphicon glyphicon-circle-arrow-left">Home</span>
+                </a>
+                <a href="Friends.php" class="btn btn-info btn-lg offset-md-0">
+                    <span class="glyphicon glyphicon-circle-arrow-left">Friends</span>
                 </a>
                 <a href="./index.php" class="btn btn-info btn-lg offset-md-0">
                     <span class="glyphicon glyphicon-circle-arrow-left">Profile</span>

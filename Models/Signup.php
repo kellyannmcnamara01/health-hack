@@ -54,7 +54,7 @@ class Signup
         // user_id
         // *
         try{
-            $select = "SELECT * FROM USERS WHERE email = :email AND password = :password";
+            $select = "SELECT * FROM USERS WHERE email = :email AND password = :password LIMIT 1";
             //prepare query
             $validUser = $connect->prepare($select);
             //bind values

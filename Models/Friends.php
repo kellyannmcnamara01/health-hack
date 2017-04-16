@@ -8,11 +8,11 @@
  */
 class Friends
 {
-        public function getFriendByEmail($friendEmail,$userId,$userEmail)
+        public function addFriendByEmail($friendEmail,$userId,$userEmail)
         {
             //est. connection to DB
             $db = new Database();
-            $connect = $db->getDb();
+            $connect = $db->getDbFromAWS();
 
             // INSERT => Make new friend by their email
             $insert = "INSERT INTO FREINDS (friend_id, user_id, email) VALUES ((SELECT user_id from USERS WHERE email = :friendEmail), :userId, :userEmail)";
@@ -24,5 +24,28 @@ class Friends
             $InsertStmt->bindValue(":userEmail", $userEmail);
 
             return $InsertStmt->execute();
+        }
+
+        public function displayFriends($userId)
+        {
+            //est. connection to DB
+            $db = new Database();
+            $connect = $db->getDbFromAWS();
+            $return = array();
+
+            $select = "SELECT * FROM FRIENDS AS f 
+                       JOIN USERS AS u 
+                       on f.user_id = u.user_id
+                       WHERE u.user_id = :uId";
+            // prepare statement
+            $selectStmt = $connect->prepare($select);
+            // bind values
+            $selectStmt->bindValue("uId", $userId);
+            $selectStmt->execute();
+            $return = $selectStmt->fetch(PDO::FETCH_OBJ);
+            $selectStmt->closeCursor();
+
+            return $return;
+
         }
 }

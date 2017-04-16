@@ -105,8 +105,6 @@ if (isset($_POST['profileUpdate']))
     }
     else
     {
-        // destroy old file
-        //unlink("../opt-imgs/userId=" . $id . ".jpg'"); // /opt-imgs/userId=4.jpg
         // upload new file
         $filename = pathinfo($file_name);
         $newFile = "userId=" . $id .".". $filename['extension'];
@@ -131,7 +129,6 @@ if (isset($_POST['profileUpdate']))
     // new instance of Profile
     $signup = new Profile();
     $signup->updateUserProfileInformation($age,$weight,$newFile,$id);
-    //var_dump($signup);
     $success = "Successfully Updated Profile Information";
 }
 require_once '../Common Views/Header.php';
@@ -186,6 +183,9 @@ require_once "../Common Views/sidebar.php";
         <div class="row offset-md-1 offset-sm-1 offset-xs-1">
             <a href="../index.php" class="btn btn-info btn-lg offset-md-0">
                 <span class="glyphicon glyphicon-circle-arrow-left">Home</span>
+            </a>
+            <a href="Friends.php" class="btn btn-info btn-lg offset-md-0">
+                <span class="glyphicon glyphicon-circle-arrow-left">Friends</span>
             </a>
             <a href=resetpassword.php class="btn btn-info btn-lg offset-md-0">
                 <span class="glyphicon glyphicon-circle-arrow-left">Reset Password</span>
