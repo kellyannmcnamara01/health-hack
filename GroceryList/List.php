@@ -1,7 +1,25 @@
 <?php
 
-$user_id = 1;
-$list_id = 5;
+//$user_id = 1;
+//$list_id = 5;
+
+session_start();
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
+$list_id = $userId->list_id;
 
 //db
 require_once "../Models/Database.php";
@@ -24,8 +42,6 @@ if($list_id == 0){
     $list = $gListConn->populateGlutenFreeList($db);
 }
 
-//DV% vars
-$dailyFat = ($list[2]->fat / 65) * 100;
 
 //include the header
 require_once "../Common Views/Header.php";
@@ -38,7 +54,7 @@ require_once "../Common Views/sidebar.php";
 
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
     <div class="col-md-6 ">
-        <h1 class="light-grey">Nutrition</h1>
+        <h1 class="light-grey padding-top-75">Nutrition</h1>
         <p>Welcome to your nutrition list by Health Hack. Here you will be able to see and add to your selected list. </p>
         <p>Below you will see a list of food items that are currently in your list. If you would like to see the full nutrition facts for a food item please click on the name and it will expand to show more information. If you would like to change your grocery list please use the button below.</p>
         <!--<div class="col-md-12 row">

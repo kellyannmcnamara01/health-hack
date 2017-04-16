@@ -55,8 +55,39 @@ $userName = $userId->first_name . ' ' . $userId->last_name;
 $userEmail = $userId->email;
 
 
+<<<<<<< HEAD
+=======
+
+//check if logout button is set
+
+>>>>>>> 3e4b77f7d8358cb0d41ccb566a2cd83f8573a113
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
+
+//progress section
+
+require_once "Models/Database.php";
+$dbConn = new Database();
+$db = $dbConn->getDbFromAWS();
+require_once "Models/GroceryListDAO.php";
+$gListConn = new GroceryListDAO();
+$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
+
+$todayArr = ['calories' => 0, 'fat' => 0, 'cholesterol' => 0, 'sodium' => 0, 'carbs' => 0, 'protein' => 0];
+
+foreach ($todaysEntries as $today) {
+    $todayArr['calories'] += $today->calories;
+    $todayArr['fat'] += $today->fat;
+    $todayArr['cholesterol'] += $today->cholesterol;
+    $todayArr['sodium'] += $today->sodium;
+    $todayArr['carbs'] += $today->carbs;
+    $todayArr['protein'] += $today->protein;
+}
+
+$fatDV = round(($todayArr['fat'] / 65) * 100);
+$cholesterolDV = round(($todayArr['cholesterol'] / 300) * 100);
+$sodiumDV = round(($todayArr['sodium'] / 2400) * 100);
+$carbsDV = round(($todayArr['carbs'] / 300) * 100);
 
 ?>
         <!-- Logout Modal -->
@@ -103,7 +134,7 @@ require_once 'Common Views/sidebar.php';
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="GroceryList/Grocery.php" class="feature-btn">
+                    <a href="GroceryList/statistics.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/foodgoals-icon.png" alt="" />
                         </div>
@@ -146,6 +177,32 @@ require_once 'Common Views/sidebar.php';
             <!-- 02-2-2-3. Progress -->
             <div id="progress-recap" class="col-md-3 col-sm-3 col-12">
                 <h2 class="light-grey">Progress</h2>
+                <div class="col-md-10 col-sm-10 col-12">
+                    <p class="text-center">Fat DV% Intake Total</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
+                            <?php echo $fatDV ?>%
+                        </div>
+                    </div>
+                    <p class="text-center">Cholesterol DV% Intake Total</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
+                            <?php echo $cholesterolDV ?>%
+                        </div>
+                    </div>
+                    <p class="text-center">Sodium DV% Intake Total</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
+                            <?php echo $sodiumDV ?>%
+                        </div>
+                    </div>
+                    <p class="text-center">Carbs DV% Intake Total</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
+                            <?php echo $carbsDV ?>%
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

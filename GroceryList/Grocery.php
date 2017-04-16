@@ -1,7 +1,22 @@
 <?php
 
+    session_start();
+    require_once '../redirect.php';
+    require_once '../Models/Signup.php';
+    require_once '../Models/Profile.php';
+    $user = $_SESSION['user'];
 
-    $user_id = 1;
+    // call userInfo() method using user_id from $_SESSION
+    $db = new Signup();
+
+    $userId = $db->userInfo($user);
+
+    //grab  user id, username
+    $id = $userId->user_id;
+    $userFirst = $userId->first_name;
+    $userName = $userId->first_name . ' ' . $userId->last_name;
+    $userEmail = $userId->email;
+    //$user_id = 1;
 
     //db
     require_once "../Models/Database.php";
@@ -33,7 +48,7 @@
         //
         $g_list = new GroceryList();
         $g_list->setListId($list_id);
-        $g_list->setUserId($user_id);
+        $g_list->setUserId($id);
 
         $gListConn->userSelectList($db, $g_list);
 
@@ -57,7 +72,7 @@
 ?>
     <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
         <div class="col-md-5 ">
-            <h1 class="light-grey">Grocery Lists</h1>
+            <h1 class="light-grey padding-top-75">Grocery Lists</h1>
             <p>Please select a grocery list from the following options and press submit. This list will be your main outlining diet for your journey with us here at Health Hack.. </p>
         </div>
         <div class="feature col-md-10 col-sm-12 col-12">

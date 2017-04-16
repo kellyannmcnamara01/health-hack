@@ -15,6 +15,7 @@ $(document).ready(function(){
         todaysArr.push(data.fat);
         todaysArr.push(data.protein);
         todaysArr.push(data.sodium);
+        console.log(data);
     }); //end of json call
 
     console.log(todaysArr);
