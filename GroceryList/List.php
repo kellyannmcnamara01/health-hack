@@ -38,7 +38,7 @@ require_once "../Common Views/sidebar.php";
 
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
     <div class="col-md-6 ">
-        <h1 class="light-grey">Nutrition</h1>
+        <h1 class="light-grey padding-top-75">Nutrition</h1>
         <p>Welcome to your nutrition list by Health Hack. Here you will be able to see and add to your selected list. </p>
         <p>Below you will see a list of food items that are currently in your list. If you would like to see the full nutrition facts for a food item please click on the name and it will expand to show more information. If you would like to change your grocery list please use the button below.</p>
         <!--<div class="col-md-12 row">

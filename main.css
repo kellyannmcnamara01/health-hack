@@ -400,6 +400,7 @@ label {
 }
 .back-btn {
     margin-bottom: 15px;
+    background: #e04152;
 }
 .formResetBtn {
     width: 100%;
@@ -980,6 +981,9 @@ div#gym-hours {
 }
 .progress-bar {
     background-color: #e04152 !important;
+}
+.padding-top-75 {
+    padding-top: 75px;
 }
 
 /* Media Queries */

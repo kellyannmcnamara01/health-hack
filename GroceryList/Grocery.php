@@ -57,7 +57,7 @@
 ?>
     <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
         <div class="col-md-5 ">
-            <h1 class="light-grey">Grocery Lists</h1>
+            <h1 class="light-grey padding-top-75">Grocery Lists</h1>
             <p>Please select a grocery list from the following options and press submit. This list will be your main outlining diet for your journey with us here at Health Hack.. </p>
         </div>
         <div class="feature col-md-10 col-sm-12 col-12">
