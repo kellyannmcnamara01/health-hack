@@ -6,9 +6,25 @@
  * Time: 4:02 PM
  */
 
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-require_once 'processImg.php';
+$homepage = "/health-hack/index.php";
+$homepage2 = "/health-hack/";
+//pattern for access_token
+$access = "/[?]access[_]token[=]\d{2}[*]\d{4}/";
+// contains current host & request uri
+$currentpage = $_SERVER['REQUEST_URI'];
+$currentpage2 = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) {
+    require_once 'Models/Signup.php';
+    require_once 'Models/Profile.php';
+    //require_once 'processImg.php';
+ } else {
+    require_once '../Models/Signup.php';
+    require_once '../Models/Profile.php';
+ }
+
+
+
 
 if(!isset($_SESSION['user'])){
     header("Location:/health-hack/landing.php");

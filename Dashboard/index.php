@@ -8,11 +8,11 @@
 //start session
 session_start();
 
+require_once 'processImg.php';
 
 
 
-
-require_once '../redirect.php';
+require_once 'redirect.php';
 
 
 
