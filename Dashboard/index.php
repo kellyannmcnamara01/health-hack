@@ -4,6 +4,7 @@
  * User: bryanstephens
  * Dashboard/index.php ==> allows users to change their profile information used for Health-hack (weight, profile image); also allows user to input their age
  */
+
 //start session
 session_start();
 
@@ -13,6 +14,7 @@ require_once '../Models/Profile.php';
 require_once 'processImg.php';
 
 
+require_once '../redirect.php';
 
 $user = $_SESSION['user'];
 
@@ -35,7 +37,7 @@ $weight = $results->weight;
 
 $img = $profile->getUserProfileImg($id)->profile_image;
 
-print_r($img);
+//print_r($img);
 if (isset($_POST['profileSubmit']))
 {
     $file_error = $_FILES['profileImg']['error'];
