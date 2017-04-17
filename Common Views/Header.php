@@ -107,11 +107,13 @@ INDEX
         <div id="mobile-menu" class="col-md-3">
             <!-- 02-1-1. Profile Photo -->
             <div class="profile">
-                <?php if($homepage == $currentpage || $homepage2 == $currentpage) {?>
-                    <img src="opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
-                <?php } else { ?>
-                    <img src="../opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
-                <?php } ?>
+                <?php
+                if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) {
+                    ?><img src="opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
+                } else {
+                    ?><img src="../opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
+                }
+                ?>
 
                 <!-- 02-1-2. User Details -->
                 <h2><?php if(isset($userName)){ echo $userName; } ?></h2>

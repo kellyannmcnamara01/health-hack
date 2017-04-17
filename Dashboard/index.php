@@ -176,6 +176,24 @@ require_once "../Common Views/sidebar.php";
                 <?php  }
                 else
                 {?>
+                <p class="text-info col col-md-8 text-center"><?php if (isset($success)){ echo $success; }?></p>
+                <p class="text-info col col-md-8 text-center"><?php if (isset($error)){ echo $error; }?></p>
+                <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation" class="rowSpace">
+                    <div class="form-field col col-md-8">
+                        <label class="formLabel">Age</label>
+                        <input type="text" class="textInput" title="Please enter a valid number" placeholder="Age" name="ProfileAge">
+                        <span class="text-info">Please enter your age</span>
+                    </div>
+                    <div class="form-field col col-md-8">
+                        <label class="formLabel">Weight</label>
+                        <input type="text" class="textInput" title="Please enter a valid number" placeholder="Weight" name="ProfileWeight">
+                        <span class="text-info">Please enter your weight</span>
+                    </div>
+                    <div class="form-field col col-md-8">
+                        <input type="file" name="profileImg">
+                        <span class="text-info">Please select an image to display for your profile</span>
+                    </div>
+                    <div class="form-field col-6 col-md-4">
                 <input type="submit" class="formSubmit" name="profileSubmit" value="Submit">
                 <?php
                 }?>
