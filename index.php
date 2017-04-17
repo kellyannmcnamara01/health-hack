@@ -167,7 +167,7 @@ $carbsDV = round(($todayArr['carbs'] / 300) * 100);
                     </a>
                 </div>
                 <div class="feature col-md-4 col-sm-4 col-4">
-                    <a href="#" class="feature-btn">
+                    <a href="Dashboard/Friends.php" class="feature-btn">
                         <div class="feature-icon">
                             <img src="opt-imgs/friends-icon.png" alt="" />
                         </div>
