@@ -4,7 +4,7 @@
  * User: bryanstephens
  */
 //start session
-require_once 'redirect.php';
+require_once '../redirect.php';
 
 // check if $_GET paramaters exist on incoming URI
 if (isset($_GET['reset_token'])) {
