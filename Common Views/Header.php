@@ -90,7 +90,7 @@ INDEX
         </div>
         <!-- 01-3. Search Bar -->
         <div id="search" class="search col-md-3 col-sm-3 col-4">
-            <form id="search-bar" name="frmSearchBar" action="../Search/submit_search.php" method="post">
+            <form id="search-bar" name="frmSearchBar" action="/health-hack/Search/submit_search.php" method="post">
                 <input class="search-input" placeholder="" type="search" value="" name="search" id="search-input">
                 <button class="search-submit" type="submit" value="">
                     <div id="search-icon">

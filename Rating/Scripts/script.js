@@ -30,7 +30,15 @@
       }
       );
 
-
+	  $('#SubmitRating').click(
+     // Handles the save click event
+    function () {
+		
+	  document.getElementById('FrmRating').submit();
+        
+        
+     }
+     );
       
 
 

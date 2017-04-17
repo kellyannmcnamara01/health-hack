@@ -50,6 +50,23 @@ class Search
 			$Item['table']="GROCERY";
 			$ResultSet[]=$Item;
 		}
+		
+	    $select = "SELECT food_item_name as title,food_item_id as id FROM FOOD_ITEMS WHERE food_item_name LIKE :Criteria or category like :Criteria";
+        //prepare query
+        $SearchQry = $this->Connection->prepare($select);
+        //bind values
+        $SearchQry->bindValue(":Criteria", $Criteria);	
+     
+        $SearchQry->execute();
+		
+        $Result = $SearchQry->fetchAll();
+		
+		foreach($Result as $Item)
+		{
+			$Item['table']="FOOD";
+			$ResultSet[]=$Item;
+		}
+	
 		return $ResultSet;
 	}
 	public function SearchDetail($SearchID,$SearchTable)
@@ -63,6 +80,10 @@ class Search
 		else if($SearchTable=="GROCERY")
 		{
 			$select = "SELECT list_name as title,list_details as details FROM GROCERY_LISTS WHERE list_id=:Criteria";
+		}
+		else if($SearchTable=="FOOD")
+		{
+			$select = "SELECT food_item_name as title,CONCAT('Catgory: ',category,' ,Food item name:  ',food_item_name,' ,Calories:   ',calories)as details FROM FOOD_ITEMS WHERE food_item_id=:Criteria";
 		}
 		
 		//prepare query
