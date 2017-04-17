@@ -6,7 +6,6 @@
  * Time: 4:28 PM
  */
 
-session_start();
 require_once '../redirect.php';
 
 require_once '../Common Views/Header.php';
