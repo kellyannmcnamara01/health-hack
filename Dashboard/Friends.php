@@ -2,8 +2,6 @@
 /**
  * Created by PhpStorm.
  * User: bryanstephens
- * Date: 2017-04-16
- * Time: 2:59 PM
  */
 
 //start session
@@ -37,7 +35,7 @@ $results = $profile->getUserProfileIinfo($id);
 $age = $results->age;
 $weight = $results->weight;
 
-// new insance of Friends()
+// new instance of Friends()
 $friend = new Friends();
 
 //// Add a Friend
@@ -76,21 +74,6 @@ if(isset($_POST['AddFriend']))
     }
 
 }
-
-//// View all added friends (by name)
-//function friendList(){
-//    global $friend;
-//    global $id;
-//    global $db;
-//    $viewFriends = $friend->displayFriends($id);
-//    foreach($viewFriends as $d)
-//    {
-//        $freindInfo = $db->userInfo($d);
-//        $item = "<p>" . $freindInfo->email . "</p>";
-//    }
-//    return $item;
-//}
-
 
 require_once '../Common Views/Header.php';
 require_once "../Common Views/sidebar.php";

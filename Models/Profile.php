@@ -3,8 +3,6 @@
 /**
  * Created by PhpStorm.
  * User: bryanstephens
- * Date: 2017-04-10
- * Time: 4:52 PM
  */
 require_once 'Database.php';
 

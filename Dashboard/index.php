@@ -2,8 +2,6 @@
 /**
  * Created by PhpStorm.
  * User: bryanstephens
- * Date: 2017-04-05
- * Time: 9:41 AM
  * Dashboard/index.php ==> allows users to change their profile information used for Health-hack (weight, profile image); also allows user to input their age
  */
 //start session

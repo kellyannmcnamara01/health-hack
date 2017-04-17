@@ -2,8 +2,6 @@
 /**
  * Created by PhpStorm.
  * User: bryanstephens
- * Date: 2017-04-05
- * Time: 12:18 PM
  */
 
 // valid that image has no errors

@@ -2,8 +2,6 @@
 /**
  * Created by PhpStorm.
  * User: bryanstephens
- * Date: 2017-04-12
- * Time: 12:56 PM
  */
 //start session
 session_start();

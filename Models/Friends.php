@@ -3,8 +3,6 @@
 /**
  * Created by PhpStorm.
  * User: bryanstephens
- * Date: 2017-04-12
- * Time: 10:16 PM
  */
 class Friends
 {
