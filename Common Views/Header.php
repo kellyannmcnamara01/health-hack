@@ -73,7 +73,7 @@ INDEX
     <div id="top-bar" class="row">
         <!-- 01-1. Menu -->
         <div id="menu" class="col-md-3 col-sm-3 col-4" >
-            <button href="#" id="menu-btn" title="Main Menu button" class="toggle-nav">Menu</button>
+            <button href="#" id="menu-btn" title="Main Menu button" class="toggle-nav">MENU</button>
         </div>
         <!-- 01-2. Logo -->
         <div id="top-logo" class="col-md-6 col-sm-6 col-4">
