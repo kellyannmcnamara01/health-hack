@@ -15,7 +15,7 @@ class Friends
             $connect = $db->getDbFromAWS();
 
             // INSERT => Make new friend by their email
-            $insert = "INSERT INTO FREINDS (friend_id, user_id, email) VALUES ((SELECT user_id from USERS WHERE email = :friendEmail), :userId, :userEmail)";
+            $insert = "INSERT INTO FRIENDS (friend_id, user_id, email) VALUES ((SELECT user_id from USERS WHERE email = :friendEmail), :userId, :userEmail)";
             // prepare statement
             $InsertStmt = $connect->prepare($insert);
             //bind values for $friendEmail, $userId, $userEmail
@@ -33,14 +33,14 @@ class Friends
             $connect = $db->getDbFromAWS();
             $return = array();
 
-            $select = "SELECT * FROM FRIENDS AS f 
-                       JOIN USERS AS u 
+            $select = "SELECT f.friend_id FROM USERS AS u 
+                       JOIN FRIENDS AS f 
                        on f.user_id = u.user_id
-                       WHERE u.user_id = :uId";
+                       WHERE f.user_id = :uId";
             // prepare statement
             $selectStmt = $connect->prepare($select);
             // bind values
-            $selectStmt->bindValue("uId", $userId);
+            $selectStmt->bindValue(":uId", $userId);
             $selectStmt->execute();
             $return = $selectStmt->fetch(PDO::FETCH_OBJ);
             $selectStmt->closeCursor();

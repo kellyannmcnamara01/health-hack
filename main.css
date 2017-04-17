@@ -528,9 +528,8 @@ button.close:focus {
 
 /* 09. Bryan's Styling */
 
-a.reset{
-    text-decoration: none;
-    color: initial;
+.rowSpace{
+    margin-bottom: 15%;
 }
 /* 10. Ivan's Styling */
 /* Calendar */

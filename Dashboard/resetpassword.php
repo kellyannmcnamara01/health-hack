@@ -73,7 +73,7 @@ require_once "../Common Views/sidebar.php";
             <p class="text-primary col col-md-8 text-center">Please enter your new password below.</p>
             <p class="badge badge-error col col-md-8 text-center"><?php if (isset($error)){ echo $error;}?></p>
             <p class="text-center badge badge-success col col-md-8 "><?php if (isset($success)){ echo $success;}?></p>
-            <form action="resetpassword.php" method="post" id="changeUserPassword">
+            <form action="resetpassword.php" method="post" id="changeUserPassword" class="rowSpace">
                 <div class="form-field col col-md-8">
                     <label class="formLabel">Password</label>
                     <input type="password" class="textInput" title="Please enter a new password" placeholder="New Password" name="NewPassword">

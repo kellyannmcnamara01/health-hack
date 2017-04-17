@@ -154,7 +154,7 @@ require_once "../Common Views/sidebar.php";
         <p class="text-primary col col-md-8 text-center">Enter your age, weight, and profile image below</p>
         <p class="text-info col col-md-8 text-center"><?php if (isset($success)){ echo $success; }?></p>
         <p class="text-info col col-md-8 text-center"><?php if (isset($error)){ echo $error; }?></p>
-        <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation">
+        <form action="index.php" method="post" enctype="multipart/form-data" id="updateProfileInformation" class="rowSpace">
             <div class="form-field col col-md-8">
                 <label class="formLabel">Age</label>
                 <input type="text" class="textInput" title="Please enter a valid number" placeholder="Age" name="ProfileAge">

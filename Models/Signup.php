@@ -41,8 +41,8 @@ class Signup
     }
 
 
-    public function isValidUser($email,$password){
-
+    public function isValidUser($email,$password)
+    {
         //est. connection to DB
         $db = new Database();
         $connect = $db->getDbFromAWS();
@@ -97,7 +97,7 @@ class Signup
         $connect = $db->getDbFromAWS();
         $return = array();
 
-        $select = "SELECT email,first_name,last_name,email FROM USERS WHERE email = :email";
+        $select = "SELECT email,first_name,last_name FROM USERS WHERE email = :email";
         //prepare statement
         $slctEmail = $connect->prepare($select);
         //bind value for $email
@@ -121,6 +121,28 @@ class Signup
         $updateStmt->bindValue(":email", $email);
 
         return $updateStmt->execute();
+    }
+
+    public function IsExistingUser($email)
+    {
+        //est. connection to DB
+        $db = new Database();
+        $connect = $db->getDbFromAWS();
+        $results = Array();
+
+        $select = "SELECT * FROM USERS WHERE email = :email LIMIT 1";
+        //prepare statement
+        $slctUser = $connect->prepare($select);
+        //bind value
+        $slctUser->bindValue(":email", $email);
+        //execute
+        $slctUser->execute();
+        $results = $slctUser->fetch(PDO::FETCH_OBJ);
+        //close
+        $slctUser->closeCursor();
+
+        return $results;
+
     }
 
 }
