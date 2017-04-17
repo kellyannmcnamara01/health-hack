@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once '../redirect.php';
+
+$UserID = $_SESSION['user'];  //get it from session
 class Track
 {
 	public function getAddress($latitude,$longitude)
@@ -61,11 +65,30 @@ class Track
 }
 
 $TrackObj = new Track();
-
+$Mode=$_GET['Mode'];
 $FromAddress=$TrackObj->getAddress($_GET['FromLatitude'],$_GET['FromLongitude']);
 $ToAddress=$TrackObj->getAddress($_GET['ToLatitude'],$_GET['ToLongitude']);
 $Distance=$TrackObj->getDistance($FromAddress,$ToAddress,'m');
+if($Mode==1)
+{
+	
+    echo($Distance);  
+	exit;
 
-echo($Distance);    
+}
+else if($Mode==2)
+{
+	
+	$StartTime=$_GET['StartTime'];
+	$EndTime=$_GET['EndTime'];
+	
+	//save into database
+	require_once '../Models/Tracking.php';
+    $TrackingObj = new Tracking();
+	$StartPoint = "POINT(".$_GET['FromLatitude']. " " . $_GET['FromLongitude'].")";
+	$EndPoint = "POINT(".$_GET['ToLatitude']. " " . $_GET['ToLongitude'].")";
+
+    $TrackingObj->AddTracking($UserID,$StartPoint,$EndPoint,$StartTime,$EndTime);
+}
       
 ?>

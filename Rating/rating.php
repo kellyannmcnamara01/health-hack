@@ -1,10 +1,11 @@
 <?php
 /*Created By Rahul Malik*/
+
 ?>
 <div id="rating_div">
   <h2>Rating</h2>
   <p>Let us know what do you think...</p>
-  <form action="/health-hack/rating/submit_rating.php" method="post">
+  <form id="FrmRating" name="FrmRating" action="/health-hack/rating/submit_rating.php" method="post">
     <input type="hidden" name="ModuleID" id="ModuleID" value="<?php echo($ModuleID);?>">
     </input>
     <input type="hidden" name="RatNum" id="RatNum" value=""></input>
@@ -25,7 +26,10 @@
     </div>
     <div>
       <div>
-        <button type="submit" name="submit_rating">Save</button>
+		<a href="#" id="SubmitRating" class="btn btn-info btn-lg offset-md-0">
+						<span class="glyphicon glyphicon-circle-arrow-left"></span>Save Rating
+					</a>
+        
       </div>
     </div>
     <?php 

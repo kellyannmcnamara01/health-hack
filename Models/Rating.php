@@ -10,13 +10,13 @@ class Rating
 	
     function __construct() {		
 		$db = new Database();
-        $this->Connection = $db->getDb();		
+        $this->Connection = $db->getDbFromAWS();		
 	}	
     public function AddRating($UserID,$RatingNum,$ModuleID,$Desc)
 	{
 
         // Insert New record into db
-        $insert = "insert into ratings(user_id, rating_num,module_id,description) values (:UserID,:RatingNum,:ModuleID,:Desc)";
+        $insert = "insert into RATINGS(user_id, rating_num,module_id,description) values (:UserID,:RatingNum,:ModuleID,:Desc)";
         //prepare query
         $RatingRow = $this->Connection->prepare($insert);
         //bind values
@@ -32,7 +32,7 @@ class Rating
     public function GetAvgRating($ModuleID)
 	{
 		
-        $select = "select avg(rating_num) as avg_num from ratings where module_id = :ModuleID";
+        $select = "select avg(rating_num) as avg_num from RATINGS where module_id = :ModuleID";
         //prepare query
         $AvgRating = $this->Connection->prepare($select);
         //bind values
@@ -47,7 +47,7 @@ class Rating
 	public function GetTopRating($ModuleID)
 	{
 		$avgRat=0;
-        $select = "select * from ratings where module_id = :ModuleID order by rating_num desc limit 5";
+        $select = "select * from RATINGS where module_id = :ModuleID order by rating_num desc limit 5";
         //prepare query
         $AvgRating = $this->Connection->prepare($select);
         //bind values

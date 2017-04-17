@@ -21,7 +21,7 @@ if (isset($_GET['id']))
   
  
         
-		 
+		 <div id="SearchTitle">Search Details</div>
 		 <div id="ResultDetailContainer">
 			  <div id="SearchDetailTitle"><?php echo($Result['title']);?></div>
 			  <div id="ResultDetailDiv">

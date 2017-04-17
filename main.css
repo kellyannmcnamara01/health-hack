@@ -779,6 +779,40 @@ div#gym-hours {
 }
 
 /* 11. Rahul's Styling */
+/* tracking css */
+#StartDiv,#EndDiv,#CalculateDiv
+{
+	padding:2rem;
+}
+/* End Here */
+/* Search Css */
+#SearchTitle
+{
+	font-size:16px;
+	font-weight:bold;
+	text-align:center;
+	width:100%;
+	padding-top:4rem;
+}
+#ResultContainer,#ResultDetailContainer
+{
+	border:solid;
+	width:90%;
+	border-width:0.2rem;
+	min-height:500px;
+	font-size:14px;
+	text-align:left;
+	padding-top:0.2rem;
+}
+.ResultTitleDiv
+{
+	margin:0.2rem;
+}
+.Spacer
+{
+	padding-bottom:0.3rem;
+}
+/* End Here */
 .ratings_stars {
     background: url('./opt-imgs/star_empty.png') no-repeat;
     float:      left;
