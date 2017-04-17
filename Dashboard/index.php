@@ -33,7 +33,9 @@ $results = $profile->getUserProfileIinfo($id);
 $age = $results->age;
 $weight = $results->weight;
 
+$img = $profile->getUserProfileImg($id)->profile_image;
 
+print_r($img);
 if (isset($_POST['profileSubmit']))
 {
     $file_error = $_FILES['profileImg']['error'];
@@ -145,7 +147,7 @@ require_once "../Common Views/sidebar.php";
             echo "<h4 class='h3 col col-md-9'> Your recorded profile information: </h4>";
             echo "<h4 class='text-primary col col-md-9'> Age: " . $age . "</h4>";
             echo "<h4 class='text-primary col col-md-9'> Weight: " . $weight . "</h4>";
-            echo "<img src='../opt-imgs/userId=" . $id . ".jpg' alt='$userFirst profile image' class='rounded-circle' width='139' height='139' />";
+            echo "<img src='../opt-imgs/$img' 'alt='$userFirst profile image' class='rounded-circle' width='139' height='139' />";
             echo "</div>";
 
         ?>

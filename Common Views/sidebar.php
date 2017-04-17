@@ -12,9 +12,9 @@
 
             <?php
             if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) {
-                ?><img src="opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
+                ?><img src="opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
             } else {
-                ?><img src="../opt-imgs/userId=<?php echo $id; ?>.jpg" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
+                ?><img src="../opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
             }
             ?>
             <!--<img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />-->
