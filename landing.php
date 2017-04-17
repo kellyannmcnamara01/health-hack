@@ -3,8 +3,13 @@
 // start session storage
 session_start();
 require_once './Models/Signup.php';
+require_once './Models/Validation.php';
 // require PHPMailerAutoload
 require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+
+//new instance of validation class
+$valididate = new Validation();
+$error = '';
 
 //check if form is set
     if (isset($_POST['Register'])){
@@ -18,6 +23,8 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
         // concatenate user's first and last name
         $fullName = $fname . ' ' . $lName;
+
+
 
         // new instance of PHPMailer
         $mail = new PHPMailer;
@@ -91,19 +98,20 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
         $db = new Signup();
         //call newUser() method in Signup()
         $userId = $db->isValidUser($loggedInUser, $loggedInPass);
+
+
         //if invalid login
-        if($userId === null)
-        {
-            $error = "Invalid email or password. Please try again";
-            return false;
-        }
-        else
+        if($userId)
         {
             // initialize new SESSION variable
             $_SESSION['user'] = $userId->user_id;
 
-            //point page to create-routine.php
+            //point page to index.php
             header("Location: index.php");
+        }
+        else
+        {
+            $error = "Invalid email or password. Please try again";
         }
     }
 
@@ -139,7 +147,7 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
             if ($reset === null)
             {
                 $error = "unable to reset password, please try again. Ensure provided email is correctly spelled.";
-                return false;
+
             }
             else
             {
@@ -251,14 +259,14 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                 <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
                 <h2>Health Hack</h2>
             <form action="landing.php" method="post" id="login-form">
-                <span class=""><?php if (isset($error)){ echo $error;}?></span>
+                <span class="errorLogin alert-danger"><?php if (isset($error)){ echo $error;}?></span>
                 <div class="form-field">
                     <label for="loginUser" class="formLabel">Email</label>
-                    <input type="text" id="loginUser" name="loginUser" class="textInput" placeholder="Email" />
+                    <input type="text" id="loginUser"  name="loginUser" class="textInput" placeholder="Email" />
                 </div>
                 <div class="form-field">
                     <label for="loginPass" class="formLabel">Password</label>
-                    <input type="password" id="loginPass" name="loginPass" class="textInput" placeholder="Password" />
+                    <input type="password" id="loginPass"  name="loginPass" class="textInput" placeholder="Password" />
                 </div>
                 <input type="submit" class="formSubmit" name="Login" value="Login" />
             </form>
@@ -280,23 +288,25 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                         <img src="opt-imgs/login-photo.png" class="profile-photo" alt="Profile Photo" />
                         <h2>Health Hack</h2>
                         <h3>Create an Account</h3>
-                        <form action="landing.php" method="post">
+                        <form action="landing.php" method="post" id="signup-form">
+                            <span class="errorSignup alert-danger"><?php if (isset($error)){ echo $error;}?></span>
+<!--                            <span class="">--><?php //if (isset($error)){ echo $error;}?><!--</span>-->
                             <div class="form-field">
                                 <label class="formLabel">First Name</label>
-                                <input type="text" class="textInput" name="fName" placeholder="First Name"/>
+                                <input type="text" class="textInput" id="signupFirst" name="fName" placeholder="First Name"/>
                             </div>
                             <div class="form-field">
                                 <label class="formLabel">Last Name</label>
-                                <input type="text" class="textInput" name="lName" placeholder="Last Name"/>
+                                <input type="text" class="textInput" id="signuplast" name="lName" placeholder="Last Name"/>
                             </div>
                             <div class="form-field">
                                 <label class="formLabel">Email</label>
-                                <input type="email" class="textInput" name="email" placeholder="Email"/>
+                                <input type="email" class="textInput" id="signupEmail" name="email" placeholder="Email"/>
                             </div>
                             <div class="form-field">
                                 <label class="formLabel">Password</label>
-                                <input type="password" class="textInput" name="password" placeholder="Password" />
-                                <span class="text-info">Passwords must be 8 characters, contain at least 1 number and one capital letter. </span>
+                                <input type="password" class="textInput" id="signupPassword"  name="password" placeholder="Password" />
+<!--                                <span class="text-info">Passwords must be 8 characters, contain at least 1 number and one capital letter. </span>-->
                             </div>
                             <input type="submit" class="button" name="Register" value="Register" />
                         </form>
@@ -317,10 +327,11 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
                         <h2>Health Hack</h2>
                         <h3>Password reset</h3>
                         <p>Looks like you forgot your password. That happens, we understand. Please enter your email below and we'll send you a link to reset it.</p>
-                        <form action="landing.php" method="post">
+                        <form action="landing.php" method="post" id="reset-form">
+                            <span class="errorReset alert-danger"><?php if (isset($error)){ echo $error;}?></span>
                             <div class="form-field">
                                 <label class="formLabel">Email</label>
-                                <input type="text" class="textInput" name="emailReset" placeholder="Email"
+                                <input type="text" class="textInput" id="resetEmail" name="emailReset" placeholder="Email"
                             </div>
                             <input type="submit" class="button" name="Reset" value="Reset" />
                         </form>
