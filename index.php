@@ -55,12 +55,7 @@ $userName = $userId->first_name . ' ' . $userId->last_name;
 $userEmail = $userId->email;
 
 
-<<<<<<< HEAD
-=======
 
-//check if logout button is set
-
->>>>>>> 3e4b77f7d8358cb0d41ccb566a2cd83f8573a113
 require_once 'Common Views/Header.php';
 require_once 'Common Views/sidebar.php';
 
