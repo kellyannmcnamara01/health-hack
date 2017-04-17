@@ -80,9 +80,9 @@ INDEX
             <div id="logo">
                 <?php
                 if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) {
-                    ?><img src="opt-imgs/logo.svg" alt="Health Hack Logo" width="43" /><?php
+                    ?><a href="index.php"><img src="opt-imgs/logo.svg" alt="Health Hack Logo" width="43" /></a><?php
                 } else {
-                    ?><img src="../opt-imgs/logo.svg" alt="Health Hack Logo" width="43" /><?php
+                    ?><a href="../index.php"><img src="../opt-imgs/logo.svg" alt="Health Hack Logo" width="43" /></a><?php
                 }
                 ?>
                 <!--<img src="../opt-imgs/logo.svg" alt="Health Hack Logo" width="43" />-->
