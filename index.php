@@ -1,7 +1,6 @@
 <?php
 ob_start();
 //start session
-session_start();
 
 require_once './Models/Signup.php';
 require_once './Models/Profile.php';

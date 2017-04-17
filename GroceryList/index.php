@@ -1,24 +1,9 @@
 <?php
 
-//$user_id = 1;
-//$list_id = 5;
-
-session_start();
 require_once '../redirect.php';
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-$user = $_SESSION['user'];
-
-// call userInfo() method using user_id from $_SESSION
-$db = new Signup();
-
-$userId = $db->userInfo($user);
 
 //grab  user id, username
 $id = $userId->user_id;
-$userFirst = $userId->first_name;
-$userName = $userId->first_name . ' ' . $userId->last_name;
-$userEmail = $userId->email;
 $list_id = $userId->list_id;
 
 //db
