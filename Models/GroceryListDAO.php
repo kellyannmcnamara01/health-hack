@@ -74,7 +74,7 @@ class GroceryListDAO
     }
 
 
-    public function populateWeeksFoodEntries($db){
+    public function populateWeeksFoodEntries($db, $obj){
         $query_weeksFoodEntries = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                         (calories * sum(servings_count)) AS calories, 
                                         (fat * sum(servings_count)) AS fat, 
@@ -89,13 +89,13 @@ class GroceryListDAO
 	                                  AND time_stamp BETWEEN (CURDATE() - INTERVAL 7 DAY) AND CURDATE()
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_weeksFoodEntries);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $weeksFoodEntries = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $weeksFoodEntries;
     }
 
-    public function populateSixDaysAgo($db){
+    public function populateSixDaysAgo($db, $obj){
         $query_sixDaysAgo = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                         (calories * sum(servings_count)) AS calories, 
                                         (fat * sum(servings_count)) AS fat, 
@@ -110,13 +110,13 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 6 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_sixDaysAgo);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $sixDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $sixDaysAgo;
     }
 
-    public function populateFiveDaysAgo($db){
+    public function populateFiveDaysAgo($db, $obj){
         $query_fiveDaysAgo = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                         (calories * sum(servings_count)) AS calories, 
                                         (fat * sum(servings_count)) AS fat, 
@@ -131,13 +131,13 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 5 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_fiveDaysAgo);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $fiveDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $fiveDaysAgo;
     }
 
-    public function populateFourDaysAgo($db){
+    public function populateFourDaysAgo($db, $obj){
         $query_fourDaysAgo = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                         (calories * sum(servings_count)) AS calories, 
                                         (fat * sum(servings_count)) AS fat, 
@@ -152,13 +152,13 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 4 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_fourDaysAgo);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $fourDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $fourDaysAgo;
     }
 
-    public function populateThreeDaysAgo($db){
+    public function populateThreeDaysAgo($db, $obj){
         $query_threeDaysAgo = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                         (calories * sum(servings_count)) AS calories, 
                                         (fat * sum(servings_count)) AS fat, 
@@ -173,13 +173,13 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 3 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_threeDaysAgo);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $threeDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $threeDaysAgo;
     }
 
-    public function populateTwoDaysAgo($db){
+    public function populateTwoDaysAgo($db, $obj){
         $query_twoDaysAgo = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                         (calories * sum(servings_count)) AS calories, 
                                         (fat * sum(servings_count)) AS fat, 
@@ -194,13 +194,13 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 2 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_twoDaysAgo);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $twoDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $twoDaysAgo;
     }
 
-    public function populateTodaysFoodEntries($db){
+    public function populateTodaysFoodEntries($db, $obj){
         $query_todaysFoodEntries = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                         (calories * sum(servings_count)) AS calories, 
                                         (fat * sum(servings_count)) AS fat, 
@@ -215,14 +215,14 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE()
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysFoodEntries);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $todaysFoodEntries = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysFoodEntries;
 
     }
 
-    public function populateTodaysBreakfast($db) {
+    public function populateTodaysBreakfast($db, $obj) {
         $query_todaysBreakfast = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                     (calories * sum(servings_count)) AS calories, 
                                     (fat * sum(servings_count)) AS fat, 
@@ -238,13 +238,13 @@ class GroceryListDAO
 	                                AND meal = 'breakfast'
 	                              GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysBreakfast);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $todaysBreakfast = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
         return $todaysBreakfast;
     }
 
-    public function populateTodaysLunch($db) {
+    public function populateTodaysLunch($db, $obj) {
         $query_todaysLunch = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                 (calories * sum(servings_count)) AS calories, 
                                 (fat * sum(servings_count)) AS fat, 
@@ -260,13 +260,13 @@ class GroceryListDAO
                                 AND meal = 'lunch'
                               GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysLunch);
-        $pdo_statement->bindValue(":id", 7);
+        $pdo_statement->bindValue(":id", $obj->getUsersId());
         $pdo_statement->execute();
         $todaysLunch = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysLunch;
     }
 
-    public function populateTodaysDinner($db) {
+    public function populateTodaysDinner($db, $obj) {
         $query_todaysDinner = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                 (calories * sum(servings_count)) AS calories, 
                                 (fat * sum(servings_count)) AS fat, 
@@ -282,13 +282,13 @@ class GroceryListDAO
                                 AND meal = 'dinner'
                               GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysDinner);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $todaysDinner = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysDinner;
     }
 
-    public function populateTodaysSnacks($db) {
+    public function populateTodaysSnacks($db, $obj) {
         $query_todaysSnacks = "SELECT food_item_name, sum(servings_count) AS servings_count, 
                                 (calories * sum(servings_count)) AS calories, 
                                 (fat * sum(servings_count)) AS fat, 
@@ -304,7 +304,7 @@ class GroceryListDAO
                                 AND meal = 'snack'
                               GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysSnacks);
-        $pdo_statement->bindValue(":user_id", 7);
+        $pdo_statement->bindValue(":user_id", $obj->getUsersId());
         $pdo_statement->execute();
         $todaysSnacks = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysSnacks;

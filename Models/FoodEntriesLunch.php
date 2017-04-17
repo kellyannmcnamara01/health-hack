@@ -10,12 +10,12 @@ class FoodEntriesLunch
 {
     private $id;
 
-    public function getId()
+    public function getUsersId()
     {
         return $this->id;
     }
 
-    public function setId($id)
+    public function setUsersId($id)
     {
         $this->id = $id;
     }

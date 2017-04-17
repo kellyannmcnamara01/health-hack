@@ -1,29 +1,51 @@
 <?php
 
-$user_id = 1;
-$list_id = 5;
+//$user_id = 1;
+//$list_id = 5;
+
+session_start();
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$userFirst = $userId->first_name;
+$userName = $userId->first_name . ' ' . $userId->last_name;
+$userEmail = $userId->email;
+$list_id = $userId->list_id;
 
 //db
 require_once "../Models/Database.php";
 $dbConn = new Database();
 $db = $dbConn->getDbFromAWS();
 
+require_once "../Models/FoodEntriesLunch.php";
+$lunch = new FoodEntriesLunch();
+$lunch->setUsersId($id);
+
 //include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
 $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
-$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
-$weeksEntries = $gListConn->populateWeeksFoodEntries($db);
-$sixDaysAgo = $gListConn->populateSixDaysAgo($db);
-$fiveDaysAgo = $gListConn->populateFiveDaysAgo($db);
-$fourDaysAgo = $gListConn->populateFourDaysAgo($db);
-$threeDaysAgo = $gListConn->populateThreeDaysAgo($db);
-$twoDaysAgo = $gListConn->populateSixDaysAgo($db);
-$todaysBreakfast = $gListConn->populateTodaysBreakfast($db);
-$todaysLunch = $gListConn->populateTodaysLunch($db);
-$todaysDinner = $gListConn->populateTodaysDinner($db);
-$todaysSnacks = $gListConn->populateTodaysSnacks($db);
+$todaysEntries = $gListConn->populateTodaysFoodEntries($db, $lunch);
+$weeksEntries = $gListConn->populateWeeksFoodEntries($db, $lunch);
+$sixDaysAgo = $gListConn->populateSixDaysAgo($db, $lunch);
+$fiveDaysAgo = $gListConn->populateFiveDaysAgo($db, $lunch);
+$fourDaysAgo = $gListConn->populateFourDaysAgo($db, $lunch);
+$threeDaysAgo = $gListConn->populateThreeDaysAgo($db, $lunch);
+$twoDaysAgo = $gListConn->populateSixDaysAgo($db, $lunch);
+$todaysBreakfast = $gListConn->populateTodaysBreakfast($db, $lunch);
+$todaysLunch = $gListConn->populateTodaysLunch($db, $lunch);
+$todaysDinner = $gListConn->populateTodaysDinner($db, $lunch);
+$todaysSnacks = $gListConn->populateTodaysSnacks($db, $lunch);
 
 if($list_id == 0){
     header('Location: ../GroceryList/Grocery.php');

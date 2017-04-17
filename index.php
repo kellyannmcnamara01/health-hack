@@ -53,6 +53,7 @@ $id = $userId->user_id;
 $userFirst = $userId->first_name;
 $userName = $userId->first_name . ' ' . $userId->last_name;
 $userEmail = $userId->email;
+$list_id = $userId->list_id;
 
 
 
@@ -64,9 +65,14 @@ require_once 'Common Views/sidebar.php';
 require_once "Models/Database.php";
 $dbConn = new Database();
 $db = $dbConn->getDbFromAWS();
+
 require_once "Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
-$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
+
+require_once "Models/FoodEntriesLunch.php";
+$lunch = new FoodEntriesLunch();
+$lunch->setUsersId($id);
+$todaysEntries = $gListConn->populateTodaysFoodEntries($db, $lunch);
 
 $todayArr = ['calories' => 0, 'fat' => 0, 'cholesterol' => 0, 'sodium' => 0, 'carbs' => 0, 'protein' => 0];
 

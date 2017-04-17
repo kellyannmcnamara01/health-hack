@@ -26,9 +26,9 @@ require_once "../Models/Database.php";
 $dbConn = new Database();
 $db = $dbConn->getDbFromAWS();
 
-//require_once "../Models/FoodEntriesLunch.php";
-//$lunch = new FoodEntriesLunch();
-//$lunch->setId($id);
+require_once "../Models/FoodEntriesLunch.php";
+$lunch = new FoodEntriesLunch();
+$lunch->setUsersId($id);
 
 //include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
@@ -36,10 +36,10 @@ $gListConn = new GroceryListDAO();
 $gLists = $gListConn->populateGroceryLists($db);
 $userList = $gListConn->populateUserListId($db);
 //$todaysEntries = $gListConn->populateTodaysFoodEntries($db);
-$todaysBreakfast = $gListConn->populateTodaysBreakfast($db);
-$todaysLunch = $gListConn->populateTodaysLunch($db);
-$todaysDinner = $gListConn->populateTodaysDinner($db);
-$todaysSnacks = $gListConn->populateTodaysSnacks($db);
+$todaysBreakfast = $gListConn->populateTodaysBreakfast($db, $lunch);
+$todaysLunch = $gListConn->populateTodaysLunch($db, $lunch);
+$todaysDinner = $gListConn->populateTodaysDinner($db, $lunch);
+$todaysSnacks = $gListConn->populateTodaysSnacks($db, $lunch);
 
 if($list_id == 0){
     header('Location: ../GroceryList/Grocery.php');
@@ -104,6 +104,7 @@ if(isset($_POST['foodEntrySubmit'])) {
     <div class="col-md-6 col-sm-8 col-10">
         <h1 class="light-grey padding-top-75">Food Tracker</h1>
         <p>Please fill out the below form to keep track of what you have been eating. This is where many of your results will populate from.</p>
+        <?php echo $id; ?>
         <!--<div id="changeListBtn"><a class="buttonLink" href="Grocery.php">Select a New Grocery List</a></div>
         <div id="nutrition"><a class="buttonLink" href="index.php">Back to Nutrition Home Page</a></div>-->
     </div>
