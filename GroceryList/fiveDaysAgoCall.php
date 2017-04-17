@@ -1,17 +1,35 @@
 <?php
 
+session_start();
+require_once '../redirect.php';
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+$user = $_SESSION['user'];
+
+// call userInfo() method using user_id from $_SESSION
+$db = new Signup();
+
+$userId = $db->userInfo($user);
+
+//grab  user id, username
+$id = $userId->user_id;
+$list_id = $userId->list_id;
+
+//db
 require_once "../Models/Database.php";
-//require_once "statistics.php";
-
-
 $dbConn = new Database();
 $db = $dbConn->getDbFromAWS();
 
+require_once "../Models/FoodEntriesLunch.php";
+$passId = new FoodEntriesLunch();
+$passId->setUsersId($id);
+
+//include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
+$fiveDaysAgo = $gListConn->populateFiveDaysAgo($db, $passId);
 
-$fiveDaysAgo = $gListConn->populateFiveDaysAgo($db);
-
+//placeholder array
 $fiveDaysArr = ['calories' => 0, 'fat' => 0, 'cholesterol' => 0, 'sodium' => 0, 'carbs' => 0, 'protein' => 0];
 
 foreach ($fiveDaysAgo as $entry) {
@@ -27,7 +45,7 @@ $jcat = json_encode($fiveDaysArr);
 
 header("Content-Type: application/json");
 echo $jcat;
-
+//print_r($fiveDaysArr);
 
 
 ?>
