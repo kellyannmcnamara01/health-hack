@@ -3,22 +3,10 @@
 //$user_id = 1;
 //$list_id = 5;
 
-session_start();
 require_once '../redirect.php';
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-$user = $_SESSION['user'];
-
-// call userInfo() method using user_id from $_SESSION
-$db = new Signup();
-
-$userId = $db->userInfo($user);
 
 //grab  user id, username
 $id = $userId->user_id;
-$userFirst = $userId->first_name;
-$userName = $userId->first_name . ' ' . $userId->last_name;
-$userEmail = $userId->email;
 $list_id = $userId->list_id;
 
 //db
@@ -104,7 +92,6 @@ if(isset($_POST['foodEntrySubmit'])) {
     <div class="col-md-6 col-sm-8 col-10">
         <h1 class="light-grey padding-top-75">Food Tracker</h1>
         <p>Please fill out the below form to keep track of what you have been eating. This is where many of your results will populate from.</p>
-        <?php echo $id; ?>
         <!--<div id="changeListBtn"><a class="buttonLink" href="Grocery.php">Select a New Grocery List</a></div>
         <div id="nutrition"><a class="buttonLink" href="index.php">Back to Nutrition Home Page</a></div>-->
     </div>
