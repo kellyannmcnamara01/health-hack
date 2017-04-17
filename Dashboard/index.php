@@ -5,8 +5,7 @@
  * Dashboard/index.php ==> allows users to change their profile information used for Health-hack (weight, profile image); also allows user to input their age
  */
 
-//start session
-session_start();
+
 
 require_once 'processImg.php';
 

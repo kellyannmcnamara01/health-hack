@@ -5,6 +5,9 @@
  * Date: 2017-04-14
  * Time: 4:02 PM
  */
+//start session
+session_start();
+
 
 $homepage = "/health-hack/index.php";
 $homepage2 = "/health-hack/";
