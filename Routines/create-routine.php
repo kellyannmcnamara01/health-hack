@@ -1,20 +1,6 @@
 <?php
-session_start();
 require_once '../redirect.php';
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-$user = $_SESSION['user'];
 
-// call userInfo() method using user_id from $_SESSION
-$db = new Signup();
-
-$userId = $db->userInfo($user);
-
-//grab  user id, username
-$id = $userId->user_id;
-$userFirst = $userId->first_name;
-$userName = $userId->first_name . ' ' . $userId->last_name;
-$userEmail = $userId->email;
 //create a new $cardioworkout object and set it's user id equal to that of the user logged in.
 
 require_once '../Models/cardioworkout.php';
