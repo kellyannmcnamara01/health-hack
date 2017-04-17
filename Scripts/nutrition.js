@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    //when the DV% is over 100 present change colour
+    var progressBar = document.querySelector(".progress-bar");
+    var progressValue = progressBar.value;
+    console.log(progressValue);
 
     //-------------------
     //-------------------
@@ -144,7 +148,11 @@ $(document).ready(function(){
         twoDaysArr.push(data.fat);
         twoDaysArr.push(data.protein);
         twoDaysArr.push(data.sodium);
+        console.log("data from two days ago:", data);
     }); //end of json call
+    console.log("arr sixDaysArr[0]", sixDaysArr[0]);
+    console.log("arr", sixDaysArr);
+    console.log("testing", [0, 2, 0, 4]);
 
     //function to input data into chart js canvas called nutritionChart
     var weekContext = document.getElementById('weekResults').getContext('2d');

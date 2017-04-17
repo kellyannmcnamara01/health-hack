@@ -37,6 +37,4 @@ $jcat = json_encode($fourDaysArr);
 header("Content-Type: application/json");
 echo $jcat;
 
-
-
 ?>

@@ -1,8 +1,5 @@
 <?php
 
-//$user_id = 1;
-//$list_id = 5;
-
 require_once '../redirect.php';
 
 //grab  user id, username
@@ -68,6 +65,7 @@ if(isset($_POST['foodEntrySubmit'])) {
     $food_item_id = $_POST["food-item-selected"];
     $meal = $_POST["meal"];
     $servings_count = $_POST["severing"];
+
     //$time = new DateTime();
     //$timestamp = $time->format('Y-m-d H:i:s');
     $timestamp = date("Y-m-d");
@@ -92,8 +90,6 @@ if(isset($_POST['foodEntrySubmit'])) {
     <div class="col-md-6 col-sm-8 col-10">
         <h1 class="light-grey padding-top-75">Food Tracker</h1>
         <p>Please fill out the below form to keep track of what you have been eating. This is where many of your results will populate from.</p>
-        <!--<div id="changeListBtn"><a class="buttonLink" href="Grocery.php">Select a New Grocery List</a></div>
-        <div id="nutrition"><a class="buttonLink" href="index.php">Back to Nutrition Home Page</a></div>-->
     </div>
     <div class="feature col-md-10 col-sm-10 col-12">
         <form method="post" action="FoodDiaryEntry.php" id="food-diary-entry" class="col-md-7 col-sm-8 col-10">
@@ -291,12 +287,6 @@ if(isset($_POST['foodEntrySubmit'])) {
             </div>
         </div>
     </div>
-    <!-------------->
-    <!-------------->
-    <!-------------->
-    <!-------------->
-    <!-------------->
-    <!-------------->
     <div class="col-md-12">
         <canvas id="skills" height="100px" width="100px"></canvas>
     </div>

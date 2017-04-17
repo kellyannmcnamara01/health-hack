@@ -36,7 +36,6 @@ $jcat = json_encode($fiveDaysArr);
 
 header("Content-Type: application/json");
 echo $jcat;
-//print_r($fiveDaysArr);
 
 
 ?>

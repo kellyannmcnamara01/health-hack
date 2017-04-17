@@ -33,14 +33,12 @@
         //create a new grocery list class object and set the value
         require_once '../Models/GroceryList.php';
 
-        //
         $g_list = new GroceryList();
         $g_list->setListId($list_id);
         $g_list->setUserId($id);
 
         $gListConn->userSelectList($db, $g_list);
 
-        //header('Location: index.php');
         //check for validation
         if(!isset($_POST['grocery_lists'])) {
             $grocery_list__options_err = "please choose a grocery list";
