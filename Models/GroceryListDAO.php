@@ -89,7 +89,7 @@ class GroceryListDAO
 	                                  AND time_stamp BETWEEN (CURDATE() - INTERVAL 7 DAY) AND CURDATE()
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_weeksFoodEntries);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $weeksFoodEntries = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $weeksFoodEntries;
@@ -110,7 +110,7 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 6 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_sixDaysAgo);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $sixDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $sixDaysAgo;
@@ -131,7 +131,7 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 5 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_fiveDaysAgo);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $fiveDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $fiveDaysAgo;
@@ -152,7 +152,7 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 4 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_fourDaysAgo);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $fourDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $fourDaysAgo;
@@ -173,7 +173,7 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 3 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_threeDaysAgo);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $threeDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $threeDaysAgo;
@@ -194,7 +194,7 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE() - INTERVAL 2 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_twoDaysAgo);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $twoDaysAgo = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $twoDaysAgo;
@@ -215,7 +215,7 @@ class GroceryListDAO
 	                                  AND time_stamp = CURDATE()
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysFoodEntries);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $todaysFoodEntries = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysFoodEntries;
@@ -238,7 +238,7 @@ class GroceryListDAO
 	                                AND meal = 'breakfast'
 	                              GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysBreakfast);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $todaysBreakfast = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
         return $todaysBreakfast;
@@ -255,12 +255,12 @@ class GroceryListDAO
                                 meal, FOOD_TRACKING_LISTS.user_id
                               FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                               WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
-                                AND FOOD_TRACKING_LISTS.user_id = :user_id
+                                AND FOOD_TRACKING_LISTS.user_id = :id
                                 AND time_stamp = CURDATE()
                                 AND meal = 'lunch'
                               GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysLunch);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":id", 7);
         $pdo_statement->execute();
         $todaysLunch = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysLunch;
@@ -282,7 +282,7 @@ class GroceryListDAO
                                 AND meal = 'dinner'
                               GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysDinner);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $todaysDinner = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysDinner;
@@ -304,7 +304,7 @@ class GroceryListDAO
                                 AND meal = 'snack'
                               GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysSnacks);
-        $pdo_statement->bindValue(":user_id", 1);
+        $pdo_statement->bindValue(":user_id", 7);
         $pdo_statement->execute();
         $todaysSnacks = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
         return $todaysSnacks;

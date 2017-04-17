@@ -8,17 +8,18 @@ $(document).ready(function(){
 
     //JSON call to todaysArrCall.php to grab today's input
     var todaysArr = [];
-    $.getJSON('todaysArrCall.php', function(data){
+    var test =  $.getJSON('todaysArrCall.php', function(data){
         todaysArr.push(data.calories);
         todaysArr.push(data.carbs);
         todaysArr.push(data.cholesterol);
         todaysArr.push(data.fat);
         todaysArr.push(data.protein);
         todaysArr.push(data.sodium);
-        console.log(data);
     }); //end of json call
 
-    console.log(todaysArr);
+    console.log("hiiii", test);
+
+    console.log("calling array 0", todaysArr[0]);
 
     //function to input data into chart js canvas called nutritionChart
     var nutritionContext = document.getElementById('nutritionChart').getContext('2d');

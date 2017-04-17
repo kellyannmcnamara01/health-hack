@@ -28,7 +28,7 @@ foreach ($todaysEntries as $today) {
 $jcat = json_encode($todayArr);
 
 header("Content-Type: application/json");
-echo $jcat;
+return $jcat;
 
 
 

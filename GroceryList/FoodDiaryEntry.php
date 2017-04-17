@@ -30,7 +30,6 @@ $db = $dbConn->getDbFromAWS();
 //$lunch = new FoodEntriesLunch();
 //$lunch->setId($id);
 
-
 //include groceryList DAO
 require_once "../Models/GroceryListDAO.php";
 $gListConn = new GroceryListDAO();
