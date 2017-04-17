@@ -9,9 +9,7 @@
 session_start();
 
 
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-require_once 'processImg.php';
+
 
 
 require_once '../redirect.php';

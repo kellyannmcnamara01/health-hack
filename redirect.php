@@ -6,6 +6,10 @@
  * Time: 4:02 PM
  */
 
+require_once '../Models/Signup.php';
+require_once '../Models/Profile.php';
+require_once 'processImg.php';
+
 if(!isset($_SESSION['user'])){
     header("Location:/health-hack/landing.php");
 }
