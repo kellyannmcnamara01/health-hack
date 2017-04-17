@@ -4,11 +4,7 @@
  * User: bryanstephens
  */
 //start session
-session_start();
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-// new instance of Profile()
-$db = new Profile();
+require_once 'redirect.php';
 
 // check if $_GET paramaters exist on incoming URI
 if (isset($_GET['reset_token'])) {

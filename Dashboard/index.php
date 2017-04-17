@@ -11,7 +11,7 @@ require_once 'processImg.php';
 
 
 
-require_once 'redirect.php';
+require_once '../redirect.php';
 
 
 
@@ -151,7 +151,8 @@ require_once "../Common Views/sidebar.php";
             </div>
             <div class="form-field col-6 col-md-4">
                 <input type="submit" class="formSubmit" name="profileUpdate" value="Update Profile">
-                <?php  }
+                <?php
+                }
                 else
                 {?>
                 <p class="text-info col col-md-8 text-center"><?php if (isset($success)){ echo $success; }?></p>
