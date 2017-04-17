@@ -1,15 +1,6 @@
 <?php
 
-session_start();
 require_once '../redirect.php';
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-$user = $_SESSION['user'];
-
-// call userInfo() method using user_id from $_SESSION
-$db = new Signup();
-
-$userId = $db->userInfo($user);
 
 //grab  user id, username
 $id = $userId->user_id;
