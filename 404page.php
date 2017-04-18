@@ -1,7 +1,5 @@
 <?php
-    require('Models/Signup.php');
-    $pop = new Signup();
-    //echo $pop->test("bryanstephensjournalism@gmail.com", "password") . "<br>";
-    $arr = $pop->isValidUser("bryanstephensjournalism@gmail.com", "password");
-    var_dump($arr);
+header($_SERVER["SERVER_PROTOCOL"], true, 404);
+include('logout.php'); // provide your own HTML for the error page
+die();
 ?>

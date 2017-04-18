@@ -1,5 +1,8 @@
 
 <?php
+//include('error.php');
+//header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+//include('404page.php');
 // start session storage
 session_start();
 require_once './Models/Signup.php';
