@@ -140,5 +140,3 @@ if(isset($_POST['foodEntrySubmit'])) {
 <?php
 require_once '../Common Views/Footer.php';
 ?>
-
-<script src="../Scripts/nutrition.js"></script>

@@ -167,7 +167,6 @@ if(isset($_POST['foodEntrySubmit'])) {
 }
 
 ?>
-
 <div id="main-content" class="col-md-9 col-sm-12 col-12 row gListPicks">
 
     <div class="col-md-12 row">
@@ -235,6 +234,7 @@ if(isset($_POST['foodEntrySubmit'])) {
     </div>
 </div>
 </main>
+
 
 <?php
 require_once '../Common Views/Footer.php';
