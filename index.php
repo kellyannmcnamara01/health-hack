@@ -179,26 +179,26 @@ $carbsDV = round(($todayArr['carbs'] / 300) * 100);
                 <div class="col-md-10 col-sm-10 col-12">
                     <p class="text-center">Fat DV% Intake Total</p>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
-                            <?php echo $fatDV ?>%
+                        <div id="fat-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
+                            <span id="fat-num"><?php echo $fatDV ?></span>%
                         </div>
                     </div>
                     <p class="text-center">Cholesterol DV% Intake Total</p>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
-                            <?php echo $cholesterolDV ?>%
+                        <div id="chol-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
+                            <span id="chol-num"><?php echo $cholesterolDV ?></span>%
                         </div>
                     </div>
                     <p class="text-center">Sodium DV% Intake Total</p>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
-                            <?php echo $sodiumDV ?>%
+                        <div id="sodium-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
+                            <span id="sodium-num"><?php echo $sodiumDV ?></span>%
                         </div>
                     </div>
                     <p class="text-center">Carbs DV% Intake Total</p>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
-                            <?php echo $carbsDV ?>%
+                        <div id="carbs-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
+                            <span id="carbs-num"><?php echo $carbsDV ?></span>%
                         </div>
                     </div>
                 </div>
@@ -209,3 +209,5 @@ $carbsDV = round(($todayArr['carbs'] / 300) * 100);
    <?php
     require_once 'Common Views/Footer.php';
     ?>
+
+<script src="Scripts/progress.js"></script>

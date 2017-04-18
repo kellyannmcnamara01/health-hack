@@ -192,32 +192,32 @@ if(isset($_POST['foodEntrySubmit'])) {
             <div class="col-md-6 col-sm-6 col-8">
                 <h2 class="text-center">Fat DV% Intake Total</h2>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
-                        <?php echo $fatDV ?>%
+                    <div id="fat-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fatDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $fatDV ?>%;">
+                        <span id="fat-num"><?php echo $fatDV ?></span>%
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-8">
                 <h2 class="text-center">Cholesterol DV% Intake Total</h2>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
-                        <?php echo $cholesterolDV ?>%
+                    <div id="chol-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $cholesterolDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cholesterolDV ?>%;">
+                        <span id="chol-num"><?php echo $cholesterolDV ?></span>%
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-8">
                 <h2 class="text-center">Sodium DV% Intake Total</h2>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
-                        <?php echo $sodiumDV ?>%
+                    <div id="sodium-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $sodiumDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $sodiumDV ?>%;">
+                        <span id="sodium-num"><?php echo $sodiumDV ?></span>%
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-8">
                 <h2 class="text-center">Carbs DV% Intake Total</h2>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
-                        <?php echo $carbsDV ?>%
+                    <div id="carbs-progress" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $carbsDV ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $carbsDV ?>%;">
+                        <span id="carbs-num"><?php echo $carbsDV ?></span>%
                     </div>
                 </div>
             </div>
@@ -241,3 +241,4 @@ require_once '../Common Views/Footer.php';
 ?>
 
 <script src="../Scripts/nutrition.js"></script>
+<script src="../Scripts/progress.js"></script>

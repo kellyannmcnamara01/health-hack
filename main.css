@@ -1012,8 +1012,8 @@ div#gym-hours {
 .progress {
     background-color: #ccd0d9 !important;
 }
-.progress-bar {
-    background-color: #35adda !important;
+#fat-progress, #chol-progress, #sodium-progress, #carbs-progress {
+    background-color: #35adda;
 }
 .padding-top-75 {
     padding-top: 75px;
