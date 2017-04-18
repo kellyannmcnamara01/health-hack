@@ -1014,6 +1014,35 @@ div#gym-hours {
 .padding-top-75 {
     padding-top: 75px;
 }
+#loading, #stats {
+    display: block;
+}
+#loading-logo {
+    width: 75px;
+}
+.logo-loading, .logo-loading2, .logo-loading3 {
+    fill: #e04152;
+    animation: colourChange 1.75s infinite;
+    overflow: hidden;
+}
+.logo-loading2 {
+    animation-delay: .15s;
+}
+.logo-loading3 {
+    animation-delay: .35s;
+}
+
+@keyframes colourChange {
+    0% {
+        fill: #e04152;
+    }
+    30% {
+        fill: #35adda;
+    }
+    70% {
+        fill: #e04152;
+    }
+}
 
 /* Media Queries */
 @media only screen and (max-width: 767px) {

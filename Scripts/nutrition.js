@@ -6,6 +6,7 @@ var threeDaysArr = [];
 var twoDaysArr = [];
 var weeklyArr = [];
 
+
 //$(document).ready(function(){
 
     //when the DV% is over 100 present change colour
@@ -15,6 +16,10 @@ var weeklyArr = [];
 
     //-------------------
     //add message to wait for load time
+    var loadingDiv = document.getElementById('loading');
+    var statsDiv = document.getElementById('stats');
+    loadingDiv.style.display = 'block';
+    statsDiv.style.display = 'none';
     //-------------------
 
     //JSON call to todaysArrCall.php to grab today's input
@@ -89,6 +94,8 @@ var weeklyArr = [];
         weeklyArr.push(data.fat);
         weeklyArr.push(data.protein);
         weeklyArr.push(data.sodium);
+        loadingDiv.style.display = 'none';
+        statsDiv.style.display = 'block';
         callCharts();
     }); //end of json call
 
