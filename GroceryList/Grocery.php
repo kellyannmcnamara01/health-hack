@@ -91,8 +91,8 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-12 row">
-            <a href="index.php" class="back-btn offset-md-1">
+        <div class="row col-12">
+            <a href="index.php" class="btn btn-info btn-lg offset-md-1">
                 <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
             </a>
         </div>

@@ -227,8 +227,8 @@ if(isset($_POST['foodEntrySubmit'])) {
             <canvas id="weeklyChart"></canvas>
         </div>
     </div>
-    <div class="col-md-12 row">
-        <a href="index.php" class="back-btn offset-md-0">
+    <div class="row">
+        <a href="index.php" class="btn btn-info btn-lg offset-md-2">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>Back
         </a>
     </div>

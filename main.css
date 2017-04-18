@@ -385,7 +385,7 @@ label {
     padding: 15px 0px 0px;
     margin: 0px;
 }
-.formSubmit, .back-btn {
+.formSubmit {
     width: 100%;
     max-width: 175px;
     text-align: center;
@@ -397,10 +397,6 @@ label {
     transition: .7s all ease;
     margin-top: 15px;
     background: #35adda;
-}
-.back-btn {
-    margin-bottom: 15px;
-    background: #e04152;
 }
 .formResetBtn {
     width: 100%;
@@ -414,7 +410,7 @@ label {
     margin-top: 15px;
     transition: .7s all ease;
 }
-.formSubmit:hover, .formSubmit:active, .formSubmit:focus, .formResetBtn:hover, .formResetBtn:active, .formResetBtn:focus, .back-btn:hover, .back-btn:active, .back-btn:focus {
+.formSubmit:hover, .formSubmit:active, .formSubmit:focus, .formResetBtn:hover, .formResetBtn:active, .formResetBtn:focus{
     outline: none;
     background: #8cc34b;
     color: #fff;
