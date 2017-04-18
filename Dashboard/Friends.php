@@ -4,38 +4,14 @@
  * User: bryanstephens
  */
 
-//start session
-session_start();
 
 
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
+
+require_once '../redirect.php';
 require_once '../Models/Validation.php';
 require_once '../Models/Friends.php';
 
-
-
-
-$user = $_SESSION['user'];
-
-// call userInfo() method using user_id from $_SESSION
-$db = new Signup();
-
-$userId = $db->userInfo($user);
-
-//grab  user id, username
-$id = $userId->user_id;
-$userFirst = $userId->first_name;
-$userName = $userId->first_name . ' ' . $userId->last_name;
-$userEmail = $userId->email;
-
-$profile = new Profile();
-
-$results = $profile->getUserProfileIinfo($id);
-$age = $results->age;
-$weight = $results->weight;
-
-// new instance of Friends()
+//// new instance of Friends()
 $friend = new Friends();
 
 //// Add a Friend
@@ -108,6 +84,8 @@ require_once "../Common Views/sidebar.php";
                     <?php
                         // displayFriends() ==> grabs details from all friend_id associated with a user_id
                         $viewFriends = $friend->displayFriends($id);
+                        if($viewFriends)
+                        {
                         foreach($viewFriends as $d)
                         {
                             $friendDetails = '';
@@ -116,6 +94,7 @@ require_once "../Common Views/sidebar.php";
                             $friendDetails .=   "<h5>" . $freindInfo->first_name . " " . $freindInfo->last_name . "</h5>";
                             echo $friendDetails;
                         }
+                        }// end of conditional check (if $viewFreinds is set)
                     ?>
                 </div>
             </div>
