@@ -11,10 +11,30 @@
         <div class="profile">
 
             <?php
-            if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2)) {
-                ?><img src="opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
-            } else {
-                ?><img src="../opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" /><?php
+            if($homepage == $currentpage || $homepage2 == $currentpage || preg_match($access, $currentpage2))
+            {?>
+                <?php if ($img)
+                {?>
+                <img src="opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
+                <?php }
+                else
+                {?>
+                <img src="opt-imgs/login-photo.png" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
+                <?php }?>
+            <?php
+            }
+            else
+            {
+            ?>
+                <?php if ($img)
+            {?>
+                <img src="../opt-imgs/<?php echo $img; ?>" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
+            <?php }
+            else
+            {?>
+                <img src="../opt-imgs/login-photo.png" alt="<?php echo $userFirst?> profile image" class="rounded-circle" width="139" height="139" />
+            <?php }?>
+            <?php
             }
             ?>
             <!--<img src="../opt-imgs/profile-photo.png" class="profile-photo" alt="Profile Photo" />-->
