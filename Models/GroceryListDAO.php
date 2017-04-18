@@ -36,7 +36,7 @@ class GroceryListDAO
 }
 
     public function populateVeggieList($db) {
-        $query_veggieList = "SELECT * FROM FOOD_ITEMS WHERE category = 'Vegetables' OR category = 'Grains'";
+        $query_veggieList = "SELECT * FROM FOOD_ITEMS WHERE category != 'Meat'";
         $pdo_statement = $db->prepare($query_veggieList);
         $pdo_statement->execute();
         $veggieList = $pdo_statement->fetchALL(PDO::FETCH_OBJ);
