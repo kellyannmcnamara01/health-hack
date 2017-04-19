@@ -1,11 +1,11 @@
 <?php
 /*Created By Rahul Malik*/
-//session_start();
+session_start();
 require_once '../redirect.php';
 require_once '../Models/Signup.php';
 require_once '../Models/Profile.php';
 $user = $_SESSION['user'];
-$ModuleID=1;
+$ModuleID=2;
 // call userInfo() method using user_id from $_SESSION
 $db = new Signup();
 
