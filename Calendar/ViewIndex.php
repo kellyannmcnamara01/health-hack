@@ -23,7 +23,6 @@
         url: "getDefaultGymHours.php",
         dataType: "json",
         success: function(data) {
-            //console.log(data);
             if (data.msg) {
                 var elem = $('<p></p>').html("No Gym is currently selected!");
                 $('#gym-hours').append(elem);

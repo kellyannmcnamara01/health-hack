@@ -1,6 +1,4 @@
 <?php
-    //session_start();
-//if (isset($_SESSION["user"])) {
     require_once('../redirect.php');
     require_once('../Models/Database.php');
     require_once('../Models/FitnessProgress.php');
@@ -11,10 +9,6 @@
 
     $fitnessProg = new FitnessProgress();
     $fitnessProg->setDb($db);
-
-    //session_start();
-
-    //$_SESSION["user"] = 1;
 
     $action = 'Index';
 
@@ -51,9 +45,4 @@
     }
 
     include('ViewIndex.php');
-/*} else {
-    $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'];
-    $redirect_uri .= '/health-hack/landing.php';
-    header("Location: " . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-}*/
 ?>
