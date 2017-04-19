@@ -10,9 +10,9 @@ var weeklyArr = [];
 //$(document).ready(function(){
 
     //when the DV% is over 100 present change colour
-    var progressBar = document.querySelector(".progress-bar");
-    var progressValue = progressBar.value;
-    console.log(progressValue);
+    //var progressBar = document.querySelector(".progress-bar");
+    //var progressValue = progressBar.value;
+    //console.log(progressBar);
 
     //-------------------
     //add message to wait for load time
