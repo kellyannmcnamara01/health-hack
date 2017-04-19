@@ -67,6 +67,7 @@ class Calendar {
         $place_id = $this->getDefaultGym();
 
         $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/place/details/json?placeid=".$place_id."&key=AIzaSyB-eAHJBHdVL8yYg7eeHsY5rg8f1Q1qZ4Q");
         $result = json_decode(curl_exec($ch), true);
 

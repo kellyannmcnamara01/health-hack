@@ -16,31 +16,41 @@
     require_once('../Common Views/Footer.php');
 ?>
 <script type="text/javascript">
-    <?php if ($calendar->getDefaultGym() !== false) { ?>
-    var arr = <?php echo json_encode($calendar->getDefaultGymTime()) ?>;
     var gymHours = [];
-    if (arr.result.opening_hours)
-    {
-        arr.result.opening_hours.weekday_text.forEach(function(item) {
-            gymHours.push(item);
-        });
+    var arr;
 
-        gymHours.forEach(function(item, index) {
-            var elemwrap;
-            var elem = $('<span></span>').html(item);
-            if (index % 2 === 0) {
-                elemwrap = $('<div class="col-sm-12 col-md-3"></div>').append(elem);
-                $('#gym-hours').append(elemwrap);
-            } else {
-                $('#gym-hours > div:last-child').append(elem);
+    $.ajax({
+        url: "getDefaultGymHours.php",
+        dataType: "json",
+        success: function(data) {
+            //console.log(data);
+            if (data.msg) {
+                var elem = $('<p></p>').html("No Gym is currently selected!");
+                $('#gym-hours').append(elem);
             }
-        });
-    } else {
-        var elem = $('<p></p>').html("Working hours aren't available online");
-        $('#gym-hours').append(elem);
-    }
-    <?php } else { ?>
-        var elem = $('<p></p>').html("No Gym is currently selected!");
-        $('#gym-hours').append(elem);
-    <?php } ?>
+            else if (data.result.opening_hours) {
+                data.result.opening_hours.weekday_text.forEach(function(item) {
+                    gymHours.push(item);
+                });
+
+                gymHours.forEach(function(item, index) {
+                    var elemwrap;
+                    var elem = $('<span></span>').html(item);
+                    if (index % 2 === 0) {
+                        elemwrap = $('<div class="col-sm-12 col-md-3"></div>').append(elem);
+                        $('#gym-hours').append(elemwrap);
+                    } else {
+                        $('#gym-hours > div:last-child').append(elem);
+                    }
+                });
+            } else {
+                var elem = $('<p></p>').html("Working hours for selected gym aren't available online");
+                $('#gym-hours').append(elem);
+            }
+        },
+        error: function() {
+            var elem = $('<p></p>').html("No Gym is currently selected!");
+            $('#gym-hours').append(elem);
+        }
+    });
 </script>
