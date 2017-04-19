@@ -86,7 +86,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp BETWEEN (CURDATE() - INTERVAL 7 DAY) AND (CURDATE() - INTERVAL .333 DAY)_
+	                                  AND time_stamp = (CURDATE() - INTERVAL 7 DAY) AND CURRENT_DATE ()
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_weeksFoodEntries);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());
