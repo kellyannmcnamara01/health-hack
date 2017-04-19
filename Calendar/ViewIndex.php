@@ -1,6 +1,7 @@
 <?php
     require_once('../Common Views/Header.php');
     require_once('../Common Views/sidebar.php');
+    echo $dty;
 ?>
     <div id='calendar-feature' class='col-md-9 col-sm-12'>
         <h3>Today is <?php echo date('d'); ?> <?php echo date('F'); ?> <?php echo date('l'); ?> <?php echo date('Y'); ?></h3>

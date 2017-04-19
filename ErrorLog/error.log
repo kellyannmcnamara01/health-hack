@@ -1,265 +1,96 @@
 Error reporting
-	 Date Time: 2017-04-19 16:43:03
+	 Date Time: 2017-04-19 14:24:07
 	 Error Number: 8
 	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/landing.php
-	 Error line number: 5
-End reporting
-
-Error reporting
-	 Date Time: 2017-04-19 16:43:06
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/Landing.php
-	 Error line number: 5
+	 Error Message: Undefined variable: dty
+	 file name: D:\home\site\wwwroot\health-hack\Calendar\ViewIndex.php
+	 Error line number: 4
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:03:15
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/landing.php
-	 Error line number: 5
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:40
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/Landing.php
-	 Error line number: 5
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:44
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Undefined index: user
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 37
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 45
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 46
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 47
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 47
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 48
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 53
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 54
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/redirect.php
-	 Error line number: 56
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:26:45
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined index: user
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 35
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:26:45
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 48
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:26:45
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 49
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:26:45
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 51
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:26:45
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 52
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:26:45
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 52
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:26:45
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 53
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:26:45
+	 Date Time: 2017-04-19 11:24:21
 	 Error Number: 8
 	 Error Type: [8]
 	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
+	 file name: D:\home\site\wwwroot\health-hack\index.php
 	 Error line number: 54
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:27:28
+	 Date Time: 2017-04-19 14:24:54
 	 Error Number: 8
 	 Error Type: [8]
-	 Error Message: Undefined index: user
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 35
+	 Error Message: Undefined variable: dty
+	 file name: D:\home\site\wwwroot\health-hack\Calendar\ViewIndex.php
+	 Error line number: 4
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:27:28
+	 Date Time: 2017-04-19 14:25:09
 	 Error Number: 8
 	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 48
+	 Error Message: Undefined variable: dty
+	 file name: D:\home\site\wwwroot\health-hack\Calendar\ViewIndex.php
+	 Error line number: 4
 End reporting
 Error reporting
-	 Date Time: 2017-04-19 17:27:28
+	 Date Time: 2017-04-19 14:25:20
 	 Error Number: 8
 	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 49
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:27:28
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 51
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:27:28
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 52
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:27:28
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 52
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:27:28
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 53
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:27:28
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Trying to get property of non-object
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/index.php
-	 Error line number: 54
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 17:27:49
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/Landing.php
-	 Error line number: 5
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 11:30:34
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/Calendar/index.php
-	 Error line number: 13
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 11:37:57
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/Calendar/index.php
-	 Error line number: 13
-End reporting
-Error reporting
-	 Date Time: 2017-04-19 11:45:13
-	 Error Number: 8
-	 Error Type: [8]
-	 Error Message: Undefined variable: undefined
-	 file name: /Applications/XAMPP/xamppfiles/htdocs/health-hack/Calendar/index.php
-	 Error line number: 13
+	 Error Message: Undefined variable: dty
+	 file name: D:\home\site\wwwroot\health-hack\Calendar\ViewIndex.php
+	 Error line number: 4
 End reporting
