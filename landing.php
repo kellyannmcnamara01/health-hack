@@ -1,7 +1,8 @@
 
 <?php
-//include('error.php');
+include('error.php');
 //header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+//echo $undefined;
 //include('404page.php');
 // start session storage
 session_start();
@@ -65,7 +66,7 @@ $error = '';
         // Subject of email
         $mail->Subject = "Welcome to Healthhack!";
         // Body of email
-        $url = "http://localhost/health-hack/index.php?access_token=" . $access;
+        $url = "http://health-hack.azurewebsites.net/health-hack/index.php?access_token=" . $access;
 
 
         $mail ->Body = "Thanks for signing up $fullName. Welcome to Healthhack.<br /><br /><a href='$url'>Click her to confirm your account</a>.";
@@ -190,7 +191,7 @@ $error = '';
                 // Subject of email
                 $mail->Subject = "Healthhack: Password reset ";
                 // Body of email
-                $url = "http://localhost/health-hack/Dashboard/resetpassword.php?reset_token=" . $passwordToken;
+                $url = "http://health-hack.azurewebsites.net/health-hack/resetpassword.php?reset_token=" . $passwordToken;
 
 
                 $mail ->Body = "Hey $returnedUserName.<br /> Sorry you forgot your password.<br /><br /><a href='$url'>Click her to create a new one</a>.";

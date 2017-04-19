@@ -10,6 +10,7 @@
     $db = $db->getDbFromAWS();
     //session_start();
     //$_SESSION["user"] = 1;
+    echo $undefined;
 
     $calendar = new Calendar(date('m'), date('Y'), $_SESSION["user"]);
     $calendar->setDb($db);

@@ -9,6 +9,7 @@ ob_start();
 session_start();
 
 
+
 $homepage = "/health-hack/index.php";
 $homepage2 = "/health-hack/";
 //pattern for access_token
@@ -53,3 +54,5 @@ $age = $results->age;
 $weight = $results->weight;
 
 $img = $profile->getUserProfileImg($id)->profile_image;
+
+include('error.php');

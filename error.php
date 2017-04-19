@@ -7,11 +7,9 @@
 ini_set('display_errors',0);
 
 
-//error_reporting(0);
 
+function errHandle($errno,$errmsg,$filename,$linenum,$vars){
 
-
-function nerrorhandler($errno,$errmsg,$filename,$linenum,$vars){
     $errortype = array(
         E_ERROR => "Error",
         E_WARNING => "warning",
@@ -20,10 +18,7 @@ function nerrorhandler($errno,$errmsg,$filename,$linenum,$vars){
         E_USER_ERROR => " user Error",
         E_USER_WARNING => "user warning",
         E_USER_NOTICE => "user Notice"
-
-
     );
-
 
     $dt = date('Y-m-d H:i:s');
     $err = "Error reporting\n";
@@ -36,12 +31,13 @@ function nerrorhandler($errno,$errmsg,$filename,$linenum,$vars){
     $err .= "End reporting\n";
 
 
-    error_log($err,3, dirname(__FILE__). '\ErrorLog\error.log');
-    header("Location: 404page.php");
+    error_log($err,3, dirname(__FILE__). '/ErrorLog/error.log');
+
+    header("Location: http://localhost/health-hack/404page.php");
 }
 
 
-set_error_handler("nerrorhandler");
+set_error_handler("errHandle");
 
 
 ?>
