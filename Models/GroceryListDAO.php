@@ -86,7 +86,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp BETWEEN (CURDATE() - INTERVAL 7 DAY) AND CURDATE()
+	                                  AND time_stamp BETWEEN (CURDATE() - INTERVAL 7 DAY) AND (CURDATE() - INTERVAL .333 DAY)_
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_weeksFoodEntries);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());
@@ -107,7 +107,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp = CURDATE() - INTERVAL 6 DAY
+	                                  AND time_stamp = CURDATE() - INTERVAL 6.333 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_sixDaysAgo);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());
@@ -128,7 +128,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp = CURDATE() - INTERVAL 5 DAY
+	                                  AND time_stamp = CURDATE() - INTERVAL 5.333 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_fiveDaysAgo);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());
@@ -149,7 +149,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp = CURDATE() - INTERVAL 4 DAY
+	                                  AND time_stamp = CURDATE() - INTERVAL 4.333 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_fourDaysAgo);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());
@@ -170,7 +170,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp = CURDATE() - INTERVAL 3 DAY
+	                                  AND time_stamp = CURDATE() - INTERVAL 3.333 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_threeDaysAgo);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());
@@ -191,7 +191,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp = CURDATE() - INTERVAL 2 DAY
+	                                  AND time_stamp = CURDATE() - INTERVAL 2.333 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_twoDaysAgo);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());
@@ -212,7 +212,7 @@ class GroceryListDAO
                                       FROM FOOD_ITEMS, FOOD_TRACKING_LISTS
                                       WHERE FOOD_ITEMS.food_item_id = FOOD_TRACKING_LISTS.food_item_id
                                       AND FOOD_TRACKING_LISTS.user_id = :user_id
-	                                  AND time_stamp = CURDATE()
+	                                  AND time_stamp = CURDATE() - INTERVAL .333 DAY
 	                                  GROUP BY food_item_name";
         $pdo_statement = $db->prepare($query_todaysFoodEntries);
         $pdo_statement->bindValue(":user_id", $obj->getUsersId());

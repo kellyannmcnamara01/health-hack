@@ -81,7 +81,6 @@ if(isset($_POST['foodEntrySubmit'])) {
     //var_dump($foodEntryGetSet->getUserId());
     $gListConn->userFoodEntry($db, $foodEntryGetSet);
 
-
 }
 
 ?>
@@ -302,4 +301,4 @@ if(isset($_POST['foodEntrySubmit'])) {
 require_once '../Common Views/Footer.php';
 ?>
 
-<script src="../Scripts/nutrition.js"></script>
+<!--<script src="../Scripts/nutrition.js"></script>-->
