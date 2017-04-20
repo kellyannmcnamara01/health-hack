@@ -1,13 +1,13 @@
 <?php
 /*Created By Rahul Malik*/
-session_start();
+//session_start();
 require_once '../redirect.php';
-require_once '../Models/Signup.php';
-require_once '../Models/Profile.php';
-$user = $_SESSION['user'];
+//require_once '../Models/Signup.php';
+//require_once '../Models/Profile.php';
+//$user = $_SESSION['user'];
 
 // call userInfo() method using user_id from $_SESSION
-$db = new Signup();
+/*$db = new Signup();
 
 $userId = $db->userInfo($user);
 
@@ -15,7 +15,7 @@ $userId = $db->userInfo($user);
 $id = $userId->user_id;
 $userFirst = $userId->first_name;
 $userName = $userId->first_name . ' ' . $userId->last_name;
-$userEmail = $userId->email;
+$userEmail = $userId->email;*/
 
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
