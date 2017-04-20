@@ -4,7 +4,7 @@
 require_once '../redirect.php';
 require_once '../Common Views/Header.php';
 require_once '../Common Views/sidebar.php';
-$user = $_SESSION['user'];  //get it from session
+//$user = $_SESSION['user'];  //get it from session
 $ModuleID=1;//get it from feature which is integrating this feature this system
 $Message='';
 if (isset($_POST['RatNum']))
