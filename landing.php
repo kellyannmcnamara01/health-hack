@@ -191,7 +191,7 @@ $error = '';
                 // Subject of email
                 $mail->Subject = "Healthhack: Password reset ";
                 // Body of email
-                $url = "http://health-hack.azurewebsites.net/health-hack/resetpassword.php?reset_token=" . $passwordToken;
+                $url = "http://health-hack.azurewebsites.net/health-hack/Dashboard/resetpassword.php?reset_token=" . $passwordToken;
 
 
                 $mail ->Body = "Hey $returnedUserName.<br /> Sorry you forgot your password.<br /><br /><a href='$url'>Click her to create a new one</a>.";
