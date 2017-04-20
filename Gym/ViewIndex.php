@@ -33,7 +33,5 @@
                 $("#success-msg").html("Default Gym was successfully changed").show();
             }
         });
-        //$("input[name='gymtodef']:checked").val();
-        //console.log($("input[name='gymtodef']:checked").val());
     });
 </script>

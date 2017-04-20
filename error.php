@@ -33,7 +33,7 @@ function errHandle($errno,$errmsg,$filename,$linenum,$vars){
 
     error_log($err,3, dirname(__FILE__). '/ErrorLog/error.log');
 
-    header("Location: http://localhost/health-hack/404page.php");
+    header("Location: http://health-hack-team2.azurewebsites.net/health-hack/404page.php");
 }
 
 
